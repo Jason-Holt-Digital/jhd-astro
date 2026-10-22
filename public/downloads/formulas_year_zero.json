@@ -11,14 +11,14 @@
       "description": "Roll stress (or gear) dice separately to track 1s for panic/breakage."
     },
     {
-      "name": "Push Base Pool – reroll 2–5 once",
-      "formula": "6d6 ro<6 ro>1 #s=6",
-      "description": "Simulates a push: locks 1s/6s and rerolls 2–5 once, then counts 6s."
+      "name": "Push Base Pool – keep 1s and 6s, push once",
+      "formula": "6d6#s=6 #f=1 @lock=sf @push=1",
+      "description": "Roll it, then use Push on the roll. Push keeps the 1s and 6s and rolls the other dice again, once."
     },
     {
-      "name": "Push Stress Pool – reroll 2–5 once (track 1s)",
-      "formula": "3d6 ro<6 ro>1 #s=6 #f=1",
-      "description": "Stress (or gear) push: locks 1s/6s, rerolls others once; counts 6s and tracks 1s."
+      "name": "Push Stress Pool – keep 1s and 6s, push once",
+      "formula": "3d6#s=6 #f=1 @lock=sf @push=1",
+      "description": "Stress (or gear) dice. Push keeps the 1s and 6s and rolls the other dice again, once. Counts 6s and tracks 1s."
     }
   ],
   "schemaVersion": 1
