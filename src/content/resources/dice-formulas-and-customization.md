@@ -94,10 +94,13 @@ Tip: To save, you only need the formula text—no need to understand every optio
 - Count / Score:
   - \# returns a count and discards the individual dice results: 6d6#>=5
   - #s, #f, #cs, and #cf mark dice as successes, failures, critical successes, and critical failures. The dice and their sum stay as rolled, and the roll row lists the counts. For example: `6d6 #f<=2 #s>=5 #cs6 #cf1`
+  - **1.7.0+** A count takes only the number right after it. `4d10#>=6+2` counts dice of 6 or more, then adds 2 to the count.
 - Clamp (cap): `C<` and `C>` (e.g., `4d20 C<5`, `4d20 C>15`)
+- **1.7.0+** Push rules: `@push=N` lets a roll be pushed N times, and `@lock=s`, `@lock=sf`, or `@lock=none` sets which dice a push keeps (e.g., `5d6#s6 @push=1`). Push also re-rolls dice after a minus sign, as in `2d6#s6 - 2d6#s6`.
 
 Order and precedence gotchas
-- Order matters with keep and the marking counters. 2d20 kh #cf #cs drops the low die first, and to mark both dice before the keep you must write (2d20 #cf #cs) kh, because 2d20 #cf #cs kh keeps both dice.
+- Order matters with keep and the marking counters. 2d20 kh #cf #cs drops the low die first. To mark both dice before the keep, write (2d20 #cf #cs) kh. A keep after a count needs the parentheses, so from app version 1.7.0, 2d20 #cf #cs kh is an error.
+- **1.7.0+** A count applies to the dice just before it. `2d6#s6 - 2d6#s6` scores each 2d6 on its own, then subtracts the second from the first.
 - Drop/filter operators bind tighter than arithmetic. `(5d6+5d10)-L2` drops from the combined pool; `5d6+5d10-L2` drops only from the d10s.
 - Use uppercase `D66` (lowercase `d66` is a 66‑sider, not D66).
 
@@ -162,9 +165,11 @@ Lancer (accuracy/difficulty)
 - Difficulty: `1d20 - (Xd6kh1) + MOD`
 
 Year Zero Engine (Free League: Alien, Forbidden Lands, Vaesen, etc.)
-- Three colored pools (base/skill, stress, gear): Roll the three pools in one formula with labels, for example "Base": 4d6 #s=6, "Stress": 2d6 #s=6, "Gear": 1d6 #s=6. In Dice Studio the roll shows each pool on its own line with its label and total.
+- Three colored pools (base/skill, stress, gear): Roll the three pools in one formula with labels, for example "Base": 4d6 #s=6, "Stress": 2d6 #s=6, "Gear": 1d6 #s=6. In Dice Studio and in the Adventure Log (**1.7.0+**), the roll shows each pool on its own line with its label and total.
 - Successes: `Nd6#s=6` on each pool; track 1s on stress/gear with `#f=1`.
-- To push, roll the pool in Dice Studio with a success mark, for example 5d6 #s=6, then use Push on that roll. Push keeps the dice marked as successes and rolls every other die again, including 1s.
+- **1.7.0+** To push, roll the pool with a success mark, for example `5d6#s6 @push=1`, then tap the arrow at the end of its row and tap Push. Push keeps the dice marked as successes and rolls every other die again, including 1s. `@push=1` means the roll can be pushed once.
+- **1.7.0+** In Forbidden Lands, Push keeps the 6s and the 1s. Write `3d6#s6#f1 @lock=sf`.
+- **1.7.0+** You can push a dice roll in your Adventure Log too. The pushed roll is written to your Journal as a new Pushed dice roll, and the roll you pushed can't be pushed again.
 - Limitations: Panic/breakage resolution remains table‑side.
 
 The One Ring 2e (approximation)

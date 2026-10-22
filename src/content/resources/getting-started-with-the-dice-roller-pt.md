@@ -30,9 +30,9 @@ O Estúdio de Dados é onde você monta e testa fórmulas de dados. No celular, 
 
 ## O layout em resumo
 - Campo de Fórmula + Botão Rolar: Digite uma fórmula (ex: `1d20+5`) e toque em Rolar.
-- Botões de adição rápida: Ações de um toque para inserir dados, modificadores comuns e operadores (`+`, `-`, `*`, parênteses) no campo de fórmula. Os botões de dados são d4, d6, d8, d10, d12, d20, D100, 1D66, d2 e 4dF. Os botões de modificador são Vantagem, Desvantagem, Manter alto, Manter o mais baixo, Dados Explosivos, Composto, Rerrolar Uns, Rolar novamente ≤2, Contagem de Críticos, Limite em X e Piso em X. Digite você mesmo descartar (-H, -L), rolar de novo uma vez (ro) e contar (#).
+- Botões de adição rápida: Ações de um toque para inserir dados, modificadores comuns e operadores (`+`, `-`, `*`, parênteses) no campo de fórmula. Os botões de dados são d4, d6, d8, d10, d12, d20, D100, 1D66, d2 e 4dF. Os botões de modificador são Vantagem, Desvantagem, Manter alto, Manter o mais baixo, Dados Explosivos, Explosão composta, Rerrolar Uns, Rolar novamente ≤2, Contagem de Críticos, Limite em X e Piso em X. Digite você mesmo descartar (-H, -L), rolar de novo uma vez (ro) e contar (#).
   - Bônus numéricos são digitados por você após inserir o operador `+` ou `-` (por exemplo: `+2`).
-- Feed de rolagens: cada linha mostra a fórmula, os valores finais dos dados e as contagens de sucessos e críticos quando a fórmula os marca. As entradas são fáceis de visualizar.
+- Feed de rolagens: cada linha mostra a fórmula, os valores finais dos dados e as contagens de sucessos e críticos quando a fórmula os marca. **1.7.0+** Uma marca de verificação vem depois de cada sucesso ou sucesso crítico, uma cruz vem depois de cada falha ou falha crítica, e um cadeado vem antes de cada dado que Forçar manteve. Uma fórmula com paradas de dados rotuladas, como `"Attack": 2d6, "Damage": 1d8`, mostra uma linha para cada parada. As entradas são fáceis de visualizar.
 
 ## Construa suas primeiras rolagens
 1) Toque em um botão de dado (ex: `d20`) e adicione um modificador (ex: `+5`).
@@ -48,12 +48,20 @@ O Estúdio de Dados é onde você monta e testa fórmulas de dados. No celular, 
 
 ### Básico útil para tentar depois
 - Manter/Descartar: `3d20kh2` (manter os 2 mais altos) ou `4d6-L` (descartar o mais baixo)
-- Explodir/Compor: `4d6!` (explodir) ou `5d6!!` (compor); adicione `o` para uma vez (`!o`, `!!o`)
+- Explosão/Explosão composta: `4d6!` (explodir) ou `5d6!!` (explodir no mesmo dado); adicione `o` para uma vez (`!o`, `!!o`)
 - Rolar novamente: `4d6r1` (rolar novamente 1s), `4d6ro<2` (rolar novamente uma vez resultados abaixo de 2)
 - Contar sucessos: `6d6#>=5` (quantos 5+)
 - D66 (maiúsculo): `1D66` (minúsculo `d66` é um dado de 66 lados)
 
-Dica: Use parênteses para clareza ao misturar pools, ex: `(1d8!!+1d6!!) kh` (Traço Savage Worlds + selvagem, manter o mais alto).
+Dica: Use parênteses para clareza ao misturar paradas de dados, ex: `(1d8!!+1d6!!) kh` (Traço Savage Worlds + selvagem, manter o mais alto).
+
+## Forçar uma rolagem
+Forçar mantém seus sucessos e rola os outros dados de novo, como nos jogos Year Zero.
+1) Na sua Rolagem de teste do estúdio mais recente, toque na seta no fim da linha.
+2) Toque em **Forçar**. A rolagem forçada é adicionada como uma nova Rolagem de teste do estúdio.
+
+- **1.7.0+** Você também pode forçar uma rolagem de dados do seu Registro de Aventura. A rolagem forçada é escrita no seu diário como uma nova **Rolagem de dados forçada**, e a rolagem que você forçou não pode ser forçada de novo.
+- **1.7.0+** Adicione `@push=1` a uma fórmula para que ela só possa ser forçada uma vez, ou `@lock=sf` para manter as falhas também. Veja Fórmulas de Dados e Personalização para mais.
 
 ## Salvando e gerenciando fórmulas
 - Salvar Fórmula: Salva a expressão atual e permite nomeá-la/descrevê-la.
@@ -66,6 +74,7 @@ Dica: Use parênteses para clareza ao misturar pools, ex: `(1d8!!+1d6!!) kh` (Tr
 ## Resultados e legibilidade
 - **Mostrar total dos dados** — Mostra o total de cada rolagem na lista de rolagens do Estúdio de Dados. Quando desativado, uma rolagem lista seus dados sem o total. Uma rolagem sem dados para listar, como uma contagem, ainda mostra seu resultado. O Registro de Aventura sempre mostra o total. Dados descartados não são listados, e os valores mantidos gerados por explosões continuam aparecendo como números comuns, sem destaque específico de explosão.
 - Nomes curtos e modificadores simples mantêm as fórmulas legíveis; adicione contexto na descrição da entrada Salva quando salvar.
+- **1.7.0+** **Som dos dados** — Com **Rolagens de Dados Animadas** ativado, os dados 3D fazem som quando batem na mesa, nas bordas da tela ou uns nos outros. Nas Configurações, a seção Estúdio de Dados tem o botão **Som dos dados** e o controle **Volume dos dados**.
 
 ## Guias relacionados
 Veja a seção de Guias Relacionados na parte inferior desta página.

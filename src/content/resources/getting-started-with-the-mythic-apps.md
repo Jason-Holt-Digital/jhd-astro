@@ -63,6 +63,7 @@ On first launch, the app opens to the Fate Chart. You can switch the default to 
 > - There's a settings wheel that let's you change the settings for each screen.
 > - To show more roll detail in the Adventure Log on a phone, open SETTINGS, choose the Game Behavior tab, and open Adventure Log Settings. On a tablet or desktop, tap the gear on the Adventure Log panel.
 > - You can also turn on the ability to ask a question before each roll
+> - **1.7.0+** To change how dates and times look, open SETTINGS and go to Date and Time. Date format offers Automatic, Day/Month/Year, Month/Day/Year, and Year-Month-Day. Time format offers Automatic, 24-hour, and 12-hour. Automatic follows your device's region and clock settings.
 
 ### 3) Core screens you’ll use every session
 

@@ -67,7 +67,7 @@ Conjuntos de fórmulas prontos para importar para sistemas populares (amigáveis
 - Fate Core: [Baixar](/downloads/formulas_fate.json)
 - Call of Cthulhu 7e: [Baixar](/downloads/formulas_coc7e.json)
 - Cypher: [Baixar](/downloads/formulas_cypher.json)
-- Warhammer (pools de d6): [Baixar](/downloads/formulas_warhammer_d6.json)
+- Warhammer (paradas de d6): [Baixar](/downloads/formulas_warhammer_d6.json)
 - Lancer: [Baixar](/downloads/formulas_lancer.json)
 - Ironsworn: [Baixar](/downloads/formulas_ironsworn.json)
 - Starforged: [Baixar](/downloads/formulas_starforged.json)

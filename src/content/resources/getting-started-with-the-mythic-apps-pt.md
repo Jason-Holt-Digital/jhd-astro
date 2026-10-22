@@ -63,6 +63,7 @@ Na primeira execução, o aplicativo abre na Tabela de Destino. Você pode alter
 > - Existe uma roda de configurações que permite mudar as configurações de cada tela.
 > - Para mostrar mais detalhes das rolagens no Registro de Aventura em um celular, abra CONFIGURAÇÕES, escolha a aba Comportamento no jogo e abra Configurações do Registro de Aventura. Em um tablet ou computador, toque na engrenagem do painel Registro de Aventura.
 > - Você também pode ativar a capacidade de fazer uma pergunta antes de cada rolagem
+> - **1.7.0+** Para mudar como datas e horas aparecem, abra CONFIGURAÇÕES e vá em Data e hora. Formato da data oferece Automático, Dia/Mês/Ano, Mês/Dia/Ano e Ano-Mês-Dia. Formato da hora oferece Automático, 24 horas e 12 horas. Automático segue a região e o relógio do seu dispositivo.
 
 ### 3) Telas principais que você usará toda sessão
 
