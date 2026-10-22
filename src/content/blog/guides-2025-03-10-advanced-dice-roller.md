@@ -72,7 +72,7 @@ Notes:
   - `6d6 #f<=2 #s>=5 #cs6 #cf1`
   - Returns metadata with successes/failures and crits
 
-Order matters. Example: `2d20 kh #cf #cs` drops the 1 before counting; move counts earlier if needed and put them in parentheses (e.g., `(2d20 #cf #cs) kh`).
+Order matters. Example: `2d20 kh #cf #cs` drops the 1 before counting; move counts earlier if needed and put them in parentheses (e.g., `(2d20 #cf #cs) kh`). From app version 1.7.0, a keep after a count without the parentheses is an error.
 
 #### Arithmetic
 - Parentheses for order of operations.

@@ -94,13 +94,13 @@ related:
 - Contar / Pontuação:
   - \# retorna uma contagem e descarta os resultados individuais dos dados: 6d6#>=5
   - #s, #f, #cs e #cf marcam dados como sucessos, falhas, sucessos críticos e falhas críticas. Os dados e a soma continuam como foram rolados, e a linha da rolagem lista as contagens. Por exemplo: `6d6 #f<=2 #s>=5 #cs6 #cf1`
-  - Uma contagem usa só o número logo depois dela. `4d10#>=6+2` conta os dados de 6 ou mais e depois soma 2 à contagem.
+  - **1.7.0+** Uma contagem usa só o número logo depois dela. `4d10#>=6+2` conta os dados de 6 ou mais e depois soma 2 à contagem.
 - Limitar (cap): `C<` e `C>` (ex., `4d20 C<5`, `4d20 C>15`)
-- Regras de Forçar: `@push=N` deixa a rolagem ser forçada N vezes, e `@lock=s`, `@lock=sf` ou `@lock=none` define quais dados Forçar mantém (ex., `5d6#s6 @push=1`). Forçar também rerrola os dados depois de um sinal de menos, como em `2d6#s6 - 2d6#s6`.
+- **1.7.0+** Regras de Forçar: `@push=N` deixa a rolagem ser forçada N vezes, e `@lock=s`, `@lock=sf` ou `@lock=none` define quais dados Forçar mantém (ex., `5d6#s6 @push=1`). Forçar também rerrola os dados depois de um sinal de menos, como em `2d6#s6 - 2d6#s6`.
 
 Pegadinhas de ordem e precedência
-- A ordem importa com manter e com os contadores de marcação. 2d20 kh #cf #cs descarta primeiro o dado mais baixo. Para marcar os dois dados antes de manter, escreva (2d20 #cf #cs) kh. Manter depois de uma contagem precisa dos parênteses, então 2d20 #cf #cs kh é um erro.
-- Uma contagem vale para os dados logo antes dela. `2d6#s6 - 2d6#s6` avalia cada 2d6 separadamente e depois subtrai o segundo do primeiro.
+- A ordem importa com manter e com os contadores de marcação. 2d20 kh #cf #cs descarta primeiro o dado mais baixo. Para marcar os dois dados antes de manter, escreva (2d20 #cf #cs) kh. Manter depois de uma contagem precisa dos parênteses, então a partir da versão 1.7.0 do app, 2d20 #cf #cs kh é um erro.
+- **1.7.0+** Uma contagem vale para os dados logo antes dela. `2d6#s6 - 2d6#s6` avalia cada 2d6 separadamente e depois subtrai o segundo do primeiro.
 - Operadores de Largar/filtrar ligam mais forte que aritmética. `(5d6+5d10)-L2` larga dos dados combinados; `5d6+5d10-L2` larga apenas dos d10s.
 - Use `D66` maiúsculo (minúsculo `d66` é um dado de 66 lados, não D66).
 
@@ -165,11 +165,11 @@ Lancer (precisão/dificuldade)
 - Dificuldade: `1d20 - (Xd6kh1) + MOD`
 
 Year Zero Engine (Free League: Alien, Forbidden Lands, Vaesen, etc.)
-- Três paradas de dados coloridas (base/perícia, stress, equipamento): Role as três paradas em uma só fórmula com rótulos, por exemplo "Base": 4d6 #s=6, "Stress": 2d6 #s=6, "Gear": 1d6 #s=6. No Estúdio de Dados e no Registro de Aventura, a rolagem mostra cada parada em sua própria linha, com o rótulo e o total.
+- Três paradas de dados coloridas (base/perícia, stress, equipamento): Role as três paradas em uma só fórmula com rótulos, por exemplo "Base": 4d6 #s=6, "Stress": 2d6 #s=6, "Gear": 1d6 #s=6. No Estúdio de Dados e no Registro de Aventura (**1.7.0+**), a rolagem mostra cada parada em sua própria linha, com o rótulo e o total.
 - Sucessos: `Nd6#s=6` em cada parada; rastreie 1s em stress/equipamento com `#f=1`.
-- Para forçar, role a parada com uma marca de sucesso, por exemplo `5d6#s6 @push=1`, depois toque na seta no fim da linha e toque em Forçar. Forçar mantém os dados marcados como sucessos e rola de novo todos os outros, inclusive os 1. `@push=1` quer dizer que a rolagem pode ser forçada uma vez.
-- Em Forbidden Lands, Forçar mantém os 6 e os 1. Escreva `3d6#s6#f1 @lock=sf`.
-- Você também pode forçar uma rolagem de dados do seu Registro de Aventura. A rolagem forçada é escrita no seu diário como uma nova Rolagem de dados forçada, e a rolagem que você forçou não pode ser forçada de novo.
+- **1.7.0+** Para forçar, role a parada com uma marca de sucesso, por exemplo `5d6#s6 @push=1`, depois toque na seta no fim da linha e toque em Forçar. Forçar mantém os dados marcados como sucessos e rola de novo todos os outros, inclusive os 1. `@push=1` quer dizer que a rolagem pode ser forçada uma vez.
+- **1.7.0+** Em Forbidden Lands, Forçar mantém os 6 e os 1. Escreva `3d6#s6#f1 @lock=sf`.
+- **1.7.0+** Você também pode forçar uma rolagem de dados do seu Registro de Aventura. A rolagem forçada é escrita no seu diário como uma nova Rolagem de dados forçada, e a rolagem que você forçou não pode ser forçada de novo.
 - Limitações: resolução de pânico/quebra permanece na mesa.
 
 The One Ring 2e (aproximação)

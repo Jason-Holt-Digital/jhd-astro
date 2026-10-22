@@ -109,7 +109,7 @@ For example, you might use this to count # of dice above a target. (5d10 -<6)# -
 4d6 #>=5 -- roll 4d6, count any >= 5
 4d6 #<=2 -- roll 4d6, count any <= 2
 4d6 #=5 -- roll 4d6, count any equal to 5
-A count takes only the number right after it. 4d10 #>=6+2 counts any >= 6, then adds 2 to the count.
+1.7.0+: A count takes only the number right after it. 4d10 #>=6+2 counts any >= 6, then adds 2 to the count.
 successes and failures
 A normal count operation # discards the rolled dice and changes the result to be the count
 For example, 2d6#<=3 rolls [3,4] then counts which results are <=3 , returning [1]
@@ -117,7 +117,7 @@ But, sometimes you want to be able to count successes/failures without discardin
 6d6 #f<=2 #s>=5 #cs6 #cf1 -- roll 6d6, count results <= 2 as failures, >= 5 as successes, =6 as critical successes, =1 as critical failures
 The above returns a result like: RollSummary(total: 22, results: [6, 2, 1, 5, 3, 5], metadata: {rolled: [6, 2, 1, 5, 3, 5], score: {successes: [6, 5, 5], failures: [2, 1], critSuccesses: [6], critFailures: [1]}})
 NOTE: order matters
-2d20 kh #cf #cs -- roll 2d20, keep the highest, count critical successes & failures. If this rolled [1,18], the 1 is dropped and the result metadata won't record a critical failure. If that's not the behavior you want, move the counts prior to the drop and put the counts in parentheses: (2d20 #cf #cs) kh. Without the parentheses, a keep after a count is an error.
+2d20 kh #cf #cs -- roll 2d20, keep the highest, count critical successes & failures. If this rolled [1,18], the 1 is dropped and the result metadata won't record a critical failure. If that's not the behavior you want, move the counts prior to the drop and put the counts in parentheses: (2d20 #cf #cs) kh. From app version 1.7.0, a keep after a count without the parentheses is an error.
 arithmetic operations
 
 parenthesis to force a certain order of operations

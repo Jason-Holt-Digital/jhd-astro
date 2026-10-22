@@ -73,7 +73,7 @@ Notas:
   - `6d6 #f<=2 #s>=5 #cs6 #cf1`
   - Retorna metadados com sucessos/falhas e criticos
 
-A ordem importa. Exemplo: `2d20 kh #cf #cs` descarta o 1 antes de contar; mova contagens para antes se necessário e coloque-as entre parênteses (ex., `(2d20 #cf #cs) kh`).
+A ordem importa. Exemplo: `2d20 kh #cf #cs` descarta o 1 antes de contar; mova contagens para antes se necessário e coloque-as entre parênteses (ex., `(2d20 #cf #cs) kh`). A partir da versão 1.7.0 do app, manter depois de uma contagem sem os parênteses é um erro.
 
 #### Aritmética
 - Parênteses para ordem de operações.
