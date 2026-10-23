@@ -1,0 +1,59 @@
+{
+  "generatedAt": "2026-10-23T10:19:22Z",
+  "commitHash": "5398f0ee162260a0106399164970cdfa4c155386",
+  "branch": "main",
+  "pageCount": 28,
+  "topLevelSections": [
+    "overview",
+    "by-the-numbers",
+    "lore",
+    "how-to-contribute",
+    "features",
+    "systems",
+    "deployment",
+    "security",
+    "cleanup-opportunities",
+    "reference"
+  ],
+  "pageOrder": [
+    "overview/index.md",
+    "overview/architecture.md",
+    "overview/getting-started.md",
+    "overview/glossary.md",
+    "by-the-numbers.md",
+    "lore.md",
+    "how-to-contribute/index.md",
+    "how-to-contribute/development-workflow.md",
+    "how-to-contribute/testing.md",
+    "how-to-contribute/debugging.md",
+    "how-to-contribute/patterns-and-conventions.md",
+    "how-to-contribute/tooling.md",
+    "features/index.md",
+    "features/product-hub.md",
+    "features/resources-and-blog.md",
+    "features/search.md",
+    "features/localization.md",
+    "features/support.md",
+    "systems/index.md",
+    "systems/site-shell.md",
+    "systems/redesign-preview.md",
+    "deployment.md",
+    "security.md",
+    "cleanup-opportunities.md",
+    "reference/index.md",
+    "reference/configuration.md",
+    "reference/data-models.md",
+    "reference/dependencies.md"
+  ],
+  "warnings": [
+    "Screenshots skipped: .factory/skills/qa/config.yaml is absent. Run /install-qa to configure future visual capture.",
+    "Application tests, Astro diagnostics, build and browser QA were not run for this documentation-only change; project dependencies are not installed."
+  ],
+  "videoOverview": {
+    "status": "failed",
+    "warnings": [
+      "HyperFrames 0.4.44 doctor reported missing FFmpeg and FFprobe (exit 0 with failed checks). No video was rendered.",
+      "No local Kokoro or eSpeak narration tool is installed. Remote TTS was not used because it requires explicit approval and this session is non-interactive."
+    ]
+  }
+}
