@@ -201,3 +201,11 @@ Bottom line: keep diffs tiny, selectors robust, and behavior accessible. Add Jav
 - No secrets or custom environment variables are required for dev/build/test. The English and Portuguese support pages contain the public Formspark form ID and Turnstile site key. Sentry release uploads are not configured.
 - `.npmrc` contains a Font Awesome registry token, but no `@fortawesome`/`@awesome.me` packages are in `package.json` (icons load via the Font Awesome CDN kit at runtime), so `npm install` does not hit that private registry.
 - Site search is powered by the `orama-search` integration (`src/integrations/orama-search.mjs`); it builds `oramaDB_*.json` indexes during `npm run build` and is queried client-side on the Resources/Blog pages.
+
+## Coding principles
+
+- Validate unknown values once at the boundary that owns them. Pass typed values inward instead of repeating `typeof value === "object"` and property-existence checks. Do not defensively revalidate values already guaranteed by a schema, constructor, or internal type.
+- Do not extract single-use helpers preemptively. Inline the logic at the call site unless the helper is reused, hides a genuinely complex boundary, or has a clear independent name that improves the caller.
+- Before adding complexity for a speculative or vanishingly unlikely race or security edge case, explain the concrete failure mode, likelihood, and complexity cost to the user and get their buy-in. Do not silently expand scope for theoretical robustness.
+- Test actual implementation, do not duplicate logic into tests
+- Add comments for non-obvious constraints and surprising behavior, not for obvious assignments or control flow.
