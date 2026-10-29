@@ -217,14 +217,26 @@ const { class: className = "legal-article" } = Astro.props;
     to processing of your personal information, to withdraw consent, and to complain to a privacy regulator.
   </p>
   <p>
-    Most of what the app sends can't be matched to you, by design: usage counts and error reports carry random IDs that
-    change, so I can't find them for one person. Usage sharing records can be matched by your usage ID, which you can copy
-    from Settings, under Analytics. For purchases, I can look up and delete your RevenueCat record if you send me your
-    store transaction ID or receipt.
+    In version 1.7 and later, most of what the app sends can't be matched to you, by design: usage counts and error
+    reports carry random IDs that change, so I can't find them for one person. Usage sharing records can be matched by
+    your usage ID, which you can copy from Settings, under Analytics.
+  </p>
+  <p>
+    Versions before 1.7 used IDs the app doesn't show you: PostHog's ID for analytics, and a device ID in some error
+    reports. If you used one of those versions, email me what you can, such as the app version, your device model and
+    roughly when you used it. I'll delete the records I can match with confidence and tell you what I couldn't. Turning
+    analytics off in those versions stops new analytics records, and error reports expire from Sentry within 90 days.
+  </p>
+  <p>
+    For purchases, I can look up and delete your RevenueCat record if you send me your store transaction ID or receipt.
   </p>
   <p>
     Email <a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a> with your request. I'll respond
     within the time the law requires. Please don't send Journal content to identify yourself; I don't need it.
+  </p>
+  <p>
+    <strong>Your game data</strong> stays on your device or in the sync service you turn on. Export anything you want to
+    keep before uninstalling.
   </p>
 
   <h2>Children's Privacy</h2>
