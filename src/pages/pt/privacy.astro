@@ -13,7 +13,7 @@ import PageHeader from '../../components/layout/PageHeader.astro';
   <PageHeader
     title="Política de Privacidade"
     subtitle="Sua privacidade, protegida"
-    description="Coleta mínima de dados, armazenamento local e controles claros. Última atualização: 17 de outubro de 2026"
+    description="Coleta mínima de dados, armazenamento local e controles claros. Última atualização: 29 de outubro de 2026"
     accent="Privacidade"
     layout="left"
     icon="fa-solid fa-shield-check"
@@ -35,154 +35,232 @@ import PageHeader from '../../components/layout/PageHeader.astro';
       <article class="legal-article">
         <p>
           <strong>Jason Holt Digital LLC</strong> é o controlador dos dados, ou responsável pelo tratamento, de Mythic
-          GME Mobile e Mythic GME Digital. Para perguntas sobre privacidade, fale comigo em
+          GME Mobile e Mythic GME Digital. Sou a única pessoa que desenvolve os apps e a única que lê as solicitações de
+          privacidade. Para qualquer pergunta sobre privacidade, escreva para
           <a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a>.
         </p>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Os apps não têm contas e nunca pedem o seu nome, o seu e-mail ou o seu número de telefone.</li>
+          <li>Seus Diários, Cenas, Listas, tabelas, notas, perguntas e rolagens ficam no seu dispositivo, a menos que você decida exportar, compartilhar, sincronizar ou enviar esse conteúdo.</li>
+          <li>Eu não vendo dados, e nada vai para anunciantes ou corretores de dados. Nada é usado para rastrear você em apps ou sites de outras empresas.</li>
+          <li>Não uso nenhum produto de publicidade ou de análise do Google, da Microsoft ou da Amazon. Alguns dos meus prestadores de serviço alugam servidores dessas empresas (veja <a href="#google-microsoft-amazon">Google, Microsoft e Amazon</a>).</li>
+          <li>A partir da versão 1.7, além de verificar compras e entregar atualizações, o app não envia nada até você dizer sim, e você pode mudar sua resposta quando quiser.</li>
+        </ul>
 
         <h2>Quais apps esta política cobre</h2>
         <p>Esta Política de Privacidade se aplica a:</p>
         <ul>
           <li><strong>Mythic GME Mobile</strong> — iPhone, iPad, Android e tablets Fire</li>
-          <li><strong>Mythic GME Digital</strong> — Windows, macOS e Linux</li>
+          <li><strong>Mythic GME Digital</strong> — Windows, macOS e Linux, incluindo as versões vendidas no itch.io</li>
         </ul>
-
-        <h2>Quais dados eu coleto</h2>
         <p>
-          Os apps Mythic GME são local-first. Seus Diários, Cenas, Tabelas Personalizadas, notas, Verificações de
-          Destino, rolagens de dados, resultados de tabelas e outros conteúdos de jogo ficam armazenados no seu
-          dispositivo, a menos que você decida exportar, compartilhar, sincronizar ou enviar esse conteúdo em uma
-          solicitação de suporte.
+          A versão 1.7 muda o que os apps enviam. As próximas seções descrevem a versão 1.7 e as posteriores.
+          <a href="#antes-da-1-7">Versões anteriores à 1.7</a> descreve a versão que a maioria das pessoas tem instalada hoje.
         </p>
 
-        <h3>Atividade do app</h3>
-        <p>Quando você abre o app, eu recebo um registro pelo PostHog com:</p>
-        <ul>
-          <li>um ID de instalação aleatório criado pelo app</li>
-          <li>um ID de sessão</li>
-          <li>a versão e o build do app, e a loja em que você o instalou</li>
-          <li>sua plataforma e a versão do sistema operacional</li>
-          <li>seu país, a partir do seu endereço de rede</li>
-          <li>o layout do app e sua configuração de Jogo Híbrido</li>
-          <li>quais ferramentas opcionais você pode usar e quais delas ativou</li>
-          <li>se os Recursos Expandidos estão desbloqueados</li>
-        </ul>
-        <p>Quando você compra ou restaura os Recursos Expandidos, eu recebo se deu certo e qual loja você usou.</p>
-        <p>Uso isso para contar instalações ativas e verificar se as versões e as compras funcionam.</p>
-        <p>O ID de instalação é aleatório. Eu não associo esses dados a você como pessoa.</p>
-
-        <h3>Compartilhamento de dados de uso (opcional)</h3>
+        <h2>O que fica no seu dispositivo</h2>
         <p>
-          Com o Compartilhamento de dados de uso ativado, eu também recebo quais recursos você abre e o tipo de ação
-          que você faz, como uma Pergunta de Destino ou uma rolagem de dados. Nunca recebo o que você escreve nem os resultados que
-          você rola. Ative ou desative em Configurações, em
-          Análises.
+          Os apps Mythic GME são local-first. Seus Diários, Cenas, Tramas, Personagens, Listas, Tabelas Personalizadas,
+          notas, Perguntas do Destino, rolagens de dados e resultados de tabelas ficam armazenados no seu dispositivo, ou
+          no iCloud se você ativar a sincronização com o iCloud. Eu não hospedo o seu conteúdo de jogo em nenhum servidor
+          meu.
         </p>
 
-        <h3>Lançamento de novos recursos</h3>
+        <h2>O que o app envia (versão 1.7 e posteriores)</h2>
+
+        <h3>Compras</h3>
         <p>
-          O app envia o ID de instalação ao PostHog para verificar se um novo recurso ou uma nova versão de uma tela
-          está pronta para o seu dispositivo. Uso isso para lançar mudanças aos poucos.
+          Quando você compra ou restaura os Recursos Expandidos pela App Store, pelo Google Play ou pela Amazon Appstore,
+          a RevenueCat verifica o recibo da loja para que o app libere o que você comprou. A RevenueCat recebe o recibo, o
+          ID da transação, o produto, o preço e a loja, e dá à sua instalação um ID aleatório próprio. No iPhone e no iPad,
+          o código dela também envia o identificador que a Apple atribui ao seu dispositivo para cada desenvolvedor, que
+          não pode ser usado nos apps de outros desenvolvedores. A RevenueCat também envia ao PostHog, meu serviço de
+          análise, um registro dos eventos de compra com o ID aleatório da RevenueCat, o produto, o preço e o ID da
+          transação. Ela faz esse envio dos próprios servidores, então a configuração de análises do app não o afeta. As
+          versões vendidas no itch.io e outros downloads diretos não usam a RevenueCat.
+        </p>
+
+        <h3>Atualizações</h3>
+        <p>
+          Quando o app abre, ele pergunta à Shorebird se há uma correção disponível para a sua versão e a baixa, se houver.
+          A solicitação inclui o ID e a versão do app, sua plataforma e o tipo de processador, o número da correção que você
+          já tem e um ID aleatório que o atualizador da Shorebird cria para a sua instalação. A Shorebird usa esse ID só
+          para contar instalações.
+        </p>
+
+        <h3>Contagens de uso anônimas</h3>
+        <p>
+          Uma vez por dia, o app envia ao PostHog uma contagem de que foi usado. A contagem traz a versão e o build do app,
+          a loja de onde você o instalou, sua plataforma e a versão do sistema operacional, o seu layout e se os Recursos
+          Expandidos estão desbloqueados. Ela também traz indicadores simples calculados no seu dispositivo, como se este é
+          o primeiro uso da semana ou do mês e, uma única vez cada, se você voltou 1, 7 ou 30 dias depois de abrir o app
+          pela primeira vez.
+        </p>
+        <p>
+          Cada contagem recebe um novo ID aleatório, então nenhuma contagem pode ser ligada a outra da mesma instalação. O
+          app não envia o seu país, e o PostHog não guarda o seu endereço de rede. Uso as contagens para ver quantas pessoas
+          usam o app e se elas voltam. O app pergunta antes de enviar qualquer contagem, e você pode mudar sua resposta em
+          Configurações, em Análises.
         </p>
 
         <h3>Relatórios de erro</h3>
-        <p>Quando algo dá errado no app, eu recebo um relatório de erro pelo Sentry e pelo PostHog com:</p>
-        <ul>
-          <li>o tipo de erro e onde ele aconteceu no código do app</li>
-          <li>a versão do app, a plataforma e o sistema operacional</li>
-          <li>uma descrição curta que escrevi para esse erro</li>
-          <li>os tipos de passos que o app executou logo antes, como abrir um diálogo</li>
-          <li>o ID de instalação e o número do patch de atualização (somente PostHog)</li>
-        </ul>
         <p>
-          O Sentry também recebe uma amostra de dados de desempenho. O PostHog também recebe avisos do log do app,
-          identificados pela parte do app de onde vieram, e contagens de como foram os salvamentos de Diários.
+          Quando algo dá errado, o app pode enviar um relatório de erro para que eu encontre e corrija o problema. Um
+          relatório contém o tipo de erro, onde ele aconteceu no código do app, uma descrição curta que eu escrevi para esse
+          erro, os tipos de passos que o app executou logo antes (como abrir uma caixa de diálogo), a versão do app e o
+          número da atualização, além do modelo do seu dispositivo e do sistema operacional. Os relatórios trazem um ID
+          aleatório que muda toda vez que o app abre. Eles nunca incluem nomes de Diários, nomes de arquivos, caminhos de
+          pastas nem nada que você escreveu.
         </p>
-        <p>Uso os relatórios de erro para encontrar e corrigir bugs.</p>
-
-        <h3>Repetição da sessão (opcional)</h3>
         <p>
-          Com a Repetição da sessão ativada, eu recebo uma gravação curta da tela do app quando ocorre um erro. A
-          gravação mostra os botões e rótulos do app. Tudo o que você escreve ou rola é ocultado. A Repetição da sessão
-          funciona no iPhone, iPad e Android, para adultos. Ative ou desative em Configurações, em Análises.
+          Os relatórios de erro vão para o PostHog. No Windows e no Linux, as falhas no código nativo do app vão para o
+          Sentry, porque o PostHog não consegue capturá-las ali. O app pergunta antes de enviar qualquer relatório, e você
+          pode mudar sua resposta em Configurações, em Análises.
+        </p>
+
+        <h3>Compartilhamento de dados de uso (opcional)</h3>
+        <p>
+          Com o Compartilhamento de dados de uso ativado, eu também recebo quais recursos você usa e o tipo de ação que você
+          faz, como fazer uma Pergunta do Destino ou rolar dados, para ver quais ferramentas ajudam e onde as pessoas
+          travam. Nunca recebo o que você escreve nem os resultados que você rola. Esses registros compartilham um único ID
+          de uso aleatório, para que eu veja como os recursos são usados ao longo do tempo. O ID é criado quando você ativa
+          o Compartilhamento de dados de uso, nunca é ligado às suas compras nem aos relatórios de erro e é descartado
+          quando você o desativa.
+        </p>
+        <p>
+          Quando você desativa o Compartilhamento de dados de uso, o app para de enviar registros de uso, apaga os que ainda
+          não enviou e me pede para apagar os que já enviou. Eu os apago em até 30 dias. Enquanto o compartilhamento
+          estiver ativado, você pode ver o seu ID de uso em Configurações, em Análises.
         </p>
 
         <h3>O que o app nunca envia</h3>
         <ul>
-          <li>Diários, Cenas, Tramas, Personagens, listas, Tabelas Personalizadas, notas ou qualquer coisa que você escreva</li>
-          <li>Perguntas de Destino, valores de dados ou resultados</li>
-          <li>Seu nome, e-mail ou telefone</li>
-          <li>Sua cidade ou localização precisa</li>
+          <li>Diários, Cenas, Tramas, Personagens, Listas, Tabelas Personalizadas, notas ou qualquer coisa que você escreva</li>
+          <li>Perguntas do Destino, valores de dados ou resultados</li>
+          <li>Gravações da sua tela</li>
+          <li>Seu nome, endereço de e-mail ou número de telefone</li>
+          <li>Sua localização por GPS ou qualquer localização obtida do seu dispositivo</li>
           <li>Seu ID de publicidade</li>
         </ul>
 
-        <h2>Suas escolhas</h2>
+        <h2 id="antes-da-1-7">Versões anteriores à 1.7</h2>
+        <p>Isto é o que as versões 1.6 e anteriores enviam. A maioria das pessoas tem a 1.6.7 instalada hoje.</p>
+        <ul>
+          <li>
+            <strong>Relatórios de erro</strong> vão para o Sentry a partir de toda cópia instalada. Eles incluem o erro, a
+            versão do app, o modelo do seu dispositivo e o sistema operacional, uma amostra de tempos de desempenho e
+            contagens de sessões do app. Para me ajudar a corrigir problemas com a forma como os Diários são nomeados,
+            abertos e salvos, um relatório sobre um erro de arquivo pode incluir o nome do Diário ou do arquivo e a pasta
+            onde ele estava, que pode conter o nome de usuário do seu computador. A versão 1.7 não envia mais esses
+            detalhes.
+          </li>
+          <li>
+            <strong>Análises</strong> ficam desativadas, a menos que você as tenha ativado. Com elas ativadas, iPhone, iPad,
+            Android e Mac enviam ao PostHog um registro por dia com a versão do app, a loja, a plataforma, a versão do
+            sistema operacional, a sua configuração de idioma e se os Recursos Expandidos estão desbloqueados, junto com um
+            ID aleatório que o código do PostHog guarda para a sua instalação. O PostHog calculava uma localização a partir
+            do seu endereço de rede. Antes de 17 de outubro de 2026, isso incluía a sua cidade e a área aproximada; desde
+            então, ele guarda só o seu país. Os únicos registros antigos com detalhes de cidade vieram do meu próprio
+            celular, durante testes. Com as análises
+            ativadas, os relatórios de erro enviados ao Sentry também levavam um ID aleatório que o app criou para o seu
+            dispositivo. Windows e Linux não enviam análises.
+          </li>
+          <li>
+            <strong>Repetição da sessão</strong>, se um adulto a ativou, envia ao Sentry uma gravação quando acontece um
+            erro no iPhone, iPad ou Android, com textos e imagens ocultos. Desligar Ativar a repetição da sessão em
+            Configurações interrompe isso, e a versão 1.7 remove a Repetição da sessão.
+          </li>
+          <li><strong>Compras</strong> e <strong>atualizações</strong> funcionam como descrito para a versão 1.7.</li>
+        </ul>
+
+        <h2>Quem recebe dados</h2>
         <p>
-          Na primeira vez que você abre o app, e depois de atualizar para a versão 1.7, você escolhe se quer ativar o
-          Compartilhamento de dados de uso e a Repetição da sessão. Os dois começam desativados.
+          Estas empresas recebem dados dos apps. PostHog, Sentry e RevenueCat os tratam em meu nome, sob contratos de
+          tratamento de dados, e só para as finalidades desta política. A Shorebird trata os dados das atualizações sob a
+          própria política de privacidade.
         </p>
         <ul>
-          <li><strong>Compartilhamento de dados de uso:</strong> Configurações, Análises.</li>
-          <li><strong>Repetição da sessão:</strong> Configurações, Análises, no iPhone, iPad e Android.</li>
-          <li><strong>Atividade do app e relatórios de erro:</strong> envie e-mail para <a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a> para se opor ou para pedir a exclusão dos registros da sua instalação.</li>
+          <li>
+            <strong>PostHog</strong> (contagens de uso anônimas, relatórios de erro e Compartilhamento de dados de uso;
+            eventos de compra enviados pela RevenueCat; análises das versões anteriores à 1.7). Armazenados nos Estados Unidos, na Amazon Web Services. As transferências
+            se baseiam no EU-U.S. Data Privacy Framework e em Cláusulas Contratuais Padrão. A retenção depende do meu plano;
+            hoje o PostHog informa um ano no plano gratuito e sete anos nos planos pagos.
+            <a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">Política de Privacidade</a> •
+            <a href="https://posthog.com/subprocessors" target="_blank" rel="noopener noreferrer">Suboperadores</a>
+          </li>
+          <li>
+            <strong>Sentry</strong> (relatórios de falhas nativas do Windows e do Linux; todos os relatórios de erro das
+            versões anteriores à 1.7). Armazenados nos Estados Unidos; o Sentry lista o Google Cloud e a Amazon Web Services como provedores de hospedagem. As
+            transferências se baseiam no EU-U.S. Data Privacy Framework e em Cláusulas Contratuais Padrão. Os dados de erro
+            são guardados por 30 a 90 dias, conforme o tipo.
+            <a href="https://sentry.io/privacy/" target="_blank" rel="noopener noreferrer">Política de Privacidade</a> •
+            <a href="https://sentry.io/legal/subprocessors/" target="_blank" rel="noopener noreferrer">Suboperadores</a>
+          </li>
+          <li>
+            <strong>RevenueCat</strong> (compras, só nas versões das lojas). Armazenados nos Estados Unidos, na Amazon Web
+            Services, com o Google Cloud entre os prestadores listados. As transferências se baseiam em Cláusulas
+            Contratuais Padrão. Os registros de compra são guardados enquanto forem necessários para restaurar o que você
+            comprou.
+            <a href="https://www.revenuecat.com/privacy/" target="_blank" rel="noopener noreferrer">Política de Privacidade</a> •
+            <a href="https://www.revenuecat.com/dpa" target="_blank" rel="noopener noreferrer">Contrato de Tratamento de Dados</a>
+          </li>
+          <li>
+            <strong>Shorebird</strong> (atualizações). Funciona no Google Cloud em Iowa, Estados Unidos, e entrega as
+            correções pelo Google Cloud Storage. A Shorebird guarda a contagem de instalações como totais anônimos, não como
+            uma lista de IDs.
+            <a href="https://shorebird.dev/privacy" target="_blank" rel="noopener noreferrer">Política de Privacidade</a> •
+            <a href="https://docs.shorebird.dev/system/security/" target="_blank" rel="noopener noreferrer">Segurança</a>
+          </li>
         </ul>
+
+        <h3 id="google-microsoft-amazon">Google, Microsoft e Amazon</h3>
+        <p>
+          Não envio os seus dados ao Google, à Microsoft ou à Amazon para uso próprio delas, e não uso os produtos de
+          publicidade ou de análise dessas empresas. Alguns dos meus prestadores armazenam os dados em servidores alugados
+          da Amazon Web Services ou do Google Cloud, como listado acima. Essas empresas hospedam os dados para os meus
+          prestadores; elas não os recebem para usar por conta própria.
+        </p>
+        <p>
+          Se você obtém o app pela App Store, pelo Google Play, pela Amazon Appstore, pela Microsoft Store ou pelo itch.io,
+          essa loja trata a sua compra e o download sob a própria política de privacidade. O sistema operacional do seu
+          dispositivo também pode enviar informações de falhas e diagnóstico à Apple, ao Google ou à Microsoft, conforme as
+          configurações do seu dispositivo. Quem decide como essas informações são usadas são essas lojas e fabricantes, não
+          eu.
+        </p>
 
         <h2>Eu não vendo seus dados</h2>
         <p>
-          Eu não vendo informações pessoais, não uso publicidade direcionada e não construo o negócio em cima dos seus
-          dados. Os provedores abaixo processam dados limitados de analytics e diagnóstico em meu nome, para as
-          finalidades descritas nesta política.
+          Não vendo nem compartilho informações pessoais para publicidade, não uso publicidade direcionada e não trabalho
+          com corretores de dados. Se mesmo assim quiser enviar uma solicitação de "Não vender ou compartilhar", escreva
+          para <a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a> e eu atenderei a qualquer
+          direito aplicável.
         </p>
 
-        <h2>Como seus dados são processados</h2>
-        <h3>Provedores de analytics e diagnóstico</h3>
+        <h2>Suas escolhas</h2>
         <ul>
-          <li><strong>PostHog:</strong> atividade do app, Compartilhamento de dados de uso, lançamento de novos recursos, relatórios de erro, avisos do log e Repetição da sessão. Região: Estados Unidos. A retenção depende do plano e das configurações ativos do PostHog; atualmente, o PostHog informa um ano de retenção no plano Free e sete anos nos planos pay-as-you-go. Fontes: <a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">Política de Privacidade</a>, <a href="https://posthog.com/pricing" target="_blank" rel="noopener noreferrer">preços e retenção</a>, <a href="https://github.com/PostHog/posthog.com/blob/master/contents/docs/privacy/data-storage.mdx" target="_blank" rel="noopener noreferrer">armazenamento e exclusão de dados</a>.</li>
-          <li><strong>Sentry:</strong> relatórios de erro e uma amostra de dados de desempenho. Região: Estados Unidos. O Sentry retém dados de erros em SaaS de acordo com o plano ativo e o tipo de evento; atualmente, o Sentry informa 30 dias para logs de erro no plano Free, 90 dias para planos Team/Business self-service e retenção customizada em planos Enterprise. Fontes: <a href="https://sentry.io/privacy/" target="_blank" rel="noopener noreferrer">Política de Privacidade</a>, <a href="https://sentry.io/security/" target="_blank" rel="noopener noreferrer">Segurança</a>, <a href="https://sentry.zendesk.com/hc/en-us/articles/27118913621019-How-Long-Are-Errors-Events-Stored-in-Sentry" target="_blank" rel="noopener noreferrer">retenção de dados</a>.</li>
-          <li><strong>RevenueCat:</strong> processa as compras dos Recursos Expandidos, incluindo o recibo da loja, o ID da transação e o preço. O RevenueCat também recebe o ID de instalação para que eu possa associar as compras à atividade do app.</li>
-          <li><strong>Retenção de dados:</strong> Uso ferramentas de retenção e exclusão dos provedores quando disponíveis e mantenho dados de analytics e diagnóstico apenas pelo tempo necessário para as finalidades descritas nesta política. Você pode solicitar exclusão a qualquer momento (veja Seus direitos de privacidade).</li>
-          <li><strong>Transferências internacionais:</strong> Dados podem ser processados nos Estados Unidos com salvaguardas adequadas, como cláusulas contratuais padrão, quando exigido.</li>
-          <li><strong>Compartilhamento/venda:</strong> Dados não são vendidos. Provedores processam dados em meu nome para manter os apps confiáveis e melhorá-los.</li>
+          <li><strong>Contagens de uso anônimas:</strong> Configurações, Análises.</li>
+          <li><strong>Relatórios de erro:</strong> Configurações, Análises.</li>
+          <li><strong>Compartilhamento de dados de uso:</strong> Configurações, Análises. Desativado até você ativar.</li>
+          <li><strong>Tela de primeira abertura:</strong> na primeira vez que você abrir a versão 1.7, o app explica essas escolhas e pergunta antes de ativar qualquer coisa opcional.</li>
+          <li><strong>Seu dispositivo:</strong> as configurações de privacidade do seu sistema operacional controlam o que ele compartilha com a Apple, o Google ou a Microsoft.</li>
         </ul>
 
-        <p><strong>Informações de privacidade e retenção dos provedores:</strong></p>
+        <h2>Base legal (LGPD e RGPD)</h2>
+        <p>Para pessoas no Brasil, na União Europeia e no Reino Unido, eu me baseio em:</p>
         <ul>
-          <li>Sentry: <a href="https://sentry.io/privacy/" target="_blank" rel="noopener noreferrer">Política de Privacidade</a> • <a href="https://sentry.zendesk.com/hc/en-us/articles/27118913621019-How-Long-Are-Errors-Events-Stored-in-Sentry" target="_blank" rel="noopener noreferrer">Retenção de dados</a></li>
-          <li>PostHog: <a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">Política de Privacidade</a> • <a href="https://posthog.com/pricing" target="_blank" rel="noopener noreferrer">Preços e retenção</a> • <a href="https://github.com/PostHog/posthog.com/blob/master/contents/docs/privacy/data-storage.mdx" target="_blank" rel="noopener noreferrer">Armazenamento e exclusão de dados</a></li>
-          <li>RevenueCat: <a href="https://www.revenuecat.com/privacy/" target="_blank" rel="noopener noreferrer">Política de Privacidade</a></li>
+          <li><strong>Prestação do serviço que você pediu:</strong> verificar compras e entregar atualizações.</li>
+          <li><strong>Consentimento:</strong> contagens de uso anônimas, relatórios de erro e Compartilhamento de dados de uso na versão 1.7 e posteriores, e análises nas versões anteriores. Você pode retirá-lo quando quiser em Configurações.</li>
+          <li><strong>Legítimo interesse:</strong> relatórios de erro das versões anteriores à 1.7, que os enviam sem perguntar, para que eu mantenha o app funcionando; e os registros de compra que a RevenueCat copia para o PostHog, para que eu acompanhe as vendas.</li>
+          <li><strong>Responder a você:</strong> quando você me escreve.</li>
         </ul>
-
-        <h3>Armazenamento local</h3>
-        <ul>
-          <li><strong>Dados de jogo:</strong> Seus Diários, Tabelas Personalizadas e conteúdo de jogo são armazenados localmente, a menos que você decida exportar, compartilhar, sincronizar ou enviá-los em uma solicitação de suporte.</li>
-          <li><strong>Acesso a arquivos:</strong> Os apps acessam arquivos que você abre, salva, importa, exporta, sincroniza ou compartilha explicitamente.</li>
-          <li><strong>Sincronização iCloud:</strong> Se ativada, seus dados de jogo são sincronizados pelo serviço iCloud da Apple.</li>
-          <li><strong>Sem armazenamento em servidores da Jason Holt Digital:</strong> Eu não hospedo seu conteúdo de jogo em servidores da Jason Holt Digital.</li>
-        </ul>
-
-        <h3>Base legal (LGPD e RGPD)</h3>
-        <p>
-          Para pessoas no Brasil (LGPD) e em Portugal ou na União Europeia (RGPD), as bases legais descritas nesta
-          política podem incluir:
-        </p>
-        <ul>
-          <li><strong>Consentimento:</strong> Compartilhamento de dados de uso e Repetição da sessão. Retire o consentimento a qualquer momento nas Configurações.</li>
-          <li><strong>Legítimo interesse:</strong> Atividade do app, para contar instalações e verificar versões e compras. Relatórios de erro, para manter os apps estáveis e seguros. Resposta a e-mails de suporte que você envia.</li>
-          <li><strong>Execução de contrato ou procedimentos relacionados:</strong> Processamento necessário para disponibilizar os apps, compras, suporte e recursos que você solicita, quando aplicável.</li>
-        </ul>
-
-        <h2 id="do-not-sell">Não vender ou compartilhar minhas informações pessoais</h2>
-        <p>
-          Eu não vendo suas informações pessoais, não uso publicidade direcionada e não compartilho dados para esse
-          tipo de finalidade. Se uma lei aplicável der a você um direito de oposição, opt-out ou pedido semelhante,
-          entre em contato e honrarei qualquer direito aplicável.
-        </p>
 
         <h2>Seus direitos de privacidade</h2>
         <p>
-          Dependendo de onde você mora, leis de privacidade podem dar a você direitos de acessar, corrigir, excluir,
-          portar, limitar ou se opor a certos tratamentos de dados pessoais. Você também pode ter o direito de retirar
-          consentimento para o Compartilhamento de dados de uso ou a Repetição da sessão, recorrer de uma decisão ou reclamar a uma
-          autoridade de proteção de dados.
+          Dependendo de onde você mora, as leis de privacidade podem lhe dar direitos de acessar, corrigir, apagar,
+          exportar, restringir ou se opor ao tratamento das suas informações pessoais, de retirar o consentimento e de
+          reclamar a uma autoridade de proteção de dados.
         </p>
         <p>
           No Brasil, a LGPD pode incluir direitos como confirmação de tratamento, acesso, correção, anonimização,
@@ -190,111 +268,62 @@ import PageHeader from '../../components/layout/PageHeader.astro';
           União Europeia, o RGPD pode incluir direitos como acesso, retificação, apagamento, limitação, portabilidade,
           oposição, retirada de consentimento e reclamação à CNPD ou à autoridade de controle aplicável.
         </p>
-
-        <h3>Como exercer seus direitos</h3>
         <p>
-          Envie sua solicitação para <strong><a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a></strong>.
-          Posso precisar de informações para verificar a solicitação e associá-la aos dados que realmente tenho.
-          Responderei dentro do prazo exigido pela lei aplicável.
+          Na versão 1.7 e posteriores, a maior parte do que o app envia não pode ser ligada a você, por projeto: as
+          contagens de uso e os relatórios de erro trazem IDs aleatórios que mudam, então não consigo encontrá-los para uma
+          pessoa. Os registros do Compartilhamento de dados de uso podem ser encontrados pelo seu ID de uso, que você pode
+          copiar em Configurações, em Análises.
         </p>
-        <p><strong>Para dados de jogo locais:</strong> Seus dados de jogo ficam principalmente no seu dispositivo ou nos serviços de sincronização de plataforma que você ativar. Exporte tudo que quiser manter antes de desinstalar.</p>
-
-        <h2>Controles de privacidade</h2>
-        <h3>Controles no app</h3>
-        <ul>
-          <li><strong>Configurações → Análises → Compartilhamento de dados de uso:</strong> ativar ou desativar o Compartilhamento de dados de uso</li>
-          <li><strong>Configurações → Análises → Repetição da sessão:</strong> ativar ou desativar a Repetição da sessão</li>
-          <li><strong>Diálogo de primeira abertura:</strong> escolher as duas opções quando abrir o app pela primeira vez e depois de atualizar para a versão 1.7</li>
-          <li><strong>Exportar dados:</strong> exportar seus Diários de jogo como arquivos JSON ou Markdown</li>
-          <li><strong>Excluir dados:</strong> limpar os dados do app ou desinstalar para remover dados locais</li>
-        </ul>
-
-        <h3>Controles do dispositivo</h3>
         <p>
-          Controles de privacidade do sistema operacional variam por plataforma e versão. Você pode usar as configurações
-          do dispositivo ou do desktop para gerenciar permissões do app, acesso a arquivos, compartilhamento de
-          analytics do sistema, preferências de rastreamento e outros controles de privacidade disponíveis.
+          As versões anteriores à 1.7 usavam IDs que o app não mostra: o ID do PostHog nas análises e um ID do dispositivo
+          em alguns relatórios de erro. Se você usou uma dessas versões, envie o que puder, como a versão do app, o modelo
+          do seu dispositivo e quando mais ou menos você o usou. Vou apagar os registros que eu conseguir identificar com
+          segurança e avisar o que não consegui. Desativar as análises nessas versões interrompe novos registros, e os
+          relatórios de erro expiram no Sentry em até 90 dias.
         </p>
-        <ul>
-          <li><strong>iPhone, iPad, Android e tablets Fire:</strong> gerencie permissões do app, compartilhamento de analytics, diagnósticos de uso e preferências de rastreamento ou publicidade nas configurações do sistema, quando disponíveis.</li>
-          <li><strong>Windows, macOS e Linux:</strong> use controles de privacidade e permissões de arquivo do sistema. As versões desktop acessam apenas arquivos que você abre, salva, importa, exporta, sincroniza ou compartilha explicitamente.</li>
-        </ul>
-
-        <h2>Diferenças entre plataformas</h2>
-        <h3>Por que o tratamento de dados pode variar por plataforma</h3>
-        <ul>
-          <li><strong>Atividade do app e Compartilhamento de dados de uso:</strong> iguais em todas as plataformas em que os apps instalados funcionam.</li>
-          <li><strong>Builds de depuração e web:</strong> não enviam nada.</li>
-          <li><strong>Repetição da sessão:</strong> iPhone, iPad e Android.</li>
-          <li><strong>Desktop:</strong> builds desktop não usam identificadores de publicidade mobile e só acessam arquivos que você abre, salva, importa, exporta, sincroniza ou compartilha explicitamente.</li>
-        </ul>
+        <p>
+          Para compras, posso localizar e apagar o seu registro na RevenueCat, e a cópia dele no PostHog, se você me
+          enviar o ID da transação ou o recibo da loja.
+        </p>
+        <p>
+          Envie sua solicitação para <a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a>. Vou
+          responder no prazo que a lei exige. Por favor, não envie conteúdo dos seus Diários para se identificar; eu não
+          preciso dele.
+        </p>
+        <p>
+          <strong>Seus dados de jogo</strong> ficam no seu dispositivo ou no serviço de sincronização que você ativar.
+          Exporte tudo o que quiser manter antes de desinstalar.
+        </p>
 
         <h2>Privacidade de crianças</h2>
-        <p>Os apps não são direcionados a crianças menores de 13 anos. Eles não exigem contas nem pedem data de nascimento, então eu geralmente não sei a idade do jogador.</p>
-        <p>Em dispositivos cujo sinal de idade limita as análises, o app envia apenas relatórios de erro. Eles levam um novo ID aleatório a cada vez que o app inicia.</p>
-        <p>Se você acredita que uma criança forneceu informações pessoais pelos apps ou em uma solicitação de suporte, envie e-mail para <a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a> para que eu possa revisar e excluir quando apropriado.</p>
+        <p>Os apps não são direcionados a crianças menores de 13 anos. Eles não exigem contas nem pedem data de nascimento, então em geral eu não sei a idade de quem joga.</p>
+        <p>Em dispositivos cujo sinal de idade indica que a pessoa é menor de idade, o app desativa o Compartilhamento de dados de uso e não cria um ID de uso.</p>
+        <p>Se você acredita que uma criança enviou informações pessoais pelos apps ou por um e-mail de suporte, escreva para <a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a> para que eu possa analisar e apagar.</p>
+
+        <h2>Rótulos de privacidade das lojas</h2>
+        <h3>Apple</h3>
+        <p>
+          Meu rótulo da App Store lista os dados acima como <strong>Dados não vinculados a você</strong>: nenhum deles está
+          ligado ao seu nome, e-mail ou a uma conta, e eu nunca tento fazer essa ligação. Nada é listado como usado para
+          rastrear você.
+        </p>
+        <h3>Google Play</h3>
+        <p>
+          Meu formulário de Segurança dos Dados do Google Play lista como coletados, criptografados em trânsito e não
+          compartilhados: atividade no app, registros de falhas e diagnósticos, dispositivo ou outros IDs (o ID do
+          Compartilhamento de dados de uso e o da RevenueCat) e histórico de compras.
+        </p>
 
         <h2>Mudanças nesta política</h2>
-        <p>Quando eu atualizar esta Política de Privacidade:</p>
-        <ul>
-          <li>A data de "Última atualização" mudará.</li>
-          <li>Mudanças importantes de privacidade serão anunciadas no app ou no site quando apropriado.</li>
-          <li>O diálogo de consentimento pode aparecer novamente se as práticas de analytics mudarem significativamente.</li>
-          <li>O uso contínuo após mudanças significa que você aceita a política atualizada.</li>
-        </ul>
-
-        <h2>Recursos futuros</h2>
-        <p>Se eu adicionar salvamento em nuvem ou outros recursos que mudem materialmente o tratamento de dados:</p>
-        <ul>
-          <li>Esta política será atualizada conforme necessário.</li>
-          <li>Fornecerei aviso quando exigido ou apropriado.</li>
-          <li>Novos recursos terão controles de privacidade quando precisarem deles.</li>
-          <li>As escolhas de Compartilhamento de dados de uso e Repetição da sessão continuarão sob seu controle.</li>
-        </ul>
+        <p>
+          Quando eu mudar esta política, vou atualizar a data no topo. Se uma mudança afetar o que o app envia, vou
+          informar nas notas da versão do app, e o app vai perguntar de novo antes de ativar qualquer coisa opcional.
+        </p>
 
         <h2>Contato</h2>
         <p>
-          Para perguntas, preocupações ou solicitações de privacidade, envie e-mail para
-          <a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a> ou escreva para Jason Holt
-          Digital LLC, 1111b S Governors Avenue STE 21904, Dover, DE 19904 US.
-        </p>
-        <p>
-          Eu reviso pessoalmente mensagens relacionadas à privacidade. Se sua solicitação envolver um direito legal de
-          privacidade, posso precisar de mais informações para verificá-la e responderei dentro do prazo exigido pela
-          lei aplicável.
-        </p>
-
-        <h2>Conformidade com lojas de apps</h2>
-        <h3>Segurança dos Dados do Google Play</h3>
-        <p>Meu formulário de Segurança dos Dados do Google Play lista estes dados como coletados e não compartilhados:</p>
-        <ul>
-          <li><strong>Atividade no app:</strong> interações com o app (obrigatórias) e outras ações (opcionais, com o Compartilhamento de dados de uso)</li>
-          <li><strong>Informações e desempenho do app:</strong> registros de falhas e diagnósticos</li>
-          <li><strong>Dispositivo ou outros IDs:</strong> o ID de instalação aleatório</li>
-          <li><strong>Informações financeiras:</strong> histórico de compras</li>
-          <li><strong>Local aproximado:</strong> seu país</li>
-        </ul>
-        <p>
-          Os dados são criptografados em trânsito. Para pedir a exclusão dos registros da sua instalação, envie e-mail
-          para <a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a>. Eu não coleto localização
-          precisa.
-        </p>
-
-        <h3>Rótulos de Privacidade da Apple</h3>
-        <p>Meu rótulo de privacidade da App Store lista estes dados como Dados não vinculados a você:</p>
-        <ul>
-          <li>Localização aproximada (somente o país)</li>
-          <li>ID do dispositivo</li>
-          <li>Interação com o produto</li>
-          <li>Histórico de compras</li>
-          <li>Dados de falhas</li>
-          <li>Dados de desempenho</li>
-          <li>Outros dados de diagnóstico</li>
-        </ul>
-        <p>
-          Uso todos eles para Análises. Também uso Dados de falhas, Dados de desempenho, Outros dados de diagnóstico,
-          Interação com o produto e ID do dispositivo para Funcionalidade do app. Não uso nenhum deles para
-          rastreamento.
+          Escreva para <a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a> ou envie
+          correspondência para Jason Holt Digital LLC, 1111b S Governors Avenue STE 21904, Dover, DE 19904, EUA.
         </p>
       </article>
     </div>
