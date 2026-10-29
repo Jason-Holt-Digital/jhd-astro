@@ -72,6 +72,17 @@
     line-height: 1.5;
   }
 
+  .legal-article li > ul {
+    margin-top: 0.4rem;
+  }
+
+  /* Global links inherit color with no underline; legal text needs visible links. */
+  .legal-article a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
   .error-main {
     background: var(--color-bg);
   }

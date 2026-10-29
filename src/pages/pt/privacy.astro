@@ -183,31 +183,39 @@ import PageHeader from '../../components/layout/PageHeader.astro';
             análises das versões anteriores à 1.7). Armazenados nos Estados Unidos, na Amazon Web Services. As transferências
             se baseiam no EU-U.S. Data Privacy Framework e em Cláusulas Contratuais Padrão. A retenção depende do meu plano;
             hoje o PostHog informa um ano no plano gratuito e sete anos nos planos pagos.
-            <a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">Política de Privacidade</a> •
-            <a href="https://posthog.com/subprocessors" target="_blank" rel="noopener noreferrer">Suboperadores</a>
+            <ul>
+              <li><a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">Política de Privacidade</a></li>
+              <li><a href="https://posthog.com/subprocessors" target="_blank" rel="noopener noreferrer">Suboperadores</a></li>
+            </ul>
           </li>
           <li>
             <strong>Sentry</strong> (relatórios de falhas nativas do Windows e do Linux; todos os relatórios de erro das
             versões anteriores à 1.7). Armazenados nos Estados Unidos; o Sentry lista o Google Cloud e a Amazon Web Services como provedores de hospedagem. As
             transferências se baseiam no EU-U.S. Data Privacy Framework e em Cláusulas Contratuais Padrão. Os dados de erro
             são guardados por 30 a 90 dias, conforme o tipo.
-            <a href="https://sentry.io/privacy/" target="_blank" rel="noopener noreferrer">Política de Privacidade</a> •
-            <a href="https://sentry.io/legal/subprocessors/" target="_blank" rel="noopener noreferrer">Suboperadores</a>
+            <ul>
+              <li><a href="https://sentry.io/privacy/" target="_blank" rel="noopener noreferrer">Política de Privacidade</a></li>
+              <li><a href="https://sentry.io/legal/subprocessors/" target="_blank" rel="noopener noreferrer">Suboperadores</a></li>
+            </ul>
           </li>
           <li>
             <strong>RevenueCat</strong> (compras, só nas versões das lojas). Armazenados nos Estados Unidos, na Amazon Web
             Services, com o Google Cloud entre os prestadores listados. As transferências se baseiam em Cláusulas
             Contratuais Padrão. Os registros de compra são guardados enquanto forem necessários para restaurar o que você
             comprou.
-            <a href="https://www.revenuecat.com/privacy/" target="_blank" rel="noopener noreferrer">Política de Privacidade</a> •
-            <a href="https://www.revenuecat.com/dpa" target="_blank" rel="noopener noreferrer">Contrato de Tratamento de Dados</a>
+            <ul>
+              <li><a href="https://www.revenuecat.com/privacy/" target="_blank" rel="noopener noreferrer">Política de Privacidade</a></li>
+              <li><a href="https://www.revenuecat.com/dpa" target="_blank" rel="noopener noreferrer">Contrato de Tratamento de Dados</a></li>
+            </ul>
           </li>
           <li>
             <strong>Shorebird</strong> (atualizações). Funciona no Google Cloud em Iowa, Estados Unidos, e entrega as
             correções pelo Google Cloud Storage. A Shorebird guarda a contagem de instalações como totais anônimos, não como
             uma lista de IDs.
-            <a href="https://shorebird.dev/privacy" target="_blank" rel="noopener noreferrer">Política de Privacidade</a> •
-            <a href="https://docs.shorebird.dev/system/security/" target="_blank" rel="noopener noreferrer">Segurança</a>
+            <ul>
+              <li><a href="https://shorebird.dev/privacy" target="_blank" rel="noopener noreferrer">Política de Privacidade</a></li>
+              <li><a href="https://docs.shorebird.dev/system/security/" target="_blank" rel="noopener noreferrer">Segurança</a></li>
+            </ul>
           </li>
         </ul>
 
@@ -265,17 +273,16 @@ import PageHeader from '../../components/layout/PageHeader.astro';
           oposição, retirada de consentimento e reclamação à CNPD ou à autoridade de controle aplicável.
         </p>
         <p>
-          Na versão 1.7 e posteriores, a maior parte do que o app envia não pode ser ligada a você, por projeto: as
-          contagens de uso e os relatórios de erro trazem IDs aleatórios que mudam, então não consigo encontrá-los para uma
-          pessoa. Os registros do Compartilhamento de dados de uso podem ser encontrados pelo seu ID de uso, que você pode
-          copiar em Configurações, em Análises.
+          Na versão 1.7 e posteriores, as contagens de uso e os relatórios de erro não podem ser ligados a você, por
+          projeto: eles trazem IDs aleatórios que mudam, então não consigo encontrá-los para uma pessoa. Duas coisas podem
+          ser encontradas: os registros do Compartilhamento de dados de uso, pelo seu ID de uso, que você pode copiar em
+          Configurações, em Análises; e os registros de compra, pelo ID da transação da loja.
         </p>
         <p>
           As versões anteriores à 1.7 usavam IDs que o app não mostra: o ID do PostHog nas análises e um ID do dispositivo
-          em alguns relatórios de erro. Se você usou uma dessas versões, envie o que puder, como a versão do app, o modelo
-          do seu dispositivo e quando mais ou menos você o usou. Vou apagar os registros que eu conseguir identificar com
-          segurança e avisar o que não consegui. Desativar as análises nessas versões interrompe novos registros, e os
-          relatórios de erro expiram no Sentry em até 90 dias.
+          em alguns relatórios de erro. Não consigo ver esses IDs nem ligá-los a você, então não consigo encontrar nem
+          apagar os registros de uma pessoa dessas versões. Desativar as análises nessas versões interrompe novos
+          registros, e os relatórios de erro expiram no Sentry em até 90 dias.
         </p>
         <p>
           Para compras, posso localizar e apagar o seu registro na RevenueCat se você me enviar o ID da transação ou o
