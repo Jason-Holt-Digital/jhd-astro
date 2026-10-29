@@ -11,5 +11,18 @@
         "binding": "SESSION",
         "id": "56ef804e458d4ed89c29c5bd44fc6d82"
       }
-    ]
+    ],
+    "observability": {
+      "logs": {
+        "enabled": true,
+        "head_sampling_rate": 1,
+        "invocation_logs": true,
+        "persist": true
+      },
+      "traces": {
+        "enabled": false,
+        "head_sampling_rate": 1,
+        "persist": true
+      }
+    }
   }
