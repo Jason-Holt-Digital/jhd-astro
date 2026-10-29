@@ -76,8 +76,10 @@ import PageHeader from '../../components/layout/PageHeader.astro';
           a RevenueCat verifica o recibo da loja para que o app libere o que você comprou. A RevenueCat recebe o recibo, o
           ID da transação, o produto, o preço e a loja, e dá à sua instalação um ID aleatório próprio. No iPhone e no iPad,
           o código dela também envia o identificador que a Apple atribui ao seu dispositivo para cada desenvolvedor, que
-          não pode ser usado nos apps de outros desenvolvedores. As versões vendidas no itch.io e outros downloads diretos
-          não usam a RevenueCat.
+          não pode ser usado nos apps de outros desenvolvedores. A RevenueCat também envia ao PostHog, meu serviço de
+          análise, um registro dos eventos de compra com o ID aleatório da RevenueCat, o produto, o preço e o ID da
+          transação. Ela faz esse envio dos próprios servidores, então a configuração de análises do app não o afeta. As
+          versões vendidas no itch.io e outros downloads diretos não usam a RevenueCat.
         </p>
 
         <h3>Atualizações</h3>
@@ -160,7 +162,8 @@ import PageHeader from '../../components/layout/PageHeader.astro';
             sistema operacional, a sua configuração de idioma e se os Recursos Expandidos estão desbloqueados, junto com um
             ID aleatório que o código do PostHog guarda para a sua instalação. O PostHog calculava uma localização a partir
             do seu endereço de rede. Antes de 17 de outubro de 2026, isso incluía a sua cidade e a área aproximada; desde
-            então, ele guarda só o seu país, e os registros antigos com detalhes de cidade foram apagados. Com as análises
+            então, ele guarda só o seu país. Os únicos registros antigos com detalhes de cidade vieram do meu próprio
+            celular, durante testes. Com as análises
             ativadas, os relatórios de erro enviados ao Sentry também levavam um ID aleatório que o app criou para o seu
             dispositivo. Windows e Linux não enviam análises.
           </li>
@@ -181,7 +184,7 @@ import PageHeader from '../../components/layout/PageHeader.astro';
         <ul>
           <li>
             <strong>PostHog</strong> (contagens de uso anônimas, relatórios de erro e Compartilhamento de dados de uso;
-            análises das versões anteriores à 1.7). Armazenados nos Estados Unidos, na Amazon Web Services. As transferências
+            eventos de compra enviados pela RevenueCat; análises das versões anteriores à 1.7). Armazenados nos Estados Unidos, na Amazon Web Services. As transferências
             se baseiam no EU-U.S. Data Privacy Framework e em Cláusulas Contratuais Padrão. A retenção depende do meu plano;
             hoje o PostHog informa um ano no plano gratuito e sete anos nos planos pagos.
             <a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">Política de Privacidade</a> •
@@ -249,7 +252,7 @@ import PageHeader from '../../components/layout/PageHeader.astro';
         <ul>
           <li><strong>Prestação do serviço que você pediu:</strong> verificar compras e entregar atualizações.</li>
           <li><strong>Consentimento:</strong> contagens de uso anônimas, relatórios de erro e Compartilhamento de dados de uso na versão 1.7 e posteriores, e análises nas versões anteriores. Você pode retirá-lo quando quiser em Configurações.</li>
-          <li><strong>Legítimo interesse:</strong> relatórios de erro das versões anteriores à 1.7, que os enviam sem perguntar, para que eu mantenha o app funcionando.</li>
+          <li><strong>Legítimo interesse:</strong> relatórios de erro das versões anteriores à 1.7, que os enviam sem perguntar, para que eu mantenha o app funcionando; e os registros de compra que a RevenueCat copia para o PostHog, para que eu acompanhe as vendas.</li>
           <li><strong>Responder a você:</strong> quando você me escreve.</li>
         </ul>
 
@@ -279,8 +282,8 @@ import PageHeader from '../../components/layout/PageHeader.astro';
           relatórios de erro expiram no Sentry em até 90 dias.
         </p>
         <p>
-          Para compras, posso localizar e apagar o seu registro na RevenueCat se você me enviar o ID da transação ou o
-          recibo da loja.
+          Para compras, posso localizar e apagar o seu registro na RevenueCat, e a cópia dele no PostHog, se você me
+          enviar o ID da transação ou o recibo da loja.
         </p>
         <p>
           Envie sua solicitação para <a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a>. Vou
