@@ -7,244 +7,252 @@ const { class: className = "legal-article" } = Astro.props;
 ---
 <article class={className}>
   <p>
-    <strong>Jason Holt Digital LLC</strong> is the data controller for both Mythic GME Mobile and Mythic GME Digital. For any
-    privacy questions reach me at <a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a>.
+    <strong>Jason Holt Digital LLC</strong> is the data controller for both Mythic GME Mobile and Mythic GME Digital. I'm
+    the only person who works on the apps and the only person who reads privacy requests. For any privacy question, email
+    <a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a>.
   </p>
+
+  <h2>The Short Version</h2>
+  <ul>
+    <li>The apps have no accounts and never ask who you are. Nothing they send is tied to your name, email address or an account.</li>
+    <li>Your Journals, Scenes, Lists, tables, notes, questions and rolls stay on your device unless you choose to export, share, sync or send them.</li>
+    <li>I don't sell data, and nothing goes to advertisers or data brokers. Nothing is used to track you across other companies' apps or websites.</li>
+    <li>I don't use any advertising or analytics product from Google, Microsoft or Amazon. Some of my service providers rent servers from them (see <a href="#google-microsoft-amazon">Google, Microsoft and Amazon</a>).</li>
+    <li>From version 1.7, beyond checking purchases and delivering updates, the app sends nothing until you say yes, and you can change your answer at any time.</li>
+  </ul>
 
   <h2>What Apps This Covers</h2>
   <p>This privacy policy applies to:</p>
   <ul>
     <li><strong>Mythic GME Mobile</strong> — iPhone, iPad, Android, and Fire tablets</li>
-    <li><strong>Mythic GME Digital</strong> — Windows, macOS, and Linux desktop versions</li>
+    <li><strong>Mythic GME Digital</strong> — Windows, macOS, and Linux, including the versions sold on itch.io</li>
   </ul>
-
-  <h2>What Data I Collect</h2>
   <p>
-    The Mythic GME apps are local-first. Your journals, scenes, custom tables, notes, Fate Questions, dice rolls,
-    table results, and other play content are stored on your device unless you choose to export, share, sync, or
-    send that content in a support request.
+    Version 1.7 changes what the apps send. The next sections describe 1.7 and later.
+    <a href="#before-1-7">Versions before 1.7</a> describes the version most people have installed today.
   </p>
 
-  <h3>App Activity</h3>
-  <p>When you open the app, I receive a record through PostHog with:</p>
-  <ul>
-    <li>a random installation ID the app creates</li>
-    <li>a session ID</li>
-    <li>the app version and build, and the store you installed from</li>
-    <li>your platform and operating system version</li>
-    <li>your country, from your network address</li>
-    <li>your app layout and Hybrid Play setting</li>
-    <li>which optional tools you can use, and which of them you have turned on</li>
-    <li>whether Expanded Features is unlocked</li>
-  </ul>
-  <p>When you buy or restore Expanded Features, I receive whether it worked and which store you used.</p>
-  <p>I use this to count active installations and to check that releases and purchases work.</p>
-  <p>The installation ID is random. I don't tie this data to you as a person.</p>
-
-  <h3>Usage Sharing (Optional)</h3>
+  <h2>What Stays on Your Device</h2>
   <p>
-    With Usage sharing on, I also receive which features you open and the kind of action you take, such as asking a
-    Fate Question or rolling dice. I never receive what you write or the results you roll. Turn it on or off in
-    Settings, under Analytics.
+    The Mythic GME apps are local-first. Your Journals, Scenes, Threads, Characters, Lists, custom tables, notes, Fate
+    Questions, dice rolls and table results are stored on your device, or in iCloud if you turn on iCloud sync. I don't
+    host your game content on any server of mine.
   </p>
 
-  <h3>New Feature Rollouts</h3>
+  <h2>What the App Sends (Version 1.7 and Later)</h2>
+
+  <h3>Purchases</h3>
   <p>
-    The app sends its installation ID to PostHog to check whether a new feature or a new version of a screen is ready
-    for your device. I use this to release changes gradually.
+    When you buy or restore Expanded Features from the App Store, Google Play or the Amazon Appstore, RevenueCat checks the
+    store receipt so the app can unlock what you bought. RevenueCat receives the receipt, transaction ID, product, price and
+    store, and gives your installation a random ID of its own. On iPhone and iPad, its code also sends the identifier Apple
+    gives each app developer for your device, which can't be used across other developers' apps. The versions sold on
+    itch.io and other direct downloads don't use RevenueCat.
+  </p>
+
+  <h3>Updates</h3>
+  <p>
+    When the app starts, it asks Shorebird whether a fix is available for your version and downloads it if there is one.
+    The request includes the app's ID and version, your platform and processor type, the fix number you already have, and a
+    random ID that Shorebird's updater creates for your installation. Shorebird uses that ID only to count installations.
+  </p>
+
+  <h3>Anonymous Usage Counts</h3>
+  <p>
+    Once a day, the app sends PostHog a count that it was used. The count carries the app version and build, the store
+    you installed from, your platform and operating-system version, your layout, and whether Expanded Features is
+    unlocked. It also carries simple flags worked out on your device, such as whether this is the first use this week or
+    this month, and, once each, whether you came back 1, 7 or 30 days after first opening the app.
+  </p>
+  <p>
+    Each count gets a new random ID, so no two counts can be connected to the same installation. The app doesn't send your
+    country, and PostHog doesn't keep your network address. I use the counts to see how many people use the app and
+    whether they come back. The app asks before sending any, and you can change your answer in Settings, under
+    Analytics.
   </p>
 
   <h3>Error Reports</h3>
-  <p>When something goes wrong in the app, I receive an error report through Sentry and PostHog with:</p>
-  <ul>
-    <li>the error type and where it happened in the app's code</li>
-    <li>the app version, platform and operating system</li>
-    <li>a short description I wrote for that error</li>
-    <li>the kinds of steps the app took just before, such as opening a dialog</li>
-    <li>the installation ID and update patch number (PostHog only)</li>
-  </ul>
   <p>
-    Sentry also receives a sample of performance data. PostHog also receives warnings from the app's log, labelled
-    with the part of the app they came from, and counts of how Journal saves went.
+    When something goes wrong, the app can send an error report so I can find and fix the bug. A report contains the
+    error type, where it happened in the app's code, a short description I wrote for that error, the kinds of steps the
+    app took just before (such as opening a dialog), the app version and update number, and your device model and
+    operating system. Reports carry a random ID that changes every time the app starts. They never include your Journal
+    names, file names, folder paths or anything you wrote.
   </p>
-  <p>I use error reports to find and fix bugs.</p>
-
-  <h3>Session Replay (Optional)</h3>
   <p>
-    With Session Replay on, I receive a short recording of the app's screen when an error happens. The recording shows
-    the app's buttons and labels. Everything you write or roll is redacted. Session Replay works on iPhone, iPad and
-    Android, for adults. Turn it on or off in Settings, under Analytics.
+    Error reports go to PostHog. On Windows and Linux, crashes in the app's native code go to Sentry instead, because
+    PostHog can't catch them there. The app asks before sending any, and you can change your answer in Settings, under
+    Analytics.
+  </p>
+
+  <h3>Usage Sharing (Optional)</h3>
+  <p>
+    With Usage sharing on, I also receive which features you use and the kind of action you take, such as asking a Fate
+    Question or rolling dice, so I can see which tools help and where people get stuck. I never receive what you write or
+    the results you roll. These records share one random usage ID so I can see how features are used over time. The ID is
+    created when you turn Usage sharing on, is never connected to your purchases or error reports, and is thrown away when
+    you turn Usage sharing off.
+  </p>
+  <p>
+    When you turn Usage sharing off, the app stops sending usage records, deletes any it hasn't sent yet, and asks me to
+    delete the ones it sent. I delete them within 30 days. You can see your usage ID in Settings, under Analytics, while
+    Usage sharing is on.
   </p>
 
   <h3>What the App Never Sends</h3>
   <ul>
-    <li>Journals, Scenes, Threads, Characters, lists, custom tables, notes, or anything you write</li>
+    <li>Journals, Scenes, Threads, Characters, Lists, custom tables, notes, or anything you write</li>
     <li>Fate Questions, dice values, or results</li>
+    <li>Recordings of your screen</li>
     <li>Your name, email address, or phone number</li>
-    <li>Your city or precise location</li>
+    <li>Your GPS location or any location from your device</li>
     <li>Your advertising ID</li>
   </ul>
 
-  <h2>Your Choices</h2>
+  <h2 id="before-1-7">Versions Before 1.7</h2>
+  <p>This is what versions 1.6 and earlier send. Most people have 1.6.7 installed today.</p>
+  <ul>
+    <li>
+      <strong>Error reports</strong> go to Sentry from every installed copy. They include the error, the app version, your
+      device model and operating system, a sample of performance timings, and counts of app sessions. When an error
+      involved opening or saving a file, a report could include the name of the Journal or file, or the folder it was in,
+      which may contain your computer's user name. That shouldn't have happened. Sentry now removes those details from
+      reports it receives, and 1.7 no longer sends them.
+    </li>
+    <li>
+      <strong>Analytics</strong> is off unless you turned it on. With it on, iPhone, iPad, Android and Mac send PostHog one
+      record a day with the app version, store, platform, operating-system version, your language setting, and whether
+      Expanded Features is unlocked, together with a random ID PostHog's code keeps for your installation. PostHog worked
+      out a location from your network address. Before 17 October 2026 that included your city and approximate area; since
+      then it keeps only your country, and the older records with city-level detail have been deleted. With analytics on,
+      error reports to Sentry also carried a random ID the app created for your device. Windows and Linux don't send
+      analytics.
+    </li>
+    <li>
+      <strong>Session Replay</strong>, if an adult turned it on, sent a recording to Sentry when an error happened on iPhone,
+      iPad or Android, with text and images masked. A fix delivered to 1.6.7 has turned this off, and version 1.7 removes
+      Session Replay.
+    </li>
+    <li><strong>Purchases</strong> and <strong>updates</strong> work as described for 1.7.</li>
+  </ul>
+
+  <h2>Who Receives Data</h2>
   <p>
-    The first time you open the app, and after updating to 1.7, you choose whether to turn on Usage sharing and
-    Session Replay. Both start off.
+    These companies receive data from the apps. PostHog, Sentry and RevenueCat process it on my behalf under data
+    processing agreements, and only for the purposes in this policy. Shorebird handles its update data under its own
+    privacy policy.
   </p>
   <ul>
-    <li><strong>Usage sharing:</strong> Settings, Analytics.</li>
-    <li><strong>Session Replay:</strong> Settings, Analytics, on iPhone, iPad and Android.</li>
-    <li><strong>App activity and error reports:</strong> email <a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a> to object or to have your installation's records deleted.</li>
+    <li>
+      <strong>PostHog</strong> (anonymous usage counts, error reports and Usage sharing; analytics from versions before 1.7).
+      Stored in the United States on Amazon Web Services. Transfers rely on the EU-U.S. Data Privacy Framework and Standard
+      Contractual Clauses. Retention depends on my plan; PostHog currently lists one year on its free plan and seven years
+      on paid plans.
+      <a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a> •
+      <a href="https://posthog.com/subprocessors" target="_blank" rel="noopener noreferrer">Subprocessors</a>
+    </li>
+    <li>
+      <strong>Sentry</strong> (native crash reports from Windows and Linux; all error reports from versions before 1.7).
+      Stored in the United States; Sentry lists Google Cloud and Amazon Web Services as its hosting providers. Transfers rely on the EU-U.S. Data Privacy
+      Framework and Standard Contractual Clauses. Error data is kept for 30 to 90 days depending on its type.
+      <a href="https://sentry.io/privacy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a> •
+      <a href="https://sentry.io/legal/subprocessors/" target="_blank" rel="noopener noreferrer">Subprocessors</a>
+    </li>
+    <li>
+      <strong>RevenueCat</strong> (purchases, store builds only). Stored in the United States on Amazon Web Services, with
+      Google Cloud among its listed providers. Transfers rely on Standard Contractual Clauses. Purchase records are kept as
+      long as needed to restore what you bought.
+      <a href="https://www.revenuecat.com/privacy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a> •
+      <a href="https://www.revenuecat.com/dpa" target="_blank" rel="noopener noreferrer">Data Processing Agreement</a>
+    </li>
+    <li>
+      <strong>Shorebird</strong> (updates). Runs on Google Cloud in Iowa, United States, and delivers fixes from Google Cloud
+      Storage. Shorebird keeps installation counts as anonymous tallies rather than a list of IDs.
+      <a href="https://shorebird.dev/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a> •
+      <a href="https://docs.shorebird.dev/system/security/" target="_blank" rel="noopener noreferrer">Security</a>
+    </li>
   </ul>
+
+  <h3 id="google-microsoft-amazon">Google, Microsoft and Amazon</h3>
+  <p>
+    I don't send your data to Google, Microsoft or Amazon for their own use, and I don't use their advertising or analytics
+    products. Some of my providers store their data on servers rented from Amazon Web Services or Google Cloud, as listed
+    above. Those companies host the data for my providers; they don't receive it to use for themselves.
+  </p>
+  <p>
+    If you get the app from the App Store, Google Play, the Amazon Appstore, the Microsoft Store or itch.io, that store
+    handles your purchase and download under its own privacy policy. Your device's operating system may also send crash
+    and diagnostic information to Apple, Google or Microsoft, depending on your device settings. Those stores and system
+    makers decide how they use that information, not me.
+  </p>
 
   <h2>I Don't Sell Your Data</h2>
   <p>
-    I do not sell personal information, use targeted advertising, or build a business around your data. The
-    providers named below process limited analytics and diagnostics data on my behalf for the purposes described
-    in this policy.
+    I don't sell or share personal information for advertising, I don't use targeted advertising, and I don't work with
+    data brokers. If you want to send a "Do Not Sell or Share" request anyway, email
+    <a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a> and I'll honor any applicable right.
   </p>
 
-  <h2>How Your Data is Processed</h2>
-  <h3>Analytics &amp; Diagnostics Providers</h3>
+  <h2>Your Choices</h2>
   <ul>
-    <li><strong>PostHog:</strong> app activity, Usage sharing, feature rollouts, error reports, log warnings and Session Replay. Region: United States. Retention depends on the active PostHog plan and settings; PostHog currently lists one-year data retention on Free and seven-year data retention on pay-as-you-go plans. Sources: <a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>, <a href="https://posthog.com/pricing" target="_blank" rel="noopener noreferrer">Pricing and retention</a>, <a href="https://github.com/PostHog/posthog.com/blob/master/contents/docs/privacy/data-storage.mdx" target="_blank" rel="noopener noreferrer">Data storage and deletion docs</a>.</li>
-    <li><strong>Sentry:</strong> error reports and a sample of performance data. Region: United States. Sentry retains SaaS error data according to the active plan and event type; Sentry currently lists 30 days for Free error logs, 90 days for self-serve Team/Business error logs, and custom retention for Enterprise plans. Sources: <a href="https://sentry.io/privacy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a>, <a href="https://sentry.io/security/" target="_blank" rel="noopener noreferrer">Security</a>, <a href="https://sentry.zendesk.com/hc/en-us/articles/27118913621019-How-Long-Are-Errors-Events-Stored-in-Sentry" target="_blank" rel="noopener noreferrer">Data retention</a>.</li>
-    <li><strong>RevenueCat:</strong> processes Expanded Features purchases, including the store receipt, transaction ID and price. RevenueCat also receives the installation ID so I can match purchases to app activity.</li>
-    <li><strong>Data Retention:</strong> I use provider retention and deletion tools where available and keep analytics and diagnostics data only as long as needed for the purposes described in this policy. You can request deletion at any time (see Your Privacy Rights).</li>
-    <li><strong>International Transfers:</strong> Data is processed in the United States under appropriate safeguards (e.g., SCCs) where required.</li>
-    <li><strong>Data sharing/sale:</strong> Data is not sold. Providers process data on my behalf to keep the apps reliable and improve them.</li>
+    <li><strong>Anonymous usage counts:</strong> Settings, Analytics.</li>
+    <li><strong>Error reports:</strong> Settings, Analytics.</li>
+    <li><strong>Usage sharing:</strong> Settings, Analytics. Off until you turn it on.</li>
+    <li><strong>First-run dialog:</strong> the first time you open 1.7, the app explains these choices and asks before turning on anything optional.</li>
+    <li><strong>Your device:</strong> your operating system's privacy settings control what it shares with Apple, Google or Microsoft.</li>
   </ul>
 
-  <p><strong>Provider privacy and retention information:</strong></p>
+  <h2>Legal Basis (GDPR)</h2>
+  <p>For people in the European Union and the United Kingdom, I rely on:</p>
   <ul>
-    <li>Sentry: <a href="https://sentry.io/privacy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a> • <a href="https://sentry.zendesk.com/hc/en-us/articles/27118913621019-How-Long-Are-Errors-Events-Stored-in-Sentry" target="_blank" rel="noopener noreferrer">Data Retention</a></li>
-    <li>PostHog: <a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a> • <a href="https://posthog.com/pricing" target="_blank" rel="noopener noreferrer">Pricing and Retention</a> • <a href="https://github.com/PostHog/posthog.com/blob/master/contents/docs/privacy/data-storage.mdx" target="_blank" rel="noopener noreferrer">Data Storage and Deletion</a></li>
-    <li>RevenueCat: <a href="https://www.revenuecat.com/privacy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+    <li><strong>Providing the service you asked for:</strong> checking purchases and delivering updates.</li>
+    <li><strong>Consent:</strong> anonymous usage counts, error reports and Usage sharing in version 1.7 and later, and analytics in earlier versions. You can withdraw it at any time in Settings.</li>
+    <li><strong>Legitimate interests:</strong> error reports from versions before 1.7, which send them without asking, so I can keep the app working.</li>
+    <li><strong>Replying to you:</strong> when you email me.</li>
   </ul>
-
-  <h3>Local Storage</h3>
-  <ul>
-    <li><strong>Game Data:</strong> Your journals, custom tables, and game content are stored locally unless you choose to export, share, sync, or send them in a support request</li>
-    <li><strong>File Access:</strong> The apps access files you explicitly open, save, import, export, sync, or share</li>
-    <li><strong>iCloud Sync:</strong> If enabled, your game data syncs through Apple's iCloud service</li>
-    <li><strong>No Jason Holt Digital server storage:</strong> I do not host your game content on Jason Holt Digital servers</li>
-  </ul>
-
-  <h3>Legal Basis (GDPR)</h3>
-  <p>For users in the EU, my legal basis for processing is:</p>
-  <ul>
-    <li><strong>Consent (Art. 6(1)(a)):</strong> Usage sharing and Session Replay. Withdraw consent any time in Settings.</li>
-    <li><strong>Legitimate interests (Art. 6(1)(f)):</strong> App activity, to count installations and check releases and purchases. Error reports, to keep the apps stable and secure. Replying to support emails you send.</li>
-  </ul>
-
-  <h2 id="do-not-sell">Do Not Sell or Share My Personal Information</h2>
-  <p>I do not sell or share your personal information as defined by applicable privacy laws, and I do not use targeted advertising. If you submit a "Do Not Sell or Share" request, email <strong>privacy@jasonholtdigital.com</strong>. I will review it and honor any applicable rights.</p>
 
   <h2>Your Privacy Rights</h2>
   <p>
-    Depending on where you live, privacy laws may give you rights to access, correct, delete, export, restrict,
-    or object to certain processing of your personal information. You may also have the right to withdraw consent
-    for Usage sharing or Session Replay, appeal a decision, or complain to a privacy regulator.
+    Depending on where you live, privacy laws may give you rights to access, correct, delete, export, restrict, or object
+    to processing of your personal information, to withdraw consent, and to complain to a privacy regulator.
   </p>
   <p>
-    I do not sell personal information or use targeted advertising. If a law gives you an opt-out right for sale,
-    sharing, or targeted advertising, you can still contact me and I will honor any applicable request.
+    Most of what the app sends can't be matched to you, by design: usage counts and error reports carry random IDs that
+    change, so I can't find them for one person. Usage sharing records can be matched by your usage ID, which you can copy
+    from Settings, under Analytics. For purchases, I can look up and delete your RevenueCat record if you send me your
+    store transaction ID or receipt.
   </p>
-
-  <h3>How to Exercise Your Rights</h3>
   <p>
-    Email me at <strong><a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a></strong>
-    with your request. I may need information to verify the request and match it to data I actually hold. I will
-    respond within the time required by applicable law.
+    Email <a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a> with your request. I'll respond
+    within the time the law requires. Please don't send Journal content to identify yourself; I don't need it.
   </p>
-  <p><strong>For local game data:</strong> Your play data is primarily stored on your device or in platform sync services you enable. Export anything you want to keep before uninstalling.</p>
-
-  <h2>Privacy Controls</h2>
-  <h3>In‑App Controls</h3>
-  <ul>
-    <li><strong>Settings → Analytics → Usage sharing:</strong> turn Usage sharing on or off</li>
-    <li><strong>Settings → Analytics → Session Replay:</strong> turn Session Replay on or off</li>
-    <li><strong>First-run dialog:</strong> choose both when you first open the app, and after updating to 1.7</li>
-    <li><strong>Export Data:</strong> Export your game journals as JSON or Markdown files</li>
-    <li><strong>Delete Data:</strong> Clear all app data or uninstall to remove everything</li>
-  </ul>
-
-  <h3>Device‑Level Controls</h3>
-  <p>Operating-system privacy controls vary by platform and version. You can use your device or desktop settings to manage app permissions, file access, app analytics sharing, tracking preferences, and other system-level privacy controls where available.</p>
-  <ul>
-    <li><strong>iPhone, iPad, Android, and Fire tablets:</strong> Manage app permissions, analytics sharing, usage diagnostics, and tracking or advertising preferences in system settings where available.</li>
-    <li><strong>Windows, macOS, and Linux:</strong> Use system privacy and file-permission controls. Desktop versions only access files you explicitly open, save, import, export, sync, or share.</li>
-  </ul>
-
-  <h2>Platform Differences</h2>
-  <h3>Why Data Handling Can Vary by Platform</h3>
-  <ul>
-    <li><strong>App activity and Usage sharing:</strong> the same on every platform the installed apps run on.</li>
-    <li><strong>Debug and web builds:</strong> send nothing.</li>
-    <li><strong>Session Replay:</strong> iPhone, iPad and Android.</li>
-    <li><strong>Desktop:</strong> Desktop builds do not use mobile advertising identifiers and only access files you explicitly open, save, import, export, sync, or share.</li>
-  </ul>
 
   <h2>Children's Privacy</h2>
-  <p>The apps are not directed to children under 13. They do not require accounts or ask for a birth date, so I generally do not know a player's age.</p>
-  <p>On devices whose age signal limits analytics, the app sends error reports only. They carry a new random ID each time the app starts.</p>
-  <p>If you believe a child has provided personal information through the apps or a support request, email <a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a> so I can review and delete it where appropriate.</p>
+  <p>The apps are not directed to children under 13. They don't require accounts or ask for a birth date, so I generally don't know a player's age.</p>
+  <p>On devices whose age signal shows the player is a minor, the app turns off Usage sharing and doesn't create a usage ID.</p>
+  <p>If you believe a child has sent personal information through the apps or a support email, write to <a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a> so I can review and delete it.</p>
+
+  <h2>App Store Privacy Labels</h2>
+  <h3>Apple</h3>
+  <p>
+    My App Store label lists the data above as <strong>Data Not Linked to You</strong>: none of it is connected to your
+    name, email or an account, and I never try to connect it. Nothing is listed as used to track you.
+  </p>
+  <h3>Google Play</h3>
+  <p>
+    My Google Play Data safety form lists app activity, crash logs and diagnostics, device or other IDs (Usage sharing's
+    ID and RevenueCat's), and purchase history as collected, encrypted in transit, and not shared.
+  </p>
 
   <h2>Changes to This Policy</h2>
-  <p>When I update this privacy policy:</p>
-  <ul>
-    <li>The "Last Updated" date will change</li>
-    <li>Major privacy changes will be announced in the app or on the site where appropriate</li>
-    <li>The consent dialog may be shown again if analytics practices change significantly</li>
-    <li>Continued use after changes means you accept the updated policy</li>
-  </ul>
-
-  <h2>Future Features</h2>
-  <p>If I add cloud save functionality or other features that materially change data handling:</p>
-  <ul>
-    <li>This policy will be updated as needed</li>
-    <li>I will provide notice where required or appropriate</li>
-    <li>New features will include privacy controls when they need them</li>
-    <li>Usage sharing and Session Replay choices will stay under your control</li>
-  </ul>
+  <p>
+    When I change this policy, I'll update the date at the top. If a change affects what the app sends, I'll say so in
+    the app's release notes, and the app will ask again before turning on anything optional.
+  </p>
 
   <h2>Contact Me</h2>
   <p>
-    For privacy questions, concerns, or requests, email
-    <a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a> or write to Jason Holt Digital
-    LLC, 1111b S Governors Avenue STE 21904, Dover, DE 19904 US.
-  </p>
-  <p>
-    I personally review privacy-related messages. If your request involves a legal privacy right, I may need more
-    information to verify it and will respond within the timeframe required by applicable law.
-  </p>
-
-  <h2>App Store Compliance</h2>
-  <h3>Google Play Data Safety</h3>
-  <p>My Google Play Data safety form lists this data as collected and not shared:</p>
-  <ul>
-    <li><strong>App activity:</strong> app interactions (required) and other actions (optional, with Usage sharing)</li>
-    <li><strong>App info and performance:</strong> crash logs and diagnostics</li>
-    <li><strong>Device or other IDs:</strong> the random installation ID</li>
-    <li><strong>Financial info:</strong> purchase history</li>
-    <li><strong>Approximate location:</strong> your country</li>
-  </ul>
-  <p>
-    Data is encrypted in transit. To have your installation's records deleted, email
-    <a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a>. I don't collect precise location.
-  </p>
-  <h3>Apple Privacy Nutrition Labels</h3>
-  <p>My App Store privacy label lists this data as Data Not Linked to You:</p>
-  <ul>
-    <li>Coarse Location (country only)</li>
-    <li>Device ID</li>
-    <li>Product Interaction</li>
-    <li>Purchase History</li>
-    <li>Crash Data</li>
-    <li>Performance Data</li>
-    <li>Other Diagnostic Data</li>
-  </ul>
-  <p>
-    I use all of it for Analytics. I also use Crash Data, Performance Data, Other Diagnostic Data, Product Interaction
-    and Device ID for App Functionality. I don't use any of it for tracking.
+    Email <a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a>, or write to Jason Holt Digital
+    LLC, 1111b S Governors Avenue STE 21904, Dover, DE 19904, USA.
   </p>
 </article>
