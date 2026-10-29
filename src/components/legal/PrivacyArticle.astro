@@ -46,10 +46,8 @@ const { class: className = "legal-article" } = Astro.props;
     When you buy or restore Expanded Features from the App Store, Google Play or the Amazon Appstore, RevenueCat checks the
     store receipt so the app can unlock what you bought. RevenueCat receives the receipt, transaction ID, product, price and
     store, and gives your installation a random ID of its own. On iPhone and iPad, its code also sends the identifier Apple
-    gives each app developer for your device, which can't be used across other developers' apps. RevenueCat also sends
-    PostHog, my analytics service, a record of purchase events with RevenueCat's random ID, the product, the price and the
-    transaction ID. It sends these from its own servers, so the app's analytics setting doesn't affect them. The versions
-    sold on itch.io and other direct downloads don't use RevenueCat.
+    gives each app developer for your device, which can't be used across other developers' apps. The versions sold on
+    itch.io and other direct downloads don't use RevenueCat.
   </p>
 
   <h3>Updates</h3>
@@ -144,8 +142,7 @@ const { class: className = "legal-article" } = Astro.props;
   </p>
   <ul>
     <li>
-      <strong>PostHog</strong> (anonymous usage counts, error reports and Usage sharing; purchase events sent by
-      RevenueCat; analytics from versions before 1.7).
+      <strong>PostHog</strong> (anonymous usage counts, error reports and Usage sharing; analytics from versions before 1.7).
       Stored in the United States on Amazon Web Services. Transfers rely on the EU-U.S. Data Privacy Framework and Standard
       Contractual Clauses. Retention depends on my plan; PostHog currently lists one year on its free plan and seven years
       on paid plans.
@@ -208,7 +205,7 @@ const { class: className = "legal-article" } = Astro.props;
   <ul>
     <li><strong>Providing the service you asked for:</strong> checking purchases and delivering updates.</li>
     <li><strong>Consent:</strong> anonymous usage counts, error reports and Usage sharing in version 1.7 and later, and analytics in earlier versions. You can withdraw it at any time in Settings.</li>
-    <li><strong>Legitimate interests:</strong> error reports from versions before 1.7, which send them without asking, so I can keep the app working; and the purchase records RevenueCat copies to PostHog, so I can follow sales.</li>
+    <li><strong>Legitimate interests:</strong> error reports from versions before 1.7, which send them without asking, so I can keep the app working.</li>
     <li><strong>Replying to you:</strong> when you email me.</li>
   </ul>
 
@@ -229,8 +226,7 @@ const { class: className = "legal-article" } = Astro.props;
     analytics off in those versions stops new analytics records, and error reports expire from Sentry within 90 days.
   </p>
   <p>
-    For purchases, I can look up and delete your RevenueCat record, and its copy in PostHog, if you send me your store
-    transaction ID or receipt.
+    For purchases, I can look up and delete your RevenueCat record if you send me your store transaction ID or receipt.
   </p>
   <p>
     Email <a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a> with your request. I'll respond
