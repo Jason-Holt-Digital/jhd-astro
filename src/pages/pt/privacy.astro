@@ -160,17 +160,15 @@ import PageHeader from '../../components/layout/PageHeader.astro';
             <strong>Análises</strong> ficam desativadas, a menos que você as tenha ativado. Com elas ativadas, iPhone, iPad,
             Android e Mac enviam ao PostHog um registro por dia com a versão do app, a loja, a plataforma, a versão do
             sistema operacional, a sua configuração de idioma e se os Recursos Expandidos estão desbloqueados, junto com um
-            ID aleatório que o código do PostHog guarda para a sua instalação. O PostHog calculava uma localização a partir
-            do seu endereço de rede. Antes de 17 de outubro de 2026, isso incluía a sua cidade e a área aproximada; desde
-            então, ele guarda só o seu país. Os únicos registros antigos com detalhes de cidade vieram do meu próprio
-            celular, durante testes. Com as análises
+            ID aleatório que o código do PostHog guarda para a sua instalação. O PostHog identifica o seu país a partir do
+            seu endereço de rede. Com as análises
             ativadas, os relatórios de erro enviados ao Sentry também levavam um ID aleatório que o app criou para o seu
             dispositivo. Windows e Linux não enviam análises.
           </li>
           <li>
-            <strong>Repetição da sessão</strong>, se um adulto a ativou, envia ao Sentry uma gravação quando acontece um
-            erro no iPhone, iPad ou Android, com textos e imagens ocultos. Desligar Ativar a repetição da sessão em
-            Configurações interrompe isso, e a versão 1.7 remove a Repetição da sessão.
+            <strong>Repetição da sessão</strong> fica desativada, a menos que um adulto a tenha ativado. Com ela ativada,
+            iPhone, iPad e Android enviam ao Sentry uma gravação quando acontece um erro, com textos e imagens ocultos. A
+            versão 1.7 remove a Repetição da sessão.
           </li>
           <li><strong>Compras</strong> e <strong>atualizações</strong> funcionam como descrito para a versão 1.7.</li>
         </ul>
