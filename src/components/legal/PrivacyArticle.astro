@@ -124,17 +124,14 @@ const { class: className = "legal-article" } = Astro.props;
     <li>
       <strong>Analytics</strong> is off unless you turned it on. With it on, iPhone, iPad, Android and Mac send PostHog one
       record a day with the app version, store, platform, operating-system version, your language setting, and whether
-      Expanded Features is unlocked, together with a random ID PostHog's code keeps for your installation. PostHog worked
-      out a location from your network address. Before 17 October 2026 that included your city and approximate area; since
-      then it keeps only your country. The only older records with city-level detail came from my own phone during
-      testing. With analytics on,
+      Expanded Features is unlocked, together with a random ID PostHog's code keeps for your installation. PostHog works
+      out your country from your network address. With analytics on,
       error reports to Sentry also carried a random ID the app created for your device. Windows and Linux don't send
       analytics.
     </li>
     <li>
-      <strong>Session Replay</strong>, if an adult turned it on, sends a recording to Sentry when an error happens on iPhone,
-      iPad or Android, with text and images masked. Turning off Enable Session Replay in Settings stops it, and version 1.7
-      removes Session Replay.
+      <strong>Session Replay</strong> is off unless an adult turned it on. With it on, iPhone, iPad and Android send Sentry a
+      recording when an error happens, with text and images masked. Version 1.7 removes Session Replay.
     </li>
     <li><strong>Purchases</strong> and <strong>updates</strong> work as described for 1.7.</li>
   </ul>
