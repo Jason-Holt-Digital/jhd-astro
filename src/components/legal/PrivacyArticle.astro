@@ -18,7 +18,7 @@ const { class: className = "legal-article" } = Astro.props;
     <li>Your Journals, Scenes, Lists, tables, notes, questions and rolls stay on your device unless you choose to export, share, sync or send them.</li>
     <li>I don't sell data, and nothing goes to advertisers or data brokers. Nothing is used to track you across other companies' apps or websites.</li>
     <li>I don't use any advertising or analytics product from Google, Microsoft or Amazon. Some of my service providers rent servers from them (see <a href="#google-microsoft-amazon">Google, Microsoft and Amazon</a>).</li>
-    <li>From version 1.7, error reports are on so I can fix crashes, and you can turn them off. Anonymous usage counts and Usage sharing stay off until you say yes. You can change each answer at any time.</li>
+    <li>From version 1.7, error reports are on so I can fix crashes, and you can turn them off. Basic counts and Usage sharing stay off until you say yes. You can change each answer at any time.</li>
   </ul>
 
   <h2>What Apps This Covers</h2>
@@ -57,9 +57,9 @@ const { class: className = "legal-article" } = Astro.props;
     random ID that Shorebird's updater creates for your installation. Shorebird uses that ID only to count installations.
   </p>
 
-  <h3>Anonymous Usage Counts (Optional)</h3>
+  <h3>Basic Counts (Optional)</h3>
   <p>
-    With usage counts on, the app sends PostHog a count once a day when you use it, one when a session starts, one the
+    With basic counts on, the app sends PostHog a count once a day when you use it, one when a session starts, one the
     first time it counts, and, once each, one when you come back 1, 7 or 30 days after first opening the app. A count
     carries the app version and build, the store you installed from, your platform and operating-system version, your
     layout, and whether Expanded Features is unlocked. PostHog works out your country from your network address and
@@ -76,13 +76,13 @@ const { class: className = "legal-article" } = Astro.props;
     When something goes wrong, the app sends an error report so I can find and fix the bug. A report contains the error
     type, where it happened in the app's code, a short description I wrote for that error, the kinds of steps the app
     took just before (such as opening a dialog), the app version and update number, and your device model and operating
-    system. With error reports on, the app also sends how long it takes to start and to open screens, for a sample of
-    sessions, and whether a session ended in a crash, so I can see which versions are stable.
+    system. With error reports on, the app also sends how long it takes to start and to open screens, and how smoothly
+    screens draw, for a sample of sessions, and whether a session ended in a crash, so I can see which versions are stable.
   </p>
   <p>
-    Reports carry a random ID that the app creates for your installation and keeps until you delete the app, so I can
+    Reports carry a random ID for your installation, so I can
     tell one installation hitting a bug many times from many installations hitting it once. That ID is never connected
-    to your usage counts, Usage sharing, purchases or anything that identifies you. Sentry works out your country from
+    to your basic counts, Usage sharing, purchases or anything that identifies you. Sentry works out your country from
     your network address and doesn't keep the address. Reports never include your Journal names, file names, folder
     paths or anything you wrote.
   </p>
@@ -95,9 +95,10 @@ const { class: className = "legal-article" } = Astro.props;
   <p>
     With Usage sharing on, I also receive which features you use and the kind of action you take, such as asking a Fate
     Question or rolling dice, so I can see which tools help and where people get stuck. I never receive what you write or
-    the results you roll. These records also carry the details sent with usage counts, including your country, and the
-    app's language. They share one random usage ID so I can see how features are used over time. The ID is
-    created when you turn Usage sharing on, is never connected to your purchases or error reports, and is thrown away when
+    the results you roll. These records also carry the details sent with basic counts, including your country, and the
+    app's language. They share one random usage ID, and records from the same session share a session ID, so I can see
+    how features are used over time. PostHog keeps a profile for the usage ID with your latest app version, platform,
+    layout and app language, and whether Expanded Features is unlocked. The usage ID is created when you turn Usage sharing on, is never connected to your purchases or error reports, and is thrown away when
     you turn Usage sharing off.
   </p>
   <p>
@@ -129,7 +130,7 @@ const { class: className = "legal-article" } = Astro.props;
     <li>Fate Questions, dice values, or results</li>
     <li>Recordings of your screen</li>
     <li>Your name, email address, or phone number</li>
-    <li>Your GPS location, city or address</li>
+    <li>Your city, address or exact location</li>
     <li>Your advertising ID</li>
   </ul>
 
@@ -166,7 +167,7 @@ const { class: className = "legal-article" } = Astro.props;
   </p>
   <ul>
     <li>
-      <strong>PostHog</strong> (anonymous usage counts, error reports, Usage sharing and feature switches; analytics from
+      <strong>PostHog</strong> (basic counts, error reports, Usage sharing and feature switches; analytics from
       versions before 1.7).
       Stored in the United States on Amazon Web Services. Transfers rely on the EU-U.S. Data Privacy Framework and Standard
       Contractual Clauses. Retention depends on my plan; PostHog currently lists one year on its free plan and seven years
@@ -233,7 +234,7 @@ const { class: className = "legal-article" } = Astro.props;
 
   <h2>Your Choices</h2>
   <ul>
-    <li><strong>Anonymous usage counts:</strong> Settings, Analytics. Off until you turn them on.</li>
+    <li><strong>Basic counts:</strong> Settings, Analytics. Off until you turn them on.</li>
     <li><strong>Error reports:</strong> Settings, Analytics. On until you turn them off.</li>
     <li><strong>Usage sharing:</strong> Settings, Analytics. Off until you turn it on.</li>
     <li><strong>First-run dialog:</strong> the first time you open 1.7, the app explains these choices. Error reports start on; nothing else is sent until you turn it on.</li>
@@ -244,7 +245,7 @@ const { class: className = "legal-article" } = Astro.props;
   <p>For people in the European Union and the United Kingdom, I rely on:</p>
   <ul>
     <li><strong>Providing the service you asked for:</strong> checking purchases and delivering updates.</li>
-    <li><strong>Consent:</strong> anonymous usage counts and Usage sharing in version 1.7 and later, and analytics in earlier versions. You can withdraw it at any time in Settings.</li>
+    <li><strong>Consent:</strong> basic counts and Usage sharing in version 1.7 and later, and analytics in earlier versions. You can withdraw it at any time in Settings.</li>
     <li><strong>Legitimate interests:</strong> error reports, so I can keep the app working, and feature switches, so a fix can reach every installation. In version 1.7 and later you can object to error reports at any time by turning them off in Settings.</li>
     <li><strong>Replying to you:</strong> when you email me.</li>
   </ul>
@@ -255,7 +256,7 @@ const { class: className = "legal-article" } = Astro.props;
     to processing of your personal information, to withdraw consent, and to complain to a privacy regulator.
   </p>
   <p>
-    In version 1.7 and later, usage counts and error reports can't be matched to you, by design: counts carry a random ID
+    In version 1.7 and later, basic counts and error reports can't be matched to you, by design: counts carry a random ID
     that changes every month, and error reports carry one the app doesn't show you, so I can't find them for one
     person. Two things can be matched: Usage sharing records, by your usage
     ID, which you can copy from Settings, under Analytics; and purchase records, by your store transaction ID.
@@ -283,7 +284,7 @@ const { class: className = "legal-article" } = Astro.props;
   <p>
     On devices that report the player's age range (Google Play on Android, and Apple's age range on iPhone, iPad and Mac),
     the app uses that signal on the device only. It is never stored and never sent. When the signal shows the player is
-    under 18, the app hides and turns off usage counts and Usage sharing, and doesn't create a usage ID. Error reports
+    under 18, the app hides and turns off basic counts and Usage sharing, and doesn't create a usage ID. Error reports
     stay on so the app keeps working, with the same switch to turn them off, and without country, timings or crash-free
     rates.
   </p>
