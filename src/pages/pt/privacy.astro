@@ -13,7 +13,7 @@ import PageHeader from '../../components/layout/PageHeader.astro';
   <PageHeader
     title="Política de Privacidade"
     subtitle="Sua privacidade, protegida"
-    description="Coleta mínima de dados, armazenamento local e controles claros. Última atualização: 29 de outubro de 2026"
+    description="Coleta mínima de dados, armazenamento local e controles claros. Última atualização: 30 de outubro de 2026"
     accent="Privacidade"
     layout="left"
     icon="fa-solid fa-shield-check"
@@ -46,7 +46,7 @@ import PageHeader from '../../components/layout/PageHeader.astro';
           <li>Seus Diários, Cenas, Listas, tabelas, notas, perguntas e rolagens ficam no seu dispositivo, a menos que você decida exportar, compartilhar, sincronizar ou enviar esse conteúdo.</li>
           <li>Eu não vendo dados, e nada vai para anunciantes ou corretores de dados. Nada é usado para rastrear você em apps ou sites de outras empresas.</li>
           <li>Não uso nenhum produto de publicidade ou de análise do Google, da Microsoft ou da Amazon. Alguns dos meus prestadores de serviço alugam servidores dessas empresas (veja <a href="#google-microsoft-amazon">Google, Microsoft e Amazon</a>).</li>
-          <li>A partir da versão 1.7, além de verificar compras e entregar atualizações, o app não envia nada até você dizer sim, e você pode mudar sua resposta quando quiser.</li>
+          <li>A partir da versão 1.7, os relatórios de erro ficam ativados para que eu possa corrigir falhas, e você pode desativá-los. As contagens de uso anônimas e o Compartilhamento de dados de uso ficam desativados até você dizer sim. Você pode mudar cada resposta quando quiser.</li>
         </ul>
 
         <h2>Quais apps esta política cobre</h2>
@@ -88,42 +88,48 @@ import PageHeader from '../../components/layout/PageHeader.astro';
           para contar instalações.
         </p>
 
-        <h3>Contagens de uso anônimas</h3>
+        <h3>Contagens de uso anônimas (opcional)</h3>
         <p>
-          Uma vez por dia, o app envia ao PostHog uma contagem de que foi usado. A contagem traz a versão e o build do app,
-          a loja de onde você o instalou, sua plataforma e a versão do sistema operacional, o seu layout e se os Recursos
-          Expandidos estão desbloqueados. Ela também traz indicadores simples calculados no seu dispositivo, como se este é
-          o primeiro uso da semana ou do mês e, uma única vez cada, se você voltou 1, 7 ou 30 dias depois de abrir o app
-          pela primeira vez.
+          Com as contagens de uso ativadas, o app envia ao PostHog uma contagem uma vez por dia quando você o usa, uma
+          quando uma sessão começa, uma na primeira vez que conta e, uma única vez cada, uma quando você volta 1, 7 ou 30
+          dias depois de abrir o app pela primeira vez. A contagem traz a versão e o build do app, a loja de onde você o
+          instalou, sua plataforma e a versão do sistema operacional, o seu layout e se os Recursos Expandidos estão
+          desbloqueados. O PostHog descobre o seu país pelo seu endereço de rede e não guarda o endereço.
         </p>
         <p>
-          Cada contagem recebe um novo ID aleatório, então nenhuma contagem pode ser ligada a outra da mesma instalação. O
-          app não envia o seu país, e o PostHog não guarda o seu endereço de rede. Uso as contagens para ver quantas pessoas
-          usam o app e se elas voltam. O app pergunta antes de enviar qualquer contagem, e você pode mudar sua resposta em
-          Configurações, em Análises.
+          As contagens trazem um ID aleatório que o app substitui no início de cada mês, então as contagens de um mês não
+          podem ser ligadas às de outro. Uso as contagens para ver quantas pessoas usam o app e se elas voltam. Elas ficam
+          desativadas até você ativá-las, na tela de primeira abertura ou em Configurações, em Análises.
         </p>
 
         <h3>Relatórios de erro</h3>
         <p>
-          Quando algo dá errado, o app pode enviar um relatório de erro para que eu encontre e corrija o problema. Um
-          relatório contém o tipo de erro, onde ele aconteceu no código do app, uma descrição curta que eu escrevi para esse
-          erro, os tipos de passos que o app executou logo antes (como abrir uma caixa de diálogo), a versão do app e o
-          número da atualização, além do modelo do seu dispositivo e do sistema operacional. Os relatórios trazem um ID
-          aleatório que muda toda vez que o app abre. Eles nunca incluem nomes de Diários, nomes de arquivos, caminhos de
-          pastas nem nada que você escreveu.
+          Quando algo dá errado, o app envia um relatório de erro para que eu encontre e corrija o problema. Um relatório
+          contém o tipo de erro, onde ele aconteceu no código do app, uma descrição curta que eu escrevi para esse erro, os
+          tipos de passos que o app executou logo antes (como abrir uma caixa de diálogo), a versão do app e o número da
+          atualização, além do modelo do seu dispositivo e do sistema operacional. Com os relatórios de erro ativados, o
+          app também envia quanto tempo leva para abrir e para abrir cada tela, em uma amostra das sessões, e se uma sessão
+          terminou em falha, para que eu veja quais versões estão estáveis.
         </p>
         <p>
-          Os relatórios de erro vão para o PostHog. No Windows e no Linux, as falhas no código nativo do app vão para o
-          Sentry, porque o PostHog não consegue capturá-las ali. O app pergunta antes de enviar qualquer relatório, e você
-          pode mudar sua resposta em Configurações, em Análises.
+          Os relatórios trazem um ID aleatório que o app cria para a sua instalação e mantém até você apagar o app, para que
+          eu saiba se um erro atingiu uma instalação muitas vezes ou muitas instalações uma vez. Esse ID nunca é ligado às
+          suas contagens de uso, ao Compartilhamento de dados de uso, às suas compras nem a nada que identifique você. O
+          Sentry descobre o seu país pelo seu endereço de rede e não guarda o endereço. Os relatórios nunca incluem nomes
+          de Diários, nomes de arquivos, caminhos de pastas nem nada que você escreveu.
+        </p>
+        <p>
+          Os relatórios de erro vão para o Sentry e para o PostHog. Eles ficam ativados desde o início, e você pode
+          desativá-los na tela de primeira abertura ou em Configurações, em Análises.
         </p>
 
         <h3>Compartilhamento de dados de uso (opcional)</h3>
         <p>
           Com o Compartilhamento de dados de uso ativado, eu também recebo quais recursos você usa e o tipo de ação que você
           faz, como fazer uma Pergunta do Destino ou rolar dados, para ver quais ferramentas ajudam e onde as pessoas
-          travam. Nunca recebo o que você escreve nem os resultados que você rola. Esses registros compartilham um único ID
-          de uso aleatório, para que eu veja como os recursos são usados ao longo do tempo. O ID é criado quando você ativa
+          travam. Nunca recebo o que você escreve nem os resultados que você rola. Esses registros também trazem os dados
+          enviados com as contagens de uso, incluindo o seu país, e o idioma do app. Eles compartilham um único ID de uso
+          aleatório, para que eu veja como os recursos são usados ao longo do tempo. O ID é criado quando você ativa
           o Compartilhamento de dados de uso, nunca é ligado às suas compras nem aos relatórios de erro e é descartado
           quando você o desativa.
         </p>
@@ -133,13 +139,31 @@ import PageHeader from '../../components/layout/PageHeader.astro';
           estiver ativado, você pode ver o seu ID de uso em Configurações, em Análises.
         </p>
 
+        <h3>Ajustes de recursos</h3>
+        <p>
+          Quando o app abre e quando você volta a ele, ele pergunta ao PostHog quais recursos ativar ou desativar, por
+          exemplo para desligar um recurso que esteja causando problemas. Cada pedido usa um novo ID aleatório e traz a
+          versão e o build do app, sua plataforma, a loja de onde você o instalou e um número aleatório de 0 a 99 que o app
+          guarda uma única vez, para que uma mudança chegue primeiro a uma parte das instalações. O pedido não inclui a sua
+          localização. Isso acontece qualquer que seja a sua resposta acima, porque uma correção precisa chegar a todas as
+          instalações.
+        </p>
+
+        <h3>Pedidos de recursos</h3>
+        <p>
+          Quando você abre Pedidos de recursos, o quadro de votação do Features.vote é carregado dentro do app. Ele recebe
+          um ID que o app guarda para a sua instalação, formado pela sua plataforma, pela versão do sistema operacional e
+          pelo momento em que foi criado, para que seus votos contem uma vez. O quadro mostra você como anônimo, a menos que
+          você escolha entrar com uma conta. Nada é enviado ao Features.vote a menos que você abra Pedidos de recursos.
+        </p>
+
         <h3>O que o app nunca envia</h3>
         <ul>
           <li>Diários, Cenas, Tramas, Personagens, Listas, Tabelas Personalizadas, notas ou qualquer coisa que você escreva</li>
           <li>Perguntas do Destino, valores de dados ou resultados</li>
           <li>Gravações da sua tela</li>
           <li>Seu nome, endereço de e-mail ou número de telefone</li>
-          <li>Sua localização por GPS ou qualquer localização obtida do seu dispositivo</li>
+          <li>Sua localização por GPS, sua cidade ou seu endereço</li>
           <li>Seu ID de publicidade</li>
         </ul>
 
@@ -179,8 +203,8 @@ import PageHeader from '../../components/layout/PageHeader.astro';
         </p>
         <ul>
           <li>
-            <strong>PostHog</strong> (contagens de uso anônimas, relatórios de erro e Compartilhamento de dados de uso;
-            análises das versões anteriores à 1.7). Armazenados nos Estados Unidos, na Amazon Web Services. As transferências
+            <strong>PostHog</strong> (contagens de uso anônimas, relatórios de erro, Compartilhamento de dados de uso e
+            ajustes de recursos; análises das versões anteriores à 1.7). Armazenados nos Estados Unidos, na Amazon Web Services. As transferências
             se baseiam no EU-U.S. Data Privacy Framework e em Cláusulas Contratuais Padrão. A retenção depende do meu plano;
             hoje o PostHog informa um ano no plano gratuito e sete anos nos planos pagos.
             <ul>
@@ -189,8 +213,8 @@ import PageHeader from '../../components/layout/PageHeader.astro';
             </ul>
           </li>
           <li>
-            <strong>Sentry</strong> (relatórios de falhas nativas do Windows e do Linux; todos os relatórios de erro das
-            versões anteriores à 1.7). Armazenados nos Estados Unidos; o Sentry lista o Google Cloud e a Amazon Web Services como provedores de hospedagem. As
+            <strong>Sentry</strong> (relatórios de erro, tempos de abertura do app e das telas e taxas de sessões sem
+            falhas, de todas as plataformas). Armazenados nos Estados Unidos; o Sentry lista o Google Cloud e a Amazon Web Services como provedores de hospedagem. As
             transferências se baseiam no EU-U.S. Data Privacy Framework e em Cláusulas Contratuais Padrão. Os dados de erro
             são guardados por 30 a 90 dias, conforme o tipo.
             <ul>
@@ -215,6 +239,13 @@ import PageHeader from '../../components/layout/PageHeader.astro';
             <ul>
               <li><a href="https://shorebird.dev/privacy" target="_blank" rel="noopener noreferrer">Política de Privacidade</a></li>
               <li><a href="https://docs.shorebird.dev/system/security/" target="_blank" rel="noopener noreferrer">Segurança</a></li>
+            </ul>
+          </li>
+          <li>
+            <strong>Features.vote</strong> (Pedidos de recursos, só quando você abre). Ele trata o quadro e os seus votos
+            sob a própria política de privacidade.
+            <ul>
+              <li><a href="https://features.vote/privacy" target="_blank" rel="noopener noreferrer">Política de Privacidade</a></li>
             </ul>
           </li>
         </ul>
@@ -244,10 +275,10 @@ import PageHeader from '../../components/layout/PageHeader.astro';
 
         <h2>Suas escolhas</h2>
         <ul>
-          <li><strong>Contagens de uso anônimas:</strong> Configurações, Análises.</li>
-          <li><strong>Relatórios de erro:</strong> Configurações, Análises.</li>
+          <li><strong>Contagens de uso anônimas:</strong> Configurações, Análises. Desativadas até você ativar.</li>
+          <li><strong>Relatórios de erro:</strong> Configurações, Análises. Ativados até você desativar.</li>
           <li><strong>Compartilhamento de dados de uso:</strong> Configurações, Análises. Desativado até você ativar.</li>
-          <li><strong>Tela de primeira abertura:</strong> na primeira vez que você abrir a versão 1.7, o app explica essas escolhas e pergunta antes de ativar qualquer coisa opcional.</li>
+          <li><strong>Tela de primeira abertura:</strong> na primeira vez que você abrir a versão 1.7, o app explica essas escolhas. Os relatórios de erro começam ativados; nada mais é enviado até você ativar.</li>
           <li><strong>Seu dispositivo:</strong> as configurações de privacidade do seu sistema operacional controlam o que ele compartilha com a Apple, o Google ou a Microsoft.</li>
         </ul>
 
@@ -255,8 +286,8 @@ import PageHeader from '../../components/layout/PageHeader.astro';
         <p>Para pessoas no Brasil, na União Europeia e no Reino Unido, eu me baseio em:</p>
         <ul>
           <li><strong>Prestação do serviço que você pediu:</strong> verificar compras e entregar atualizações.</li>
-          <li><strong>Consentimento:</strong> contagens de uso anônimas, relatórios de erro e Compartilhamento de dados de uso na versão 1.7 e posteriores, e análises nas versões anteriores. Você pode retirá-lo quando quiser em Configurações.</li>
-          <li><strong>Legítimo interesse:</strong> relatórios de erro das versões anteriores à 1.7, que os enviam sem perguntar, para que eu mantenha o app funcionando.</li>
+          <li><strong>Consentimento:</strong> contagens de uso anônimas e Compartilhamento de dados de uso na versão 1.7 e posteriores, e análises nas versões anteriores. Você pode retirá-lo quando quiser em Configurações.</li>
+          <li><strong>Legítimo interesse:</strong> relatórios de erro, para que eu mantenha o app funcionando, e ajustes de recursos, para que uma correção chegue a todas as instalações. Na versão 1.7 e posteriores, você pode se opor aos relatórios de erro a qualquer momento desativando-os em Configurações.</li>
           <li><strong>Responder a você:</strong> quando você me escreve.</li>
         </ul>
 
@@ -274,7 +305,8 @@ import PageHeader from '../../components/layout/PageHeader.astro';
         </p>
         <p>
           Na versão 1.7 e posteriores, as contagens de uso e os relatórios de erro não podem ser ligados a você, por
-          projeto: eles trazem IDs aleatórios que mudam, então não consigo encontrá-los para uma pessoa. Duas coisas podem
+          projeto: as contagens trazem um ID aleatório que muda todo mês, e os relatórios de erro trazem um que o app não
+          mostra, então não consigo encontrá-los para uma pessoa. Duas coisas podem
           ser encontradas: os registros do Compartilhamento de dados de uso, pelo seu ID de uso, que você pode copiar em
           Configurações, em Análises; e os registros de compra, pelo ID da transação da loja.
         </p>
@@ -300,7 +332,17 @@ import PageHeader from '../../components/layout/PageHeader.astro';
 
         <h2>Privacidade de crianças</h2>
         <p>Os apps não são direcionados a crianças menores de 13 anos. Eles não exigem contas nem pedem data de nascimento, então em geral eu não sei a idade de quem joga.</p>
-        <p>Em dispositivos cujo sinal de idade indica que a pessoa é menor de idade, o app desativa o Compartilhamento de dados de uso e não cria um ID de uso.</p>
+        <p>
+          Em dispositivos que informam a faixa etária de quem joga (o Google Play no Android e a faixa etária da Apple no
+          iPhone, no iPad e no Mac), o app usa esse sinal só no dispositivo. Ele nunca é guardado nem enviado. Quando o
+          sinal indica que a pessoa tem menos de 18 anos, o app esconde e desativa as contagens de uso e o Compartilhamento
+          de dados de uso, e não cria um ID de uso. Os relatórios de erro continuam ativados para que o app funcione, com o
+          mesmo botão para desativá-los, e sem país, tempos ou taxas de sessões sem falhas.
+        </p>
+        <p>
+          Para quem tem menos de 13 anos, o ID dos relatórios de erro é usado só para manter o app funcionando, nunca para
+          contatar a pessoa, criar um perfil ou mostrar anúncios. O Sentry guarda os dados de erro por 30 a 90 dias.
+        </p>
         <p>Se você acredita que uma criança enviou informações pessoais pelos apps ou por um e-mail de suporte, escreva para <a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a> para que eu possa analisar e apagar.</p>
 
         <h2>Rótulos de privacidade das lojas</h2>
@@ -313,14 +355,15 @@ import PageHeader from '../../components/layout/PageHeader.astro';
         <h3>Google Play</h3>
         <p>
           Meu formulário de Segurança dos Dados do Google Play lista como coletados, criptografados em trânsito e não
-          compartilhados: atividade no app, registros de falhas e diagnósticos, dispositivo ou outros IDs (o ID do
-          Compartilhamento de dados de uso e o da RevenueCat) e histórico de compras.
+          compartilhados: atividade no app, registros de falhas e diagnósticos, localização aproximada, dispositivo ou
+          outros IDs e histórico de compras.
         </p>
 
         <h2>Mudanças nesta política</h2>
         <p>
           Quando eu mudar esta política, vou atualizar a data no topo. Se uma mudança afetar o que o app envia, vou
-          informar nas notas da versão do app, e o app vai perguntar de novo antes de ativar qualquer coisa opcional.
+          informar nas notas da versão do app, e o app vai perguntar de novo antes de ativar qualquer coisa que precise do
+          seu sim.
         </p>
 
         <h2>Contato</h2>

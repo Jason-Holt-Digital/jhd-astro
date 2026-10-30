@@ -18,7 +18,7 @@ const { class: className = "legal-article" } = Astro.props;
     <li>Your Journals, Scenes, Lists, tables, notes, questions and rolls stay on your device unless you choose to export, share, sync or send them.</li>
     <li>I don't sell data, and nothing goes to advertisers or data brokers. Nothing is used to track you across other companies' apps or websites.</li>
     <li>I don't use any advertising or analytics product from Google, Microsoft or Amazon. Some of my service providers rent servers from them (see <a href="#google-microsoft-amazon">Google, Microsoft and Amazon</a>).</li>
-    <li>From version 1.7, beyond checking purchases and delivering updates, the app sends nothing until you say yes, and you can change your answer at any time.</li>
+    <li>From version 1.7, error reports are on so I can fix crashes, and you can turn them off. Anonymous usage counts and Usage sharing stay off until you say yes. You can change each answer at any time.</li>
   </ul>
 
   <h2>What Apps This Covers</h2>
@@ -57,39 +57,46 @@ const { class: className = "legal-article" } = Astro.props;
     random ID that Shorebird's updater creates for your installation. Shorebird uses that ID only to count installations.
   </p>
 
-  <h3>Anonymous Usage Counts</h3>
+  <h3>Anonymous Usage Counts (Optional)</h3>
   <p>
-    Once a day, the app sends PostHog a count that it was used. The count carries the app version and build, the store
-    you installed from, your platform and operating-system version, your layout, and whether Expanded Features is
-    unlocked. It also carries simple flags worked out on your device, such as whether this is the first use this week or
-    this month, and, once each, whether you came back 1, 7 or 30 days after first opening the app.
+    With usage counts on, the app sends PostHog a count once a day when you use it, one when a session starts, one the
+    first time it counts, and, once each, one when you come back 1, 7 or 30 days after first opening the app. A count
+    carries the app version and build, the store you installed from, your platform and operating-system version, your
+    layout, and whether Expanded Features is unlocked. PostHog works out your country from your network address and
+    doesn't keep the address.
   </p>
   <p>
-    Each count gets a new random ID, so no two counts can be connected to the same installation. The app doesn't send your
-    country, and PostHog doesn't keep your network address. I use the counts to see how many people use the app and
-    whether they come back. The app asks before sending any, and you can change your answer in Settings, under
-    Analytics.
+    Counts carry a random ID that the app replaces at the start of each calendar month, so counts from one month can't
+    be connected to another. I use the counts to see how many people use the app and whether they come back. They stay
+    off until you turn them on, on the first-run screen or in Settings, under Analytics.
   </p>
 
   <h3>Error Reports</h3>
   <p>
-    When something goes wrong, the app can send an error report so I can find and fix the bug. A report contains the
-    error type, where it happened in the app's code, a short description I wrote for that error, the kinds of steps the
-    app took just before (such as opening a dialog), the app version and update number, and your device model and
-    operating system. Reports carry a random ID that changes every time the app starts. They never include your Journal
-    names, file names, folder paths or anything you wrote.
+    When something goes wrong, the app sends an error report so I can find and fix the bug. A report contains the error
+    type, where it happened in the app's code, a short description I wrote for that error, the kinds of steps the app
+    took just before (such as opening a dialog), the app version and update number, and your device model and operating
+    system. With error reports on, the app also sends how long it takes to start and to open screens, for a sample of
+    sessions, and whether a session ended in a crash, so I can see which versions are stable.
   </p>
   <p>
-    Error reports go to PostHog. On Windows and Linux, crashes in the app's native code go to Sentry instead, because
-    PostHog can't catch them there. The app asks before sending any, and you can change your answer in Settings, under
-    Analytics.
+    Reports carry a random ID that the app creates for your installation and keeps until you delete the app, so I can
+    tell one installation hitting a bug many times from many installations hitting it once. That ID is never connected
+    to your usage counts, Usage sharing, purchases or anything that identifies you. Sentry works out your country from
+    your network address and doesn't keep the address. Reports never include your Journal names, file names, folder
+    paths or anything you wrote.
+  </p>
+  <p>
+    Error reports go to Sentry and PostHog. They're on from the start, and you can turn them off on the first-run screen
+    or in Settings, under Analytics.
   </p>
 
   <h3>Usage Sharing (Optional)</h3>
   <p>
     With Usage sharing on, I also receive which features you use and the kind of action you take, such as asking a Fate
     Question or rolling dice, so I can see which tools help and where people get stuck. I never receive what you write or
-    the results you roll. These records share one random usage ID so I can see how features are used over time. The ID is
+    the results you roll. These records also carry the details sent with usage counts, including your country, and the
+    app's language. They share one random usage ID so I can see how features are used over time. The ID is
     created when you turn Usage sharing on, is never connected to your purchases or error reports, and is thrown away when
     you turn Usage sharing off.
   </p>
@@ -99,13 +106,30 @@ const { class: className = "legal-article" } = Astro.props;
     Usage sharing is on.
   </p>
 
+  <h3>Feature Switches</h3>
+  <p>
+    When the app starts and when you return to it, it asks PostHog which features to turn on or off, for example to
+    switch off a feature that's causing problems. Each request uses a new random ID and carries the app version and
+    build, your platform, the store you installed from, and a random number from 0 to 99 that the app stores once, so a
+    change can reach a share of installations first. The request doesn't include your location. This happens whatever
+    your answers above, because a fix has to reach every installation.
+  </p>
+
+  <h3>Feature Requests</h3>
+  <p>
+    When you open Feature Requests, the voting board at Features.vote loads inside the app. It receives an ID the app
+    stores for your installation, made from your platform, your operating-system version and the time it was created, so
+    your votes count once. The board shows you as anonymous unless you choose to sign in. Nothing is sent to Features.vote
+    unless you open Feature Requests.
+  </p>
+
   <h3>What the App Never Sends</h3>
   <ul>
     <li>Journals, Scenes, Threads, Characters, Lists, custom tables, notes, or anything you write</li>
     <li>Fate Questions, dice values, or results</li>
     <li>Recordings of your screen</li>
     <li>Your name, email address, or phone number</li>
-    <li>Your GPS location or any location from your device</li>
+    <li>Your GPS location, city or address</li>
     <li>Your advertising ID</li>
   </ul>
 
@@ -142,7 +166,8 @@ const { class: className = "legal-article" } = Astro.props;
   </p>
   <ul>
     <li>
-      <strong>PostHog</strong> (anonymous usage counts, error reports and Usage sharing; analytics from versions before 1.7).
+      <strong>PostHog</strong> (anonymous usage counts, error reports, Usage sharing and feature switches; analytics from
+      versions before 1.7).
       Stored in the United States on Amazon Web Services. Transfers rely on the EU-U.S. Data Privacy Framework and Standard
       Contractual Clauses. Retention depends on my plan; PostHog currently lists one year on its free plan and seven years
       on paid plans.
@@ -152,7 +177,7 @@ const { class: className = "legal-article" } = Astro.props;
       </ul>
     </li>
     <li>
-      <strong>Sentry</strong> (native crash reports from Windows and Linux; all error reports from versions before 1.7).
+      <strong>Sentry</strong> (error reports, app start and screen timings, and crash-free rates, from every platform).
       Stored in the United States; Sentry lists Google Cloud and Amazon Web Services as its hosting providers. Transfers rely on the EU-U.S. Data Privacy
       Framework and Standard Contractual Clauses. Error data is kept for 30 to 90 days depending on its type.
       <ul>
@@ -175,6 +200,13 @@ const { class: className = "legal-article" } = Astro.props;
       <ul>
         <li><a href="https://shorebird.dev/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
         <li><a href="https://docs.shorebird.dev/system/security/" target="_blank" rel="noopener noreferrer">Security</a></li>
+      </ul>
+    </li>
+    <li>
+      <strong>Features.vote</strong> (Feature Requests, only when you open it). It handles the board and your votes under
+      its own privacy policy.
+      <ul>
+        <li><a href="https://features.vote/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
       </ul>
     </li>
   </ul>
@@ -201,10 +233,10 @@ const { class: className = "legal-article" } = Astro.props;
 
   <h2>Your Choices</h2>
   <ul>
-    <li><strong>Anonymous usage counts:</strong> Settings, Analytics.</li>
-    <li><strong>Error reports:</strong> Settings, Analytics.</li>
+    <li><strong>Anonymous usage counts:</strong> Settings, Analytics. Off until you turn them on.</li>
+    <li><strong>Error reports:</strong> Settings, Analytics. On until you turn them off.</li>
     <li><strong>Usage sharing:</strong> Settings, Analytics. Off until you turn it on.</li>
-    <li><strong>First-run dialog:</strong> the first time you open 1.7, the app explains these choices and asks before turning on anything optional.</li>
+    <li><strong>First-run dialog:</strong> the first time you open 1.7, the app explains these choices. Error reports start on; nothing else is sent until you turn it on.</li>
     <li><strong>Your device:</strong> your operating system's privacy settings control what it shares with Apple, Google or Microsoft.</li>
   </ul>
 
@@ -212,8 +244,8 @@ const { class: className = "legal-article" } = Astro.props;
   <p>For people in the European Union and the United Kingdom, I rely on:</p>
   <ul>
     <li><strong>Providing the service you asked for:</strong> checking purchases and delivering updates.</li>
-    <li><strong>Consent:</strong> anonymous usage counts, error reports and Usage sharing in version 1.7 and later, and analytics in earlier versions. You can withdraw it at any time in Settings.</li>
-    <li><strong>Legitimate interests:</strong> error reports from versions before 1.7, which send them without asking, so I can keep the app working.</li>
+    <li><strong>Consent:</strong> anonymous usage counts and Usage sharing in version 1.7 and later, and analytics in earlier versions. You can withdraw it at any time in Settings.</li>
+    <li><strong>Legitimate interests:</strong> error reports, so I can keep the app working, and feature switches, so a fix can reach every installation. In version 1.7 and later you can object to error reports at any time by turning them off in Settings.</li>
     <li><strong>Replying to you:</strong> when you email me.</li>
   </ul>
 
@@ -223,8 +255,9 @@ const { class: className = "legal-article" } = Astro.props;
     to processing of your personal information, to withdraw consent, and to complain to a privacy regulator.
   </p>
   <p>
-    In version 1.7 and later, usage counts and error reports can't be matched to you, by design: they carry random IDs
-    that change, so I can't find them for one person. Two things can be matched: Usage sharing records, by your usage
+    In version 1.7 and later, usage counts and error reports can't be matched to you, by design: counts carry a random ID
+    that changes every month, and error reports carry one the app doesn't show you, so I can't find them for one
+    person. Two things can be matched: Usage sharing records, by your usage
     ID, which you can copy from Settings, under Analytics; and purchase records, by your store transaction ID.
   </p>
   <p>
@@ -247,7 +280,17 @@ const { class: className = "legal-article" } = Astro.props;
 
   <h2>Children's Privacy</h2>
   <p>The apps are not directed to children under 13. They don't require accounts or ask for a birth date, so I generally don't know a player's age.</p>
-  <p>On devices whose age signal shows the player is a minor, the app turns off Usage sharing and doesn't create a usage ID.</p>
+  <p>
+    On devices that report the player's age range (Google Play on Android, and Apple's age range on iPhone, iPad and Mac),
+    the app uses that signal on the device only. It is never stored and never sent. When the signal shows the player is
+    under 18, the app hides and turns off usage counts and Usage sharing, and doesn't create a usage ID. Error reports
+    stay on so the app keeps working, with the same switch to turn them off, and without country, timings or crash-free
+    rates.
+  </p>
+  <p>
+    For a player under 13, the error report ID is used only to keep the app working, never to contact the player, build
+    a profile or show ads. Sentry keeps error data for 30 to 90 days.
+  </p>
   <p>If you believe a child has sent personal information through the apps or a support email, write to <a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a> so I can review and delete it.</p>
 
   <h2>App Store Privacy Labels</h2>
@@ -258,14 +301,14 @@ const { class: className = "legal-article" } = Astro.props;
   </p>
   <h3>Google Play</h3>
   <p>
-    My Google Play Data safety form lists app activity, crash logs and diagnostics, device or other IDs (Usage sharing's
-    ID and RevenueCat's), and purchase history as collected, encrypted in transit, and not shared.
+    My Google Play Data safety form lists app activity, crash logs and diagnostics, approximate location, device or other
+    IDs, and purchase history as collected, encrypted in transit, and not shared.
   </p>
 
   <h2>Changes to This Policy</h2>
   <p>
     When I change this policy, I'll update the date at the top. If a change affects what the app sends, I'll say so in
-    the app's release notes, and the app will ask again before turning on anything optional.
+    the app's release notes, and the app will ask again before turning on anything that needs your yes.
   </p>
 
   <h2>Contact Me</h2>
