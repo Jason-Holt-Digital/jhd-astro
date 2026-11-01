@@ -70,6 +70,11 @@ const { class: className = "legal-article" } = Astro.props;
     be connected to another. I use the counts to see how many people use the app and whether they come back. They stay
     off until you turn them on, on the first-run screen or in Settings, under Analytics.
   </p>
+  <p>
+    With basic counts on, the app also counts a purchase while it is pending and when it finishes, a restore you asked
+    for when it finishes, and whether Expanded Features access was gained or lost. The count says which store handled
+    the purchase or restore, or that access changed. It does not include a transaction ID or your usage ID.
+  </p>
 
   <h3>Error Reports</h3>
   <p>
@@ -89,6 +94,12 @@ const { class: className = "legal-article" } = Astro.props;
   <p>
     Error reports go to Sentry and PostHog. They're on from the start, and you can turn them off on the first-run screen
     or in Settings, under Analytics.
+  </p>
+  <p>
+    With error reports on, warnings and errors from the app's own log also go to PostHog. Each record carries the
+    component name, the severity level, timestamps, the installation ID and the session ID. Each batch also carries the
+    app version, the deployment environment and the operating system name. The records do not include text you wrote,
+    file paths or stack traces. PostHog keeps these logs for 30 days.
   </p>
 
   <h3>Usage Sharing (Optional)</h3>
@@ -167,20 +178,24 @@ const { class: className = "legal-article" } = Astro.props;
   </p>
   <ul>
     <li>
-      <strong>PostHog</strong> (basic counts, error reports, Usage sharing and feature switches; analytics from
-      versions before 1.7).
-      Stored in the United States on Amazon Web Services. Transfers rely on the EU-U.S. Data Privacy Framework and Standard
-      Contractual Clauses. Retention depends on my plan; PostHog currently lists one year on its free plan and seven years
-      on paid plans.
+      <strong>PostHog</strong> receives basic counts, error reports, warning and error logs, Usage sharing and feature switches,
+      plus analytics from versions before 1.7.
+      These records are stored in the United States on Amazon Web Services. Transfers rely on the EU-U.S. Data Privacy Framework and Standard
+      Contractual Clauses. The PostHog account is on a paid plan, so product analytics and diagnostic events are kept for
+      seven years. On the free plan that window is one year. PostHog does not let me set a shorter window for one kind of
+      event. Warning and error logs are kept for 30 days.
       <ul>
         <li><a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
         <li><a href="https://posthog.com/subprocessors" target="_blank" rel="noopener noreferrer">Subprocessors</a></li>
       </ul>
     </li>
     <li>
-      <strong>Sentry</strong> (error reports, app start and screen timings, and crash-free rates, from every platform).
-      Stored in the United States; Sentry lists Google Cloud and Amazon Web Services as its hosting providers. Transfers rely on the EU-U.S. Data Privacy
-      Framework and Standard Contractual Clauses. Error data is kept for 30 to 90 days depending on its type.
+      <strong>Sentry</strong> receives error reports, app start and screen timings, and crash-free rates, from every platform.
+      These records are stored in the United States; Sentry lists Google Cloud and Amazon Web Services as its hosting providers. Transfers rely on the EU-U.S. Data Privacy
+      Framework and Standard Contractual Clauses. Error events are kept for 30 days on the Developer free plan and for
+      90 days on the Team and Business plans. Session data is kept for 30 days on the free plan and for 90 days on the
+      Team and Business plans. Streaming performance spans are kept for 30 days on the Developer and Team plans. On the
+      Business plan those spans are kept for 30 days, and sampled spans are kept for up to 13 months.
       <ul>
         <li><a href="https://sentry.io/privacy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
         <li><a href="https://sentry.io/legal/subprocessors/" target="_blank" rel="noopener noreferrer">Subprocessors</a></li>
@@ -290,7 +305,9 @@ const { class: className = "legal-article" } = Astro.props;
   </p>
   <p>
     For a player under 13, the error report ID is used only to keep the app working, never to contact the player, build
-    a profile or show ads. Sentry keeps error data for 30 to 90 days.
+    a profile or show ads. Sentry keeps those error events for 30 days on the Developer free plan and for 90 days on the
+    Team and Business plans. The app does not send performance spans for a known player under 13. PostHog keeps the
+    events for one year on the free plan and seven years on paid plans, and keeps the logs for 30 days.
   </p>
   <p>If you believe a child has sent personal information through the apps or a support email, write to <a href="mailto:privacy@jasonholtdigital.com">privacy@jasonholtdigital.com</a> so I can review and delete it.</p>
 
