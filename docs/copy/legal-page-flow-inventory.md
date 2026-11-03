@@ -38,18 +38,13 @@ approved section by section.
 Local app facts checked against
 `/Users/jholt/development/jhd-business/mythicgme2e`:
 
-- Mythic GME 1.7 (October 2026) behavior. The 1.6 notes below this list are history.
-- Always sent from installed apps (not web, not debug, not on devices whose age
-  signal limits analytics): app activity to PostHog with a random installation
-  ID, session ID, app version/build/channel, platform and OS major, country
-  (city-level GeoIP is filtered out in the production project), layout, tools,
-  Expanded Features state, and purchase/restore outcomes; feature-rollout flag
-  checks keyed by the installation ID.
-- Error reports always go to Sentry and PostHog with scrubbed context.
-- Usage sharing (opt-in) adds feature-use events. Session Replay (opt-in,
-  PostHog, iPhone/iPad/Android, adults) records on error with user content
-  redacted.
-- RevenueCat processes purchases and receives the installation ID.
+- Mythic GME 1.7 (November 2026 revised design) behavior. The 1.6 notes below this list are history.
+- Sent from installed native release apps (not web, not debug, and gated by age-signal rules):
+  - Error reports (on by default, with a Settings > Analytics switch to turn them off) go to Sentry and PostHog with a random Error ID, scrubbed context, and 30-day diagnostic log retention in PostHog.
+  - Anonymous feature-rollout flag checks go to PostHog with a fresh per-request UUID and a 0-99 rollout bucket.
+  - Basic counts (off until opted in on first run or in Settings > Analytics) go to PostHog with a monthly rotating random Count ID, covering active installs, version/platform/country mix (country-level only; city/region GeoIP is scrubbed), and purchase/restore/Expanded Features access outcome counts without transaction IDs or Usage IDs.
+  - Usage sharing (off until opted in) adds feature-use events under a separate Usage ID that is deleted on opt-out. Session Replay is removed in 1.7.
+- Store builds process purchases and restores through RevenueCat under RevenueCat's own anonymous ID (never joined to PostHog or Sentry).
 - Current app version in `pubspec.yaml`: `1.6.4+1117`.
 - Current dependencies include `posthog_flutter` and `sentry_flutter`.
 - Current dependencies do not include Firebase Analytics/Crashlytics packages;
