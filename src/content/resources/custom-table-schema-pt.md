@@ -5,7 +5,7 @@ category: "advanced"
 order: 3
 icon: "fa-slab fa-regular fa-layer-group"
 duration: "Referência"
-updated: "2025-09-21"
+updated: "2026-11-04"
 lang: "pt"
 tags: ["schema", "custom-tables", "meaning-tables", "event-focus", "reference"]
 keywords:
@@ -35,8 +35,8 @@ Nenhuma programação necessária. Esta página lista nomes de campos usados por
 Chaves obrigatórias: id, categoryId, displayName e entries. Elas não têm valor padrão. Se você omitir as chaves opcionais, schemaVersion assume 3, tableType assume meaning-table, rangeStart assume 1 e rangeEnd assume 100.
 
 Detalhes das chaves
-- `id` (string em snake_case)
-- `categoryId` (string em kebab-case)
+- `id` (string). As tabelas integradas usam snake_case, mas o app não verifica o estilo.
+- `categoryId` (string). As categorias integradas usam kebab-case. Na importação, uma categoria que não existe no seu app vira `custom`.
 - `displayName` (string)
 - `entries` (array)
 - `schemaVersion` (int), `tableType` (string)
@@ -49,7 +49,11 @@ Campos de tabela opcionais
 - `source` (string), `tags` (array de strings)
 - tableRollOn (array de ids de Tabelas de Significado). Qualquer outro id ou nome de lista é ignorado.
 - `data` (objeto para extensões)
-- `dice` (legado; ignorado pelo app atual)
+- `baseDice` (string, ex., `"1d10"`). Os dados que o app rola nesta tabela. Sem ele, o app rola um dado com um lado para cada número do intervalo.
+- `defaultDoubleRoll` (booleano, padrão true). Defina como false para rolar a tabela uma vez. Uma tabela cujas tags incluem `crafter` também rola uma vez. A escolha 1×/2× na linha da tabela vale mais que os dois.
+- `isPremium` (booleano). Ignorado na importação. O app decide quais tabelas precisam ser desbloqueadas.
+- `replacement`, `displayRoll` (booleanos). Mantidos de importações do Foundry VTT e exportados de novo. Não mudam como a tabela rola.
+- `dice` (legado; ignorado pelo app atual). Use `baseDice`.
 
 Campos de entrada
 - `range` [início, fim] (obrigatório)
@@ -72,7 +76,7 @@ Use um id de categoria que exista no seu app, por exemplo "categoryId": "custom"
   "tableType": "meaning-table",
   "rangeStart": 1,
   "rangeEnd": 10,
-  "categoryId": "actions",
+  "categoryId": "custom",
   "displayName": "Action Basics",
   "entries": [
     { "range": [1, 5], "result": "Common" },
@@ -93,7 +97,8 @@ Chaves opcionais e padrões
 
 Campos de tabela opcionais
 - `displayNameTranslations`, `description`, `descriptionTranslations`
-- `defaultLanguage`, `isBuiltIn`, `isUserCreated`, `source`, `tags`, `tableRollOn`, `data`
+- `defaultLanguage`, `isBuiltIn`, `isUserCreated`, `source`, `tags`, `tableRollOn`, `data`, `baseDice`
+- `data.iconKey` define o ícone no cartão da tabela, por exemplo `"bullseye"`. Uma chave que o app não conhece mostra um ponto de interrogação.
 
 Campos de entrada
 - `range` [início, fim], `result`

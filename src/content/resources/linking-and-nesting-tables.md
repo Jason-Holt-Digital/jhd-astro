@@ -7,7 +7,7 @@ category: "custom-tables"
 order: 3
 icon: "fa-slab fa-regular fa-link"
 duration: "11 min read"
-updated: "2026-10-09"
+updated: "2026-11-04"
 tags: ["custom-tables", "linking", "advanced"]
 keywords:
   - Linking tables
@@ -52,6 +52,7 @@ On a phone, the creation wizard keeps every link you tick for one entry. The tab
 - The app also rolls once on each Meaning Table in **Linked Tables**, unless the rolled table uses weights.
 - A chain can go 10 levels below the table you rolled. Past that, the result reads "Max Depth Exceeded".
 - If a link's target cannot be found, the app skips it and shows no message.
+- A built-in table you hid still rolls when another table links to it.
 
 ## Links in a Random Event
 

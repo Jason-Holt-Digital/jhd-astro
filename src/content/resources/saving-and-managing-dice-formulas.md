@@ -6,7 +6,7 @@ category: "dice-roller"
 order: 2
 icon: "fa-slab fa-regular fa-floppy-disk"
 duration: "5 min read"
-updated: "2025-09-21"
+updated: "2026-11-04"
 tags: ["dice", "formulas", "saved-formulas", "import", "export"]
 keywords:
   - Saved Formulas
@@ -31,10 +31,7 @@ related:
 
 ## Where to find it
 
-- Open the Dice Roller.
-- Use the on‑screen controls:
-  - Desktop: “Save Formula” and “Manage Formulas” buttons in the Dice Studio panel.
-  - Open Dice Studio. On a phone, Save Formula and Manage Formulas are buttons under the formula field, and on a tablet or desktop they are above it.
+- Open Dice Studio. On a phone, Save Formula and Manage Formulas are buttons under the formula field, and on a tablet or desktop they are above it.
 
 ## What you’ll use
 
@@ -49,10 +46,11 @@ related:
 ## Core actions
 
 1) Save your current formula(s)
-   - Tap “Save Formula” to add the current formula to your Saved list. Give it a short, recognizable name.
+   - Tap “Save Formula” to save the formula in the field. You do not need to roll it first. Give it a short, recognizable name.
 
 2) Manage the list
-   - Tap “Manage Formulas” to reorder or remove entries.
+   - Tap “Manage Formulas” to reorder or remove entries. Tap Edit to show an edit button on each formula, and tap Done when you finish.
+   - Delete asks you to confirm. If you cancel, the formula stays in your list.
    - Formulas are global (not per journal) so they’re available across sessions.
 
 3) Export
@@ -62,6 +60,17 @@ related:
 4) Import
    - Tap “Manage Formulas” → Import and pick a JSON file.
    - Import does not ask. It adds every formula in the file to the end of your list, including ones you already have.
+
+## Pool labels
+
+- On the Join tab in Dice Studio, you can save pool labels, such as Attack or Damage, to put in front of your dice.
+- Pool labels are saved with your formulas, but an export does not include them.
+- If one of your devices still runs 1.6.x, saving a formula there removes your pool labels on every device that shares the list. Your formulas are kept. See the [Formula Schema](/resources/formula-schema/).
+
+## If the list cannot load
+
+- On desktop and tablet, Restore Backup appears when the Saved Formulas list cannot load. This also works with iCloud.
+- Restoring works only when a readable backup exists.
 
 ## Tips
 

@@ -5,7 +5,7 @@ category: "dice-roller"
 order: 2
 icon: "fa-slab fa-regular fa-floppy-disk"
 duration: "5 min de leitura"
-updated: "2025-09-21"
+updated: "2026-11-04"
 lang: "pt"
 tags: ["dice", "formulas", "saved-formulas", "import", "export"]
 keywords:
@@ -31,10 +31,7 @@ related:
 
 ## Onde encontrar
 
-- Abra o Rolador de Dados.
-- Use os controles na tela:
-  - Desktop: botões "Salvar Fórmula" e "Gerenciar Fórmulas" no painel do Estúdio de Dados.
-  - Abra o Estúdio de Dados. No celular, Salvar Fórmula e Gerenciar Fórmulas são botões abaixo do campo da fórmula; em um tablet ou computador, ficam acima dele.
+- Abra o Estúdio de Dados. No celular, Salvar Fórmula e Gerenciar Fórmulas são botões abaixo do campo da fórmula; em um tablet ou computador, ficam acima dele.
 
 ## O que você usará
 
@@ -49,10 +46,11 @@ related:
 ## Ações principais
 
 1) Salve sua(s) fórmula(s) atual(is)
-   - Toque em "Salvar Fórmula" para adicionar a fórmula atual à sua lista Salva. Dê um nome curto e reconhecível.
+   - Toque em "Salvar Fórmula" para salvar a fórmula que está no campo. Você não precisa rolá-la antes. Dê um nome curto e reconhecível.
 
 2) Gerencie a lista
-   - Toque em "Gerenciar Fórmulas" para reordenar ou remover entradas.
+   - Toque em "Gerenciar Fórmulas" para reordenar ou remover entradas. Toque em Editar para mostrar um botão de edição em cada fórmula, e toque em Concluir quando terminar.
+   - Excluir pede confirmação. Se você cancelar, a fórmula continua na sua lista.
    - Fórmulas são globais (não por diário), então estão disponíveis entre sessões.
 
 3) Exportar
@@ -62,6 +60,17 @@ related:
 4) Importar
    - Toque em "Gerenciar Fórmulas" → Importar e escolha um arquivo JSON.
    - Importar não pergunta nada. Adiciona todas as fórmulas do arquivo ao final da sua lista, inclusive as que você já tem.
+
+## Rótulos de parada
+
+- Na aba Unir do Estúdio de Dados, você pode salvar rótulos de parada, como Ataque ou Dano, para colocar na frente dos seus dados.
+- Os rótulos de parada são salvos com suas fórmulas, mas a exportação não os inclui.
+- Se um dos seus dispositivos ainda usa a 1.6.x, salvar uma fórmula nele remove seus rótulos de parada em todos os dispositivos que compartilham a lista. Suas fórmulas são mantidas. Veja o [Esquema de Fórmulas](/pt/resources/formula-schema-pt/).
+
+## Se a lista não carregar
+
+- No computador e no tablet, Restaurar backup aparece quando a lista de Fórmulas Salvas não carrega. Isso também funciona com o iCloud.
+- A restauração só funciona quando existe um backup legível.
 
 ## Dicas
 

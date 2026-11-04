@@ -5,7 +5,7 @@ category: dice-roller
 order: 3
 icon: fa-slab fa-regular fa-sliders
 duration: 12 min de leitura
-updated: 2025-09-21
+updated: 2026-11-04
 lang: pt
 tags:
   - dice
@@ -94,15 +94,55 @@ related:
 - Contar / Pontuação:
   - \# retorna uma contagem e descarta os resultados individuais dos dados: 6d6#>=5
   - #s, #f, #cs e #cf marcam dados como sucessos, falhas, sucessos críticos e falhas críticas. Os dados e a soma continuam como foram rolados, e a linha da rolagem lista as contagens. Por exemplo: `6d6 #f<=2 #s>=5 #cs6 #cf1`
-  - **1.7.0+** Uma contagem usa só o número logo depois dela. `4d10#>=6+2` conta os dados de 6 ou mais e depois soma 2 à contagem.
+  - Uma contagem usa só o número logo depois dela. `4d10#>=6+2` conta os dados de 6 ou mais e depois soma 2 à contagem.
 - Limitar (cap): `C<` e `C>` (ex., `4d20 C<5`, `4d20 C>15`)
-- **1.7.0+** Regras de Forçar: `@push=N` deixa a rolagem ser forçada N vezes, e `@lock=s`, `@lock=sf` ou `@lock=none` define quais dados Forçar mantém (ex., `5d6#s6 @push=1`). Forçar também rerrola os dados depois de um sinal de menos, como em `2d6#s6 - 2d6#s6`.
+- Regras de Forçar: `@push=N` deixa a rolagem ser forçada N vezes, e `@lock=s`, `@lock=sf` ou `@lock=none` define quais dados Forçar mantém (ex., `5d6#s6 @push=1`). Veja Forçar abaixo.
 
 Pegadinhas de ordem e precedência
-- A ordem importa com manter e com os contadores de marcação. 2d20 kh #cf #cs descarta primeiro o dado mais baixo. Para marcar os dois dados antes de manter, escreva (2d20 #cf #cs) kh. Manter depois de uma contagem precisa dos parênteses, então a partir da versão 1.7.0 do app, 2d20 #cf #cs kh é um erro.
-- **1.7.0+** Uma contagem vale para os dados logo antes dela. `2d6#s6 - 2d6#s6` avalia cada 2d6 separadamente e depois subtrai o segundo do primeiro.
+- A ordem importa com manter e com os contadores de marcação. 2d20 kh #cf #cs descarta primeiro o dado mais baixo. Para marcar os dois dados antes de manter, escreva (2d20 #cf #cs) kh. Manter depois de uma contagem precisa dos parênteses, então 2d20 #cf #cs kh é um erro. O mesmo vale para `(4d6#s6)kh2`.
+- Uma contagem vale para os dados logo antes dela. `2d6#s6 - 2d6#s6` avalia cada 2d6 separadamente e depois subtrai o segundo do primeiro.
 - Operadores de Largar/filtrar ligam mais forte que aritmética. `(5d6+5d10)-L2` larga dos dados combinados; `5d6+5d10-L2` larga apenas dos d10s.
 - Use `D66` maiúsculo (minúsculo `d66` é um dado de 66 lados, não D66).
+- Não existe contagem de "diferente de". `6d6#s!=1` não é uma fórmula válida.
+- Uma fórmula que termina em um operador, ou um rótulo sem dados depois dele, não rola. Por exemplo, `2d6+` e `"Damage":` estão incompletos, e o campo de fórmula mostra que estão incompletos.
+
+## Paradas de dados e rótulos de parada
+
+> As linhas por parada, os rótulos de parada e Forçar são novidades da versão 1.7.0. A sintaxe das fórmulas desta página funciona do mesmo jeito na 1.6.x.
+
+Uma parada de dados é um grupo de dados com um rótulo. Escreva o rótulo entre aspas, depois dois-pontos, depois os dados. Coloque uma vírgula entre as paradas de dados.
+
+- `"Attack": 2d6, "Damage": 1d8`
+
+Uma Rolagem de teste do estúdio mostra uma linha para cada parada de dados, com o rótulo, o total da parada e seus dados. No Registro de Aventura, uma rolagem com rótulos é uma única entrada.
+
+Na aba **Unir**, toque em um rótulo salvo para colocá-lo na frente dos seus dados. Toque em **+** para salvar um novo rótulo. Toque e segure um rótulo para renomeá-lo, removê-lo ou mudar a ordem dos seus rótulos. Renomear ou remover um rótulo não muda as fórmulas que já o usam. Um rótulo não pode conter `"`, e dois rótulos não podem ser diferentes só nas letras maiúsculas e minúsculas.
+
+As fórmulas salvas guardam o texto do rótulo que você digitou. Uma exportação das suas fórmulas salvas não inclui seus rótulos de parada.
+
+## Forçar
+
+Forçar rerrola parte da sua Rolagem de teste do estúdio mais recente.
+
+1. Na Rolagem de teste do estúdio mais recente, toque na seta no fim da linha.
+2. Toque em **Forçar**. É o primeiro dos dois botões que aparecem.
+
+Forçar mantém cada dado que é um sucesso ou um sucesso crítico. Rerrola os outros dados e adiciona o resultado como uma nova Rolagem de teste do estúdio. Números como o `+3` de `2d6+3` ficam como estão. Forçar também rerrola os dados depois de um sinal de menos, como em `2d6#s6 - 2d6#s6`. Um novo dado é avaliado pelas mesmas contagens. Dados forçados não reaplicam `r`, `C`, explosão (`!`), explosão composta (`!!`) nem manter (`k`), então um novo dado fica na face que tirar.
+
+Em uma Rolagem de teste do estúdio e em uma rolagem de dados do seu Registro de Aventura, uma marca de verificação vem depois de cada sucesso ou sucesso crítico, uma cruz vem depois de cada falha ou falha crítica, e um cadeado vem antes de cada dado que Forçar manteve.
+
+Adicione uma tag à fórmula para mudar como Forçar funciona:
+
+- `@push=N`: a rolagem pode ser forçada N vezes. Sem esta tag, não há limite.
+- `@lock=s`: forçar mantém os sucessos e sucessos críticos. É o padrão.
+- `@lock=sf`: forçar também mantém as falhas e falhas críticas.
+- `@lock=none`: forçar rerrola todos os dados.
+
+`@push` vale para a rolagem inteira. Uma tag `@lock` depois de uma parada de dados vale só para essa parada. Por exemplo, em `"Base": 3d6#s6#f1 @lock=sf, "Gear": 2d6#s6#f1`, Forçar mantém os 1 da parada Base e rerrola os 1 da parada Gear.
+
+Se só **Copiar** aparecer nessa linha, a rolagem não pode ser forçada. Isso acontece quando a rolagem já foi forçada tantas vezes quanto `@push` permite, quando nenhum dado seria rerrolado, ou quando um dado que seria rerrolado é um dado Fate, um dado de faces personalizadas ou um D66.
+
+Você também pode forçar uma rolagem de dados do seu Registro de Aventura. Toque na seta no fim da linha e depois em **Forçar**. A rolagem forçada é escrita no seu diário como uma entrada nova, uma **Rolagem de dados forçada**. A rolagem que você forçou fica como estava e não pode ser forçada de novo. Se em uma rolagem de dados do seu Registro de Aventura só aparecerem **Copiar** e **Excluir entrada**, ela não pode ser forçada. Isso acontece pelos mesmos motivos que em uma Rolagem de teste do estúdio, quando a rolagem já foi forçada ou quando uma versão anterior do app a registrou. Forçar uma Rolagem de teste do estúdio nunca é escrito no seu diário.
 
 ## Padrões que você usará muito
 
@@ -165,11 +205,11 @@ Lancer (precisão/dificuldade)
 - Dificuldade: `1d20 - (Xd6kh1) + MOD`
 
 Year Zero Engine (Free League: Alien, Forbidden Lands, Vaesen, etc.)
-- Três paradas de dados coloridas (base/perícia, stress, equipamento): Role as três paradas em uma só fórmula com rótulos, por exemplo "Base": 4d6 #s=6, "Stress": 2d6 #s=6, "Gear": 1d6 #s=6. No Estúdio de Dados e no Registro de Aventura (**1.7.0+**), a rolagem mostra cada parada em sua própria linha, com o rótulo e o total.
+- Três paradas de dados coloridas (base/perícia, stress, equipamento): Role as três paradas em uma só fórmula com rótulos, por exemplo "Base": 4d6 #s=6, "Stress": 2d6 #s=6, "Gear": 1d6 #s=6. No Estúdio de Dados e no Registro de Aventura, a rolagem mostra cada parada em sua própria linha, com o rótulo e o total.
 - Sucessos: `Nd6#s=6` em cada parada; rastreie 1s em stress/equipamento com `#f=1`.
-- **1.7.0+** Para forçar, role a parada com uma marca de sucesso, por exemplo `5d6#s6 @push=1`, depois toque na seta no fim da linha e toque em Forçar. Forçar mantém os dados marcados como sucessos e rola de novo todos os outros, inclusive os 1. `@push=1` quer dizer que a rolagem pode ser forçada uma vez.
-- **1.7.0+** Em Forbidden Lands, Forçar mantém os 6 e os 1. Escreva `3d6#s6#f1 @lock=sf`.
-- **1.7.0+** Você também pode forçar uma rolagem de dados do seu Registro de Aventura. A rolagem forçada é escrita no seu diário como uma nova Rolagem de dados forçada, e a rolagem que você forçou não pode ser forçada de novo.
+- Para forçar, role a parada com uma marca de sucesso, por exemplo `5d6#s6 @push=1`, depois toque na seta no fim da linha e toque em Forçar. Forçar mantém os dados marcados como sucessos e rola de novo todos os outros, inclusive os 1. `@push=1` quer dizer que a rolagem pode ser forçada uma vez.
+- Em Forbidden Lands, Forçar mantém os 6 e os 1. Escreva `3d6#s6#f1 @lock=sf`.
+- Você também pode forçar uma rolagem de dados do seu Registro de Aventura. A rolagem forçada é escrita no seu diário como uma nova Rolagem de dados forçada, e a rolagem que você forçou não pode ser forçada de novo.
 - Limitações: resolução de pânico/quebra permanece na mesa.
 
 The One Ring 2e (aproximação)

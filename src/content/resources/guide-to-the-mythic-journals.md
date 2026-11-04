@@ -6,7 +6,7 @@ category: "adventure-journals"
 order: 0
 icon: "fa-slab fa-regular fa-book-open"
 duration: "6 min read"
-updated: "2025-09-21"
+updated: "2026-11-04"
 tags: ["journals", "getting-started", "import", "export"]
 keywords:
   - Journals
@@ -31,7 +31,7 @@ related:
 ---
 
 # What is an adventure journal
-A Journal is the app's saved record of one adventure or campaign: a single place where you record what happened, why it happened, and what changed. In the app it’s stored as JSON; you can export it as JSON (for round‑trip) or Markdown (for reading and sharing alongside your notes). Markdown export is for reading only. It leaves out Custom Lists, Thread Progress Tracks, and Keyed Scenes, and the app cannot import it.
+A Journal is the app's saved record of one adventure or campaign: a single place where you record what happened, why it happened, and what changed. In the app it’s stored as JSON; you can export it as JSON (for round‑trip) or Markdown (for reading and sharing alongside your notes). Markdown export is for reading only. It leaves out Custom Lists, Thread Progress Tracks, Keyed Scenes, Progress Points, and the per-die dice record, and the app cannot import it.
 
 ## What it contains (at a glance)
 

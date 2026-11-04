@@ -6,7 +6,7 @@ category: "start-here"
 order: 1
 icon: "fa-slab fa-regular fa-book-open"
 duration: "8 min read"
-updated: "2025-09-21"
+updated: "2026-11-04"
 tags: ["getting-started", "fate-chart", "fate-check", "lists", "scenes", "meaning-tables", "offline"]
 keywords:
   - Mythic GME
@@ -74,7 +74,7 @@ On first launch, the app opens to the Fate Chart. You can switch the default to 
 
 Layout notes
 - Mobile: each area is its own screen; switch using the navigation drawer on the top left.
-- Tablet and desktop: Home shows Meaning Tables, the Adventure Log with the Fate controls, and Lists side by side, and Scenes has its own entry in the navigation rail. On a desktop computer you can turn on Classic 6-Panel Layout (Desktop) to see every area on one screen.
+- Tablet and desktop: the Fate screen is made of panels you arrange, such as the Adventure Log, the Fate controls, and Lists. The Game Tables Pull-Out on the right edge opens Meaning Tables and Event Focus, and the navigation rail opens Scenes, Dice Studio, and the other screens. On a desktop computer you can turn on Classic 6-Panel Layout (Desktop) to see every area on one screen.
 
 ### 4) A simple first session flow
 

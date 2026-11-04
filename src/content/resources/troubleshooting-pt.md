@@ -6,7 +6,7 @@ category: "adventure-journals"
 order: 2
 icon: "fa-slab fa-regular fa-life-ring"
 duration: "Checklist rápida"
-updated: "2026-10-09"
+updated: "2026-11-04"
 lang: "pt"
 tags: ["troubleshooting", "support"]
 keywords:
@@ -19,11 +19,11 @@ keywords:
 
 O app não faz backup de um Diário em um salvamento comum. Para manter seu próprio backup, abra o Diário, vá em **Configurações**, depois em **Arquivos**, e selecione **Exportar diário como JSON**.
 
-O app guarda uma cópia de backup quando move seus Diários para outro local de armazenamento ou para dentro ou fora do iCloud, e quando uma restauração substitui um Diário no app para iOS, Android, Windows, macOS ou Linux; se um Diário salvo no iCloud tiver versões em conflito, o app também pode tentar copiar as outras versões para arquivos de backup separados ao salvar esse Diário. Uma restauração na demonstração web não guarda cópia.
+O app guarda uma cópia de backup quando uma mudança de local (inclusive ativar ou desativar a sincronização do iCloud) ou **Importar pasta anterior** encontra um Diário com o mesmo nome nos dois lugares (a cópia que ele não mantém vira o backup), e quando uma restauração substitui um Diário no app para iOS, Android, Windows, macOS ou Linux; se um Diário salvo no iCloud tiver versões em conflito, o app também pode tentar copiar as outras versões para arquivos de backup separados ao salvar esse Diário. Uma restauração na demonstração web não guarda cópia.
 
 ## A lista Restaurar do backup está vazia
 
-Isso é normal. O app guarda cópias de backup ao mover o armazenamento ou fazer uma restauração, não em um salvamento comum; a exceção é um Diário salvo no iCloud com versões em conflito, em que salvar pode fazer o app tentar copiar as outras versões para arquivos de backup separados. Quando houver cópias na lista, confira a data de uma cópia antes de restaurá-la.
+Isso é normal. O app guarda cópias de backup ao mover o armazenamento ou fazer uma restauração, não em um salvamento comum; a exceção é um Diário salvo no iCloud com versões em conflito, em que salvar pode fazer o app tentar copiar as outras versões para arquivos de backup separados. Quando houver cópias na lista, confira a data de uma cópia antes de restaurá-la. As cópias salvas por um conflito do iCloud não estão nesta lista. Para ler essas cópias, toque no indicador na linha desse Diário.
 
 No armazenamento em pasta, o app pode apagar cópias de backup com mais de 7 dias quando o aparelho está com pouca memória. Ele não apaga as cópias que guarda quando uma restauração substitui um Diário. O app não apaga cópias de backup guardadas no iCloud.
 
@@ -44,9 +44,9 @@ Se você criar um Diário com um nome que já está em uso, marcar a caixa e con
 
 ## Acesso ao armazenamento necessário
 
-Uma tela inteira com este título significa que o armazenamento do app não está pronto. Selecione **Selecionar a pasta de armazenamento**, ou selecione **Usar documentos de aplicativos** para usar a pasta do próprio app.
+Uma tela inteira com este título significa que o armazenamento do app não está pronto. Selecione **Selecionar a pasta de armazenamento**, ou selecione **Usar documentos de aplicativos** para usar a pasta do próprio app. Se a tela tiver em vez disso o botão **Tentar Novamente**, selecione-o para verificar de novo sua pasta de armazenamento.
 
-Um aviso sobre uma pasta que você escolheu antes significa que o app não conseguiu abrir essa pasta e mudou para a própria pasta padrão. O app continua na pasta padrão, mesmo depois de reiniciar, até você alterá-la. **Reconectar pasta anterior** só volta para essa pasta se o app conseguir abri-la. Até lá, o que você jogar é salvo na pasta padrão. Selecione **Reconectar pasta anterior**, **Escolher pasta** ou **Usar padrão do app**.
+Um aviso sobre uma pasta que você escolheu antes significa que o app não conseguiu abrir essa pasta e mudou para a própria pasta padrão. O app continua na pasta padrão, mesmo depois de reiniciar, até você alterá-la. **Reconectar** só volta para essa pasta se o app conseguir abri-la. Até lá, o que você jogar é salvo na pasta padrão. Selecione **Reconectar**, **Escolher pasta** ou **Usar padrão do app**.
 
 ## Apareceu um Diário chamado "(Conflicted copy ...)"
 
@@ -58,8 +58,8 @@ Isso acontece no armazenamento em pasta. Se o arquivo de um Diário mudar fora d
 
 - Quando a sincronização está ativada, a seção mostra **Status de Sincronização:** e um botão **Forçar Sincronização**.
 - Se o status indicar um problema, selecione o ícone de ajuda ao lado do botão de ativação. Se o iCloud não estiver disponível, **Configurar a sincronização do iCloud** abre com os passos para ativar o iCloud Drive. Se a sincronização falhar, **Erro de Sincronização do iCloud** abre e sugere o que fazer: se **Sincronização do iCloud** estiver desativada, ative-a novamente; se estiver ativada, use **Forçar Sincronização** para recarregar a lista de Diários do iCloud.
-- Ativar ou desativar **Sincronização do iCloud** copia seus Diários para o outro local. O app pede confirmação antes e informa o que será copiado e o que será substituído. Depois que a troca é concluída, o app pode remover um original que ele copiou, se esse original não tiver mudado desde então. Um Diário no iCloud que não puder ser lido pode ser ignorado.
-- Se o destino tiver um Diário com o mesmo nome de arquivo, o app faz backup dele e depois o substitui.
+- Ativar **Sincronização do iCloud** move seus Diários, fórmulas salvas, tabelas personalizadas e listas de categorias deste dispositivo para o iCloud. Desativá-la copia esses itens para este dispositivo e deixa o iCloud como estava, então seus outros dispositivos continuam a vê-los. O app pede confirmação antes e informa o que será copiado e o que será substituído. Depois de ativar a sincronização, o app remove deste dispositivo os originais que não foram alterados desde a cópia, desde que as cópias ou os resultados combinados no iCloud também não tenham sido alterados. As cópias de backup continuam onde estavam, assim como os arquivos que não podem ser lidos, que foram alterados ou que não podem ser verificados ou removidos com segurança. Um Diário que não puder ser lido pode ser ignorado.
+- Se os dois lugares tiverem um Diário com o mesmo nome de arquivo, o app mantém o que foi alterado mais recentemente e faz um backup do outro. Se não conseguir saber qual é o mais recente, mantém o do novo local.
 - Enquanto a sincronização está ativada, **Mudar Localização** e **Redefinir local** ficam desativados.
 
 ## Redefinir local

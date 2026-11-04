@@ -28,7 +28,7 @@ Preview path: `/blog/{{slug}}`
 - `title`, `summary` (required)
 - `category` (choice: start-here, adventure-journals, dice-roller, custom-tables, advanced)
 - `order` (number, required)
-- Optional: `icon`, `duration`, `externalUrl`, `updated` (date)
+- Optional: `icon`, `duration`, `externalUrl`, `updated` (date), `appSummary` (string), `fullArticleAvailable` (boolean)
 - Optional images: `hero`, `heroAlt`
 - Steps list: `steps[].title`, `steps[].body`, `steps[].image`, `steps[].imageAlt`
 

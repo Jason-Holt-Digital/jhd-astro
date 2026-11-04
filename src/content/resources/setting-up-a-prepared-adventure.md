@@ -6,7 +6,7 @@ category: "start-here"
 order: 5
 icon: "fa-slab fa-regular fa-book-open"
 duration: "4 min read"
-updated: "2025-12-27"
+updated: "2026-11-04"
 tags: ["prepared-adventure", "modules", "event-focus", "random-events", "features", "scenes"]
 keywords:
   - Mythic GME
@@ -73,7 +73,7 @@ This primes Mythic to generate Random Events that feel appropriate to the advent
 - Random Events are added to Expected Scenes (not replacing them)
 - The Scene Adjust button is hidden while a prepared table is selected. To show it, turn off Hide Scene Adjust in Prepared Adventures.
 
-These rules apply while the Prepared Adventure Event Focus Table is selected. Select another Event Focus table to get Altered Scene and Interrupt Scene results back.
+These rules apply while a prepared Event Focus table is selected: the Prepared Adventure Event Focus Table, the Published Adventure Event Focus Table, or any table tagged `prepared`. To get Altered Scene and Interrupt Scene results back, select an Event Focus table without the `prepared` tag.
 
 When you tap Scene Check and the roll is at or under the Chaos Factor, the app adds a Random Event to the same Adventure Log entry. Carry on with your Expected Scene and do not roll another Random Event. The Random Event adds a twist without derailing the prepared adventure.
 

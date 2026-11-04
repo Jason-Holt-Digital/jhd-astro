@@ -6,7 +6,7 @@ category: "custom-tables"
 order: 3
 icon: "fa-slab fa-regular fa-link"
 duration: "11 min de leitura"
-updated: "2026-10-09"
+updated: "2026-11-04"
 lang: "pt"
 tags: ["custom-tables", "linking", "advanced"]
 keywords:
@@ -52,6 +52,7 @@ No celular, o assistente de criação mantém todos os vínculos que você marca
 - O app também rola uma vez cada Tabela de significados em **Tabelas vinculadas**, a menos que a tabela rolada use pesos.
 - Uma cadeia pode descer 10 níveis abaixo da tabela que você rolou. Além disso, o resultado mostra "Max Depth Exceeded".
 - Se o destino de um vínculo não for encontrado, o app o ignora e não mostra mensagem.
+- Uma tabela integrada que você ocultou continua rolando quando outra tabela tem um vínculo com ela.
 
 ## Vínculos em um Evento Aleatório
 

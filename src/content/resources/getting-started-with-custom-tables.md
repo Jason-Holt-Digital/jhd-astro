@@ -7,7 +7,7 @@ category: "custom-tables"
 order: 1
 icon: "fa-slab fa-regular fa-newspaper"
 duration: "9 min read"
-updated: "2025-09-21"
+updated: "2026-11-04"
 tags: ["custom-tables", "getting-started", "meaning-tables", "event-focus", "categories"]
 keywords:
   - Custom tables
@@ -96,6 +96,16 @@ On a phone, open the navigation drawer and tap TABLE EDITOR under Tools. On a ta
 > After you create a table, open it and use Linked Tables on the Controls tab to roll other Meaning Tables every time this table is rolled. Use Entry Links to link a single entry to a table or a list.
 
 
+## Built-in tables
+
+You can edit a built-in table. The app saves your version separately and uses it in place of the original. To keep both, choose **Duplicate** from the table's menu and edit the copy. Resets do not remove your edits. To go back to the originals, use **Discard Edits to Built-in Tables** in Table Settings.
+
+How you remove a table depends on where it came from:
+
+- A built-in table you have not edited offers **Hide this table** instead of **Delete**. Hiding takes the table out of your lists, but no files are deleted. To bring it back, show it again from **Table Settings**.
+- A built-in table you have edited offers **Delete my edited version**. The app removes your version and loads the original again. You can undo this.
+- A table you created yourself offers **Delete**. You can undo this too.
+
 ## Translations & metadata
 
 - You can add per‑table and per‑entry translations as you go. Default language is `en`.
@@ -106,9 +116,12 @@ On a phone, open the navigation drawer and tap TABLE EDITOR under Tools. On a ta
 
 Use these templates and samples as starting points. Import them from the Files tab in Custom Tables (the Import/Export icon on a tablet or desktop). Tap Oracle Tables for a Meaning Table file or Event Focus Tables for an Event Focus file. See the Downloads section below for files.
 
-## What’s not supported yet
+## Weighted tables
 
-- You cannot build a weighted table by hand yet. The Weighted option in the editor is marked Coming Soon. You can import a Meaning Table CSV with result and weight columns, up to 100 rows. To build a table by hand, use range‑based tables (1..N).
+- You can't build a weighted table by hand yet. On the **Controls** tab, the **Weighted** option is marked **Coming Soon**.
+- To get a weighted Meaning Table, import a Meaning Table CSV with result and weight columns, up to 100 rows. The app spreads the weights over 100 slots, so the weights it keeps can differ from the numbers in your file.
+- When any entry in a Meaning Table has a weight above 1, the app picks an entry by weight and does not roll the table's linked tables. An Event Focus table always rolls on its ranges.
+- Selecting **Roll Ranges** on the **Controls** tab splits the ranges again, but the weights stay. A weight above 1 still makes the app pick by weight.
 
 ## Next steps
 

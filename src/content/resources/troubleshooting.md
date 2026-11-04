@@ -6,7 +6,7 @@ category: "adventure-journals"
 order: 2
 icon: "fa-slab fa-regular fa-life-ring"
 duration: "Quick checklist"
-updated: "2026-10-09"
+updated: "2026-11-04"
 tags: ["troubleshooting", "support"]
 keywords:
   - Troubleshooting
@@ -18,11 +18,11 @@ keywords:
 
 The app does not back up a Journal during an ordinary save. To keep your own backup, open the Journal, go to **Settings**, then **Files**, and select **Export journal as JSON**.
 
-The app keeps a backup copy when it moves your Journals to another storage location or into or out of iCloud, and when a restore replaces a Journal in the iOS, Android, Windows, macOS, or Linux app; if a Journal saved in iCloud has conflicting versions, the app may also try to copy the other versions to separate backup files when it saves that Journal. A restore in the web demo keeps no copy.
+The app keeps a backup copy when a storage move (including turning iCloud sync on or off) or **Import Previous Folder** finds a Journal with the same name in both places (the copy it does not keep becomes the backup), and when a restore replaces a Journal in the iOS, Android, Windows, macOS, or Linux app; if a Journal saved in iCloud has conflicting versions, the app may also try to copy the other versions to separate backup files when it saves that Journal. A restore in the web demo keeps no copy.
 
 ## The Restore from Backup list is empty
 
-That is normal. The app keeps backup copies from a storage move or a restore, not from an ordinary save; the exception is a Journal saved in iCloud that has conflicting versions, where saving can make the app try to copy the other versions to separate backup files. When copies are listed, check the date on a copy before you restore it.
+That is normal. The app keeps backup copies from a storage move or a restore, not from an ordinary save; the exception is a Journal saved in iCloud that has conflicting versions, where saving can make the app try to copy the other versions to separate backup files. When copies are listed, check the date on a copy before you restore it. The copies saved from an iCloud conflict are not in this list. To read them, tap the badge on that Journal's row.
 
 In folder storage, the app can delete backup copies older than 7 days when the device is low on memory. It does not delete the copies it keeps when a restore replaces a Journal. The app does not delete backup copies kept in iCloud.
 
@@ -43,9 +43,9 @@ If you create a Journal with a name that is already in use, tick the box, and co
 
 ## Storage Access Needed
 
-A full screen with this title means the app's storage is not ready. Select **Choose Storage Folder**, or select **Use App Documents** to use the app's own folder.
+A full screen with this title means the app's storage is not ready. Select **Choose Storage Folder**, or select **Use App Documents** to use the app's own folder. If the screen has a **Retry** button instead, select it to check your storage folder again.
 
-A notice about a folder you chose earlier means the app could not open that folder and switched to its own default folder. The app stays on the default folder, even after a restart, until you change it. **Reconnect previous folder** switches back only if the app can open that folder. Until then, what you play is saved in the default folder. Select **Reconnect previous folder**, **Choose folder**, or **Use app default**.
+A notice about a folder you chose earlier means the app could not open that folder and switched to its own default folder. The app stays on the default folder, even after a restart, until you change it. **Reconnect** switches back only if the app can open that folder. Until then, what you play is saved in the default folder. Select **Reconnect**, **Choose folder**, or **Use app default**.
 
 ## A Journal named "(Conflicted copy ...)" appeared
 
@@ -57,8 +57,8 @@ This happens in folder storage. If a Journal's file changes outside the app whil
 
 - When sync is on, the section shows **iCloud Status:** and a **Force Sync** button.
 - If the status shows a problem, select the help icon beside the switch. If iCloud is not available, **Set up iCloud sync** opens with the steps to turn on iCloud Drive. If sync failed, **iCloud Sync Error** opens and suggests what to do: if **Use iCloud Sync** is off, turn it on again; if it is on, use **Force Sync** to reload the list of Journals from iCloud.
-- Turning **Use iCloud Sync** on or off copies your Journals to the other location. The app asks you to confirm first and tells you what is copied and what is replaced. After the switch is complete, the app may remove an original that it copied if the original has not changed since. A Journal in iCloud that cannot be read may be skipped.
-- If the destination has a Journal with the same file name, the app backs that one up and then replaces it.
+- Turning **Use iCloud Sync** on moves your Journals, saved formulas, custom tables, and category lists from this device into iCloud. Turning it off copies them to this device and leaves iCloud as it was, so your other devices still see them. The app asks you to confirm first and tells you what is copied and what is replaced. After turning sync on, the app removes the originals on this device that have not changed since they were copied, as long as their copies or combined results in iCloud are also unchanged. Backup copies stay where they were, as do files that cannot be read, have changed, or cannot be checked or safely removed. A Journal that cannot be read may be skipped.
+- If both places have a Journal with the same file name, the app keeps the one that was changed more recently and backs up the other. If it cannot tell which is newer, it keeps the one in the new location.
 - While sync is on, **Change Location** and **Reset Location** are disabled.
 
 ## Reset Location

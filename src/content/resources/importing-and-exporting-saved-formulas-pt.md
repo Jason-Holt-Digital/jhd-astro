@@ -5,7 +5,7 @@ category: "dice-roller"
 order: 3
 icon: "fa-slab fa-regular fa-exchange"
 duration: "5 min de leitura"
-updated: "2025-09-21"
+updated: "2026-11-04"
 lang: "pt"
 tags: ["dice", "formulas", "import", "export"]
 keywords:
@@ -22,10 +22,7 @@ Esta página reúne o essencial para trazer Fórmulas Salvas para o app e export
 
 ## Onde encontrar
 
-- Abra o Rolador de Dados.
-- Use os controles na tela:
-  - Desktop: botões "Salvar Fórmula" e "Gerenciar Fórmulas" no painel do Estúdio de Dados.
-  - Abra o Estúdio de Dados. No celular, Salvar Fórmula e Gerenciar Fórmulas são botões abaixo do campo da fórmula; em um tablet ou computador, ficam acima dele.
+- Abra o Estúdio de Dados. No celular, Salvar Fórmula e Gerenciar Fórmulas são botões abaixo do campo da fórmula; em um tablet ou computador, ficam acima dele.
 
 ## Importar
 
@@ -50,6 +47,9 @@ Formatos suportados
 ## Exportar
 
 - Toque em "Gerenciar Fórmulas" → Exportar para baixar um arquivo JSON que você pode fazer backup ou compartilhar.
+- A exportação não inclui os rótulos de parada que você salvou na aba Unir. Importar ignora rótulos de parada em um arquivo.
+- Quando você muda o armazenamento de lugar, ou usa Importar pasta anterior, o app junta suas fórmulas salvas e seus rótulos de parada no novo local.
+- Se um dos seus dispositivos ainda usa a 1.6.x, veja Versões diferentes do app no [Esquema de Fórmulas](/pt/resources/formula-schema-pt/). Salvar uma fórmula na 1.6.x remove os rótulos de parada em todos os dispositivos que compartilham a lista.
 - Colocação manual: Se você colocar um arquivo manualmente, nomeie-o saved_formulas.json e coloque-o na pasta formulas dentro da pasta de armazenamento do app. Esse arquivo é sua lista inteira. Se o app não conseguir lê-lo, pode carregar em seu lugar uma cópia de backup legível, quando houver, e carregar essa cópia não altera seu arquivo.
 
 ## Downloads iniciais
@@ -83,7 +83,7 @@ Dica: Use Importar para mesclar estes em sua lista atual. A colocação manual r
 - Prefira o formato envolvido canônico para compartilhamento (inclui `formulas` e `schemaVersion`).
 
 > ##### Motor de sintaxe e docs
-> O rolador usa o mythic_dice_parser 8.1.0, uma versão própria do app derivada do dart_dice_parser da Adventuresmith. Para a gramática original e exemplos adicionais, veja: https://pub.dev/packages/dart_dice_parser (essa documentação pode não corresponder exatamente à gramática atual do app).
+> O rolador usa o mythic_dice_parser 8.3.0, uma versão própria do app derivada do dart_dice_parser da Adventuresmith. Para a gramática original e exemplos adicionais, veja: https://pub.dev/packages/dart_dice_parser (essa documentação pode não corresponder exatamente à gramática atual do app).
 
 ## Guias relacionados
 

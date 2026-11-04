@@ -6,7 +6,7 @@ category: "dice-roller"
 order: 3
 icon: "fa-slab fa-regular fa-exchange"
 duration: "5 min read"
-updated: "2025-09-21"
+updated: "2026-11-04"
 tags: ["dice", "formulas", "import", "export"]
 keywords:
   - Saved Formulas
@@ -21,10 +21,7 @@ This page collects the essentials for bringing Saved Formulas into the app and e
 
 ## Where to find it
 
-- Open the Dice Roller.
-- Use the on‑screen controls:
-  - Desktop: “Save Formula” and “Manage Formulas” buttons in the Dice Studio panel.
-  - Open Dice Studio. On a phone, Save Formula and Manage Formulas are buttons under the formula field, and on a tablet or desktop they are above it.
+- Open Dice Studio. On a phone, Save Formula and Manage Formulas are buttons under the formula field, and on a tablet or desktop they are above it.
 
 ## Import
 
@@ -49,6 +46,9 @@ Supported shapes
 ## Export
 
 - Tap “Manage Formulas” → Export to download a JSON file you can back up or share.
+- Export does not include the pool labels you saved on the Join tab. Import ignores pool labels in a file.
+- When you move storage, or use Import Previous Folder, the app merges your saved formulas and pool labels into the new location.
+- If one of your devices still runs 1.6.x, see Mixed app versions in the [Formula Schema](/resources/formula-schema/). Saving a formula on 1.6.x removes the pool labels on every device that shares the list.
 - Manual placement: If you place a file by hand, name it saved_formulas.json and put it in the formulas folder inside the app's storage folder. That file is your whole list. If the app cannot read it, it may load a readable backup copy instead, when one exists, and loading that copy does not change your file.
 
 ## Starter downloads
@@ -82,7 +82,7 @@ Tip: Use Import to merge these into your current list. Manual placement requires
 - Prefer the canonical wrapped format for sharing (includes `formulas` and `schemaVersion`).
 
 > ##### Syntax engine and docs
-> The roller is powered by mythic_dice_parser 8.1.0, the app's own version derived from Adventuresmith’s dart_dice_parser. For the upstream grammar and additional examples, see: https://pub.dev/packages/dart_dice_parser (that documentation may not exactly match the app's current grammar).
+> The roller is powered by mythic_dice_parser 8.3.0, the app's own version derived from Adventuresmith’s dart_dice_parser. For the upstream grammar and additional examples, see: https://pub.dev/packages/dart_dice_parser (that documentation may not exactly match the app's current grammar).
 
 ## Related guides
 
