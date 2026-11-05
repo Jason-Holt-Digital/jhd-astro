@@ -1,0 +1,227 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/layout/PageHeader.astro';
+---
+<BaseLayout
+  title="TomeKeeper Support | Jason Holt Digital"
+  description="Get help with TomeKeeper, the PDF reader for tabletop roleplaying games: email support, Discord, and answers to common questions."
+  canonicalPath="/tomekeeper/support/"
+  noAlternate
+  mainClass="support-main"
+>
+  <PageHeader
+    title="TomeKeeper Support"
+    subtitle="Help with your books at the table"
+    description="Email support, Discord, and answers to common questions about TomeKeeper."
+    accent="Support"
+    layout="left"
+    icon="fa-solid fa-life-ring"
+    visualElement="particles"
+    colorScheme="accent"
+  />
+
+  <section class="section" aria-labelledby="tk-support-title">
+    <div class="container support-container">
+      <header class="section-head" aria-hidden="true">
+        <span class="accent-line" aria-hidden="true"></span>
+        <span class="badge-text">Support</span>
+      </header>
+      <div class="support-intro">
+        <h2 id="tk-support-title" class="section-title">Get help with TomeKeeper</h2>
+        <p class="support-intro__summary">
+          Email me for bugs and private questions, ask on Discord, or browse the answers below.
+        </p>
+      </div>
+
+      <section aria-labelledby="tk-help-title">
+        <h2 id="tk-help-title">How to Get Help</h2>
+        <div class="twoup">
+          <div class="panel">
+            <h3>Email Support</h3>
+            <p>Send bug reports, beta feedback, and private questions by email. Include your device, the app version, and what happened.</p>
+            <p>
+              <a class="btn btn--shadow-primary" href="mailto:ryan@jasonholtdigital.com?subject=TomeKeeper%20support">
+                <i class="fa-slab fa-regular fa-envelope" aria-hidden="true"></i>
+                Email Support
+              </a>
+            </p>
+            <p class="support-subnote"><a href="mailto:ryan@jasonholtdigital.com">ryan@jasonholtdigital.com</a></p>
+          </div>
+          <div class="panel">
+            <h3>Discord</h3>
+            <p>Ask questions, share feedback, and talk with other players.</p>
+            <p>
+              <a class="btn btn--shadow-discord" href="https://discord.gg/PEDHrhzcnk" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-discord" aria-hidden="true"></i>
+                Join Discord
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="faqs" aria-labelledby="tk-faqs-title">
+        <h2 id="tk-faqs-title">Common Questions</h2>
+
+        <div class="faq-section">
+          <button class="faq-section-header" aria-expanded="true" aria-controls="tk-general-section">
+            <h3>About TomeKeeper</h3>
+            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+          </button>
+          <div id="tk-general-section" class="faq-section-content">
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false" aria-controls="tk-what-is">
+                <strong>What is TomeKeeper?</strong>
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </button>
+              <div id="tk-what-is" class="faq-answer">
+                <p>TomeKeeper is a PDF reader for tabletop roleplaying games. Import your rulebooks and adventures, mark the pages you need with bookmarks and page tags, group books into sets, and lay out clips from your books on a Table for quick reference during play.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false" aria-controls="tk-platforms">
+                <strong>Which devices does it run on?</strong>
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </button>
+              <div id="tk-platforms" class="faq-answer">
+                <p>iPhone, iPad, Mac and Android. During the beta, you can join through TestFlight on Apple devices and through Google Play on Android.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false" aria-controls="tk-account">
+                <strong>Do I need an account?</strong>
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </button>
+              <div id="tk-account" class="faq-answer">
+                <p>No. TomeKeeper has no accounts. Open the app and import a PDF.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-section">
+          <button class="faq-section-header" aria-expanded="false" aria-controls="tk-books-section">
+            <h3>Books &amp; Import</h3>
+            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+          </button>
+          <div id="tk-books-section" class="faq-section-content">
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false" aria-controls="tk-import">
+                <strong>How do I add a book?</strong>
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </button>
+              <div id="tk-import" class="faq-answer">
+                <p>Tap Import on the home screen, stay on Local PDF, and tap Choose PDF to pick one or more PDFs from your device. TomeKeeper copies each PDF into its own storage, so the book stays available even if you move or delete the original file.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false" aria-controls="tk-dtrpg">
+                <strong>Can I import my DriveThruRPG purchases?</strong>
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </button>
+              <div id="tk-dtrpg" class="faq-answer">
+                <p>Yes. In Import, choose DriveThruRPG and connect with your DriveThruRPG API key. Then select the purchased PDFs you want and import them. The app talks to DriveThruRPG directly, and your key is stored only in your device's secure storage. Disconnecting removes it.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false" aria-controls="tk-where-stored">
+                <strong>Where are my books and notes stored?</strong>
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </button>
+              <div id="tk-where-stored" class="faq-answer">
+                <p>On your device. Your PDFs, bookmarks, page tags, sets, Tables and clips are never uploaded. Deleting the app deletes them, so keep your original PDFs.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-section">
+          <button class="faq-section-header" aria-expanded="false" aria-controls="tk-privacy-section">
+            <h3>Privacy &amp; Diagnostics</h3>
+            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+          </button>
+          <div id="tk-privacy-section" class="faq-section-content">
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false" aria-controls="tk-diagnostics">
+                <strong>What does Share diagnostics send?</strong>
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </button>
+              <div id="tk-diagnostics" class="faq-answer">
+                <p>App errors and performance timings, with your app version, device model and operating system. Never your PDFs, notes, book titles, screenshots or recordings. It is on by default; switch it off in Settings, under Diagnostics. The <a href="/tomekeeper/privacy/">privacy policy</a> lists everything the app sends.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-section">
+          <button class="faq-section-header" aria-expanded="false" aria-controls="tk-bugs-section">
+            <h3>Reporting Problems</h3>
+            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+          </button>
+          <div id="tk-bugs-section" class="faq-section-content">
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false" aria-controls="tk-report-bug">
+                <strong>How do I report a bug?</strong>
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </button>
+              <div id="tk-report-bug" class="faq-answer">
+                <p>Email <a href="mailto:ryan@jasonholtdigital.com">ryan@jasonholtdigital.com</a> or post in Discord. Include your device, the app version, and the steps that led to the problem. On TestFlight, you can also take a screenshot and send it as beta feedback.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false" aria-controls="tk-pdf-problem">
+                <strong>A PDF won't open or looks wrong. What should I send?</strong>
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </button>
+              <div id="tk-pdf-problem" class="faq-answer">
+                <p>Tell me the book's title and publisher, where you got it, and which pages are affected. Please don't attach the PDF unless I ask; most publishers don't allow sharing their files.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  function initFAQAccordion() {
+    document.querySelectorAll<HTMLButtonElement>('.faq-section-header').forEach((header) => {
+      header.addEventListener('click', () => {
+        const isExpanded = header.getAttribute('aria-expanded') === 'true';
+        const content = document.getElementById(header.getAttribute('aria-controls') ?? '');
+        header.setAttribute('aria-expanded', (!isExpanded).toString());
+        if (!content) return;
+        content.classList.toggle('open', !isExpanded);
+        if (isExpanded) {
+          content.querySelectorAll<HTMLButtonElement>('.faq-question').forEach((q) => q.setAttribute('aria-expanded', 'false'));
+          content.querySelectorAll<HTMLElement>('.faq-answer').forEach((a) => a.classList.remove('open'));
+        }
+      });
+    });
+
+    document.querySelectorAll<HTMLButtonElement>('.faq-question').forEach((question) => {
+      question.addEventListener('click', () => {
+        const isExpanded = question.getAttribute('aria-expanded') === 'true';
+        const answer = document.getElementById(question.getAttribute('aria-controls') ?? '');
+        question.setAttribute('aria-expanded', (!isExpanded).toString());
+        answer?.classList.toggle('open', !isExpanded);
+      });
+    });
+
+    document.querySelectorAll<HTMLButtonElement>('.faq-section-header[aria-expanded="true"]').forEach((header) => {
+      document.getElementById(header.getAttribute('aria-controls') ?? '')?.classList.add('open');
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initFAQAccordion);
+</script>
