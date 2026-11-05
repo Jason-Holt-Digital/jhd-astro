@@ -56,11 +56,12 @@ const featureGroups = [
     icon: "fa-slab fa-regular fa-chess-board",
     shot: tableIpad,
     alt: "A Table named Broken Empires solo game on iPad, with the Broken Empires map, an adventure cover, the Mythic Fate Chart, a Chaos Factor counter and a note for the next scene.",
+    lead: "Set up a solo player table. Put the rules you keep checking, the counters you track and the maps you play on together on one board, next to the books they came from.",
     items: [
-      "A Table is a board for a session or a campaign. Clip a map, a table or a stat block from any page and place it on the board.",
-      "Add notes, counters, checklists, frames and shapes.",
-      "Import character sheet PDFs onto a Table, fill in the fields, and export a filled copy.",
-      "Link a Table to a set and open it from the book you are reading.",
+      "Clip a rules table, a stat block or a map from any page. Select a clip and tap Source to open the book at that page.",
+      "Track the Chaos Factor or any other meta-currency with a counter, and keep notes and checklists beside it.",
+      "Import any PDF onto the Table: maps, handouts, character sheets. Fill in fillable sheets and export a filled copy.",
+      "Link the Table to a set, then open it from whichever book you are reading.",
     ],
   },
 ];
@@ -155,6 +156,7 @@ const smallGroups = [
           <div class="tk-feature__copy">
             <p class="tk-feature__num" aria-hidden="true">{String(index + 1).padStart(2, "0")}</p>
             <h2 id={`${group.id}-title`} class="tk-feature__title">{group.title}</h2>
+            {group.lead && <p class="tk-feature__lead">{group.lead}</p>}
             <ul class="tk-feature__list">
               {group.items.map((item) => (
                 <li><i class="fa-slab fa-regular fa-check" aria-hidden="true"></i><span>{item}</span></li>
@@ -374,6 +376,12 @@ const smallGroups = [
     font-size: clamp(1.875rem, 4vw, 2.75rem);
     font-weight: 900;
     letter-spacing: -0.02em;
+  }
+  .tk-feature__lead {
+    margin: 0 0 20px;
+    font-size: 1.1875rem;
+    line-height: 1.55;
+    color: #2d3748;
   }
   .tk-feature__list {
     display: grid;
