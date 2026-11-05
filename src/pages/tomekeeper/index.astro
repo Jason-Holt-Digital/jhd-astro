@@ -1,8 +1,15 @@
 ---
 // TomeKeeper ships in English only, so this page has no PT alternate.
+import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import AppIconTile from "../../components/apps/hub/AppIconTile.astro";
 import { getApps } from "../../lib/apps";
+import homeIpad from "../../assets/apps/tomekeeper/home-ipad.jpg";
+import homeIphone from "../../assets/apps/tomekeeper/home-iphone.jpg";
+import setsIpad from "../../assets/apps/tomekeeper/sets-ipad.jpg";
+import toolsIpad from "../../assets/apps/tomekeeper/tools-ipad.jpg";
+import bookmarksIpad from "../../assets/apps/tomekeeper/bookmarks-ipad.jpg";
+import tableIpad from "../../assets/apps/tomekeeper/table-ipad.jpg";
 
 const tk = getApps("en").find((app) => app.slug === "tomekeeper")!;
 
@@ -11,7 +18,8 @@ const featureGroups = [
     id: "library",
     title: "Your library",
     icon: "fa-slab fa-regular fa-book-bookmark",
-    shot: "Library screenshot",
+    shot: setsIpad,
+    alt: "My Sets on iPad with five sets: Mythic Solo, Fabula Ultima, Legend in the Mist, Broken Empires and Daggerheart.",
     items: [
       "Import PDFs from your device. TomeKeeper keeps its own copy, so the book stays put even if you move the original.",
       "Connect your DriveThruRPG account with your own API key and import the PDFs you bought.",
@@ -22,7 +30,8 @@ const featureGroups = [
     id: "reading",
     title: "Reading",
     icon: "fa-slab fa-regular fa-book-open",
-    shot: "Spread layout screenshot",
+    shot: toolsIpad,
+    alt: "A two-page spread of the Mythic GME 2e Fate Chart on iPad, with the Tools panel open: Open Books, View, Search, Contents, Bookmarks, Bookmark, Clip and Tags.",
     items: [
       "Single page, two-page spread, or Stitch for continuous reading.",
       "Jump with the page scrubber, Go to page, or the book's contents.",
@@ -33,7 +42,8 @@ const featureGroups = [
     id: "find",
     title: "Find it at the table",
     icon: "fa-slab fa-regular fa-bookmark",
-    shot: "Bookmark tabs screenshot",
+    shot: bookmarksIpad,
+    alt: "The Fabula Ultima introduction on iPad, with colored bookmark tabs on the page edge: Introduction, Scenes, Checks, Clocks, Conflict and Fabula Points.",
     items: [
       "Bookmarks with category colors appear as tabs on the page edge. One tap takes you there.",
       "Page tags pin named markers to a spot on the page, such as a monster stat block or a trap.",
@@ -44,7 +54,8 @@ const featureGroups = [
     id: "tables",
     title: "Tables",
     icon: "fa-slab fa-regular fa-chess-board",
-    shot: "Table board screenshot",
+    shot: tableIpad,
+    alt: "A Table named Broken Empires solo game on iPad, with the Broken Empires map, an adventure cover, the Mythic Fate Chart, a Chaos Factor counter and a note for the next scene.",
     items: [
       "A Table is a board for a session or a campaign. Clip a map, a table or a stat block from any page and place it on the board.",
       "Add notes, counters, checklists, frames and shapes.",
@@ -106,16 +117,26 @@ const smallGroups = [
             <p>TomeKeeper is coming soon. Store links will appear here when it launches.</p>
           </div>
         </div>
-        <div class="tk-hero__media" aria-hidden="true">
-          <div class="shot-placeholder shot-placeholder--tablet tk-hero__tablet">
-            <i class="fa-slab fa-regular fa-image fa-2x"></i>
-            iPad screenshot
-          </div>
-          <div class="shot-placeholder shot-placeholder--phone tk-hero__phone">
-            <i class="fa-slab fa-regular fa-image fa-2x"></i>
-            iPhone screenshot
-          </div>
-        </div>
+        <figure class="tk-hero__media">
+          <Image
+            class="tk-shot tk-hero__tablet"
+            src={homeIpad}
+            alt="TomeKeeper's home screen on iPad: Mythic Game Master Emulator 2e under Continue Reading, with My Books, My Sets and Tables below."
+            widths={[640, 960, 1280, 1600]}
+            sizes="(max-width: 900px) 88vw, 560px"
+            loading="eager"
+            fetchpriority="high"
+          />
+          <Image
+            class="tk-shot tk-hero__phone"
+            src={homeIphone}
+            alt="TomeKeeper's home screen on iPhone."
+            widths={[240, 480]}
+            sizes="(max-width: 900px) 26vw, 170px"
+            loading="eager"
+          />
+          <figcaption class="tk-hero__caption">PDFs sold separately.</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -140,10 +161,13 @@ const smallGroups = [
               ))}
             </ul>
           </div>
-          <div class="shot-placeholder shot-placeholder--tablet tk-feature__shot" aria-hidden="true">
-            <i class="fa-slab fa-regular fa-image fa-2x"></i>
-            {group.shot}
-          </div>
+          <Image
+            class="tk-shot tk-feature__shot"
+            src={group.shot}
+            alt={group.alt}
+            widths={[640, 960, 1280, 1600]}
+            sizes="(max-width: 900px) 92vw, 560px"
+          />
         </div>
       </section>
     ))}
@@ -264,8 +288,15 @@ const smallGroups = [
     margin: 0;
     color: var(--color-text-muted);
   }
+  .tk-shot {
+    display: block;
+    height: auto;
+    border: var(--border-thick);
+    border-radius: 18px;
+  }
   .tk-hero__media {
     position: relative;
+    margin: 0;
     padding: 0 0 40px 0;
   }
   .tk-hero__tablet {
@@ -277,7 +308,15 @@ const smallGroups = [
     right: 0;
     bottom: 0;
     width: 26%;
+    border-radius: 22px;
     box-shadow: 6px 6px 0 0 var(--tk-brass);
+  }
+  .tk-hero__caption {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
   }
   .tk-jump {
     background: #fff;
@@ -355,6 +394,7 @@ const smallGroups = [
     color: var(--app-accent);
   }
   .tk-feature__shot {
+    width: 100%;
     box-shadow: 8px 8px 0 0 var(--app-accent);
   }
   .tk-more__grid {
