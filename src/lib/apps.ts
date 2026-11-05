@@ -1,6 +1,6 @@
 import type { ImageMetadata } from "astro";
 import tomekeeperIcon from "../assets/apps/tomekeeper-icon.png";
-import mythicMark from "../assets/apps/mythic-gme-mark.svg?url";
+import mythicIcon from "../assets/apps/mythic-gme-icon.png";
 
 export type Lang = "en" | "pt";
 export type AppStatus = "available" | "coming-soon";
@@ -16,10 +16,8 @@ export interface AppEntry {
   status: AppStatus;
   /** Offset-shadow colour that identifies the product across the site. */
   accent: string;
-  icon?: ImageMetadata | string;
-  /** Line art that needs padding inside the tile rather than a full-bleed icon. */
-  iconIsMark?: boolean;
-  faIcon?: string;
+  /** Published store icon. Apps without one show a blank placeholder tile. */
+  icon?: ImageMetadata;
   supportHref?: string;
   privacyHref?: string;
   /** The app and its pages exist only in English. */
@@ -45,8 +43,7 @@ export function getApps(lang: Lang): AppEntry[] {
       ],
       status: "available",
       accent: "#0066ff",
-      icon: mythicMark,
-      iconIsMark: true,
+      icon: mythicIcon,
       supportHref: `${prefix}/support/`,
       privacyHref: `${prefix}/privacy/`,
     },
@@ -77,7 +74,6 @@ export function getApps(lang: Lang): AppEntry[] {
       platforms: [],
       status: "coming-soon",
       accent: "#ffd700",
-      faIcon: "fa-slab fa-regular fa-compass",
     },
   ];
 }

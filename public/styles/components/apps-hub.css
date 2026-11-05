@@ -1,31 +1,29 @@
 @layer components {
-  /* Product identity tile: app icon (or line-art mark) in a bordered square
-     with the product's accent as the offset shadow. */
+  /* Product identity tile: the published store icon with rounded corners and
+     the product's accent as the offset shadow. */
   .app-icon-tile {
     --tile-size: 72px;
     flex: none;
-    display: grid;
-    place-items: center;
+    display: block;
     width: var(--tile-size);
     height: var(--tile-size);
     background: #fff;
     border: var(--border-base);
+    border-radius: 22%;
     box-shadow: 4px 4px 0 0 var(--app-accent, var(--color-border));
     overflow: hidden;
   }
   .app-icon-tile img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-  .app-icon-tile--mark img {
-    width: 80%;
-    height: 80%;
-    object-fit: contain;
-  }
-  .app-icon-tile i {
-    font-size: calc(var(--tile-size) * 0.42);
-    color: var(--color-text);
+  /* Apps with no published icon yet get an empty tile, not a stand-in mark. */
+  .app-icon-tile--placeholder {
+    background: var(--color-surface-2);
+    border-style: dashed;
+    box-shadow: none;
   }
 
   .app-status {

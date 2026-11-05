@@ -11,15 +11,11 @@ const { app, size = 72 } = Astro.props;
 ---
 
 <span
-  class:list={["app-icon-tile", { "app-icon-tile--mark": app.iconIsMark }]}
+  class:list={["app-icon-tile", { "app-icon-tile--placeholder": !app.icon }]}
   style={`--tile-size:${size}px; --app-accent:${app.accent};`}
   aria-hidden="true"
 >
-  {typeof app.icon === "string" ? (
-    <img src={app.icon} alt="" width={size} height={size} loading="lazy" decoding="async" />
-  ) : app.icon ? (
+  {app.icon && (
     <Image src={app.icon} alt="" width={size * 2} height={size * 2} loading="lazy" decoding="async" />
-  ) : (
-    <i class={app.faIcon}></i>
   )}
 </span>
