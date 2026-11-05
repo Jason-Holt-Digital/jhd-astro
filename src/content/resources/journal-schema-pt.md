@@ -71,13 +71,18 @@ O app grava os campos de nível superior declarados do diário em camelCase, por
   - Outros campos opcionais do registro são eventFocusRoll, sceneCheckResult, meaningTableName, discoveryExplanation, diceFormula e diceResults. meaningDescriptions e discoverySubRolls são sempre gravados como listas e podem estar vazios. diceSuccessCount, diceFailureCount, diceCriticalSuccessCount e diceCriticalFailureCount também são opcionais. diceRoll é o registro de cada dado de uma General dice roll, descrito abaixo. sceneId liga uma entrada Scene à sua cena. Campos opcionais do registro são omitidos quando não têm valor.
   - `linkedResults` (array, em `randomEvent` e `eventFocus`): cada item tem `tableName`, `result` e `roll`, com `characterResult`, `threadResult` e `featureResult` opcionais, e `customListResults` (um objeto de string para string).
 - listNotes (object): anotações livres por lista, em characterNotes, threadNotes e featureNotes. É opcional em um arquivo que você importa, e a exportação o omite quando não tem valor.
-- schemaVersion (int, atual = 6): a versão do esquema de dados, usada na migração. O app grava schemaVersion 6 e sempre grava minReaderVersion 6. Arquivos mais antigos são migrados ao carregar e salvos como esquema 6.
-- minReaderVersion (int): o esquema mais antigo que um leitor precisa entender para abrir o arquivo. O app mostra "Atualização necessária" para um arquivo cujo minReaderVersion seja maior que 6. Quando um arquivo não tem minReaderVersion, o app confere o schemaVersion. Um arquivo com schemaVersion maior, mas com minReaderVersion 6 ou menor, ainda carrega, mantém suas chaves de nível superior desconhecidas e mantém o schemaVersion maior ao ser salvo.
+- schemaVersion (int, atual = 6): a versão do esquema de dados, usada na migração. O app grava schemaVersion 6 e minReaderVersion 4 ou 6 (veja Versões diferentes do app abaixo). Arquivos mais antigos são migrados ao carregar e salvos como esquema 6.
+- minReaderVersion (int): o esquema mais antigo que um leitor precisa entender para abrir o arquivo. O app mostra "Atualização necessária" para um arquivo cujo minReaderVersion seja maior que 6. Quando um arquivo não tem minReaderVersion, o app confere o schemaVersion. Um arquivo com schemaVersion maior, mas com minReaderVersion 6 ou menor, ainda carrega, mantém suas chaves de nível superior desconhecidas e mantém o schemaVersion maior ao ser salvo. Ele também mantém o próprio minReaderVersion quando este é maior que o que o app gravaria.
 - As exportações também sempre contêm customLists, threadProgressTracks, keyedScenes, tableProgressPoints, rev, base e minReaderVersion. lastCharacterRoll, lastThreadRoll e lastFeatureRoll só aparecem quando têm valor.
 
 ### Versões diferentes do app
 
-A versão 1.6.8 do app gravava o esquema 4. Como a 1.7.0 grava minReaderVersion 6, um app na 1.6.x mostra "Atualização necessária" para um Diário que a 1.7.0 salvou. Se você joga em mais de um dispositivo, atualize todos para a 1.7.0.
+A versão 1.6.8 do app gravava o esquema 4. A versão 1.7.0 grava schemaVersion 6 e define minReaderVersion como a versão mais antiga que mantém todos os dados do Diário:
+
+- minReaderVersion 4 quando a versão 1.6.8 mantém tudo. A 1.6.8 consegue abrir o Diário. Listas personalizadas e Pontos de Progresso não mudam isso: a 1.6.8 os mantém no arquivo, mas não os mostra.
+- minReaderVersion 6 quando o Diário tem dados que a 1.6.8 perderia ou leria errado. Isso inclui uma rolagem de dados registrada no modo de dados, uma cena adicionada na 1.7.0 (ela cria uma entrada de cena no Registro de Aventura), resultados de tabelas ligadas em um Evento Aleatório ou Foco do Evento, uma Trilha de Progresso com dados de Conclusão, Vantagem, Proteção ou Horror, uma Cena-Chave aguardando a próxima cena e um item de lista chamado Choose. A 1.6.8 mostra "Atualização necessária" para esse Diário.
+
+A versão 1.6.7 e as anteriores não conferem o minReaderVersion. Elas abrem o Diário e descartam os dados que não conhecem quando o salvam. Se você joga em mais de um dispositivo, atualize todos para a 1.7.0.
 
 ### Campos desconhecidos e de tipo errado
 
@@ -97,7 +102,7 @@ Uma entrada General dice roll pode trazer `diceRoll`, o registro de cada dado.
 Cada objeto de dado:
 
 - `value` (int, obrigatório): a face que o dado mostra.
-- `type` (string, obrigatório): `numbered`, `fate`, `d66`, `custom` ou `constant`.
+- `type` (string, obrigatório): `numbered`, `fate`, `d66`, `custom` ou `constant`. Se um dado tiver outro tipo, o app mantém o registro `diceRoll` inteiro como está e o grava de volta ao salvar. Ele mostra essa rolagem a partir de `diceResults`, e a rolagem não pode ser forçada.
 - `sides` (int): o número de lados.
 - `faces` (array de int): as faces do dado. Obrigatório para `fate` e `custom`.
 - `components` (array de dois ints de 1 a 6): os dois dados de um `d66`.
@@ -121,7 +126,7 @@ Cada trilha exige:
 - `trackLength` (string): `short`, `medium`, `long` ou `custom`.
 - `createdAt` (string ISO8601)
 
-Qualquer outro valor de `trackType` ou `trackLength` impede o Diário inteiro de carregar.
+O app não mostra uma trilha com qualquer outro valor de `trackType` ou `trackLength`. Ele mantém a trilha no arquivo e a grava de volta sem mudanças ao salvar.
 
 Campos opcionais: `customPoints` (int), `currentProgress` (int), `isResolved`, `endedUnresolved`, `isArchived` (bool), `flashpointPerPhase` (objeto de fase para bool), `conclusionDelayed`, `conclusionPlayed` (bool), `leverages`, `protections`, `horrorPlotArmorEnabled` (bool, padrão true) e `updatedAt` (string ISO8601).
 
@@ -160,7 +165,7 @@ Este é um exemplo mínimo com os nomes de chave atuais do esquema 6. Não é um
   "features": [],
   "logEntries": [],
   "schemaVersion": 6,
-  "minReaderVersion": 6
+  "minReaderVersion": 4
 }
 ```
 

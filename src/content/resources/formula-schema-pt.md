@@ -48,32 +48,41 @@ Há dois tipos de arquivo: o arquivo de armazenamento do próprio app e o arquiv
 
 O app guarda suas fórmulas salvas em `saved_formulas.json`, dentro da pasta `formulas` do local de armazenamento. O app lê dois formatos:
 
-- Um array simples de objetos de fórmula. É o que o app grava até você salvar um rótulo de parada.
-- Um objeto envolvente com `formulas` (array de objetos de fórmula) e `poolLabels` (array de strings). O app grava esse formato depois que você salva seu primeiro rótulo de parada na aba Unir do Estúdio de Dados.
+- Um array simples de objetos de fórmula. É o que o app grava até você salvar um rótulo.
+- Um objeto envolvente com `formulas` (array de objetos de fórmula) e `poolLabels` (array de strings), mais `poolLabelColors` quando você escolhe a cor de um rótulo. O app grava esse formato depois que você salva seu primeiro rótulo na aba Unir do Estúdio de Dados.
 
-Quando você remove seu último rótulo de parada, o app volta a gravar um array simples. Outros campos de um arquivo de armazenamento envolvente são mantidos quando o app salva.
+Quando você remove seu último rótulo, o app volta a gravar um array simples. Outros campos de um arquivo de armazenamento envolvente são mantidos quando o app salva.
 
-Rótulos de parada em `poolLabels`:
+Rótulos em `poolLabels`:
 
 - Cada rótulo é uma string. O app remove os espaços das duas pontas.
 - Um rótulo não pode conter aspas duplas (`"`).
 - Os rótulos são únicos, sem diferenciar maiúsculas de minúsculas.
-- Quando você muda o armazenamento de lugar, ou usa Importar pasta anterior, o app junta os rótulos. Os rótulos do destino mantêm a ordem, e os rótulos novos para ele são adicionados depois. A comparação não diferencia maiúsculas de minúsculas.
+- Quando você muda o armazenamento de lugar, ou usa Importar pasta anterior, o app junta os rótulos. Os rótulos do destino mantêm a ordem, e os rótulos novos para ele são adicionados depois. A comparação não diferencia maiúsculas de minúsculas. Um rótulo mantém a cor que tem no destino; se não tiver cor lá, recebe a cor do outro local.
 
-Arquivo de armazenamento com rótulos de parada:
+Cores dos rótulos em `poolLabelColors`:
+
+- Um objeto que liga o nome de um rótulo à sua cor. Um nome que não está em `poolLabels` é ignorado.
+- Uma cor é uma cor sugerida, `white`, `red`, `black`, `teal`, `purple` ou `brown`, ou uma cor personalizada escrita como `#RRGGBB`. O app grava as cores personalizadas em maiúsculas.
+- Um rótulo sem entrada usa Automática: ele recebe uma cor sugerida que as outras paradas da rolagem não estão usando. Um valor que o app não reconhece é ignorado, e esse rótulo também usa Automática.
+- O app só grava `poolLabelColors` quando pelo menos um rótulo tem uma cor escolhida.
+- Renomear um rótulo mantém a cor dele. Remover um rótulo remove a cor dele.
+
+Arquivo de armazenamento com rótulos:
 
 ```json
 {
   "formulas": [
     { "id": "a", "formula": "1d20+5", "name": "Attack", "description": "", "dateAdded": "2020-01-01T00:00:00.000Z" }
   ],
-  "poolLabels": ["Attack", "Damage"]
+  "poolLabels": ["Attack", "Damage"],
+  "poolLabelColors": { "Attack": "teal", "Damage": "#C0392B" }
 }
 ```
 
 ### Versões diferentes do app
 
-A versão 1.6.x do app lê o arquivo de armazenamento envolvente, mas grava um array simples toda vez que salva uma fórmula. Se um dispositivo na 1.6.x salvar uma fórmula, os rótulos de parada são removidos em todos os dispositivos que compartilham a mesma conta do iCloud ou a mesma pasta sincronizada. Suas fórmulas são mantidas. Atualize todos os dispositivos para a 1.7.0 antes de salvar rótulos de parada.
+A versão 1.6.x do app lê o arquivo de armazenamento envolvente, mas grava um array simples toda vez que salva uma fórmula. Se um dispositivo na 1.6.x salvar uma fórmula, os rótulos e as cores deles são removidos em todos os dispositivos que compartilham a mesma conta do iCloud ou a mesma pasta sincronizada. Suas fórmulas são mantidas. Atualize todos os dispositivos para a 1.7.0 antes de salvar rótulos.
 
 ### Regras do armazenamento
 
@@ -86,6 +95,7 @@ A versão 1.6.x do app lê o arquivo de armazenamento envolvente, mas grava um a
 - Com armazenamento em pasta, o app mantém `saved_formulas.json.bak`, `saved_formulas.json.bak.1` e `saved_formulas.json.bak.2` ao lado do arquivo de armazenamento.
 - Com o iCloud, o app mantém um `saved_formulas.json.bak`. Isso é novo na 1.7.
 - No computador e no tablet, Restaurar backup aparece quando a lista de Fórmulas Salvas não carrega.
+- Restaurar backup tenta os backups do mais recente ao mais antigo e pula os que não consegue ler. Se nenhum puder ser restaurado, o app mostra "Falha ao restaurar do backup".
 - Na web, as fórmulas ficam no armazenamento do navegador, e não há backups.
 
 ### Arquivo de exportação
@@ -96,7 +106,7 @@ Exportar sempre grava um objeto envolvente com estes campos:
 - version (string): Exportar sempre grava "1.0". Importar ignora este campo.
 - schemaVersion (string): Exportar grava "1". Importar ignora este campo.
 
-A exportação não inclui os rótulos de parada, e Importar ignora `poolLabels` em um arquivo.
+A exportação não inclui os rótulos nem as cores deles, e Importar ignora `poolLabels` e `poolLabelColors` em um arquivo.
 
 ### Campos do objeto de fórmula (importação e exportação)
 

@@ -106,9 +106,9 @@ Pegadinhas de ordem e precedência
 - Não existe contagem de "diferente de". `6d6#s!=1` não é uma fórmula válida.
 - Uma fórmula que termina em um operador, ou um rótulo sem dados depois dele, não rola. Por exemplo, `2d6+` e `"Damage":` estão incompletos, e o campo de fórmula mostra que estão incompletos.
 
-## Paradas de dados e rótulos de parada
+## Paradas de dados e rótulos
 
-> As linhas por parada, os rótulos de parada e Forçar são novidades da versão 1.7.0. A sintaxe das fórmulas desta página funciona do mesmo jeito na 1.6.x.
+> As linhas por parada, os rótulos, as cores dos rótulos e Forçar são novidades da versão 1.7.0. A sintaxe das fórmulas desta página funciona do mesmo jeito na 1.6.x.
 
 Uma parada de dados é um grupo de dados com um rótulo. Escreva o rótulo entre aspas, depois dois-pontos, depois os dados. Coloque uma vírgula entre as paradas de dados.
 
@@ -118,7 +118,9 @@ Uma Rolagem de teste do estúdio mostra uma linha para cada parada de dados, com
 
 Na aba **Unir**, toque em um rótulo salvo para colocá-lo na frente dos seus dados. Toque em **+** para salvar um novo rótulo. Toque e segure um rótulo para renomeá-lo, removê-lo ou mudar a ordem dos seus rótulos. Renomear ou remover um rótulo não muda as fórmulas que já o usam. Um rótulo não pode conter `"`, e dois rótulos não podem ser diferentes só nas letras maiúsculas e minúsculas.
 
-As fórmulas salvas guardam o texto do rótulo que você digitou. Uma exportação das suas fórmulas salvas não inclui seus rótulos de parada.
+Para escolher a cor de um rótulo, toque e segure o rótulo e toque em **Alterar cor**, ou toque no botão **Cor** abaixo do nome dele em **Gerenciar rótulos**. Escolha uma das cores sugeridas ou toque em **Personalizada** para escolher qualquer cor e depois toque em **Concluir**.
+
+As fórmulas salvas guardam o texto do rótulo que você digitou. Uma exportação das suas fórmulas salvas não inclui seus rótulos nem as cores deles.
 
 ## Forçar
 

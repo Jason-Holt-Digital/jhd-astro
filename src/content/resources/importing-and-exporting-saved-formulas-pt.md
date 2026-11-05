@@ -47,9 +47,9 @@ Formatos suportados
 ## Exportar
 
 - Toque em "Gerenciar Fórmulas" → Exportar para baixar um arquivo JSON que você pode fazer backup ou compartilhar.
-- A exportação não inclui os rótulos de parada que você salvou na aba Unir. Importar ignora rótulos de parada em um arquivo.
-- Quando você muda o armazenamento de lugar, ou usa Importar pasta anterior, o app junta suas fórmulas salvas e seus rótulos de parada no novo local.
-- Se um dos seus dispositivos ainda usa a 1.6.x, veja Versões diferentes do app no [Esquema de Fórmulas](/pt/resources/formula-schema-pt/). Salvar uma fórmula na 1.6.x remove os rótulos de parada em todos os dispositivos que compartilham a lista.
+- A exportação não inclui os rótulos que você salvou na aba Unir nem as cores deles. Importar ignora rótulos em um arquivo.
+- Quando você muda o armazenamento de lugar, ou usa Importar pasta anterior, o app junta suas fórmulas salvas, seus rótulos e as cores dos rótulos no novo local.
+- Se um dos seus dispositivos ainda usa a 1.6.x, veja Versões diferentes do app no [Esquema de Fórmulas](/pt/resources/formula-schema-pt/). Salvar uma fórmula na 1.6.x remove os rótulos e as cores deles em todos os dispositivos que compartilham a lista.
 - Colocação manual: Se você colocar um arquivo manualmente, nomeie-o saved_formulas.json e coloque-o na pasta formulas dentro da pasta de armazenamento do app. Esse arquivo é sua lista inteira. Se o app não conseguir lê-lo, pode carregar em seu lugar uma cópia de backup legível, quando houver, e carregar essa cópia não altera seu arquivo.
 
 ## Downloads iniciais

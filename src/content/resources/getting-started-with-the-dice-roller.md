@@ -19,7 +19,7 @@ related:
 
 Dice Studio is where you build and test dice formulas. On a phone, open the drawer and tap DICE STUDIO. This quick start shows the basics so you can roll confidently right away.
 
-> Dice Studio, pool labels, Push and the 3D dice settings are new in 1.7.0. In 1.6.x, this screen is called Dice Roller.
+> Dice Studio, labels, Push and the 3D dice settings are new in 1.7.0. In 1.6.x, this screen is called Dice Roller.
 
 > ##### Syntax engine and docs
 > The roller uses the app's own version of Adventuresmith's dart_dice_parser. The pub.dev page describes the original package, so check a formula in the app before you rely on it. For the full grammar and additional examples, see: https://pub.dev/packages/dart_dice_parser
@@ -34,7 +34,7 @@ Dice Studio is where you build and test dice formulas. On a phone, open the draw
 - **Formula field and Roll button:** Type a formula (for example, `1d20+5`) and tap **Roll**, the button with the d20 icon.
 - **Tabs below the formula field:** Four tabs add to the formula for you.
   - **Dice:** d4, d6, d8, d10, d12, d20, D100, 1D66, d2 and 4dF.
-  - **Join:** the operators `+`, `-` and `*`, parentheses, and your saved pool labels.
+  - **Join:** the operators `+`, `-` and `*`, parentheses, and your saved labels.
   - **Mod:** Advantage, Disadvantage, Keep High, Keep Lowest, Exploding, Compounding, Reroll 1s, Reroll ≤2, Count Criticals, Cap at X and Floor at X.
   - **Saved:** your saved formulas. Tap one to put it in the field, or tap its roll button to roll it.
 - Type numbers yourself after a `+` or `-` (for example, `+2`). Type drop (`-H`, `-L`), reroll once (`ro`) and count (`#`) yourself too.
@@ -42,13 +42,16 @@ Dice Studio is where you build and test dice formulas. On a phone, open the draw
 
 > Tip: A Studio test roll shows your formula with parentheses added. They show how the app grouped it.
 
-## Pool labels
-A dice pool is a group of dice with a label, such as `"Attack": 2d6, "Damage": 1d8`. A Studio test roll shows one line for each pool, with its label, its total and its dice. In the Adventure Log, a labeled roll is one entry.
+## Labels
+A dice pool is a group of dice with a label, such as `"Attack": 2d6, "Damage": 1d8`. A Studio test roll shows one line for each pool, with its color, its label, its total and its dice. In the Adventure Log, a labeled roll is one entry.
 
 On the **Join** tab:
 - Tap a saved label to put it in front of your dice.
 - Tap **+** to save a new label.
-- Long-press a label to rename it, remove it or change the order of your labels.
+- Long-press a label to rename it, remove it, change the order of your labels or change its color.
+- **Manage labels** lists every label, with a **Color** button under each name.
+
+To choose a color, pick **Automatic**, one of the quick colors (White, Red, Black, Teal, Purple, Brown) or **Custom**. Custom lets you pick any color or type its hex code. Then tap **Done**. An Automatic label takes a quick color that the other pools in the roll are not using.
 
 Renaming or removing a label doesn't change formulas that already use it. A label can't contain `"`, and two labels can't differ only in upper and lower case.
 

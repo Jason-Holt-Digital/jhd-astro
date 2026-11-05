@@ -71,13 +71,18 @@ The app writes the journal's declared top-level fields in camelCase, for example
   - Other optional log fields are eventFocusRoll, sceneCheckResult, meaningTableName, discoveryExplanation, diceFormula, and diceResults. meaningDescriptions and discoverySubRolls are always written as lists and may be empty. diceSuccessCount, diceFailureCount, diceCriticalSuccessCount, and diceCriticalFailureCount are also optional. diceRoll is the per-die record of a General dice roll, described below. sceneId links a Scene entry to its scene. Optional log fields are omitted when they have no value.
   - `linkedResults` (array, in `randomEvent` and `eventFocus`): each item has `tableName`, `result`, and `roll`, with optional `characterResult`, `threadResult`, and `featureResult`, and `customListResults` (an object of string to string).
 - listNotes (object): free-form notes per list, in characterNotes, threadNotes, and featureNotes. It is optional in a file you import, and an export omits it when it has no value.
-- schemaVersion (int, current = 6): the data schema version, used for migration. The app writes schemaVersion 6 and always writes minReaderVersion 6. Older files are migrated when they load and saved as schema 6.
-- minReaderVersion (int): the oldest schema a reader must understand to open the file. The app shows "Update required" for a file whose minReaderVersion is above 6. When a file has no minReaderVersion, the app checks schemaVersion instead. A file with a higher schemaVersion but a minReaderVersion of 6 or lower still loads, keeps its unknown top-level keys, and keeps its higher schemaVersion when saved.
+- schemaVersion (int, current = 6): the data schema version, used for migration. The app writes schemaVersion 6, and minReaderVersion 4 or 6 (see Mixed app versions below). Older files are migrated when they load and saved as schema 6.
+- minReaderVersion (int): the oldest schema a reader must understand to open the file. The app shows "Update required" for a file whose minReaderVersion is above 6. When a file has no minReaderVersion, the app checks schemaVersion instead. A file with a higher schemaVersion but a minReaderVersion of 6 or lower still loads, keeps its unknown top-level keys, and keeps its higher schemaVersion when saved. It also keeps its own minReaderVersion when that is higher than the one the app would write.
 - Exports also always contain customLists, threadProgressTracks, keyedScenes, tableProgressPoints, rev, base, and minReaderVersion. lastCharacterRoll, lastThreadRoll, and lastFeatureRoll appear only when they have a value.
 
 ### Mixed app versions
 
-Version 1.6.8 of the app wrote schema 4. Because 1.7.0 writes minReaderVersion 6, an app on 1.6.x shows "Update required" for a Journal that 1.7.0 has saved. If you play on more than one device, update every device to 1.7.0.
+Version 1.6.8 of the app wrote schema 4. Version 1.7.0 writes schemaVersion 6, and sets minReaderVersion to the oldest version that keeps all of the Journal's data:
+
+- minReaderVersion 4 when version 1.6.8 keeps everything. 1.6.8 can open the Journal. Custom Lists and Progress Points don't change this: 1.6.8 keeps them in the file but doesn't show them.
+- minReaderVersion 6 when the Journal holds data that 1.6.8 would lose or misread. That includes a dice roll logged in dice mode, a scene added in 1.7.0 (it adds a scene entry to the Adventure Log), linked table results on a Random Event or Event Focus, a Progress Track with Conclusion, Leverage, Protection or Horror data, a Keyed Scene waiting for the next scene, and a list entry named Choose. 1.6.8 shows "Update required" for this Journal.
+
+Version 1.6.7 and earlier don't check minReaderVersion. They open the Journal and drop the data they don't know when they save it. If you play on more than one device, update every device to 1.7.0.
 
 ### Unknown and wrong-type fields
 
@@ -97,7 +102,7 @@ A General dice roll entry can carry `diceRoll`, the record of every die.
 Each die object:
 
 - `value` (int, required): the face the die shows.
-- `type` (string, required): one of `numbered`, `fate`, `d66`, `custom`, or `constant`.
+- `type` (string, required): one of `numbered`, `fate`, `d66`, `custom`, or `constant`. If a die has another type, the app keeps the whole `diceRoll` record as it is and writes it back when it saves. It shows that roll from `diceResults`, and the roll cannot be pushed.
 - `sides` (int): the number of sides.
 - `faces` (array of int): the faces of the die. Required for `fate` and `custom`.
 - `components` (array of two ints from 1 to 6): the two dice of a `d66`.
@@ -121,7 +126,7 @@ Each track requires:
 - `trackLength` (string): `short`, `medium`, `long`, or `custom`.
 - `createdAt` (ISO8601 string)
 
-Any other `trackType` or `trackLength` value stops the whole Journal from loading.
+The app doesn't show a track with any other `trackType` or `trackLength` value. It keeps the track in the file and writes it back unchanged when it saves.
 
 Optional fields: `customPoints` (int), `currentProgress` (int), `isResolved`, `endedUnresolved`, `isArchived` (bool), `flashpointPerPhase` (object of phase to bool), `conclusionDelayed`, `conclusionPlayed` (bool), `leverages`, `protections`, `horrorPlotArmorEnabled` (bool, default true), and `updatedAt` (ISO8601 string).
 
@@ -160,7 +165,7 @@ This is a minimal example with the current schema 6 key names. It is not a compl
   "features": [],
   "logEntries": [],
   "schemaVersion": 6,
-  "minReaderVersion": 6
+  "minReaderVersion": 4
 }
 ```
 

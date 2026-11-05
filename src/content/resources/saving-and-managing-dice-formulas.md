@@ -61,16 +61,17 @@ related:
    - Tap “Manage Formulas” → Import and pick a JSON file.
    - Import does not ask. It adds every formula in the file to the end of your list, including ones you already have.
 
-## Pool labels
+## Labels
 
-- On the Join tab in Dice Studio, you can save pool labels, such as Attack or Damage, to put in front of your dice.
-- Pool labels are saved with your formulas, but an export does not include them.
-- If one of your devices still runs 1.6.x, saving a formula there removes your pool labels on every device that shares the list. Your formulas are kept. See the [Formula Schema](/resources/formula-schema/).
+- On the Join tab in Dice Studio, you can save labels, such as Attack or Damage, to put in front of your dice.
+- To give a label a color, long-press it and tap **Change color**, or tap the **Color** button under its name in **Manage labels**.
+- Labels and their colors are saved with your formulas, but an export does not include them.
+- If one of your devices still runs 1.6.x, saving a formula there removes your labels and their colors on every device that shares the list. Your formulas are kept. See the [Formula Schema](/resources/formula-schema/).
 
 ## If the list cannot load
 
 - On desktop and tablet, Restore Backup appears when the Saved Formulas list cannot load. This also works with iCloud.
-- Restoring works only when a readable backup exists.
+- Restore Backup skips any backup it cannot read. If no backup can be restored, the app shows "Failed to restore from backup".
 
 ## Tips
 

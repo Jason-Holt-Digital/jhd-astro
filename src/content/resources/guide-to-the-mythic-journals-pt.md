@@ -81,7 +81,7 @@ Contabilidade de fim de cena
 
 - Um arquivo por campanha ou aventura
 - Nomes que você pode escanear: `minha-aventura-2025-09.md` ou `diario-elderspire.md`
-- Backups: Salvar um Diário não cria um backup separado dele, então vá em Configurações, depois Arquivos, e use Exportar diário como JSON para guardar sua própria cópia. O app também tenta guardar uma cópia de backup quando move seus Diários para outro local de armazenamento ou para dentro ou fora do iCloud, e, nos apps para iOS, Android, Windows, macOS e Linux, quando uma restauração substitui um Diário. Na versão web, uma restauração não guarda cópia. Exceção: quando um salvamento bem-sucedido no iCloud encontra versões em conflito não resolvidas de um Diário, o app tenta copiar essas versões para backups antes de marcá-las como resolvidas. Um salvamento comum, sem conflito, não cria backup.
+- Backups: Salvar um Diário não cria um backup separado dele, então vá em Configurações, depois Arquivos, e use Exportar diário como JSON para guardar sua própria cópia. O app também tenta guardar uma cópia de backup quando uma mudança para outro local de armazenamento, para dentro ou fora do iCloud, ou Importar pasta anterior encontra o mesmo Diário nos dois lugares, e, nos apps para iOS, Android, Windows, macOS e Linux, quando uma restauração substitui um Diário. Na versão web, uma restauração não guarda cópia. Exceção: quando um salvamento bem-sucedido no iCloud encontra versões em conflito não resolvidas de um Diário, o app tenta copiar essas versões para backups antes de marcá-las como resolvidas. Um salvamento comum, sem conflito, não cria backup.
 - Exportações: use app → Configurações → Arquivos para exportar JSON (ida e volta) ou Markdown (compartilhável)
 
 ## Nenhuma programação necessária

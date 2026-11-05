@@ -81,7 +81,7 @@ End‑of‑scene bookkeeping
 
 - One file per campaign or adventure
 - Names you can scan: `my-adventure-2025-09.md` or `journal-elderspire.md`
-- Backups: Saving a Journal does not make a separate backup of it, so go to Settings, then Files, and use Export journal as JSON to keep your own copy. The app also tries to keep a backup copy when it moves your Journals to another storage location or into or out of iCloud, and, in the iOS, Android, Windows, macOS, and Linux apps, when a restore replaces a Journal. A restore in the web app keeps no copy. Exception: when a successful iCloud save finds unresolved conflicting versions of a Journal, the app tries to copy those versions into backups before marking them resolved. An ordinary save with no conflict makes no backup.
+- Backups: Saving a Journal does not make a separate backup of it, so go to Settings, then Files, and use Export journal as JSON to keep your own copy. The app also tries to keep a backup copy when a move to another storage location, into or out of iCloud, or Import Previous Folder finds the same Journal in both places, and, in the iOS, Android, Windows, macOS, and Linux apps, when a restore replaces a Journal. A restore in the web app keeps no copy. Exception: when a successful iCloud save finds unresolved conflicting versions of a Journal, the app tries to copy those versions into backups before marking them resolved. An ordinary save with no conflict makes no backup.
 - Exports: use app → Settings → Files to export JSON (round‑trip) or Markdown (shareable)
 
 ## No programming required

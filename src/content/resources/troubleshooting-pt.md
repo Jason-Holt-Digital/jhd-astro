@@ -23,9 +23,9 @@ O app guarda uma cópia de backup quando uma mudança de local (inclusive ativar
 
 ## A lista Restaurar do backup está vazia
 
-Isso é normal. O app guarda cópias de backup ao mover o armazenamento ou fazer uma restauração, não em um salvamento comum; a exceção é um Diário salvo no iCloud com versões em conflito, em que salvar pode fazer o app tentar copiar as outras versões para arquivos de backup separados. Quando houver cópias na lista, confira a data de uma cópia antes de restaurá-la. As cópias salvas por um conflito do iCloud não estão nesta lista. Para ler essas cópias, toque no indicador na linha desse Diário.
+Isso é normal. O app guarda cópias de backup quando uma restauração substitui um Diário, ou quando uma mudança de local ou **Importar pasta anterior** encontra o mesmo Diário nos dois lugares, não em um salvamento comum; a exceção é um Diário salvo no iCloud com versões em conflito, em que salvar pode fazer o app tentar copiar as outras versões para arquivos de backup separados. Quando houver cópias na lista, confira a data de uma cópia antes de restaurá-la. As cópias salvas por um conflito do iCloud não estão nesta lista. Para ler essas cópias, toque no indicador na linha desse Diário.
 
-No armazenamento em pasta, o app pode apagar cópias de backup com mais de 7 dias quando o aparelho está com pouca memória. Ele não apaga as cópias que guarda quando uma restauração substitui um Diário. O app não apaga cópias de backup guardadas no iCloud.
+No armazenamento em pasta, o app pode apagar cópias de backup de uma mudança de local ou de **Importar pasta anterior** quando elas têm mais de 7 dias e o aparelho está com pouca memória. Ele não apaga as cópias que guarda quando uma restauração substitui um Diário. O app não apaga cópias de backup guardadas no iCloud.
 
 ## Restaurar um Diário
 

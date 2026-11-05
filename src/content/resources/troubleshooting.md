@@ -22,9 +22,9 @@ The app keeps a backup copy when a storage move (including turning iCloud sync o
 
 ## The Restore from Backup list is empty
 
-That is normal. The app keeps backup copies from a storage move or a restore, not from an ordinary save; the exception is a Journal saved in iCloud that has conflicting versions, where saving can make the app try to copy the other versions to separate backup files. When copies are listed, check the date on a copy before you restore it. The copies saved from an iCloud conflict are not in this list. To read them, tap the badge on that Journal's row.
+That is normal. The app keeps backup copies when a restore replaces a Journal, or when a storage move or **Import Previous Folder** finds the same Journal in both places, not from an ordinary save; the exception is a Journal saved in iCloud that has conflicting versions, where saving can make the app try to copy the other versions to separate backup files. When copies are listed, check the date on a copy before you restore it. The copies saved from an iCloud conflict are not in this list. To read them, tap the badge on that Journal's row.
 
-In folder storage, the app can delete backup copies older than 7 days when the device is low on memory. It does not delete the copies it keeps when a restore replaces a Journal. The app does not delete backup copies kept in iCloud.
+In folder storage, the app can delete backup copies from a storage move or **Import Previous Folder** once they are older than 7 days and the device is low on memory. It does not delete the copies it keeps when a restore replaces a Journal. The app does not delete backup copies kept in iCloud.
 
 ## Restoring a Journal
 

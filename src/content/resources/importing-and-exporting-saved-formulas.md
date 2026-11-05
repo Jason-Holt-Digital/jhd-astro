@@ -46,9 +46,9 @@ Supported shapes
 ## Export
 
 - Tap “Manage Formulas” → Export to download a JSON file you can back up or share.
-- Export does not include the pool labels you saved on the Join tab. Import ignores pool labels in a file.
-- When you move storage, or use Import Previous Folder, the app merges your saved formulas and pool labels into the new location.
-- If one of your devices still runs 1.6.x, see Mixed app versions in the [Formula Schema](/resources/formula-schema/). Saving a formula on 1.6.x removes the pool labels on every device that shares the list.
+- Export does not include the labels you saved on the Join tab or their colors. Import ignores labels in a file.
+- When you move storage, or use Import Previous Folder, the app merges your saved formulas, labels and label colors into the new location.
+- If one of your devices still runs 1.6.x, see Mixed app versions in the [Formula Schema](/resources/formula-schema/). Saving a formula on 1.6.x removes the labels and their colors on every device that shares the list.
 - Manual placement: If you place a file by hand, name it saved_formulas.json and put it in the formulas folder inside the app's storage folder. That file is your whole list. If the app cannot read it, it may load a readable backup copy instead, when one exists, and loading that copy does not change your file.
 
 ## Starter downloads

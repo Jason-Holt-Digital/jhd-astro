@@ -17,9 +17,10 @@ Workflow
 2) Tap Save Formula to save the formula in the field. Give it a short name and a description.
 3) Tap Manage Formulas to reorder, edit, delete, import, or export your Saved Formulas list.
 
-Pool labels
+Labels
 - On the Join tab in Dice Studio, tap a saved label to put it in front of your dice, as in `"Attack": 2d6, "Damage": 1d8`. Tap + to save a new label.
-- Pool labels are saved with your formulas, but an export does not include them.
+- Long-press a label and tap Change color to give it a quick color or any color you pick.
+- Labels and their colors are saved with your formulas, but an export does not include them.
 
 Import/Export
 - Import adds every formula in a JSON file to the end of your list. It does not merge or skip duplicates. It's the easiest way to grab system starting points from friends or the website.

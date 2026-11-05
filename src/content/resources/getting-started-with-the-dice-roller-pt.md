@@ -19,7 +19,7 @@ related:
 
 O Estúdio de Dados é onde você monta e testa fórmulas de dados. No celular, abra a gaveta e toque em ESTÚDIO DE DADOS. Este guia rápido mostra o básico para que você possa rolar com confiança imediatamente.
 
-> O Estúdio de Dados, os rótulos de parada, Forçar e as configurações de dados 3D são novidades da versão 1.7.0. Na 1.6.x, esta tela se chama Rolador de Dados.
+> O Estúdio de Dados, os rótulos, Forçar e as configurações de dados 3D são novidades da versão 1.7.0. Na 1.6.x, esta tela se chama Rolador de Dados.
 
 > ##### Motor de sintaxe e documentação
 > O rolador usa a versão própria do app do dart_dice_parser, do Adventuresmith. A página no pub.dev descreve o pacote original, então teste uma fórmula no app antes de confiar nela. Para a gramática completa e exemplos adicionais, veja: https://pub.dev/packages/dart_dice_parser
@@ -34,7 +34,7 @@ O Estúdio de Dados é onde você monta e testa fórmulas de dados. No celular, 
 - **Campo de fórmula e botão Rolar:** digite uma fórmula (por exemplo, `1d20+5`) e toque em **Rolar Dados**, o botão com o ícone do d20.
 - **Abas abaixo do campo de fórmula:** quatro abas adicionam itens à fórmula para você.
   - **Dados:** d4, d6, d8, d10, d12, d20, D100, 1D66, d2 e 4dF.
-  - **Unir:** os operadores `+`, `-` e `*`, parênteses e seus rótulos de parada salvos.
+  - **Unir:** os operadores `+`, `-` e `*`, parênteses e seus rótulos salvos.
   - **Mod:** Vantagem, Desvantagem, Manter alto, Manter o mais baixo, Dados Explosivos, Explosão composta, Rerrolar Uns, Rolar novamente ≤2, Contagem de Críticos, Limite em X e Piso em X.
   - **Salvas:** suas fórmulas salvas. Toque em uma para colocá-la no campo, ou toque no botão de rolar dela para rolá-la.
 - Digite você mesmo os números depois de um `+` ou `-` (por exemplo, `+2`). Digite também descartar (`-H`, `-L`), rolar de novo uma vez (`ro`) e contar (`#`).
@@ -42,13 +42,16 @@ O Estúdio de Dados é onde você monta e testa fórmulas de dados. No celular, 
 
 > Dica: uma Rolagem de teste do estúdio mostra sua fórmula com parênteses adicionados. Eles mostram como o app agrupou a fórmula.
 
-## Rótulos de parada
-Uma parada de dados é um grupo de dados com um rótulo, como `"Attack": 2d6, "Damage": 1d8`. Uma Rolagem de teste do estúdio mostra uma linha para cada parada, com o rótulo, o total e os dados dela. No Registro de Aventura, uma rolagem com rótulos é uma única entrada.
+## Rótulos
+Uma parada de dados é um grupo de dados com um rótulo, como `"Attack": 2d6, "Damage": 1d8`. Uma Rolagem de teste do estúdio mostra uma linha para cada parada, com a cor, o rótulo, o total e os dados dela. No Registro de Aventura, uma rolagem com rótulos é uma única entrada.
 
 Na aba **Unir**:
 - Toque em um rótulo salvo para colocá-lo na frente dos seus dados.
 - Toque em **+** para salvar um novo rótulo.
-- Toque e segure um rótulo para renomeá-lo, removê-lo ou mudar a ordem dos seus rótulos.
+- Toque e segure um rótulo para renomeá-lo, removê-lo, mudar a ordem dos seus rótulos ou mudar a cor dele.
+- **Gerenciar rótulos** lista todos os rótulos, com um botão **Cor** abaixo de cada nome.
+
+Para escolher uma cor, escolha **Automática**, uma das cores sugeridas (Branco, Vermelho, Preto, Turquesa, Roxo, Marrom) ou **Personalizada**. Personalizada permite escolher qualquer cor ou digitar o código hexadecimal dela. Depois toque em **Concluir**. Um rótulo Automático recebe uma cor sugerida que as outras paradas da rolagem não estão usando.
 
 Renomear ou remover um rótulo não muda as fórmulas que já o usam. Um rótulo não pode conter `"`, e dois rótulos não podem ser diferentes só nas letras maiúsculas e minúsculas.
 

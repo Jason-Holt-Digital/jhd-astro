@@ -106,9 +106,9 @@ Order and precedence gotchas
 - There is no not-equal count. `6d6#s!=1` is not a valid formula.
 - A formula that ends in an operator, or a label with no dice after it, does not roll. For example, `2d6+` and `"Damage":` are incomplete, and the formula field shows them as incomplete.
 
-## Dice pools and pool labels
+## Dice pools and labels
 
-> The pool lines, pool labels and Push are new in 1.7.0. The formula syntax on this page works the same in 1.6.x.
+> The pool lines, labels, label colors and Push are new in 1.7.0. The formula syntax on this page works the same in 1.6.x.
 
 A dice pool is a group of dice with a label. Write the label in quotes, then a colon, then the dice. Put a comma between dice pools.
 
@@ -118,7 +118,9 @@ A Studio test roll shows one line for each dice pool, with the label, the pool's
 
 On the **Join** tab, tap a saved label to put it in front of your dice. Tap **+** to save a new label. Long-press a label to rename it, remove it or change the order of your labels. Renaming or removing a label doesn't change formulas that already use it. A label can't contain `"`, and two labels can't differ only in upper and lower case.
 
-Saved formulas keep the label text you typed. An export of your saved formulas does not include your pool labels.
+To choose a label's color, long-press it and tap **Change color**, or tap the **Color** button under its name in **Manage labels**. Pick a quick color or tap **Custom** for any color, then tap **Done**.
+
+Saved formulas keep the label text you typed. An export of your saved formulas does not include your labels or their colors.
 
 ## Push
 

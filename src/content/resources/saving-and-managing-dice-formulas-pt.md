@@ -61,16 +61,17 @@ related:
    - Toque em "Gerenciar Fórmulas" → Importar e escolha um arquivo JSON.
    - Importar não pergunta nada. Adiciona todas as fórmulas do arquivo ao final da sua lista, inclusive as que você já tem.
 
-## Rótulos de parada
+## Rótulos
 
-- Na aba Unir do Estúdio de Dados, você pode salvar rótulos de parada, como Ataque ou Dano, para colocar na frente dos seus dados.
-- Os rótulos de parada são salvos com suas fórmulas, mas a exportação não os inclui.
-- Se um dos seus dispositivos ainda usa a 1.6.x, salvar uma fórmula nele remove seus rótulos de parada em todos os dispositivos que compartilham a lista. Suas fórmulas são mantidas. Veja o [Esquema de Fórmulas](/pt/resources/formula-schema-pt/).
+- Na aba Unir do Estúdio de Dados, você pode salvar rótulos, como Ataque ou Dano, para colocar na frente dos seus dados.
+- Para dar uma cor a um rótulo, toque e segure o rótulo e toque em **Alterar cor**, ou toque no botão **Cor** abaixo do nome dele em **Gerenciar rótulos**.
+- Os rótulos e as cores deles são salvos com suas fórmulas, mas a exportação não os inclui.
+- Se um dos seus dispositivos ainda usa a 1.6.x, salvar uma fórmula nele remove seus rótulos e as cores deles em todos os dispositivos que compartilham a lista. Suas fórmulas são mantidas. Veja o [Esquema de Fórmulas](/pt/resources/formula-schema-pt/).
 
 ## Se a lista não carregar
 
 - No computador e no tablet, Restaurar backup aparece quando a lista de Fórmulas Salvas não carrega. Isso também funciona com o iCloud.
-- A restauração só funciona quando existe um backup legível.
+- Restaurar backup pula os backups que não consegue ler. Se nenhum backup puder ser restaurado, o app mostra "Falha ao restaurar do backup".
 
 ## Dicas
 

@@ -34,7 +34,7 @@ All five files below are JSON Schema draft 2020-12 under `public/downloads/`, ge
 
 | Source | Core contract |
 | --- | --- |
-| `public/downloads/saved_formulas.schema.json` | Array or object containing `formulas`; items require nonblank `formula`, optionally `name`, `description`, date-time `dateAdded`, `id`. The app's storage file may also carry `poolLabels` (string array) in the object form; exports never include it |
+| `public/downloads/saved_formulas.schema.json` | Array or object containing `formulas`; items require nonblank `formula`, optionally `name`, `description`, date-time `dateAdded`, `id`. The app's storage file may also carry `poolLabels` (string array) and `poolLabelColors` (label name to a quick color name or `#RRGGBB`) in the object form; exports never include them |
 | `public/downloads/categories.schema.json` | Requires `defaultCategories`/`categories`; items require `id`, `displayName`, `iconKey`, integer `sortOrder`, boolean `isBuiltIn`; optional nullable description and translation map |
 | `public/downloads/meaning_table.schema.json` | Requires `id`, `categoryId`, `displayName`, nonempty `entries`; entries require two-integer `range` and string `result` |
 | `public/downloads/event_focus_table.schema.json` | Requires `id`, display-name/description strings and translation maps, nonempty `entries`; entries require `range`/`result` |
