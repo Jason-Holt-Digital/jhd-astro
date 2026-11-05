@@ -13,7 +13,7 @@ import PageHeader from '../../components/layout/PageHeader.astro';
   <PageHeader
     title="Política de Privacidade"
     subtitle="Sua privacidade, protegida"
-    description="Coleta mínima de dados, armazenamento local e controles claros. Última atualização: 1 de novembro de 2026"
+    description="Coleta mínima de dados, armazenamento local e controles claros. Última atualização: 5 de novembro de 2026"
     accent="Privacidade"
     layout="left"
     icon="fa-solid fa-shield-check"
@@ -113,10 +113,13 @@ import PageHeader from '../../components/layout/PageHeader.astro';
           Quando algo dá errado, o app envia um relatório de erro para que eu encontre e corrija o problema. Um relatório
           contém o tipo de erro, onde ele aconteceu no código do app, uma descrição curta que eu escrevi para esse erro, os
           tipos de passos que o app executou logo antes (como abrir uma caixa de diálogo), a versão do app e o número da
-          atualização, além do modelo do seu dispositivo e do sistema operacional. Com os relatórios de erro ativados, o
-          app também envia quanto tempo leva para iniciar e para abrir cada tela, e se as telas são desenhadas com fluidez,
-          em uma amostra das sessões, e se uma sessão
-          terminou em falha, para que eu veja quais versões estão estáveis.
+          atualização, além do modelo do seu dispositivo e do sistema operacional. Os relatórios enviados ao PostHog a partir
+          de iPhone, iPad, Android e Mac também trazem o fabricante e o tipo do seu dispositivo (como celular ou tablet), o
+          tamanho da tela, as suas configurações de idioma e região e o seu fuso horário. Em dispositivos Apple, eles
+          também incluem o tipo de rede, como Wi-Fi ou dados móveis, e no Android incluem o nome da sua operadora de
+          celular. Com os relatórios de erro ativados, o app também envia quanto tempo leva para iniciar e para abrir cada
+          tela, e se as telas são desenhadas com fluidez, em uma amostra das sessões, e se uma sessão terminou em falha,
+          para que eu veja quais versões estão estáveis.
         </p>
         <p>
           Os relatórios trazem um ID aleatório para a sua instalação, para que
@@ -184,7 +187,7 @@ import PageHeader from '../../components/layout/PageHeader.astro';
         </ul>
 
         <h2 id="antes-da-1-7">Versões anteriores à 1.7</h2>
-        <p>Isto é o que as versões 1.6 e anteriores enviam. A maioria das pessoas tem a 1.6.7 instalada hoje.</p>
+        <p>Isto é o que as versões 1.6 e anteriores enviam. A maioria das pessoas tem a 1.6.8 instalada hoje.</p>
         <ul>
           <li>
             <strong>Relatórios de erro</strong> vão para o Sentry a partir de toda cópia instalada. Eles incluem o erro, a

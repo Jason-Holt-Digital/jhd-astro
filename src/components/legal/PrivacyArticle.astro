@@ -81,7 +81,10 @@ const { class: className = "legal-article" } = Astro.props;
     When something goes wrong, the app sends an error report so I can find and fix the bug. A report contains the error
     type, where it happened in the app's code, a short description I wrote for that error, the kinds of steps the app
     took just before (such as opening a dialog), the app version and update number, and your device model and operating
-    system. With error reports on, the app also sends how long it takes to start and to open screens, and how smoothly
+    system. Reports sent to PostHog from iPhone, iPad, Android and Mac also carry your device's manufacturer and type
+    (such as phone or tablet), your screen size, your language and region settings, and your time zone. On Apple devices
+    they also include your network type, such as Wi-Fi or mobile data, and on Android they include your mobile carrier's
+    name. With error reports on, the app also sends how long it takes to start and to open screens, and how smoothly
     screens draw, for a sample of sessions, and whether a session ended in a crash, so I can see which versions are stable.
   </p>
   <p>
@@ -146,7 +149,7 @@ const { class: className = "legal-article" } = Astro.props;
   </ul>
 
   <h2 id="before-1-7">Versions Before 1.7</h2>
-  <p>This is what versions 1.6 and earlier send. Most people have 1.6.7 installed today.</p>
+  <p>This is what versions 1.6 and earlier send. Most people have 1.6.8 installed today.</p>
   <ul>
     <li>
       <strong>Error reports</strong> go to Sentry from every installed copy. They include the error, the app version, your
