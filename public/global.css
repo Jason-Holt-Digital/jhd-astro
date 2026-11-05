@@ -33,5 +33,6 @@
 @import url("/styles/components/legal.css") layer(components);
 @import url("/styles/components/footer.css") layer(components);
 @import url("/styles/components/apps.css") layer(components);
+@import url("/styles/components/apps-hub.css") layer(components);
 @import url("/styles/components/search.css") layer(components);
 @import url("/styles/overrides.css") layer(overrides);

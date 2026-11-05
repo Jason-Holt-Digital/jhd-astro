@@ -12,8 +12,12 @@ is approved.
 
 ## Source Files
 
-- Route: `src/pages/apps.astro`
-- Page assembly, page metadata, and English/PT copy: `src/components/pages/AppsPage.astro`
+This copy now lives on the Mythic GME page. `/apps/` is a hub that links to
+each app's page (`src/components/pages/AppsHubPage.astro`), and the Adventure
+Crafter teaser moved to `/adventure-crafter/`.
+
+- Route: `src/pages/mythic-gme.astro`
+- Page assembly, page metadata, and English/PT copy: `src/components/pages/MythicGmePage.astro`
 - App product sections: `src/components/apps/AppSection.astro`
 - Product feature card: `src/components/apps/FeatureCard.astro`
 - Official content card: `src/components/apps/OfficialContent.astro`

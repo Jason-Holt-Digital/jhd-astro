@@ -1,0 +1,242 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHeader from "../layout/PageHeader.astro";
+import AppIconTile from "../apps/hub/AppIconTile.astro";
+import AppsHelpSection from "../apps/hub/AppsHelpSection.astro";
+import { getApps, statusLabel, type Lang } from "../../lib/apps";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const isPt = lang === "pt";
+const apps = getApps(lang);
+const labels = statusLabel[lang];
+// Apps with a product page of their own get a full card; the rest share a slim row.
+const featured = apps.filter((app) => app.slug !== "adventure-crafter");
+const upcoming = apps.filter((app) => app.slug === "adventure-crafter");
+const description = isPt
+  ? "Os apps oficiais Mythic GME para mobile e desktop, e o TomeKeeper, um leitor de PDF para livros de RPG de mesa."
+  : "The official Mythic GME apps for mobile and desktop, and TomeKeeper, a PDF reader for tabletop RPG books.";
+---
+<BaseLayout
+  title="Apps | Jason Holt Digital"
+  description={description}
+  canonicalPath={isPt ? "/pt/apps/" : "/apps/"}
+  lang={lang}
+  alternatePath={isPt ? "/apps/" : "/pt/apps/"}
+>
+  <PageHeader
+    title="Apps"
+    subtitle={isPt ? "Ferramentas para RPG solo e de mesa." : "Tools for solo and tabletop roleplaying."}
+    description={description}
+    accent="Apps"
+    visualElement="grid"
+  />
+
+  <section class="section" aria-labelledby="apps-list-title">
+    <div class="container">
+      <h2 id="apps-list-title" class="sr-only">{isPt ? "Todos os apps" : "All apps"}</h2>
+      <ul class="apps-hub__grid">
+        {featured.map((app) => (
+          <li class="apps-hub__card" style={`--app-accent:${app.accent}`}>
+            <div class="apps-hub__top">
+              <AppIconTile app={app} size={84} />
+              <span class:list={["app-status", `app-status--${app.status}`]}>{labels[app.status]}</span>
+            </div>
+            <p class="apps-hub__tagline">{app.tagline}</p>
+            <h3 class="apps-hub__name">
+              <a href={app.href} hreflang={isPt && app.englishOnly ? "en" : undefined}>{app.name}</a>
+            </h3>
+            <p class="apps-hub__summary">{app.summary}</p>
+            {app.editions ? (
+              <dl class="apps-hub__editions">
+                {app.editions.map((edition) => (
+                  <div>
+                    <dt>{edition.name}</dt>
+                    <dd>{edition.platforms}</dd>
+                  </div>
+                ))}
+              </dl>
+            ) : (
+              <ul class="platform-chips" aria-label={isPt ? `Plataformas do ${app.name}` : `${app.name} platforms`}>
+                {app.platforms.map((platform) => <li>{platform}</li>)}
+              </ul>
+            )}
+            {isPt && app.englishOnly && <p class="apps-hub__lang">App e página em inglês.</p>}
+            <span class="app-link apps-hub__more" aria-hidden="true">
+              {app.status === "available"
+                ? (isPt ? "Recursos e downloads" : "Features and downloads")
+                : (isPt ? "Veja o que ele faz" : "See what it does")}
+              <i class="fa-slab fa-regular fa-arrow-right"></i>
+            </span>
+          </li>
+        ))}
+      </ul>
+
+      <ul class="apps-hub__upcoming">
+        {upcoming.map((app) => (
+          <li class="apps-hub__slim" style={`--app-accent:${app.accent}`}>
+            <AppIconTile app={app} size={56} />
+            <div>
+              <h3><a href={app.href}>{app.name}</a></h3>
+              <p>{app.summary}</p>
+            </div>
+            <span class:list={["app-status", `app-status--${app.status}`]}>{labels[app.status]}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <AppsHelpSection lang={lang} />
+</BaseLayout>
+
+<style>
+  .apps-hub__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .apps-hub__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 28px;
+    background: #fff;
+    border: var(--border-thick);
+    box-shadow: 8px 8px 0 0 var(--app-accent);
+    transition: transform 0.15s var(--easing-standard), box-shadow 0.15s var(--easing-standard);
+  }
+  .apps-hub__card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 10px 10px 0 0 var(--app-accent);
+  }
+  .apps-hub__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .apps-hub__tagline {
+    margin: 0;
+    font-size: 0.8125rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--app-accent);
+  }
+  .apps-hub__name {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
+  /* The heading link covers the card so the whole card is one target. */
+  .apps-hub__name a,
+  .apps-hub__slim h3 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .apps-hub__name a::after,
+  .apps-hub__slim h3 a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+  }
+  .apps-hub__name a:focus-visible,
+  .apps-hub__slim h3 a:focus-visible {
+    outline: none;
+  }
+  .apps-hub__card:has(a:focus-visible),
+  .apps-hub__slim:has(a:focus-visible) {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 4px;
+  }
+  .apps-hub__summary {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 1.0625rem;
+    line-height: 1.55;
+  }
+  .apps-hub__lang {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+  .apps-hub__editions {
+    display: grid;
+    gap: 8px;
+    margin: 4px 0 0;
+  }
+  .apps-hub__editions div {
+    display: grid;
+    gap: 2px;
+    padding: 8px 10px;
+    border: var(--border-subtle);
+    background: var(--color-surface-2);
+  }
+  .apps-hub__editions dt {
+    font-weight: 800;
+  }
+  .apps-hub__editions dd {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+  .apps-hub__more {
+    margin-top: auto;
+    align-self: flex-start;
+  }
+  .apps-hub__upcoming {
+    display: grid;
+    gap: 16px;
+    margin: 36px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .apps-hub__slim {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 20px;
+    padding: 18px 22px;
+    background: #fff;
+    border: var(--border-base);
+    box-shadow: 5px 5px 0 0 var(--app-accent);
+  }
+  .apps-hub__slim h3 {
+    margin: 0 0 4px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.375rem;
+  }
+  .apps-hub__slim p {
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+  @media (max-width: 860px) {
+    .apps-hub__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 560px) {
+    .apps-hub__card {
+      padding: 20px;
+    }
+    .apps-hub__slim {
+      grid-template-columns: auto 1fr;
+    }
+    .apps-hub__slim .app-status {
+      grid-column: 2;
+      justify-self: start;
+    }
+  }
+</style>

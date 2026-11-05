@@ -74,6 +74,7 @@ function l(path: string) {
         role="menu"
         aria-label={t("nav.aria.download_menu")}
       >
+        <div class="menu-label" role="presentation">Mythic GME</div>
         <a
           role="menuitem"
           href="https://apps.apple.com/us/app/mythic-gme-mobile/id6726999147"
@@ -118,6 +119,11 @@ function l(path: string) {
         >
           <i class="fa-brands fa-itch-io" aria-hidden="true"></i>
           {t("platform.itch")}
+        </a>
+        <div class="menu-label" role="presentation">TomeKeeper</div>
+        <a role="menuitem" href="/tomekeeper/" class="menu-soon">
+          <i class="fa-slab fa-regular fa-clock" aria-hidden="true"></i>
+          {t("menu.coming_soon")}
         </a>
       </div>
     </span>
@@ -180,6 +186,7 @@ function l(path: string) {
       <div class="nav-mobile-cta">
         <div class="nav-mobile-section-title">{t("nav.mobile.download")}</div>
         <div class="nav-mobile-downloads">
+          <div class="menu-label">Mythic GME</div>
           <a
             href="https://apps.apple.com/us/app/mythic-gme-mobile/id6726999147"
             target="_blank"
@@ -219,6 +226,11 @@ function l(path: string) {
           >
             <i class="fa-brands fa-itch-io" aria-hidden="true"></i>
             {t("platform.itch")}
+          </a>
+          <div class="menu-label">TomeKeeper</div>
+          <a href="/tomekeeper/" class="menu-soon">
+            <i class="fa-slab fa-regular fa-clock" aria-hidden="true"></i>
+            {t("menu.coming_soon")}
           </a>
         </div>
       </div>

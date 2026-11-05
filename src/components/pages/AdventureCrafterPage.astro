@@ -1,0 +1,76 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHeader from "../layout/PageHeader.astro";
+import type { Lang } from "../../lib/apps";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const isPt = lang === "pt";
+const description = isPt
+  ? "Um futuro app companheiro para criar aventuras com prompts guiados, ganchos e reviravoltas."
+  : "A future companion app for creating adventures with guided prompts, hooks, and twists.";
+---
+<BaseLayout
+  title="Adventure Crafter | Jason Holt Digital"
+  description={description}
+  canonicalPath={isPt ? "/pt/adventure-crafter/" : "/adventure-crafter/"}
+  lang={lang}
+  alternatePath={isPt ? "/adventure-crafter/" : "/pt/adventure-crafter/"}
+>
+  <PageHeader
+    title="Adventure Crafter"
+    subtitle={isPt ? "Em breve" : "Coming soon"}
+    description={description}
+    accent="Apps"
+    visualElement="shapes"
+    colorScheme="accent"
+  />
+
+  <section class="books-section">
+    <div class="container">
+      <header class="section-head" style="justify-content: center; margin-bottom: 2rem;" aria-hidden="true">
+        <span class="accent-line" aria-hidden="true"></span>
+        <span class="badge-text">{isPt ? "Livros oficiais" : "Source Books"}</span>
+      </header>
+      <div class="books-grid ac-books">
+        <div class="book-card">
+          <h2>Adventure Crafter</h2>
+          <p>{isPt ? "Um livro Mythic para criar aventuras com prompts, pontos de virada e reviravoltas." : "A Mythic book for creating adventures with prompts, turning points, and twists."}</p>
+          <a
+            href="https://www.drivethrurpg.com/product/261479/The-Adventure-Crafter"
+            target="_blank"
+            rel="noopener"
+            class="btn btn--shadow-accent"
+          >
+            <i class="fa-slab fa-regular fa-book" aria-hidden="true"></i>
+            {isPt ? "Comprar no DriveThruRPG" : "Buy on DriveThruRPG"}
+          </a>
+        </div>
+      </div>
+      <p class="ac-back">
+        <a class="btn btn--tertiary" href={isPt ? "/pt/apps/" : "/apps/"}>
+          <i class="fa-slab fa-regular fa-arrow-left" aria-hidden="true"></i>
+          {isPt ? "Todos os apps" : "All apps"}
+        </a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .ac-books {
+    max-width: 480px;
+    margin-inline: auto;
+    grid-template-columns: 1fr;
+  }
+  .ac-books h2 {
+    margin-top: 0;
+  }
+  .ac-back {
+    margin: 2.5rem 0 0;
+    text-align: center;
+  }
+</style>
