@@ -237,6 +237,17 @@
     font-size: 1.25rem;
     font-weight: 700;
   }
+
+  .faq-section-heading {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .faq-section-heading .faq-section-header {
+    font: inherit;
+    color: var(--color-text);
+  }
   
   .faq-section-header i {
     color: var(--color-primary);
