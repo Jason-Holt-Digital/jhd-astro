@@ -5,7 +5,7 @@ category: "custom-tables"
 order: 1
 icon: "fa-slab fa-regular fa-newspaper"
 duration: "9 min de leitura"
-updated: "2025-09-21"
+updated: "2026-11-04"
 lang: "pt"
 tags: ["custom-tables", "getting-started", "meaning-tables", "event-focus", "categories"]
 keywords:
@@ -63,6 +63,8 @@ related:
   - importing-and-exporting-custom-tables
 ---
 
+> Este guia descreve o Mythic GME 1.7.0 e posteriores.
+
 ## Onde encontrar Tabelas Personalizadas
 
 No celular, abra a gaveta de navegação e toque em EDITOR DE TABELAS, em Ferramentas. Em um tablet ou computador, selecione Tabelas Personalizadas no trilho de navegação ou, no Layout clássico de 6 painéis (Desktop), clique no botão de ícone Tabelas Personalizadas no canto inferior direito.
@@ -95,6 +97,16 @@ No celular, abra a gaveta de navegação e toque em EDITOR DE TABELAS, em Ferram
 > ### Dica
 > Depois de criar uma tabela, abra-a e use Tabelas vinculadas na aba Controles para rolar outras Tabelas de Significado sempre que esta tabela for rolada. Use Links de entrada para vincular um único item a uma tabela ou lista.
 
+## Tabelas integradas
+
+Você pode editar uma tabela integrada. O app salva a sua versão separadamente e a usa no lugar da original. Para manter as duas, escolha **Duplicado** no menu da tabela e edite a cópia. As redefinições não removem suas edições. Para voltar às originais, use **Descartar alterações nas tabelas integradas** nas Configurações de tabelas.
+
+A forma de remover uma tabela depende da origem dela:
+
+- Uma tabela integrada que você não editou oferece **Ocultar esta tabela** em vez de **Excluir**. Ao ocultá-la, a tabela some das suas listas, mas nenhum arquivo é excluído. Para recuperá-la, mostre-a novamente em **Configurações de tabelas**.
+- Uma tabela integrada que você editou oferece **Excluir minha versão editada**. O app remove a sua versão e carrega a original de novo. Você pode desfazer isso.
+- Uma tabela criada por você oferece **Excluir**. Você também pode desfazer isso.
+
 ## Traduções e metadados
 
 - Você pode adicionar traduções por tabela e por entrada conforme avança. O idioma padrão é `en`.
@@ -105,9 +117,12 @@ No celular, abra a gaveta de navegação e toque em EDITOR DE TABELAS, em Ferram
 
 Use estes modelos e exemplos como pontos de partida. Importe-as pela aba Arquivos em Tabelas Personalizadas (o ícone Importação/Exportação em um tablet ou computador). Toque em Tabelas Oracle para um arquivo de Tabela de Significado ou em Tabelas de Foco de Evento para um arquivo de Foco do Evento. Veja a seção de Downloads abaixo para arquivos.
 
-## O que não é suportado ainda
+## Tabelas ponderadas
 
-- Ainda não é possível montar manualmente uma tabela com pesos. A opção Ponderado no editor está marcada como Em breve. Você pode importar um CSV de Tabela de Significado com as colunas result e weight, com até 100 linhas. Para montar uma tabela manualmente, use tabelas baseadas em intervalo (1..N).
+- Ainda não dá para montar uma tabela ponderada à mão. Na aba **Controles**, a opção **Ponderado** aparece como **Em breve**.
+- Para ter uma Tabela de Significado ponderada, importe um CSV de Tabela de Significado com as colunas result e weight, com até 100 linhas. O app distribui os pesos em 100 posições, então os pesos que ele guarda podem ser diferentes dos números do seu arquivo.
+- Quando alguma entrada de uma Tabela de Significado tem peso maior que 1, o app escolhe uma entrada pelo peso e não rola as tabelas vinculadas. Uma tabela de Foco do Evento sempre rola nos intervalos dela.
+- Escolher **Faixas de rolos** na aba **Controles** divide os intervalos de novo, mas os pesos continuam. Um peso maior que 1 ainda faz o app escolher pelo peso.
 
 ## Próximos passos
 

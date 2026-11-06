@@ -6,7 +6,7 @@ Author all documentation, walkthroughs, schemas, and downloadable items under `s
 
 ## Collection schema
 
-The `resources` collection is defined in `src/content/config.ts`.
+The `resources` collection is defined in `src/content.config.ts`.
 
 Required fields:
 
@@ -21,14 +21,28 @@ Optional fields:
 - `duration: string`
 - `externalUrl: string` (valid URL)
 - `updated: string`
+- `appSummary: string` (shorter summary the Mythic app shows in its Help list; falls back to `summary`)
+- `fullArticleAvailable: boolean` (tells the Mythic app the page has a full article it can open)
 - `hero: image()` (optional local image)
 - `heroAlt: string` (required only if `hero` is provided)
 - `steps: { title: string; body?: string; image?: image(); imageAlt?: string }[]`
   - If a step `image` is provided, include `imageAlt`.
- - `downloads: { label: string; href: string; format?: string; size?: string }[]` (optional)
- - `related: string[]` — slugs of related resources to display in a Related Guides section (optional)
+- `downloads: { label: string; href: string; format?: string; size?: string }[]` (optional)
+- `related: string[]` (optional; slugs of related resources to display in a Related Guides section)
 
 Images use `astro:content`'s `image()` type, which enforces valid local image paths and feeds the `astro:assets` `<Image />` pipeline for responsive optimization.
+
+## App Help contract
+
+The Mythic app reads the English `/resources` page to build its in-app Help list. It fetches the HTML and reads each `<li data-resource-search-item>` element:
+
+- `data-title`: the resource title.
+- `data-summary`: `appSummary` when it is set, otherwise `summary`.
+- `data-category`: the English category label, matched exactly.
+- `data-full-article-available="true"`: set when `fullArticleAvailable` is true.
+- The last path segment of the item's link becomes the article id.
+
+Never rename a resource slug or a category label without a matching app update.
 
 ## Folder structure
 

@@ -7,7 +7,7 @@ category: "custom-tables"
 order: 4
 icon: "fa-slab fa-regular fa-exchange"
 duration: "7 min read"
-updated: "2026-05-01"
+updated: "2026-11-04"
 tags: ["custom-tables", "import", "export", "csv", "json", "foundry"]
 keywords:
   - Import custom tables
@@ -22,6 +22,8 @@ related:
   - custom-table-schema
   - linking-and-nesting-tables
 ---
+
+> This guide describes Mythic GME 1.7.0 and later.
 
 ## Where to import/export
 
@@ -49,7 +51,7 @@ The Files tab imports files. It does not have a paste box for raw text. The past
 
 When you edit an existing table, the table editor's Import tab has two import paths:
 
-- **Replace All Entries:** paste TXT, PSV, or CSV content into the text box, then choose Replace All Entries.
+- **Replace All Entries:** paste TXT, PSV, or CSV content into the text box, then choose Replace All Entries. You can also paste a whole table in the app's JSON format. It is handled like a JSON file.
 - **Import from File:** choose a `.json`, `.csv`, `.txt`, or `.psv` table file.
 - JSON files can merge when the imported table ID matches the table you are editing. If the IDs do not match, choose Replace All to overwrite the table. Save your changes before you import a JSON file here. A merge or Replace All starts from the saved table, so edits you have not saved are discarded.
 - CSV, TXT, and PSV files replace the current entries in the editor. The change is staged until you choose Create or Update.
@@ -67,7 +69,7 @@ This paste box is for replacing entries in a table you are already editing. It i
   - CSV: ranged tables use `range_start, range_end, result`; meaning tables can also use `result, weight`
   - TXT: one entry per line (+ optional table_type line)
   - PSV: `endpoint|result` with endpoints that produce 1..N ranges
-  - JSON v3: full‑fidelity schema, including translations and links
+  - JSON v3: the most complete format, including translations, tags, and links. On import the app still marks the table as yours, can change its id or category, and drops fields it does not know.
 - Weighted CSV: supported for meaning tables; use explicit ranges for event focus tables
 
 ## CSV format
@@ -130,7 +132,7 @@ Samples
 
 ## Foundry VTT JSON (auto‑mapping)
 
-With the Oracle Tables card, a JSON file is treated as Foundry VTT when it has a name and a results array whose entries contain text. With the Event Focus Tables card, the name must also contain event, focus, or plot, or a result must contain PC, NPC, or Thread. `range` arrays are used when present.
+With the Oracle Tables card, a JSON file is treated as Foundry VTT when it has a name and a results array whose entries contain text. With the Event Focus Tables card, it is treated as Foundry VTT when its name contains event, focus, or plot, or a result contains PC, NPC, or Thread. The app imports Foundry files but does not export them. `range` arrays are used when present.
 
 Mapping highlights
 - `name` → `displayName`

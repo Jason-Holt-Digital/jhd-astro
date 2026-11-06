@@ -6,7 +6,7 @@ category: "start-here"
 order: 2
 icon: "fa-slab fa-regular fa-list"
 duration: "8 min read"
-updated: "2025-09-21"
+updated: "2026-11-04"
 tags: ["lists", "characters", "threads", "features", "getting-started"]
 keywords:
   - Lists
@@ -18,6 +18,9 @@ related:
   - using-meaning-tables-for-inspiration
   - guide-to-the-mythic-journals
 ---
+
+> This guide describes Mythic GME 1.7.0 and later.
+
 This guide distills the essential steps for starting players using the Lists module within the official Mythic GME companion apps. The apps are designed to complement the Mythic GME 2e rulebook, streamlining mechanics and minimizing lookup friction.
 
 ## 1) The purpose of Lists
@@ -52,17 +55,44 @@ When you use Mythic with a prepared adventure, fill in the Features tab. It is a
 
 - Purpose: Track unique elements of the adventure that can become encounters or triggers (e.g., wandering monsters, staged visions, villain hit‑and‑run tactics, special disease/poison progressions).
 - Relationship: A Feature can overlap with Characters (e.g., “Vampire Lord attacks” may coexist with “Vampire Lord” on Characters).
-- Random Events integration: With prepared adventures, use the Prepared Adventure Event Focus table instead of the standard focus. If you roll Adventure Feature, the app rolls your Features list. If Roll Event Meaning automatically is on (it is off by default), it also rolls an Action Meaning 1 and Action Meaning 2 pair, even if the event already brought other linked results. With the standard Action tables this gives one word from each table; if the Action tables are configured with weights or without their pairing, you may get extra words. Use the pair only when the Feature needs more detail.
+- Random Events integration: With prepared adventures, use the Prepared Adventure Event Focus table instead of the standard focus. If you roll Adventure Feature, the app rolls your Features list. If Auto Roll Event Meaning is on (it is off by default), the app also adds a pair of Action Meaning words. A result from the Features list does not prevent them. Use the pair only when the Feature needs more detail.
 
 Summary (lists you’ll use)
 
 - Threads: Goals/missions/quests (always)
 - Characters: Active NPCs/factions/places/objects/events (always)
 - Adventure Features: Unique prepared‑adventure elements (only with prepared adventures)
+- Custom Lists: lists you name yourself (Expanded Features)
 
-All lists share the practical structure of up to 5 sections with 5 lines each (25 total). The app shows how many sections are active and uses that state when selecting randomly.
+Each list has up to 5 sections of 5 slots. The plus button below the slots adds a section, and the minus button removes the last one. When the app rolls on a list, it counts only the sections that hold at least one entry:
 
-## 5) Using Lists in play
+- With one such section, it rolls 1d10 for the slot: 1-2 is slot 1, 3-4 is slot 2, 5-6 is slot 3, 7-8 is slot 4, and 9-10 is slot 5.
+- With more, it first rolls for the section: 1d4 for 2 sections, 1d6 for 3, 1d8 for 4, and 1d10 for 5. Each pair of numbers is one section. Then it rolls for the slot.
+
+## 5) Custom Lists
+
+Custom Lists are an Expanded Feature. A Custom List is a list you name yourself. It sits beside Threads, Characters, and Features and belongs to the Journal that is open. The Mythic rules suggest extra lists for a long campaign, for example one Characters list per region or one Threads list per Player Character.
+
+To create one:
+
+1. Open **Lists** and tap the **+** tab. On a wider layout, use the **+** destination or column instead.
+2. Tap **Add Custom List**.
+3. Type a name and tap **Save**.
+
+On a phone, the new list gets its own tab; in the wider Lists layout, it gets its own column. The name cannot be blank or match another Custom List. Characters, Threads, and Features are taken.
+
+Under **Starter lists**, you can also pick **PC NPCs** and **PC Threads**. PC NPCs are people tied to your Player Character. PC Threads are your Player Character's own goals. The Personal Event Focus Table can roll on both lists. Tap a starter list to create it right away. It starts empty, and it is offered only while you do not already have a matching list.
+
+A Custom List has the same slots, sections, roll button, notes, and copy button as the other lists, with a few differences:
+
+- The minus button removes the last section and its entries. If the section has entries, the app asks you to confirm first. You cannot undo this.
+- **CLEAR ALL** keeps the notes, and you can undo it.
+- **Copy All** does not include Custom Lists. Use the copy button on the list.
+- Tap **More options** on the list to rename it (**Edit**) or delete it (**Delete**). You cannot undo a deletion.
+
+An entry in one of your Custom Tables can roll on a Custom List. The link uses the list name, and renaming the list does not rewrite the link. If the name no longer matches any list, update the table link.
+
+## 6) Using Lists in play
 
 - Random selection: When a Random Event focuses on Threads/Characters (or Features in prepared play), the app selects an element automatically. This emulates rolling for a section and then a line on a paper list.
 - “Choose” option: If a roll lands on an empty line, the app shows Choose and you pick an entry yourself. Turn on Never Roll "Choose" in List Settings if you want the app to reroll its own list rolls until they land on a filled line, as long as the list has one.

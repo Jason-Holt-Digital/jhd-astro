@@ -6,7 +6,7 @@
   "additionalProperties": true,
   "properties": {
     "id": { "type": "string" },
-    "schemaVersion": { "type": "integer", "const": 3 },
+    "schemaVersion": { "type": "integer" },
     "tableType": { "type": "string", "const": "meaning-table" },
     "rangeStart": { "type": "integer", "minimum": 1 },
     "rangeEnd": { "type": "integer", "minimum": 1 },
@@ -22,7 +22,11 @@
     "source": { "type": "string" },
     "tags": { "type": "array", "items": { "type": "string" } },
     "tableRollOn": { "type": "array", "items": { "type": "string" } },
-    "dice": { "type": ["string", "null"] },
+    "baseDice": { "type": ["string", "null"] },
+    "defaultDoubleRoll": { "type": "boolean" },
+    "replacement": { "type": "boolean" },
+    "displayRoll": { "type": "boolean" },
+    "dice": { "type": ["string", "null"], "description": "Legacy. Ignored by the app; use baseDice." },
     "entries": {
       "type": "array",
       "items": { "$ref": "#/$defs/MeaningTableEntry" },
@@ -50,6 +54,8 @@
         "tags": { "type": "array", "items": { "type": "string" } },
         "data": { "type": "object" },
         "entryRollOn": { "type": "array", "items": { "type": "string" } },
+        "action": { "type": ["string", "null"] },
+        "additionalRolls": { "type": "array", "items": { "type": "string" } },
         "disabled": { "type": "boolean" }
       },
       "required": ["range", "result"]

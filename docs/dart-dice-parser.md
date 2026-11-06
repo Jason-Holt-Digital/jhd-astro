@@ -1,22 +1,25 @@
-dart_dice_parser
-Pub Package Dart codecov Contributor Covenant style: lint
+mythic_dice_parser
+The app's own fork of Adventuresmith's dart_dice_parser. The app resolves version 8.3.0.
 
 A dart library for parsing dice notation (2d6+4). Supports advantage/disadvantage, counting success/failures, exploding, compounding, and other variations.
 
 Example
-import 'package:dart_dice_parser/dart_dice_parser.dart';
+import 'package:mythic_dice_parser/mythic_dice_parser.dart';
 
-void main() {
+Future<void> main() async {
   // Create a roller for D20 advantage (roll 2d20, keep highest).
   final d20adv = DiceExpression.create('2d20 kh');
 
-  stdout.writeln(d20adv.roll());
-  // outputs:
-  //  ((2d20) kh ) ===> RollSummary(total: 16, results: [16], metadata: {rolled: [4, 16], discarded: [4]})
+  // roll() is async and returns Future<RollSummary>.
+  final summary = await d20adv.roll();
+  stdout.writeln(summary);
+  // outputs something like:
+  //  ((2d20) kh ) ===> RollSummary(total: 16, results: [16], discarded: [4])
 
-  stdout.writeln(d20adv.roll());
-  // outputs:
-  //  ((2d20) kh ) ===> RollSummary(total: 19, results: [19], metadata: {rolled: [13, 19], discarded: [13]})
+  // RollSummary has structured fields instead of a metadata map:
+  // total, results, discarded, expression, successCount, failureCount,
+  // critSuccessCount, critFailureCount, pushCount, pushLimit, and groups
+  // (per-pool results when the formula uses labels).
 }
 Dice Notation
 Examples:
@@ -109,15 +112,15 @@ For example, you might use this to count # of dice above a target. (5d10 -<6)# -
 4d6 #>=5 -- roll 4d6, count any >= 5
 4d6 #<=2 -- roll 4d6, count any <= 2
 4d6 #=5 -- roll 4d6, count any equal to 5
-1.7.0+: A count takes only the number right after it. 4d10 #>=6+2 counts any >= 6, then adds 2 to the count.
+A count takes only the number right after it. 4d10 #>=6+2 counts any >= 6, then adds 2 to the count.
 successes and failures
 A normal count operation # discards the rolled dice and changes the result to be the count
 For example, 2d6#<=3 rolls [3,4] then counts which results are <=3 , returning [1]
-But, sometimes you want to be able to count successes/failures without discarding the dice rolls. In this case, use modifiers #s, #f, #cs, #cf to add metadata to the results.
+But, sometimes you want to be able to count successes/failures without discarding the dice rolls. In this case, use modifiers #s, #f, #cs, #cf to mark the dice and count them in the summary.
 6d6 #f<=2 #s>=5 #cs6 #cf1 -- roll 6d6, count results <= 2 as failures, >= 5 as successes, =6 as critical successes, =1 as critical failures
-The above returns a result like: RollSummary(total: 22, results: [6, 2, 1, 5, 3, 5], metadata: {rolled: [6, 2, 1, 5, 3, 5], score: {successes: [6, 5, 5], failures: [2, 1], critSuccesses: [6], critFailures: [1]}})
+The above returns a summary like: RollSummary(total: 22, results: [6, 2, 1, 5, 3, 5], successCount: 3, failureCount: 2, critSuccessCount: 1, critFailureCount: 1). Each die in results also carries its own success, failure, critSuccess, and critFailure flags.
 NOTE: order matters
-2d20 kh #cf #cs -- roll 2d20, keep the highest, count critical successes & failures. If this rolled [1,18], the 1 is dropped and the result metadata won't record a critical failure. If that's not the behavior you want, move the counts prior to the drop and put the counts in parentheses: (2d20 #cf #cs) kh. From app version 1.7.0, a keep after a count without the parentheses is an error.
+2d20 kh #cf #cs -- roll 2d20, keep the highest, count critical successes & failures. If this rolled [1,18], the 1 is dropped and the summary won't count a critical failure. If that's not the behavior you want, move the counts prior to the drop and put the counts in parentheses: (2d20 #cf #cs) kh. A keep after a count without the parentheses is an error.
 arithmetic operations
 
 parenthesis to force a certain order of operations

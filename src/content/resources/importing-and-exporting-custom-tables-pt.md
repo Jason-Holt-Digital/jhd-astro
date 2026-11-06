@@ -5,7 +5,7 @@ category: "custom-tables"
 order: 4
 icon: "fa-slab fa-regular fa-exchange"
 duration: "7 min de leitura"
-updated: "2026-05-01"
+updated: "2026-11-04"
 lang: "pt"
 tags: ["custom-tables", "import", "export", "csv", "json", "foundry"]
 keywords:
@@ -21,6 +21,8 @@ related:
   - custom-table-schema
   - linking-and-nesting-tables
 ---
+
+> Este guia descreve o Mythic GME 1.7.0 e posteriores.
 
 ## Onde importar/exportar
 
@@ -48,7 +50,7 @@ A aba Arquivos importa arquivos. Ela não tem uma caixa de colagem para texto br
 
 Ao editar uma tabela existente, a aba Importar do editor de tabela tem dois caminhos:
 
-- **Substituir todas as entradas:** cole conteúdo TXT, PSV ou CSV na caixa de texto e escolha Substituir todas as entradas.
+- **Substituir todas as entradas:** cole conteúdo TXT, PSV ou CSV na caixa de texto e escolha Substituir todas as entradas. Você também pode colar uma tabela inteira no formato JSON do app. Ela é tratada como um arquivo JSON.
 - **Importar de arquivo:** escolha um arquivo de tabela `.json`, `.csv`, `.txt` ou `.psv`.
 - Arquivos JSON podem ser mesclados quando o ID da tabela importada corresponde à tabela que você está editando. Se os IDs não coincidirem, escolha Substituir tudo para sobrescrever a tabela. Salve suas alterações antes de importar um arquivo JSON aqui. Uma mesclagem ou Substituir Tudo parte da tabela salva, então as edições não salvas são descartadas.
 - Arquivos CSV, TXT e PSV substituem as entradas atuais no editor. A alteração fica preparada até você escolher Criar ou Atualizar.
@@ -66,7 +68,7 @@ Essa caixa de colagem serve para substituir entradas em uma tabela que você já
   - CSV: tabelas por intervalo usam `range_start, range_end, result`; tabelas de significado também podem usar `result, weight`
   - TXT: uma entrada por linha (+ linha opcional table_type)
   - PSV: `endpoint|result` com extremidades que produzem intervalos 1..N
-  - JSON v3: esquema de fidelidade total, incluindo traduções e links
+  - JSON v3: o formato mais completo, incluindo traduções, tags e links. Na importação, o app ainda marca a tabela como sua, pode mudar o id ou a categoria e descarta campos que não conhece.
 - CSV com pesos: suportado para tabelas de significado; use intervalos explícitos para tabelas de foco de evento
 
 ## Formato CSV
@@ -129,7 +131,7 @@ Amostras
 
 ## Foundry VTT JSON (mapeamento automático)
 
-Com o cartão Tabelas Oracle, um arquivo JSON é tratado como Foundry VTT quando tem um nome e um array results cujos itens contêm texto. Com o cartão Tabelas de Foco de Evento, o nome também precisa conter event, focus ou plot, ou um resultado precisa conter PC, NPC ou Thread. Arrays `range` são usados quando presentes.
+Com o cartão Tabelas Oracle, um arquivo JSON é tratado como Foundry VTT quando tem um nome e um array results cujos itens contêm texto. Com o cartão Tabelas de Foco de Evento, ele é tratado como Foundry VTT quando o nome contém event, focus ou plot, ou um resultado contém PC, NPC ou Thread. O app importa arquivos do Foundry, mas não os exporta. Arrays `range` são usados quando presentes.
 
 Destaques do mapeamento
 - `name` → `displayName`

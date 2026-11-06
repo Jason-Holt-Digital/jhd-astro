@@ -6,7 +6,7 @@ category: "start-here"
 order: 4
 icon: "fa-slab fa-regular fa-lightbulb"
 duration: "6 min read"
-updated: "2025-02-01"
+updated: "2026-11-04"
 tags: ["meaning-tables", "inspiration", "guides"]
 keywords:
   - Meaning Tables
@@ -17,13 +17,15 @@ related:
   - writing-and-organizing-scenes
 ---
 
+> This guide describes Mythic GME 1.7.0 and later.
+
 ## Guide: Mastering the Meaning Tables module
 
 The Meaning Tables module in the Mythic app is your fast‑access source for inspiration, designed to reduce lookup friction and keep you in story flow. It provides concrete narrative seeds when a simple Yes/No Fate Question isn’t enough.
 
 Layout
-- Mobile: Meaning Tables is its own screen. Switch tables and roll with thumb‑friendly controls.
-- Desktop: Meaning Tables sits alongside other panels so you can roll and write without switching.
+- Phone: Meaning Tables is its own screen, with the result under Roll Results. On the Fate screen, the Tables tab on the edge of the screen opens the tables without leaving the Adventure Log.
+- Tablet and desktop: the Game Tables Pull-Out sits on the right edge of the Fate Chart screen. Its tabs open Meaning Tables and Event Focus, plus Tracks and Keyed Scenes while they are turned on. Tap a tab to slide it open over your panels, and tap it again to close it. You can also place a Meaning Tables panel in your layout. To turn the pull-out off, use Game Tables Pull-Out in Layout Settings.
 
 ## The purpose of Meaning Tables
 
@@ -33,8 +35,8 @@ Meaning Tables generate descriptive prompts that clarify narrative elements and 
 - Pairs well with Fate: Fate answers “does it happen?”; Meaning adds “what does it look like?” or “what’s really going on?”.
 
 > Availability and content
-> - Core set: The app includes the complete 2e Meaning Tables for rolling.
-> - Expanded sets: 168 more Meaning Tables and 13 more Event Focus tables from Mythic Magazines, Variations, and other publications are available in the app with Expanded Features.
+> - Included: 53 Meaning Tables (49 from the Mythic GME 2e core rulebook and 4 from Mythic Magazine 49) and 2 Event Focus tables.
+> - Expanded sets: 197 more Meaning Tables and 14 more Event Focus tables are available with Expanded Features. They come from Mythic Variations 1, The Adventure Crafter, The Location Crafter, The Creature Crafter, Mythic Magazine Compilations 1 to 7, and Mythic Magazine issues 43 to 71.
 > - Pricing by platform: On Apple App Store, Google Play, and Amazon Appstore these expanded sets are part of a one‑time “Expanded Features” unlock (not a subscription). On Microsoft Store (Windows) and itch.io (DRM‑free), the one‑time purchase includes expanded features; no IAP.
 > - For the latest details, see Support → Purchases, Pricing & Upgrades: /support
 
@@ -43,7 +45,7 @@ Meaning Tables generate descriptive prompts that clarify narrative elements and 
 You can open Meaning Tables at any time to get a pair of words for inspiration.
 
 ### 1) Random Events (Event Meaning)
-- Timing: a Random Event happens when a Fate Chart or Fate Check roll comes up doubles at or under the Chaos Factor, or when a Scene Check comes up Interrupt Scene. With the Prepared Adventure Event Focus table selected, a Scene Check gives an Expected Scene instead, and a roll at or under the Chaos Factor adds a Random Event.
+- Timing: a Random Event happens when a Fate Chart or Fate Check roll comes up doubles at or under the Chaos Factor, or when a Scene Check comes up Interrupt Scene. With a prepared Event Focus table selected, such as the Prepared Adventure Event Focus Table, a Scene Check gives an Expected Scene instead, and a roll at or under the Chaos Factor adds a Random Event.
 - Application: After the Event Focus (e.g., New NPC, PC Negative), roll an Event Meaning word pair (Actions, Descriptions, or Elements). Combine Context + Focus + Meaning to invent the twist.
 
 ### 2) Discovering Meaning (adding details)
@@ -72,8 +74,8 @@ The book describes three kinds of Meaning Tables. The app sorts its tables into 
 ## In the app
 
 - Finding a table: search or scroll the list, then tap a table to roll it. Press and hold a table to see its details, and tap the heart to show only your favorites.
-- Copy to notes: On desktop, keep Meaning Tables open while writing scene notes. On a phone, open the Game Panel on the Fate screen and use its Tables tab to roll without leaving the Adventure Log. Every roll is saved to the Adventure Log.
-- Random Events flow: when a twist hits, the app rolls the Event Focus table first. It also rolls that table's links to Meaning Tables. If the rolled entry links to a Meaning Table, another Event Focus table, an Adventure List, or a Custom List, the app rolls that linked table or list too. A second Event Focus table rolls only its links to Adventure Lists and Custom Lists and does not follow links to other tables. All of these rolls are saved in one Adventure Log entry. If you turn on Roll Event Meaning automatically, which is off by default, the app also adds Action Meaning 1 and Action Meaning 2 words, even if the event already gave you Meaning words or a Custom List result. With the standard Action tables this adds one word from each table; if the Action tables are configured with weights or without their pairing, you may get extra words. Read the entry and write your interpretation in the Scene's Summary.
+- Copy to notes: On a tablet or desktop, open the Tables tab of the Game Tables Pull-Out, or keep a Meaning Tables panel in your layout, while you write scene notes. The panel has no result area, so read the result in the Adventure Log. On a phone, open the Tables tab on the edge of the Fate screen to roll without leaving the Adventure Log. Every roll is saved to the Adventure Log.
+- Random Events flow: when a twist hits, the app rolls the Event Focus table first. It also rolls that table's links to Meaning Tables. If the rolled entry links to a Meaning Table, another Event Focus table, an Adventure List, or a Custom List, the app rolls that linked table or list too. A second Event Focus table rolls only its links to Adventure Lists and Custom Lists and does not follow links to other tables. All of these rolls are saved in one Adventure Log entry. If you turn on Auto Roll Event Meaning, which is off by default, the app also adds a pair of Action Meaning words, unless the Random Event already has its own Meaning words or a result from one of your Custom Lists. Read the entry and write your interpretation in the Scene's Summary.
 
 ## Tips
 

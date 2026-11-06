@@ -24,6 +24,6 @@
     { "range": [5, 5], "result": "PC Negative" },
     { "range": [6, 6], "result": "PC Positive" }
   ],
-  "data": { "iconKey": "event_focus" }
+  "data": { "iconKey": "bullseye" }
 }
 

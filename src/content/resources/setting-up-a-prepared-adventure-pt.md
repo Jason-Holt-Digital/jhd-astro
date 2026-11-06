@@ -5,7 +5,7 @@ category: "start-here"
 order: 5
 icon: "fa-slab fa-regular fa-book-open"
 duration: "4 min de leitura"
-updated: "2025-12-27"
+updated: "2026-11-04"
 lang: "pt"
 tags: ["prepared-adventure", "modules", "event-focus", "random-events", "features", "scenes"]
 keywords:
@@ -24,6 +24,8 @@ related:
   - setting-up-and-using-lists
   - using-meaning-tables-for-inspiration
 ---
+
+> Este guia descreve o Mythic GME 1.7.0 e posteriores.
 
 Jogar uma aventura pronta (como um módulo publicado de D&D) com Mythic requer apenas alguns passos simples de configuração. O app inclui funcionalidades especiais projetadas especificamente para este estilo de jogo.
 
@@ -73,7 +75,7 @@ Isso prepara o Mythic para gerar Eventos Aleatórios que parecem apropriados ao 
 - Eventos Aleatórios são adicionados a Cenas Esperadas (não as substituindo)
 - O botão Ajuste de Cena fica oculto enquanto uma tabela preparada estiver selecionada. Para mostrá-lo, desative Ocultar Ajuste de Cena em Aventuras Preparadas.
 
-Essas regras valem enquanto a Tabela de Foco de Eventos Preparados estiver selecionada. Selecione outra tabela de Foco do Evento para voltar a ter os resultados Cena Alterada e Cena de Interrupção.
+Essas regras valem enquanto uma tabela de Foco do Evento preparada estiver selecionada: a Tabela de Foco de Eventos Preparados, a Tabela de Foco de Evento de Aventura Pronta ou qualquer tabela com a tag `prepared`. Para voltar a ter os resultados Cena Alterada e Cena de Interrupção, selecione uma tabela de Foco do Evento sem a tag `prepared`.
 
 Quando você toca em Teste de Cena e a rolagem é igual ou menor que o Fator de Caos, o app adiciona um Evento Aleatório à mesma entrada do Registro de Aventura. Siga com sua Cena Esperada e não role outro Evento Aleatório. O Evento Aleatório adiciona uma reviravolta sem descarrilar a aventura pronta.
 

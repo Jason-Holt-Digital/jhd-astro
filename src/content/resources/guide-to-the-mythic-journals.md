@@ -6,7 +6,7 @@ category: "adventure-journals"
 order: 0
 icon: "fa-slab fa-regular fa-book-open"
 duration: "6 min read"
-updated: "2025-09-21"
+updated: "2026-11-04"
 tags: ["journals", "getting-started", "import", "export"]
 keywords:
   - Journals
@@ -30,8 +30,10 @@ related:
   - saving-and-managing-dice-formulas
 ---
 
+> This guide describes Mythic GME 1.7.0 and later.
+
 # What is an adventure journal
-A Journal is the app's saved record of one adventure or campaign: a single place where you record what happened, why it happened, and what changed. In the app it’s stored as JSON; you can export it as JSON (for round‑trip) or Markdown (for reading and sharing alongside your notes). Markdown export is for reading only. It leaves out Custom Lists, Thread Progress Tracks, and Keyed Scenes, and the app cannot import it.
+A Journal is the app's saved record of one adventure or campaign: a single place where you record what happened, why it happened, and what changed. In the app it’s stored as JSON; you can export it as JSON (for round‑trip) or Markdown (for reading and sharing alongside your notes). Markdown export is for reading only. It leaves out Custom Lists, Thread Progress Tracks, Keyed Scenes, Progress Points, and the per-die dice record, and the app cannot import it.
 
 ## What it contains (at a glance)
 
@@ -81,7 +83,7 @@ End‑of‑scene bookkeeping
 
 - One file per campaign or adventure
 - Names you can scan: `my-adventure-2025-09.md` or `journal-elderspire.md`
-- Backups: Saving a Journal does not make a separate backup of it, so go to Settings, then Files, and use Export journal as JSON to keep your own copy. The app also tries to keep a backup copy when it moves your Journals to another storage location or into or out of iCloud, and, in the iOS, Android, Windows, macOS, and Linux apps, when a restore replaces a Journal. A restore in the web app keeps no copy. Exception: when a successful iCloud save finds unresolved conflicting versions of a Journal, the app tries to copy those versions into backups before marking them resolved. An ordinary save with no conflict makes no backup.
+- Backups: Saving a Journal does not make a separate backup of it, so go to Settings, then Files, and use Export journal as JSON to keep your own copy. The app also tries to keep a backup copy when a move to another storage location, into or out of iCloud, or Import Previous Folder finds the same Journal in both places, and, in the iOS, Android, Windows, macOS, and Linux apps, when a restore replaces a Journal. A restore in the web app keeps no copy. Exception: when a successful iCloud save finds unresolved conflicting versions of a Journal, the app tries to copy those versions into backups before marking them resolved. An ordinary save with no conflict makes no backup.
 - Exports: use app → Settings → Files to export JSON (round‑trip) or Markdown (shareable)
 
 ## No programming required

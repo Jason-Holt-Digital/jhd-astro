@@ -6,7 +6,7 @@ category: "advanced"
 order: 3
 icon: "fa-slab fa-regular fa-layer-group"
 duration: "Reference"
-updated: "2025-09-21"
+updated: "2026-11-04"
 tags: ["schema", "custom-tables", "meaning-tables", "event-focus", "reference"]
 keywords:
   - Meaning Table schema
@@ -26,6 +26,8 @@ related:
   - linking-and-nesting-tables
 ---
 
+> This page describes Mythic GME 1.7.0 and later.
+
 ## Plain English
 
 No programming needed. This page lists field names used by imports/exports and by power users who maintain JSON directly.
@@ -35,8 +37,8 @@ No programming needed. This page lists field names used by imports/exports and b
 Required keys: id, categoryId, displayName, and entries. These have no defaults. If you leave out the optional keys, schemaVersion defaults to 3, tableType to meaning-table, rangeStart to 1, and rangeEnd to 100.
 
 Key details
-- `id` (snake_case string)
-- `categoryId` (kebab‑case string)
+- `id` (string). Built-in tables use snake_case, but the app does not check the style.
+- `categoryId` (string). Built-in categories use kebab-case. On import, a category that is not in your app becomes `custom`.
 - `displayName` (string)
 - `entries` (array)
 - `schemaVersion` (int), `tableType` (string)
@@ -49,7 +51,11 @@ Optional table fields
 - `source` (string), `tags` (array of strings)
 - tableRollOn (array of Meaning Table ids). Any other id or a list name is skipped.
 - `data` (object for extensions)
-- `dice` (legacy; ignored by current app)
+- `baseDice` (string, e.g., `"1d10"`). The dice the app rolls on this table. Without it, the app rolls one die with a side for each number in the range.
+- `defaultDoubleRoll` (boolean, default true). Set it to false to roll the table once. A table whose tags include `crafter` also rolls once. The 1×/2× choice on the table's row overrides both.
+- `isPremium` (boolean). Ignored on import. The app decides which tables need an unlock.
+- `replacement`, `displayRoll` (booleans). Kept from Foundry VTT imports and exported again. They do not change how the table rolls.
+- `dice` (legacy; ignored by Mythic GME 1.7.0 and later). Use `baseDice`.
 
 Entry fields
 - `range` [start, end] (required)
@@ -72,7 +78,7 @@ Use a category id that exists in your app, for example "categoryId": "custom".
   "tableType": "meaning-table",
   "rangeStart": 1,
   "rangeEnd": 10,
-  "categoryId": "actions",
+  "categoryId": "custom",
   "displayName": "Action Basics",
   "entries": [
     { "range": [1, 5], "result": "Common" },
@@ -93,7 +99,8 @@ Optional keys and defaults
 
 Optional table fields
 - `displayNameTranslations`, `description`, `descriptionTranslations`
-- `defaultLanguage`, `isBuiltIn`, `isUserCreated`, `source`, `tags`, `tableRollOn`, `data`
+- `defaultLanguage`, `isBuiltIn`, `isUserCreated`, `source`, `tags`, `tableRollOn`, `data`, `baseDice`
+- `data.iconKey` sets the icon on the table's card, for example `"bullseye"`. A key the app does not know shows a question mark.
 
 Entry fields
 - `range` [start, end], `result`

@@ -6,7 +6,7 @@ category: "start-here"
 order: 3
 icon: "fa-slab fa-regular fa-film"
 duration: "9 min read"
-updated: "2025-02-01"
+updated: "2026-11-04"
 tags: ["scenes", "journals", "workflow"]
 keywords:
   - Scenes
@@ -19,6 +19,8 @@ related:
   - guide-to-the-mythic-journals
   - using-meaning-tables-for-inspiration
 ---
+
+> This guide describes Mythic GME 1.7.0 and later.
 
 The Scenes screen in the Mythic Apps is the hub of your adventure. It gives each chunk of play a clear container so you can track each phase of your adventure clearly.
 
@@ -36,7 +38,7 @@ Scenes are the basic units of in‑game time that bring form and order to your s
 -  After the first, every new scene begins as Expected — how you think things will play out. You can test that expectation with a Scene Check as desired.
   - Tap Scene Check to roll it. Expected Scene means the scene goes forward as you expected.
   - If the scene is Altered — tweak location, activity, or an NPC; go with the next most expected outcome.
-  - If the result is Interrupt Scene, your expectation is ignored and the app rolls the Random Event for you in the same Adventure Log entry. Do not tap Random Event as well, because that adds a second event. The Random Event already includes any results linked to its Event Focus, and with Roll Event Meaning automatically turned on it can include Meaning Table words. Roll another Meaning Table from the Game Panel if you want more to work with.
+  - If the result is Interrupt Scene, your expectation is ignored and the app rolls the Random Event for you in the same Adventure Log entry. Do not tap Random Event as well, because that adds a second event. The Random Event already includes any results linked to its Event Focus, and with Auto Roll Event Meaning turned on it can include Meaning Table words. Roll another Meaning Table from the Tables tab if you want more to work with.
   - While the Prepared Adventure Event Focus Table is selected, Scene Check never gives Altered Scene or Interrupt Scene. It gives Expected Scene, and a roll at or under the Chaos Factor adds a Random Event to it.
 
 > ##### Tip
@@ -73,7 +75,7 @@ Scenes end when the main action resolves, or when the story’s structure natura
 ## App workflow tips
 
 - Keep Scenes short and focused — it makes Fate results easier to interpret and logs easier to review
-- When your intuition stalls, roll a Meaning Table from the Game Panel on the Fate screen or from the Meaning Tables screen. The result is saved to the Adventure Log, not to the Scene.
+- When your intuition stalls, roll a Meaning Table from the Tables tab on the Fate screen (the Game Tables Pull-Out on a tablet or desktop) or from the Meaning Tables screen. The result is saved to the Adventure Log, not to the Scene.
 - Chaos Factor: a new Scene takes the Journal's current Chaos Factor by itself. Saving your latest Scene sets the Journal's Chaos Factor to the value on that Scene, and editing an earlier Scene leaves the current Chaos Factor alone. Adjust it between Scenes, not during them.
 - Keep Scene notes in a portable notetaking pattern (bullets + sub‑bullets) for a quick skim later, and add your own interpretation of a Fate or Scene Check result if it helps. Either way, the Scene Check result is saved to the Adventure Log as Expected Scene, Altered Scene, or Interrupt Scene. It is not added to a Scene's Summary.
 

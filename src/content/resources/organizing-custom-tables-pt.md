@@ -5,7 +5,7 @@ category: "custom-tables"
 order: 2
 icon: "fa-slab fa-regular fa-list-squares"
 duration: "5 min de leitura"
-updated: "2025-09-21"
+updated: "2026-11-04"
 lang: "pt"
 tags: ["custom-tables", "categories", "icons", "tags", "linking"]
 keywords:
@@ -18,6 +18,8 @@ related:
   - categories-schema
   - getting-started-with-custom-tables
 ---
+
+> Este guia descreve o Mythic GME 1.7.0 e posteriores.
 
 ## Onde organizar
 
@@ -36,7 +38,16 @@ related:
 
 - Categorias definem ícone, rótulo e comportamento de ordenação para grupos de tabelas
 - O app semeia categorias integradas de um arquivo de recursos. Você pode restaurar as categorias embutidas com Redefinir categorias para os padrões em Configurações de tabelas. As categorias que você criou são mantidas.
-- Mantenha as categorias embutidas intocadas. Adicione as suas com o botão + na aba Categoria. Elas aparecem na mesma lista que as embutidas, e o app não tem um controle para reordená-las.
+- Você pode editar uma categoria integrada ou adicionar as suas com o botão + na aba Categoria. As suas aparecem na mesma lista que as integradas, e o app não tem um controle para reordená-las.
+
+Remover e ocultar categorias
+- Uma categoria integrada que você não editou oferece **Ocultar esta categoria**. As tabelas dela somem das suas listas junto com ela. Nenhum arquivo é excluído.
+- Uma categoria integrada que você editou oferece **Excluir minha versão editada**, que restaura a categoria original.
+- Uma categoria criada por você oferece **Excluir**.
+- A exclusão de uma categoria não pode ser desfeita.
+- Algumas categorias integradas não editadas não podem ser ocultadas, entre elas **Personalizado** e **Foco do Evento**. Também não é possível ocultar uma categoria que contenha a **Tabela de Foco de Eventos**, nem a própria tabela.
+- Para mostrar itens ocultos de novo, abra **Configurações de tabelas** e expanda **Tabelas ocultas** ou **Categorias ocultas**. Use **Mostrar** para recuperar um item ou **Mostrar todas** para recuperar todos. Ao mostrar uma categoria, as tabelas dela também voltam, exceto as que continuarem ocultas individualmente.
+- Para voltar às tabelas integradas originais depois de editá-las, use **Descartar alterações nas tabelas integradas** nas Configurações de tabelas.
 
 Melhores práticas
 - Nomes de exibição curtos; adicione detalhes nas descrições
@@ -51,7 +62,7 @@ Melhores práticas
 
 - Defina um link em uma entrada específica para rolar imediatamente outra tabela ou uma Lista de Aventura quando esse resultado aparecer.
 - Use Tabelas vinculadas na aba Controles para rolar uma ou mais Tabelas de Significado sempre que esta tabela for rolada, a menos que a tabela use pesos. Uma lista só pode ser vinculada a partir de um único item.
-- Máximo de rolagens encadeadas está atualmente definido em 10. Deixe-me saber se você acha que isso deve mudar.
+- As rolagens encadeadas param depois de 10 níveis.
 
 ## Arquivos iniciais
 
@@ -60,9 +71,9 @@ Melhores práticas
 - Modelo/exemplo de Categorias
 - Encontre-os sob os Downloads iniciais do guia "Começando com Tabelas Personalizadas"
 
-## Não suportado ainda
+## Tabelas ponderadas
 
-- Ainda não é possível montar manualmente uma tabela com pesos. Você pode importar um CSV de Tabela de Significado com as colunas result e weight, com até 100 linhas. Para tabelas montadas manualmente, use intervalos explícitos (1..N).
+- Ainda não dá para montar uma tabela ponderada à mão. Você pode importar um CSV de Tabela de Significado com as colunas result e weight, com até 100 linhas. Quando alguma entrada tem peso maior que 1, o app escolhe uma entrada pelo peso em vez de rolar nos intervalos. Veja "Começando com Tabelas Personalizadas" para detalhes.
 
 ## Próximos passos
 

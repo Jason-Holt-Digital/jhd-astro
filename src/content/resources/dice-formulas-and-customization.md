@@ -6,7 +6,7 @@ category: dice-roller
 order: 3
 icon: fa-slab fa-regular fa-sliders
 duration: 12 min read
-updated: 2025-09-21
+updated: 2026-11-04
 tags:
   - dice
   - formulas
@@ -75,6 +75,8 @@ related:
   - formula-schema
 ---
 
+> This guide describes Mythic GME 1.7.0 and later.
+
 ## Read this first (no programming required)
 
 - Formulas are simple, readable expressions (like `2d6+3`).
@@ -94,15 +96,57 @@ Tip: To save, you only need the formula text—no need to understand every optio
 - Count / Score:
   - \# returns a count and discards the individual dice results: 6d6#>=5
   - #s, #f, #cs, and #cf mark dice as successes, failures, critical successes, and critical failures. The dice and their sum stay as rolled, and the roll row lists the counts. For example: `6d6 #f<=2 #s>=5 #cs6 #cf1`
-  - **1.7.0+** A count takes only the number right after it. `4d10#>=6+2` counts dice of 6 or more, then adds 2 to the count.
+  - A count takes only the number right after it. `4d10#>=6+2` counts dice of 6 or more, then adds 2 to the count.
 - Clamp (cap): `C<` and `C>` (e.g., `4d20 C<5`, `4d20 C>15`)
-- **1.7.0+** Push rules: `@push=N` lets a roll be pushed N times, and `@lock=s`, `@lock=sf`, or `@lock=none` sets which dice a push keeps (e.g., `5d6#s6 @push=1`). Push also re-rolls dice after a minus sign, as in `2d6#s6 - 2d6#s6`.
+- Push rules: `@push=N` lets a roll be pushed N times, and `@lock=s`, `@lock=sf`, or `@lock=none` sets which dice a push keeps (e.g., `5d6#s6 @push=1`). See Push below.
 
 Order and precedence gotchas
-- Order matters with keep and the marking counters. 2d20 kh #cf #cs drops the low die first. To mark both dice before the keep, write (2d20 #cf #cs) kh. A keep after a count needs the parentheses, so from app version 1.7.0, 2d20 #cf #cs kh is an error.
-- **1.7.0+** A count applies to the dice just before it. `2d6#s6 - 2d6#s6` scores each 2d6 on its own, then subtracts the second from the first.
+- Order matters with keep and the marking counters. 2d20 kh #cf #cs drops the low die first. To mark both dice before the keep, write (2d20 #cf #cs) kh. A keep after a count needs the parentheses, so 2d20 #cf #cs kh is an error. The same goes for `(4d6#s6)kh2`.
+- A count applies to the dice just before it. `2d6#s6 - 2d6#s6` scores each 2d6 on its own, then subtracts the second from the first.
 - Drop/filter operators bind tighter than arithmetic. `(5d6+5d10)-L2` drops from the combined pool; `5d6+5d10-L2` drops only from the d10s.
 - Use uppercase `D66` (lowercase `d66` is a 66‑sider, not D66).
+- There is no not-equal count. `6d6#s!=1` is not a valid formula.
+- A formula that ends in an operator, or a label with no dice after it, does not roll. For example, `2d6+` and `"Damage":` are incomplete, and the formula field shows them as incomplete.
+
+## Dice pools and labels
+
+> The pool lines, labels, label colors and Push are new in 1.7.0. The formula syntax on this page works the same in 1.6.8.
+
+A dice pool is a group of dice with a label. Write the label in quotes, then a colon, then the dice. Put a comma between dice pools.
+
+- `"Attack": 2d6, "Damage": 1d8`
+
+A Studio test roll shows one line for each dice pool, with the label, the pool's total and its dice. In the Adventure Log, a labeled roll is one entry.
+
+On the **Join** tab, tap a saved label to put it in front of your dice. Tap **+** to save a new label. Long-press a label to rename it, remove it or change the order of your labels. Renaming or removing a label doesn't change formulas that already use it. A label can't contain `"`, and two labels can't differ only in upper and lower case.
+
+To choose a label's color, long-press it and tap **Change color**, or tap the **Color** button under its name in **Manage labels**. Pick a quick color or tap **Custom** for any color, then tap **Done**.
+
+Saved formulas keep the label text you typed. An export of your saved formulas does not include your labels or their colors.
+
+## Push
+
+Push re-rolls part of your newest Studio test roll.
+
+1. On the newest Studio test roll, tap the arrow at the end of the row.
+2. Tap **Push**. It is the first of the two buttons that appear.
+
+Push keeps every die that is a success or a critical success. It re-rolls the other dice and adds the result as a new Studio test roll. Numbers such as the `+3` in `2d6+3` stay as they are. Push also re-rolls dice after a minus sign, as in `2d6#s6 - 2d6#s6`. A new die is scored by the same counts. Pushed dice do not re-apply `r`, `C`, exploding (`!`), compounding (`!!`) or keep (`k`), so a new die stays on the face it rolls.
+
+In a Studio test roll and in a dice roll in your Adventure Log, a check mark follows each success or critical success, a cross follows each failure or critical failure, and a lock comes before each die a push kept.
+
+Add a tag to the formula to change how Push works:
+
+- `@push=N`: The roll can be pushed N times. Without this tag, there is no limit.
+- `@lock=s`: Push keeps successes and critical successes. This is the default.
+- `@lock=sf`: Push also keeps failures and critical failures.
+- `@lock=none`: Push re-rolls every die.
+
+`@push` counts for the whole roll. A `@lock` tag after a dice pool applies only to that pool. For example, in `"Base": 3d6#s6#f1 @lock=sf, "Gear": 2d6#s6#f1` a push keeps the 1s in the Base pool and re-rolls the 1s in the Gear pool.
+
+If only **Copy** appears on that row, the roll cannot be pushed. That happens when the roll was pushed as many times as `@push` allows, when no die would re-roll, or when a die that would re-roll is a Fate die, a custom-face die or a D66.
+
+You can also push a dice roll in your Adventure Log. Tap the arrow at the end of its row, then tap **Push**. The pushed roll is written to your Journal as a new entry, a **Pushed dice roll**. The roll you pushed stays as it was and cannot be pushed again. If only **Copy** and **Delete Entry** appear on a dice roll in your Adventure Log, it cannot be pushed. That happens for the same reasons as on a Studio test roll, when the roll was already pushed, or when an earlier version of the app logged it. A push of a Studio test roll is never written to your Journal.
 
 ## Patterns you’ll use a lot
 
@@ -165,11 +209,11 @@ Lancer (accuracy/difficulty)
 - Difficulty: `1d20 - (Xd6kh1) + MOD`
 
 Year Zero Engine (Free League: Alien, Forbidden Lands, Vaesen, etc.)
-- Three colored pools (base/skill, stress, gear): Roll the three pools in one formula with labels, for example "Base": 4d6 #s=6, "Stress": 2d6 #s=6, "Gear": 1d6 #s=6. In Dice Studio and in the Adventure Log (**1.7.0+**), the roll shows each pool on its own line with its label and total.
+- Three colored pools (base/skill, stress, gear): Roll the three pools in one formula with labels, for example "Base": 4d6 #s=6, "Stress": 2d6 #s=6, "Gear": 1d6 #s=6. In Dice Studio and in the Adventure Log, the roll shows each pool on its own line with its label and total.
 - Successes: `Nd6#s=6` on each pool; track 1s on stress/gear with `#f=1`.
-- **1.7.0+** To push, roll the pool with a success mark, for example `5d6#s6 @push=1`, then tap the arrow at the end of its row and tap Push. Push keeps the dice marked as successes and rolls every other die again, including 1s. `@push=1` means the roll can be pushed once.
-- **1.7.0+** In Forbidden Lands, Push keeps the 6s and the 1s. Write `3d6#s6#f1 @lock=sf`.
-- **1.7.0+** You can push a dice roll in your Adventure Log too. The pushed roll is written to your Journal as a new Pushed dice roll, and the roll you pushed can't be pushed again.
+- To push, roll the pool with a success mark, for example `5d6#s6 @push=1`, then tap the arrow at the end of its row and tap Push. Push keeps the dice marked as successes and rolls every other die again, including 1s. `@push=1` means the roll can be pushed once.
+- In Forbidden Lands, Push keeps the 6s and the 1s. Write `3d6#s6#f1 @lock=sf`.
+- You can push a dice roll in your Adventure Log too. The pushed roll is written to your Journal as a new Pushed dice roll, and the roll you pushed can't be pushed again.
 - Limitations: Panic/breakage resolution remains table‑side.
 
 The One Ring 2e (approximation)

@@ -6,7 +6,7 @@ category: "adventure-journals"
 order: 1
 icon: "fa-slab fa-regular fa-share-nodes"
 duration: "7 min read"
-updated: "2026-10-09"
+updated: "2026-11-04"
 tags: ["journals", "sharing", "export", "import"]
 keywords:
   - Share journals
@@ -18,14 +18,16 @@ related:
   - writing-and-organizing-scenes
 ---
 
+> This guide describes Mythic GME 1.7.0 and later.
+
 You can save a Journal as a file, send that file to someone, and bring a Journal file into the app. All of it is in **Settings**, on the **Files** tab, under **Export Journal** and **Import Journal**.
 
 ## Export a Journal
 
 Export works on the Journal you have open.
 
-- **Export journal as JSON** saves the whole Journal. It is the only export the app can read back. The app keeps backup copies from a storage move or a restore, not from an ordinary save; the exception is a Journal saved in iCloud that has conflicting versions, where saving can make the app try to copy the other versions to separate backup files.
-- **Export journal as Markdown** saves a copy for reading. It has the Chaos Factor, your scenes, your Characters, Threads, and Features with their notes, and every Log Entry. It leaves out Custom Lists, Thread Progress Tracks, and Keyed Scenes. A Markdown file cannot be imported.
+- **Export journal as JSON** saves the whole Journal. It is the only export the app can read back. The app keeps backup copies when a restore replaces a Journal, or when a storage move or Import Previous Folder finds the same Journal in both places, not from an ordinary save; the exception is a Journal saved in iCloud that has conflicting versions, where saving can make the app try to copy the other versions to separate backup files.
+- **Export journal as Markdown** saves a copy for reading. It has the Chaos Factor, your scenes, your Characters, Threads, and Features with their notes, and every Log Entry. It leaves out Custom Lists, Thread Progress Tracks, Keyed Scenes, Progress Points, and the per-die dice record. A Markdown file cannot be imported.
 
 The file is named after the Journal. On iOS and Android the share sheet opens. On Windows, macOS, and Linux a save dialog opens.
 

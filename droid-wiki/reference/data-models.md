@@ -34,12 +34,12 @@ All five files below are JSON Schema draft 2020-12 under `public/downloads/`, ge
 
 | Source | Core contract |
 | --- | --- |
-| `public/downloads/saved_formulas.schema.json` | Array or object containing `formulas`; items require nonblank `formula`, optionally `name`, `description`, date-time `dateAdded`, `id` |
+| `public/downloads/saved_formulas.schema.json` | Array or object containing `formulas`; items require nonblank `formula`, optionally `name`, `description`, date-time `dateAdded`, `id`. The app's storage file may also carry `poolLabels` (string array) and `poolLabelColors` (label name to a quick color name or `#RRGGBB`) in the object form; exports never include them |
 | `public/downloads/categories.schema.json` | Requires `defaultCategories`/`categories`; items require `id`, `displayName`, `iconKey`, integer `sortOrder`, boolean `isBuiltIn`; optional nullable description and translation map |
 | `public/downloads/meaning_table.schema.json` | Requires `id`, `categoryId`, `displayName`, nonempty `entries`; entries require two-integer `range` and string `result` |
 | `public/downloads/event_focus_table.schema.json` | Requires `id`, display-name/description strings and translation maps, nonempty `entries`; entries require `range`/`result` |
-| `public/downloads/journal.schema.json` | Requires `JournalName`, `ChaosFactor`, `Scenes`, `Characters`, `Threads`, `Features`, and three `Activated*Sections`; chaos 1–9, sections 1–5 |
+| `public/downloads/journal.schema.json` | Legacy schema 1 file. Requires `JournalName`, `ChaosFactor`, `Scenes`, `Characters`, `Threads`, `Features`, and three `Activated*Sections`; chaos 1 to 9, sections 1 to 5. Mythic GME 1.7.0 and later write camelCase schema 6, documented on the Journal Schema resource page |
 
 Table `schemaVersion: 3` and `tableType` constants apply when present, not as defaults or required fields. Event-focus `categoryId`, if present, must be `event-focus`. These schemas do not enforce range ordering, overlap or coverage.
 
-Journals optionally include `LogEntries`, restricted-key `ListNotes`, and `SchemaVersion: 1`. Each log entry requires `rollType`, `odds`, `chaosFactor`, `question`, `outcome`, `rollResult`, `isSceneCheck`, and date-time `timestamp`. Optional scene adjustments recursively require `result`, two-integer `range`, and `description`. Schema `$id` URLs identify app-format contracts, not website endpoints. Consult complete schemas for nested fields and [resources](../features/resources-and-blog.md) for distribution.
+The legacy schema 1 journal file optionally includes `LogEntries`, restricted-key `ListNotes`, and `SchemaVersion: 1`. Each log entry requires `rollType`, `odds`, `chaosFactor`, `question`, `outcome`, `rollResult`, `isSceneCheck`, and date-time `timestamp`. Optional scene adjustments recursively require `result`, two-integer `range`, and `description`. Schema `$id` URLs identify app-format contracts, not website endpoints. Consult complete schemas for nested fields and [resources](../features/resources-and-blog.md) for distribution.

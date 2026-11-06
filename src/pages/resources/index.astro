@@ -11,10 +11,14 @@ type ResourceEntry = CollectionEntry<"resources">;
 const categoryLabels = {
   "start-here": "Start Here",
   "adventure-journals": "Adventure Journals",
-  "dice-roller": "Dice Roller",
+  "dice-roller": "Dice Studio",
   "custom-tables": "Custom Tables",
   advanced: "Schemas & Deep Dives",
 };
+
+// The app's Help reads data-category and maps these exact English labels.
+// Keep "Dice Roller" here even though the visible label is Dice Studio.
+const appCategoryLabels = { ...categoryLabels, "dice-roller": "Dice Roller" };
 
 const sortByOrder = (items: ResourceEntry[]) =>
   [...items].sort((a, b) =>
@@ -43,7 +47,7 @@ const sectionBlueprint = [
   {
     id: "dice-roller",
     badge: "Dice",
-    title: "Use the Dice Roller",
+    title: "Use Dice Studio",
     description:
       "Create, save, import, and reuse the dice formulas you need for play.",
     category: "dice-roller",
@@ -147,7 +151,7 @@ const searchEntries = sortByOrder(entries).map((entry) => ({
                   data-title={entry.title}
                   data-summary={entry.appSummary ?? entry.summary}
                   data-search-summary={entry.summary}
-                  data-category={categoryLabels[entry.category]}
+                  data-category={appCategoryLabels[entry.category]}
                   data-index={index}
                 >
                   <a href={`/resources/${entry.id}/`} tabindex="-1">

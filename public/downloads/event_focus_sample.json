@@ -28,6 +28,6 @@
     { "range": [9, 9], "result": "Introduce a Feature", "entryRollOn": ["Features"] },
     { "range": [10, 10], "result": "Change Environment", "entryRollOn": ["Features"] }
   ],
-  "data": { "iconKey": "event_focus" }
+  "data": { "iconKey": "bullseye" }
 }
 

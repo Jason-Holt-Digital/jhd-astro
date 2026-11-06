@@ -10,7 +10,9 @@ keywords: ["guia", "rolador de dados", "referência", "Apps Mythic GME"]
 tags: ["guide", "product:apps", "dice-roller", "notation", "reference", "advanced"]
 ---
 
-Em 10 de Março de 2025 — O Rolador de Dados incluído nos apps é bastante avançado, especialmente se você investir algum tempo para digitar e salvar fórmulas que são específicas para seu jogo. Esta é uma implementação do Dart Dice Parser e o texto abaixo é adaptado da página de suporte deles para conveniência.
+Em 10 de Março de 2025 — O Estúdio de Dados, o rolador de dados incluído nos apps, é bastante avançado, especialmente se você investir algum tempo para digitar e salvar fórmulas que são específicas para seu jogo. Ele usa o `mythic_dice_parser` 8.3.0, a versão própria do app do dart_dice_parser, do Adventuresmith, e o texto abaixo é adaptado da página de suporte do dart_dice_parser para conveniência.
+
+> Nota: para Forçar, as tags `@push` e `@lock` e paradas de dados com rótulos, como `"Attack": 2d6, "Damage": 1d8`, veja [Fórmulas de Dados e Personalização](/pt/resources/dice-formulas-and-customization-pt/).
 
 > Dica: Salve fórmulas comuns no app para que estejam a um toque de distância durante o jogo.
 
@@ -71,9 +73,9 @@ Notas:
 - Contagem: `4d6 #>3`, `#<3`, `#>=5`, `#<=2`, `#=5`
 - Sucessos/Falhas sem descartar dados:
   - `6d6 #f<=2 #s>=5 #cs6 #cf1`
-  - Retorna metadados com sucessos/falhas e criticos
+  - O app mostra os Sucessos e as contagens de críticos abaixo dos dados
 
-A ordem importa. Exemplo: `2d20 kh #cf #cs` descarta o 1 antes de contar; mova contagens para antes se necessário e coloque-as entre parênteses (ex., `(2d20 #cf #cs) kh`). A partir da versão 1.7.0 do app, manter depois de uma contagem sem os parênteses é um erro.
+A ordem importa. Exemplo: `2d20 kh #cf #cs` descarta o 1 antes de contar; mova contagens para antes se necessário e coloque-as entre parênteses (ex., `(2d20 #cf #cs) kh`). Manter depois de uma contagem sem os parênteses é um erro.
 
 #### Aritmética
 - Parênteses para ordem de operações.
@@ -87,4 +89,4 @@ A ordem importa. Exemplo: `2d20 kh #cf #cs` descarta o 1 antes de contar; mova c
 
 ## Referências
 - Projeto Dart Dice Parser: https://pub.dev/packages/dart_dice_parser
-- Repositório GitHub: https://github.com/greymour/dart_dice_parser
+- Repositório GitHub: https://github.com/Adventuresmith/dart-dice-parser

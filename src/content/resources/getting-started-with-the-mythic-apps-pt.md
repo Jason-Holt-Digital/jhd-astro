@@ -5,7 +5,7 @@ category: "start-here"
 order: 1
 icon: "fa-slab fa-regular fa-book-open"
 duration: "8 min de leitura"
-updated: "2025-09-21"
+updated: "2026-11-04"
 tags: ["getting-started", "fate-chart", "fate-check", "lists", "scenes", "meaning-tables", "offline"]
 keywords:
   - Mythic GME
@@ -36,6 +36,9 @@ steps:
   - title: "Use Listas, Cenas e Tabelas de Significado"
     body: "É uma boa ideia adicionar Personagens e Tramas às suas Listas antes de começar seu primeiro jogo. Use Cenas para resumir ou prever, e Tabelas de Significado para interpretar os resultados."
 ---
+
+> Este guia descreve o Mythic GME 1.7.0 e posteriores.
+
 Bem-vindo! Este guia rápido parte do próprio app: você começa na Tabela de Destino e se move entre Listas, Cenas e Tabelas de Significado enquanto joga. Seus Diários ficam armazenados no seu dispositivo. No iPhone, no iPad e na versão da Mac App Store, você pode ativar Sincronização do iCloud para mantê-los no iCloud.
 
 > O que você precisa: Traga para a mesa
@@ -74,7 +77,7 @@ Na primeira execução, o aplicativo abre na Tabela de Destino. Você pode alter
 
 Notas de layout
 - Mobile: cada área é sua própria tela; alterne usando a gaveta de navegação no canto superior esquerdo.
-- Tablet e computador: a tela Início mostra Tabelas de Significado, o Registro de Aventura com os controles de Destino e as Listas lado a lado, e Cenas tem sua própria entrada no trilho de navegação. Em um computador, você pode ativar Layout clássico de 6 painéis (Desktop) para ver todas as áreas em uma só tela.
+- Tablet e computador: a tela de Destino é feita de painéis que você organiza, como o Registro de Aventura, os controles de Destino e as Listas. O Painel deslizante de Tabelas de Jogo, na borda direita, abre Tabelas de Significado e Foco do Evento, e a barra de navegação abre Cenas, o Estúdio de Dados e as outras telas. Em um computador, você pode ativar Layout clássico de 6 painéis (Desktop) para ver todas as áreas em uma só tela.
 
 ### 4) Um fluxo simples de primeira sessão
 

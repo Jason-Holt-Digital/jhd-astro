@@ -5,7 +5,7 @@ category: "start-here"
 order: 3
 icon: "fa-slab fa-regular fa-film"
 duration: "9 min de leitura"
-updated: "2025-02-01"
+updated: "2026-11-04"
 lang: "pt"
 tags: ["scenes", "journals", "workflow"]
 keywords:
@@ -19,6 +19,8 @@ related:
   - guide-to-the-mythic-journals
   - using-meaning-tables-for-inspiration
 ---
+
+> Este guia descreve o Mythic GME 1.7.0 e posteriores.
 
 A tela de Cenas dos apps Mythic é o centro da sua aventura. Ela dá a cada trecho de jogo um lugar claro para que você acompanhe o que aconteceu e o que mudou.
 
@@ -36,7 +38,7 @@ Cenas são as unidades básicas de tempo de jogo que trazem forma e ordem à sua
 - Após a primeira, toda nova cena começa como Esperada — como você acha que as coisas vão se desenrolar. Você pode testar essa expectativa com uma Verificação de Cena conforme desejado.
   - Toque em Teste de Cena para rolá-lo. Cena Esperada significa que a cena segue como você esperava.
   - Se a cena for Alterada — ajuste a localização, atividade ou um NPC; vá com o próximo resultado mais esperado.
-  - Se o resultado for Cena de Interrupção, sua expectativa é ignorada e o app rola o Evento Aleatório para você na mesma entrada do Registro de Aventura. Não toque também em Evento Aleatório, porque isso adiciona um segundo evento. O Evento Aleatório já inclui os resultados vinculados ao seu Foco do Evento e, com Rolar o Significado do Evento automaticamente ativado, pode incluir palavras de Tabela de Significado. Role outra Tabela de Significado pelo Painel de Jogo se quiser mais material para trabalhar.
+  - Se o resultado for Cena de Interrupção, sua expectativa é ignorada e o app rola o Evento Aleatório para você na mesma entrada do Registro de Aventura. Não toque também em Evento Aleatório, porque isso adiciona um segundo evento. O Evento Aleatório já inclui os resultados vinculados ao seu Foco do Evento e, com Significado automático ativado, pode incluir palavras de Tabela de Significado. Role outra Tabela de Significado pela aba Tabelas se quiser mais material para trabalhar.
   - Enquanto a Tabela de Foco de Eventos Preparados estiver selecionada, o Teste de Cena nunca dá Cena Alterada nem Cena de Interrupção. Ele dá Cena Esperada, e uma rolagem igual ou menor que o Fator de Caos adiciona um Evento Aleatório a ela.
 
 > ##### Dica
@@ -73,7 +75,7 @@ Cenas terminam quando a ação principal resolve, ou quando a estrutura da hist�
 ## Dicas de fluxo de trabalho do app
 
 - Mantenha Cenas curtas e focadas — isso torna os resultados de Destino mais fáceis de interpretar e logs mais fáceis de revisar
-- Quando a intuição travar, role uma Tabela de Significado pelo Painel de Jogo na tela de Destino ou pela tela Tabelas de Significado. O resultado é salvo no Registro de Aventura, não na Cena.
+- Quando a intuição travar, role uma Tabela de Significado pela aba Tabelas na tela de Destino (o Painel deslizante de Tabelas de Jogo, em um tablet ou computador) ou pela tela Tabelas de Significado. O resultado é salvo no Registro de Aventura, não na Cena.
 - Fator de Caos: uma nova Cena assume sozinha o Fator de Caos atual do Diário. Salvar sua Cena mais recente define o Fator de Caos do Diário com o valor dessa Cena, e editar uma Cena anterior não altera o Fator de Caos atual. Ajuste-o entre Cenas, não durante elas.
 - Mantenha as anotações da Cena em um padrão de anotação portátil (marcadores + sub-marcadores) para uma leitura rápida mais tarde e, se ajudar, acrescente sua própria interpretação de um resultado de Destino ou do Teste de Cena. De qualquer forma, o resultado do Teste de Cena é salvo no Registro de Aventura como Cena Esperada, Cena Alterada ou Cena de Interrupção. Ele não é adicionado ao Resumo de uma Cena.
 

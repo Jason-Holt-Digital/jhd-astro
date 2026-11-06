@@ -6,7 +6,7 @@ category: "adventure-journals"
 order: 1
 icon: "fa-slab fa-regular fa-share-nodes"
 duration: "7 min de leitura"
-updated: "2026-10-09"
+updated: "2026-11-04"
 lang: "pt"
 tags: ["journals", "sharing", "export", "import"]
 keywords:
@@ -19,14 +19,16 @@ related:
   - writing-and-organizing-scenes
 ---
 
+> Este guia descreve o Mythic GME 1.7.0 e posteriores.
+
 Você pode salvar um Diário como arquivo, enviar esse arquivo para alguém e trazer um arquivo de Diário para o app. Tudo isso fica em **Configurações**, na aba **Arquivos**, em **Exportar Diário** e **Importar Diário**.
 
 ## Exportar um Diário
 
 A exportação vale para o Diário que está aberto.
 
-- **Exportar diário como JSON** salva o Diário inteiro. É a única exportação que o app consegue ler de volta. O app guarda cópias de backup ao mover o armazenamento ou fazer uma restauração, não em um salvamento comum; a exceção é um Diário salvo no iCloud com versões em conflito, em que salvar pode fazer o app tentar copiar as outras versões para arquivos de backup separados.
-- **Exportar diário como Markdown** salva uma cópia para leitura. Ela traz o Fator de Caos, suas cenas, seus Personagens, suas Tramas e seus Aspectos com as anotações, e todas as entradas do registro. Ela deixa de fora as Listas personalizadas, as Trilhas de Progresso de fio e as Cenas-Chave. Um arquivo Markdown não pode ser importado.
+- **Exportar diário como JSON** salva o Diário inteiro. É a única exportação que o app consegue ler de volta. O app guarda cópias de backup quando uma restauração substitui um Diário, ou quando uma mudança de local ou Importar pasta anterior encontra o mesmo Diário nos dois lugares, não em um salvamento comum; a exceção é um Diário salvo no iCloud com versões em conflito, em que salvar pode fazer o app tentar copiar as outras versões para arquivos de backup separados.
+- **Exportar diário como Markdown** salva uma cópia para leitura. Ela traz o Fator de Caos, suas cenas, seus Personagens, suas Tramas e seus Aspectos com as anotações, e todas as entradas do registro. Ela deixa de fora as Listas personalizadas, as Trilhas de Progresso de fio, as Cenas-Chave, os Pontos de Progresso e o registro de cada dado. Um arquivo Markdown não pode ser importado.
 
 O arquivo recebe o nome do Diário. No iOS e no Android, abre o menu de compartilhamento. No Windows, no macOS e no Linux, abre uma janela para salvar o arquivo.
 

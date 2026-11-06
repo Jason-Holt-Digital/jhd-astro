@@ -7,7 +7,7 @@ category: "custom-tables"
 order: 3
 icon: "fa-slab fa-regular fa-link"
 duration: "11 min read"
-updated: "2026-10-09"
+updated: "2026-11-04"
 tags: ["custom-tables", "linking", "advanced"]
 keywords:
   - Linking tables
@@ -18,6 +18,8 @@ related:
   - custom-table-schema
   - importing-and-exporting-custom-tables
 ---
+
+> This guide describes Mythic GME 1.7.0 and later.
 
 A link makes one roll lead to another. When a table with a link is rolled, the app can roll the linked table or list as well.
 
@@ -52,6 +54,7 @@ On a phone, the creation wizard keeps every link you tick for one entry. The tab
 - The app also rolls once on each Meaning Table in **Linked Tables**, unless the rolled table uses weights.
 - A chain can go 10 levels below the table you rolled. Past that, the result reads "Max Depth Exceeded".
 - If a link's target cannot be found, the app skips it and shows no message.
+- A built-in table you hid still rolls when another table links to it.
 
 ## Links in a Random Event
 

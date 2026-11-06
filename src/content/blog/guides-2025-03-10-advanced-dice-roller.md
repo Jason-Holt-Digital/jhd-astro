@@ -9,7 +9,9 @@ keywords: ["guide", "dice roller", "reference", "Mythic GME Apps"]
 tags: ["guide", "product:apps", "dice-roller", "notation", "reference", "advanced"]
 ---
 
-On March 10th, 2025 — The Dice Roller included in the apps is quite advanced, especially if you spend some time to type and save formulas that are specific to your game. This is an implementation of the Dart Dice Parser and the text below is adapted from their support page for convenience.
+On March 10th, 2025 — Dice Studio, the dice roller included in the apps, is quite advanced, especially if you spend some time to type and save formulas that are specific to your game. It uses `mythic_dice_parser` 8.3.0, the app's own version of Adventuresmith's dart_dice_parser, and the text below is adapted from the dart_dice_parser support page for convenience.
+
+> Note: For Push, `@push` and `@lock` tags, and labeled dice pools such as `"Attack": 2d6, "Damage": 1d8`, see [Dice Formulas & Customization](/resources/dice-formulas-and-customization/).
 
 > Tip: Save common formulas in the app so they’re one‑tap away during play.
 
@@ -70,9 +72,9 @@ Notes:
 - Count: `4d6 #>3`, `#<3`, `#>=5`, `#<=2`, `#=5`
 - Successes/Failures without discarding dice:
   - `6d6 #f<=2 #s>=5 #cs6 #cf1`
-  - Returns metadata with successes/failures and crits
+  - The app shows the Successes and critical counts under the dice
 
-Order matters. Example: `2d20 kh #cf #cs` drops the 1 before counting; move counts earlier if needed and put them in parentheses (e.g., `(2d20 #cf #cs) kh`). From app version 1.7.0, a keep after a count without the parentheses is an error.
+Order matters. Example: `2d20 kh #cf #cs` drops the 1 before counting; move counts earlier if needed and put them in parentheses (e.g., `(2d20 #cf #cs) kh`). A keep after a count without the parentheses is an error.
 
 #### Arithmetic
 - Parentheses for order of operations.
@@ -86,4 +88,4 @@ Order matters. Example: `2d20 kh #cf #cs` drops the 1 before counting; move coun
 
 ## References
 - Dart Dice Parser project: https://pub.dev/packages/dart_dice_parser
-- GitHub repository: https://github.com/greymour/dart_dice_parser
+- GitHub repository: https://github.com/Adventuresmith/dart-dice-parser

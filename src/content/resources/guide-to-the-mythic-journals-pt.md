@@ -5,7 +5,7 @@ category: "adventure-journals"
 order: 0
 icon: "fa-slab fa-regular fa-book-open"
 duration: "6 min de leitura"
-updated: "2025-09-21"
+updated: "2026-11-04"
 lang: "pt"
 tags: ["journals", "getting-started", "import", "export"]
 keywords:
@@ -30,8 +30,10 @@ related:
   - saving-and-managing-dice-formulas
 ---
 
+> Este guia descreve o Mythic GME 1.7.0 e posteriores.
+
 # O que é um diário de aventura
-Um Diário é o registro salvo do app para uma aventura ou campanha: um único lugar onde você anota o que aconteceu, por que aconteceu e o que mudou. No app, é armazenado como JSON; você pode exportá-lo como JSON (para ida e volta) ou Markdown (para leitura e compartilhamento junto com suas anotações). A exportação em Markdown serve só para leitura. Ela deixa de fora Listas Personalizadas, Trilhas de Progresso de Trama e Cenas-Chave, e o app não consegue importá-la.
+Um Diário é o registro salvo do app para uma aventura ou campanha: um único lugar onde você anota o que aconteceu, por que aconteceu e o que mudou. No app, é armazenado como JSON; você pode exportá-lo como JSON (para ida e volta) ou Markdown (para leitura e compartilhamento junto com suas anotações). A exportação em Markdown serve só para leitura. Ela deixa de fora Listas Personalizadas, Trilhas de Progresso de Trama, Cenas-Chave, Pontos de Progresso e o registro de cada dado, e o app não consegue importá-la.
 
 ## O que ele contém (resumo)
 
@@ -81,7 +83,7 @@ Contabilidade de fim de cena
 
 - Um arquivo por campanha ou aventura
 - Nomes que você pode escanear: `minha-aventura-2025-09.md` ou `diario-elderspire.md`
-- Backups: Salvar um Diário não cria um backup separado dele, então vá em Configurações, depois Arquivos, e use Exportar diário como JSON para guardar sua própria cópia. O app também tenta guardar uma cópia de backup quando move seus Diários para outro local de armazenamento ou para dentro ou fora do iCloud, e, nos apps para iOS, Android, Windows, macOS e Linux, quando uma restauração substitui um Diário. Na versão web, uma restauração não guarda cópia. Exceção: quando um salvamento bem-sucedido no iCloud encontra versões em conflito não resolvidas de um Diário, o app tenta copiar essas versões para backups antes de marcá-las como resolvidas. Um salvamento comum, sem conflito, não cria backup.
+- Backups: Salvar um Diário não cria um backup separado dele, então vá em Configurações, depois Arquivos, e use Exportar diário como JSON para guardar sua própria cópia. O app também tenta guardar uma cópia de backup quando uma mudança para outro local de armazenamento, para dentro ou fora do iCloud, ou Importar pasta anterior encontra o mesmo Diário nos dois lugares, e, nos apps para iOS, Android, Windows, macOS e Linux, quando uma restauração substitui um Diário. Na versão web, uma restauração não guarda cópia. Exceção: quando um salvamento bem-sucedido no iCloud encontra versões em conflito não resolvidas de um Diário, o app tenta copiar essas versões para backups antes de marcá-las como resolvidas. Um salvamento comum, sem conflito, não cria backup.
 - Exportações: use app → Configurações → Arquivos para exportar JSON (ida e volta) ou Markdown (compartilhável)
 
 ## Nenhuma programação necessária

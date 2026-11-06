@@ -12,6 +12,10 @@
     "categories": {
       "type": "array",
       "items": { "$ref": "#/$defs/TableCategoryInfo" }
+    },
+    "editedBuiltInCategoryIds": {
+      "type": ["array", "null"],
+      "items": { "type": "string" }
     }
   },
   "required": ["defaultCategories", "categories"],
@@ -26,7 +30,10 @@
         "sortOrder": { "type": "integer" },
         "isBuiltIn": { "type": "boolean" },
         "description": { "type": ["string", "null"] },
-        "displayNameTranslations": { "type": "object", "additionalProperties": { "type": "string" } }
+        "displayNameTranslations": { "type": ["object", "null"], "additionalProperties": { "type": "string" } },
+        "descriptionTranslations": { "type": ["object", "null"], "additionalProperties": { "type": "string" } },
+        "tags": { "type": ["array", "null"], "items": { "type": "string" } },
+        "source": { "type": ["string", "null"] }
       },
       "required": ["id", "displayName", "iconKey", "sortOrder", "isBuiltIn"]
     }
