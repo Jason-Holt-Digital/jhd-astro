@@ -80,7 +80,7 @@ O app grava os campos de nível superior declarados do diário em camelCase, por
 
 ### Versões diferentes do app
 
-A versão 1.6.8 do app gravava o esquema 4. A versão 1.7.0 e as posteriores gravam schemaVersion 6 e define minReaderVersion como a versão mais antiga que mantém todos os dados do Diário:
+A versão 1.6.8 do app gravava o esquema 4. A versão 1.7.0 e as posteriores gravam schemaVersion 6 e definem minReaderVersion como a versão mais antiga que mantém todos os dados do Diário:
 
 - minReaderVersion 4 quando a versão 1.6.8 mantém tudo. A 1.6.8 consegue abrir o Diário. Listas personalizadas e Pontos de Progresso não mudam isso: a 1.6.8 os mantém no arquivo, mas não os mostra.
 - minReaderVersion 6 quando o Diário tem dados que a 1.6.8 perderia ou leria errado. Isso inclui uma rolagem de dados registrada no modo de dados, uma cena adicionada na 1.7.0 (ela cria uma entrada de cena no Registro de Aventura), resultados de tabelas ligadas em um Evento Aleatório ou Foco do Evento, uma Trilha de Progresso com dados de Conclusão, Vantagem, Proteção ou Horror, uma Cena-Chave aguardando a próxima cena e um item de lista chamado Choose. A 1.6.8 mostra "Atualização necessária" para esse Diário.

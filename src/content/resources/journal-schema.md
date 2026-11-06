@@ -80,7 +80,7 @@ The app writes the journal's declared top-level fields in camelCase, for example
 
 ### Mixed app versions
 
-Version 1.6.8 of the app wrote schema 4. Version 1.7.0 and later write schemaVersion 6, and sets minReaderVersion to the oldest version that keeps all of the Journal's data:
+Version 1.6.8 of the app wrote schema 4. Version 1.7.0 and later write schemaVersion 6 and set minReaderVersion to the oldest version that keeps all of the Journal's data:
 
 - minReaderVersion 4 when version 1.6.8 keeps everything. 1.6.8 can open the Journal. Custom Lists and Progress Points don't change this: 1.6.8 keeps them in the file but doesn't show them.
 - minReaderVersion 6 when the Journal holds data that 1.6.8 would lose or misread. That includes a dice roll logged in dice mode, a scene added in 1.7.0 (it adds a scene entry to the Adventure Log), linked table results on a Random Event or Event Focus, a Progress Track with Conclusion, Leverage, Protection or Horror data, a Keyed Scene waiting for the next scene, and a list entry named Choose. 1.6.8 shows "Update required" for this Journal.
