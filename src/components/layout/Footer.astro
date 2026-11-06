@@ -19,6 +19,7 @@ const year = new Date().getFullYear();
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const contactHref = lang === "pt" ? "/pt/support#contact-panel" : "/support#contact-panel";
+const privacyHref = canonicalPath?.startsWith("/tomekeeper/") ? "/privacy/#tomekeeper" : l("privacy");
 
 function l(path: string) {
   return getRelativeLocaleUrl(lang, path);
@@ -150,7 +151,7 @@ function l(path: string) {
   <div class="container f-legal">
     <small>
       &copy; {year} Jason Holt Digital ·
-      <a href={l("privacy")}
+      <a href={privacyHref}
         ><i class="fa-slab fa-regular fa-lock" aria-hidden="true"></i>
         {t("footer.privacy")}</a
       > ·
