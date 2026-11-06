@@ -60,7 +60,7 @@ export function getApps(lang: Lang): AppEntry[] {
       accent: "#355781",
       icon: tomekeeperIcon,
       supportHref: "/tomekeeper/support/",
-      privacyHref: "/tomekeeper/privacy/",
+      privacyHref: "/privacy/#tomekeeper",
       englishOnly: true,
     },
     {

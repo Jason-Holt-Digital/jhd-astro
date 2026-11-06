@@ -17,6 +17,90 @@
     margin-inline: auto;
   }
 
+  .legal-updated {
+    margin: 0;
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+  }
+
+  .privacy-tabs {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .privacy-tabs__list {
+    display: flex;
+    border-bottom: var(--border-thick);
+  }
+
+  .privacy-tab {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 44px;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-surface-2);
+    border: var(--border-base);
+    border-bottom: none;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    transition: background-color 0.15s var(--easing-standard), color 0.15s var(--easing-standard);
+  }
+
+  .privacy-tab + .privacy-tab {
+    margin-left: -2px;
+  }
+
+  .privacy-tab:hover {
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+
+  .privacy-tab__icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: var(--border-subtle);
+  }
+
+  .privacy-tab[aria-selected="true"],
+  .privacy-tabs:not([data-enhanced]):not(:has(#tomekeeper:target)) .privacy-tab[href="#mythic-gme"],
+  .privacy-tabs:not([data-enhanced]):has(#tomekeeper:target) .privacy-tab[href="#tomekeeper"] {
+    z-index: 1;
+    background: var(--color-bg);
+    color: var(--color-text);
+    box-shadow: inset 0 4px 0 var(--tab-accent);
+  }
+
+  /* Covers the list's bottom border so the selected tab joins its panel. */
+  .privacy-tab[aria-selected="true"]::after,
+  .privacy-tabs:not([data-enhanced]):not(:has(#tomekeeper:target)) .privacy-tab[href="#mythic-gme"]::after,
+  .privacy-tabs:not([data-enhanced]):has(#tomekeeper:target) .privacy-tab[href="#tomekeeper"]::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    height: 3px;
+    background: var(--color-bg);
+  }
+
+  .privacy-panel {
+    display: grid;
+    gap: 1.5rem;
+    /* Linking to #tomekeeper should land with the tabs still in view, below the sticky header. */
+    scroll-margin-top: 170px;
+  }
+
+  .privacy-panel[hidden],
+  .privacy-tabs:not([data-enhanced]) #tomekeeper:not(:target),
+  .privacy-tabs:not([data-enhanced]):has(#tomekeeper:target) #mythic-gme {
+    display: none;
+  }
+
   .legal-article {
     background: #fff;
     border: var(--border-base);
@@ -124,6 +208,11 @@
     .legal-article {
       padding: 24px;
       gap: 1.5rem;
+    }
+
+    .privacy-tab {
+      flex: 1;
+      padding: 0.75rem;
     }
   }
 }
