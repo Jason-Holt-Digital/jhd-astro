@@ -95,6 +95,11 @@
     scroll-margin-top: 170px;
   }
 
+  .privacy-panel:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 4px;
+  }
+
   .privacy-panel[hidden],
   .privacy-tabs:not([data-enhanced]) #tomekeeper:not(:target),
   .privacy-tabs:not([data-enhanced]):has(#tomekeeper:target) #mythic-gme {

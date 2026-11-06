@@ -82,6 +82,7 @@ import tomekeeperIcon from "../assets/apps/tomekeeper-icon.png";
       tab.setAttribute('aria-controls', panels[i].id);
       panels[i].setAttribute('role', 'tabpanel');
       panels[i].setAttribute('aria-labelledby', tab.id);
+      panels[i].tabIndex = 0;
     });
 
     const select = (index: number, { focus = false, updateUrl = false } = {}) => {
@@ -97,7 +98,7 @@ import tomekeeperIcon from "../assets/apps/tomekeeper-icon.png";
 
     // A hash can name a panel or any heading inside one, such as #google-microsoft-amazon.
     const panelIndexForHash = () => {
-      const id = decodeURIComponent(location.hash.slice(1));
+      const id = location.hash.slice(1);
       const target = id ? document.getElementById(id)?.closest('[data-privacy-panel]') : null;
       return target ? panels.indexOf(target as HTMLElement) : -1;
     };
@@ -135,7 +136,7 @@ import tomekeeperIcon from "../assets/apps/tomekeeper-icon.png";
       const index = panelIndexForHash();
       if (index < 0) return;
       select(index);
-      document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView();
+      document.getElementById(location.hash.slice(1))?.scrollIntoView();
     });
   }
 </script>
