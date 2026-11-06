@@ -18,7 +18,7 @@ const { class: className = "legal-article" } = Astro.props;
     <li>Your Journals, Scenes, Lists, tables, notes, questions and rolls stay on your device unless you choose to export, share, sync or send them.</li>
     <li>I don't sell data, and nothing goes to advertisers or data brokers. Nothing is used to track you across other companies' apps or websites.</li>
     <li>I don't use any advertising or analytics product from Google, Microsoft or Amazon. Some of my service providers rent servers from them (see <a href="#google-microsoft-amazon">Google, Microsoft and Amazon</a>).</li>
-    <li>From version 1.7, error reports are on so I can fix crashes, and you can turn them off. Basic counts and Usage sharing stay off until you say yes. You can change each answer at any time.</li>
+    <li>From version 1.7.0, error reports are on so I can fix crashes, and you can turn them off. Basic counts and Usage sharing stay off until you say yes. You can change each answer at any time.</li>
   </ul>
 
   <h2>What Apps This Covers</h2>
@@ -28,8 +28,8 @@ const { class: className = "legal-article" } = Astro.props;
     <li><strong>Mythic GME Digital</strong> — Windows, macOS, and Linux, including the versions sold on itch.io</li>
   </ul>
   <p>
-    Version 1.7 changes what the apps send. The next sections describe 1.7 and later.
-    <a href="#before-1-7">Versions before 1.7</a> describes the version most people have installed today.
+    Version 1.7.0 changes what the apps send. The next sections describe Mythic GME 1.7.0 and later.
+    <a href="#before-1-7">Versions before 1.7.0</a> describes the version most people have installed today.
   </p>
 
   <h2>What Stays on Your Device</h2>
@@ -39,7 +39,7 @@ const { class: className = "legal-article" } = Astro.props;
     host your game content on any server of mine.
   </p>
 
-  <h2>What the App Sends (Version 1.7 and Later)</h2>
+  <h2>What the App Sends (Mythic GME 1.7.0 and Later)</h2>
 
   <h3>Purchases</h3>
   <p>
@@ -81,7 +81,10 @@ const { class: className = "legal-article" } = Astro.props;
     When something goes wrong, the app sends an error report so I can find and fix the bug. A report contains the error
     type, where it happened in the app's code, a short description I wrote for that error, the kinds of steps the app
     took just before (such as opening a dialog), the app version and update number, and your device model and operating
-    system. With error reports on, the app also sends how long it takes to start and to open screens, and how smoothly
+    system. Reports sent to PostHog from iPhone, iPad, Android and Mac also carry your device's manufacturer and type
+    (such as phone or tablet), your screen size, your language and region settings, and your time zone. They also
+    include your network type, such as Wi-Fi or mobile data, and on Android they include your mobile carrier's name.
+    With error reports on, the app also sends how long it takes to start and to open screens, and how smoothly
     screens draw, for a sample of sessions, and whether a session ended in a crash, so I can see which versions are stable.
   </p>
   <p>
@@ -145,14 +148,14 @@ const { class: className = "legal-article" } = Astro.props;
     <li>Your advertising ID</li>
   </ul>
 
-  <h2 id="before-1-7">Versions Before 1.7</h2>
-  <p>This is what versions 1.6 and earlier send. Most people have 1.6.7 installed today.</p>
+  <h2 id="before-1-7">Versions Before 1.7.0</h2>
+  <p>This is what versions 1.6 and earlier send. Most people have 1.6.8 installed today.</p>
   <ul>
     <li>
       <strong>Error reports</strong> go to Sentry from every installed copy. They include the error, the app version, your
       device model and operating system, a sample of performance timings, and counts of app sessions. To help me fix
       problems with how Journals are named, opened and saved, a report about a file error can include the name of the
-      Journal or file and the folder it was in, which may contain your computer's user name. Version 1.7 no longer sends
+      Journal or file and the folder it was in, which may contain your computer's user name. Version 1.7.0 no longer sends
       these details.
     </li>
     <li>
@@ -165,9 +168,9 @@ const { class: className = "legal-article" } = Astro.props;
     </li>
     <li>
       <strong>Session Replay</strong> is off unless an adult turned it on. With it on, iPhone, iPad and Android send Sentry a
-      recording when an error happens, with text and images masked. Version 1.7 removes Session Replay.
+      recording when an error happens, with text and images masked. Version 1.7.0 removes Session Replay.
     </li>
-    <li><strong>Purchases</strong> and <strong>updates</strong> work as described for 1.7.</li>
+    <li><strong>Purchases</strong> and <strong>updates</strong> work as described for 1.7.0.</li>
   </ul>
 
   <h2>Who Receives Data</h2>
@@ -179,7 +182,7 @@ const { class: className = "legal-article" } = Astro.props;
   <ul>
     <li>
       <strong>PostHog</strong> receives basic counts, error reports, warning and error logs, Usage sharing and feature switches,
-      plus analytics from versions before 1.7.
+      plus analytics from versions before 1.7.0.
       These records are stored in the United States on Amazon Web Services. Transfers rely on the EU-U.S. Data Privacy Framework and Standard
       Contractual Clauses. The PostHog account is on a paid plan, so product analytics and diagnostic events are kept for
       seven years. On the free plan that window is one year. PostHog does not let me set a shorter window for one kind of
@@ -252,7 +255,7 @@ const { class: className = "legal-article" } = Astro.props;
     <li><strong>Basic counts:</strong> Settings, Analytics. Off until you turn them on.</li>
     <li><strong>Error reports:</strong> Settings, Analytics. On until you turn them off.</li>
     <li><strong>Usage sharing:</strong> Settings, Analytics. Off until you turn it on.</li>
-    <li><strong>First-run dialog:</strong> the first time you open 1.7, the app explains these choices. Error reports start on; nothing else is sent until you turn it on.</li>
+    <li><strong>First-run dialog:</strong> the first time you open 1.7.0 or later, the app explains these choices. Error reports start on; nothing else is sent until you turn it on.</li>
     <li><strong>Your device:</strong> your operating system's privacy settings control what it shares with Apple, Google or Microsoft.</li>
   </ul>
 
@@ -260,8 +263,8 @@ const { class: className = "legal-article" } = Astro.props;
   <p>For people in the European Union and the United Kingdom, I rely on:</p>
   <ul>
     <li><strong>Providing the service you asked for:</strong> checking purchases and delivering updates.</li>
-    <li><strong>Consent:</strong> basic counts and Usage sharing in version 1.7 and later, and analytics in earlier versions. You can withdraw it at any time in Settings.</li>
-    <li><strong>Legitimate interests:</strong> error reports, so I can keep the app working, and feature switches, so a fix can reach every installation. In version 1.7 and later you can object to error reports at any time by turning them off in Settings.</li>
+    <li><strong>Consent:</strong> basic counts and Usage sharing in version 1.7.0 and later, and analytics in earlier versions. You can withdraw it at any time in Settings.</li>
+    <li><strong>Legitimate interests:</strong> error reports, so I can keep the app working, and feature switches, so a fix can reach every installation. In version 1.7.0 and later you can object to error reports at any time by turning them off in Settings.</li>
     <li><strong>Replying to you:</strong> when you email me.</li>
   </ul>
 
@@ -271,13 +274,13 @@ const { class: className = "legal-article" } = Astro.props;
     to processing of your personal information, to withdraw consent, and to complain to a privacy regulator.
   </p>
   <p>
-    In version 1.7 and later, basic counts and error reports can't be matched to you, by design: counts carry a random ID
+    In version 1.7.0 and later, basic counts and error reports can't be matched to you, by design: counts carry a random ID
     that changes every month, and error reports carry one the app doesn't show you, so I can't find them for one
     person. Two things can be matched: Usage sharing records, by your usage
     ID, which you can copy from Settings, under Analytics; and purchase records, by your store transaction ID.
   </p>
   <p>
-    Versions before 1.7 used IDs the app doesn't show you: PostHog's ID for analytics, and a device ID in some error
+    Versions before 1.7.0 used IDs the app doesn't show you: PostHog's ID for analytics, and a device ID in some error
     reports. I can't see those IDs or connect them to you, so I can't find or delete one person's records from those
     versions. Turning analytics off in those versions stops new analytics records, and error reports expire from Sentry
     within 90 days.

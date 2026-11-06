@@ -38,12 +38,12 @@ approved section by section.
 Local app facts checked against
 `/Users/jholt/development/jhd-business/mythicgme2e`:
 
-- Mythic GME 1.7 (November 2026 revised design) behavior. The 1.6 notes below this list are history.
+- Mythic GME 1.7.0 (November 2026 revised design) behavior. The 1.6 notes below this list are history.
 - Sent from installed native release apps (not web, not debug, and gated by age-signal rules):
-  - Error reports (on by default, with a Settings > Analytics switch to turn them off) go to Sentry and PostHog with a random Error ID, scrubbed context, and 30-day diagnostic log retention in PostHog.
+  - Error reports (on by default, with a Settings > Analytics switch to turn them off) go to Sentry and PostHog with a random Error ID, scrubbed context (PostHog SDK reports from iPhone, iPad, Android and Mac also carry device manufacturer, model and type, OS, screen size, locale, time zone, network type (Wi-Fi or cellular), and carrier name on Android), and 30-day diagnostic log retention in PostHog.
   - Anonymous feature-rollout flag checks go to PostHog with a fresh per-request UUID and a 0-99 rollout bucket.
   - Basic counts (off until opted in on first run or in Settings > Analytics) go to PostHog with a monthly rotating random Count ID, covering active installs, version/platform/country mix (country-level only; city/region GeoIP is scrubbed), and purchase/restore/Expanded Features access outcome counts without transaction IDs or Usage IDs.
-  - Usage sharing (off until opted in) adds feature-use events under a separate Usage ID that is deleted on opt-out. Session Replay is removed in 1.7.
+  - Usage sharing (off until opted in) adds feature-use events under a separate Usage ID that is deleted on opt-out. Session Replay is removed in 1.7.0.
 - Store builds process purchases and restores through RevenueCat under RevenueCat's own anonymous ID (never joined to PostHog or Sentry).
 - Current app version in `pubspec.yaml`: `1.6.4+1117`.
 - Current dependencies include `posthog_flutter` and `sentry_flutter`.

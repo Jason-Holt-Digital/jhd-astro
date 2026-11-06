@@ -13,7 +13,7 @@ import PageHeader from '../../components/layout/PageHeader.astro';
   <PageHeader
     title="Política de Privacidade"
     subtitle="Sua privacidade, protegida"
-    description="Coleta mínima de dados, armazenamento local e controles claros. Última atualização: 1 de novembro de 2026"
+    description="Coleta mínima de dados, armazenamento local e controles claros. Última atualização: 6 de novembro de 2026"
     accent="Privacidade"
     layout="left"
     icon="fa-solid fa-shield-check"
@@ -46,7 +46,7 @@ import PageHeader from '../../components/layout/PageHeader.astro';
           <li>Seus Diários, Cenas, Listas, tabelas, notas, perguntas e rolagens ficam no seu dispositivo, a menos que você decida exportar, compartilhar, sincronizar ou enviar esse conteúdo.</li>
           <li>Eu não vendo dados, e nada vai para anunciantes ou corretores de dados. Nada é usado para rastrear você em apps ou sites de outras empresas.</li>
           <li>Não uso nenhum produto de publicidade ou de análise do Google, da Microsoft ou da Amazon. Alguns dos meus prestadores de serviço alugam servidores dessas empresas (veja <a href="#google-microsoft-amazon">Google, Microsoft e Amazon</a>).</li>
-          <li>A partir da versão 1.7, os relatórios de erro ficam ativados para que eu possa corrigir falhas, e você pode desativá-los. As contagens básicas e o Compartilhamento de dados de uso ficam desativados até você dizer sim. Você pode mudar cada resposta quando quiser.</li>
+          <li>A partir da versão 1.7.0, os relatórios de erro ficam ativados para que eu possa corrigir falhas, e você pode desativá-los. As contagens básicas e o Compartilhamento de dados de uso ficam desativados até você dizer sim. Você pode mudar cada resposta quando quiser.</li>
         </ul>
 
         <h2>Quais apps esta política cobre</h2>
@@ -56,8 +56,8 @@ import PageHeader from '../../components/layout/PageHeader.astro';
           <li><strong>Mythic GME Digital</strong> — Windows, macOS e Linux, incluindo as versões vendidas no itch.io</li>
         </ul>
         <p>
-          A versão 1.7 muda o que os apps enviam. As próximas seções descrevem a versão 1.7 e as posteriores.
-          <a href="#antes-da-1-7">Versões anteriores à 1.7</a> descreve a versão que a maioria das pessoas tem instalada hoje.
+          A versão 1.7.0 muda o que os apps enviam. As próximas seções descrevem o Mythic GME 1.7.0 e as versões posteriores.
+          <a href="#antes-da-1-7">Versões anteriores à 1.7.0</a> descreve a versão que a maioria das pessoas tem instalada hoje.
         </p>
 
         <h2>O que fica no seu dispositivo</h2>
@@ -68,7 +68,7 @@ import PageHeader from '../../components/layout/PageHeader.astro';
           meu.
         </p>
 
-        <h2>O que o app envia (versão 1.7 e posteriores)</h2>
+        <h2>O que o app envia (Mythic GME 1.7.0 e posteriores)</h2>
 
         <h3>Compras</h3>
         <p>
@@ -113,10 +113,13 @@ import PageHeader from '../../components/layout/PageHeader.astro';
           Quando algo dá errado, o app envia um relatório de erro para que eu encontre e corrija o problema. Um relatório
           contém o tipo de erro, onde ele aconteceu no código do app, uma descrição curta que eu escrevi para esse erro, os
           tipos de passos que o app executou logo antes (como abrir uma caixa de diálogo), a versão do app e o número da
-          atualização, além do modelo do seu dispositivo e do sistema operacional. Com os relatórios de erro ativados, o
-          app também envia quanto tempo leva para iniciar e para abrir cada tela, e se as telas são desenhadas com fluidez,
-          em uma amostra das sessões, e se uma sessão
-          terminou em falha, para que eu veja quais versões estão estáveis.
+          atualização, além do modelo do seu dispositivo e do sistema operacional. Os relatórios enviados ao PostHog a partir
+          de iPhone, iPad, Android e Mac também trazem o fabricante e o tipo do seu dispositivo (como celular ou tablet), o
+          tamanho da tela, as suas configurações de idioma e região e o seu fuso horário. Eles também
+          incluem o tipo de rede, como Wi-Fi ou dados móveis, e no Android incluem o nome da sua operadora de celular.
+          Com os relatórios de erro ativados, o app também envia quanto tempo leva para iniciar e para abrir cada
+          tela, e se as telas são desenhadas com fluidez, em uma amostra das sessões, e se uma sessão terminou em falha,
+          para que eu veja quais versões estão estáveis.
         </p>
         <p>
           Os relatórios trazem um ID aleatório para a sua instalação, para que
@@ -183,15 +186,15 @@ import PageHeader from '../../components/layout/PageHeader.astro';
           <li>Seu ID de publicidade</li>
         </ul>
 
-        <h2 id="antes-da-1-7">Versões anteriores à 1.7</h2>
-        <p>Isto é o que as versões 1.6 e anteriores enviam. A maioria das pessoas tem a 1.6.7 instalada hoje.</p>
+        <h2 id="antes-da-1-7">Versões anteriores à 1.7.0</h2>
+        <p>Isto é o que as versões 1.6 e anteriores enviam. A maioria das pessoas tem a 1.6.8 instalada hoje.</p>
         <ul>
           <li>
             <strong>Relatórios de erro</strong> vão para o Sentry a partir de toda cópia instalada. Eles incluem o erro, a
             versão do app, o modelo do seu dispositivo e o sistema operacional, uma amostra de tempos de desempenho e
             contagens de sessões do app. Para me ajudar a corrigir problemas com a forma como os Diários são nomeados,
             abertos e salvos, um relatório sobre um erro de arquivo pode incluir o nome do Diário ou do arquivo e a pasta
-            onde ele estava, que pode conter o nome de usuário do seu computador. A versão 1.7 não envia mais esses
+            onde ele estava, que pode conter o nome de usuário do seu computador. A versão 1.7.0 não envia mais esses
             detalhes.
           </li>
           <li>
@@ -206,9 +209,9 @@ import PageHeader from '../../components/layout/PageHeader.astro';
           <li>
             <strong>Repetição da sessão</strong> fica desativada, a menos que um adulto a tenha ativado. Com ela ativada,
             iPhone, iPad e Android enviam ao Sentry uma gravação quando acontece um erro, com textos e imagens ocultos. A
-            versão 1.7 remove a Repetição da sessão.
+            versão 1.7.0 remove a Repetição da sessão.
           </li>
-          <li><strong>Compras</strong> e <strong>atualizações</strong> funcionam como descrito para a versão 1.7.</li>
+          <li><strong>Compras</strong> e <strong>atualizações</strong> funcionam como descrito para a versão 1.7.0.</li>
         </ul>
 
         <h2>Quem recebe dados</h2>
@@ -220,7 +223,7 @@ import PageHeader from '../../components/layout/PageHeader.astro';
         <ul>
           <li>
             <strong>PostHog</strong> recebe contagens básicas, relatórios de erro, avisos e erros do registro, Compartilhamento de
-            dados de uso e ajustes de recursos, além de análises das versões anteriores à 1.7. Esses dados ficam nos Estados Unidos, na
+            dados de uso e ajustes de recursos, além de análises das versões anteriores à 1.7.0. Esses dados ficam nos Estados Unidos, na
             Amazon Web Services. As transferências se baseiam no EU-U.S. Data Privacy Framework e em Cláusulas Contratuais
             Padrão. A conta do PostHog está em um plano pago, então análises de produto e eventos de diagnóstico ficam
             guardados por sete anos. No plano gratuito esse prazo é de um ano. O PostHog não permite um prazo menor para um
@@ -299,7 +302,7 @@ import PageHeader from '../../components/layout/PageHeader.astro';
           <li><strong>Contagens básicas:</strong> Configurações, Análises. Desativadas até você ativar.</li>
           <li><strong>Relatórios de erro:</strong> Configurações, Análises. Ativados até você desativar.</li>
           <li><strong>Compartilhamento de dados de uso:</strong> Configurações, Análises. Desativado até você ativar.</li>
-          <li><strong>Tela de primeira abertura:</strong> na primeira vez que você abrir a versão 1.7, o app explica essas escolhas. Os relatórios de erro começam ativados; nada mais é enviado até você ativar.</li>
+          <li><strong>Tela de primeira abertura:</strong> na primeira vez que você abrir a versão 1.7.0 ou posterior, o app explica essas escolhas. Os relatórios de erro começam ativados; nada mais é enviado até você ativar.</li>
           <li><strong>Seu dispositivo:</strong> as configurações de privacidade do seu sistema operacional controlam o que ele compartilha com a Apple, o Google ou a Microsoft.</li>
         </ul>
 
@@ -307,8 +310,8 @@ import PageHeader from '../../components/layout/PageHeader.astro';
         <p>Para pessoas no Brasil, na União Europeia e no Reino Unido, eu me baseio em:</p>
         <ul>
           <li><strong>Prestação do serviço que você pediu:</strong> verificar compras e entregar atualizações.</li>
-          <li><strong>Consentimento:</strong> contagens básicas e Compartilhamento de dados de uso na versão 1.7 e posteriores, e análises nas versões anteriores. Você pode retirá-lo quando quiser em Configurações.</li>
-          <li><strong>Legítimo interesse:</strong> relatórios de erro, para que eu mantenha o app funcionando, e ajustes de recursos, para que uma correção chegue a todas as instalações. Na versão 1.7 e posteriores, você pode se opor aos relatórios de erro a qualquer momento desativando-os em Configurações.</li>
+          <li><strong>Consentimento:</strong> contagens básicas e Compartilhamento de dados de uso na versão 1.7.0 e posteriores, e análises nas versões anteriores. Você pode retirá-lo quando quiser em Configurações.</li>
+          <li><strong>Legítimo interesse:</strong> relatórios de erro, para que eu mantenha o app funcionando, e ajustes de recursos, para que uma correção chegue a todas as instalações. Na versão 1.7.0 e posteriores, você pode se opor aos relatórios de erro a qualquer momento desativando-os em Configurações.</li>
           <li><strong>Responder a você:</strong> quando você me escreve.</li>
         </ul>
 
@@ -325,14 +328,14 @@ import PageHeader from '../../components/layout/PageHeader.astro';
           oposição, retirada de consentimento e reclamação à CNPD ou à autoridade de controle aplicável.
         </p>
         <p>
-          Na versão 1.7 e posteriores, as contagens básicas e os relatórios de erro não podem ser ligados a você, por
+          Na versão 1.7.0 e posteriores, as contagens básicas e os relatórios de erro não podem ser ligados a você, por
           projeto: as contagens trazem um ID aleatório que muda todo mês, e os relatórios de erro trazem um que o app não
           mostra, então não consigo encontrá-los para uma pessoa. Duas coisas podem
           ser encontradas: os registros do Compartilhamento de dados de uso, pelo seu ID de uso, que você pode copiar em
           Configurações, em Análises; e os registros de compra, pelo ID da transação da loja.
         </p>
         <p>
-          As versões anteriores à 1.7 usavam IDs que o app não mostra: o ID do PostHog nas análises e um ID do dispositivo
+          As versões anteriores à 1.7.0 usavam IDs que o app não mostra: o ID do PostHog nas análises e um ID do dispositivo
           em alguns relatórios de erro. Não consigo ver esses IDs nem ligá-los a você, então não consigo encontrar nem
           apagar os registros de uma pessoa dessas versões. Desativar as análises nessas versões interrompe novos
           registros, e os relatórios de erro expiram no Sentry em até 90 dias.
