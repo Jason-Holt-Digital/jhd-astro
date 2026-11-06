@@ -1,0 +1,53 @@
+---
+import { getApps, type Lang } from "../../../lib/apps";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const isPt = lang === "pt";
+const listed = getApps(lang).filter((app) => app.supportHref || app.privacyHref);
+const englishNote = isPt ? " (em inglês)" : "";
+---
+
+<section class="section apps-help" aria-labelledby="apps-help-title">
+  <div class="container">
+    <header class="section-head section-head--left" aria-hidden="true">
+      <span class="accent-line" aria-hidden="true"></span>
+      <span class="badge-text">{isPt ? "Ajuda e políticas" : "Help and policies"}</span>
+    </header>
+    <h2 id="apps-help-title" class="section-title section-title--left">
+      {isPt ? "Suporte, privacidade e atualizações" : "Support, privacy, and updates"}
+    </h2>
+    <div class="apps-help__grid">
+      {listed.map((app) => (
+        <article class="apps-help__card" style={`--app-accent:${app.accent}`}>
+          <h3>{app.name}</h3>
+          <ul>
+            {app.supportHref && (
+              <li><a href={app.supportHref}><i class="fa-slab fa-regular fa-life-ring" aria-hidden="true"></i>{isPt ? "Suporte" : "Support"}{app.englishOnly && englishNote}</a></li>
+            )}
+            {app.privacyHref && (
+              <li><a href={app.privacyHref}><i class="fa-slab fa-regular fa-shield" aria-hidden="true"></i>{isPt ? "Política de privacidade" : "Privacy policy"}{app.englishOnly && englishNote}</a></li>
+            )}
+            {app.slug === "mythic-gme" && (
+              <>
+                <li><a href={isPt ? "/pt/blog/" : "/blog/"}><i class="fa-slab fa-regular fa-newspaper" aria-hidden="true"></i>{isPt ? "Notas de lançamento" : "Release notes"}</a></li>
+                <li><a href="http://feedback.jasonholtdigital.com/board" target="_blank" rel="noopener noreferrer"><i class="fa-slab fa-regular fa-lightbulb" aria-hidden="true"></i>{isPt ? "Solicitações de recursos" : "Feature requests"}</a></li>
+                <li><a href="https://discord.gg/PEDHrhzcnk" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-discord" aria-hidden="true"></i>Discord</a></li>
+              </>
+            )}
+          </ul>
+        </article>
+      ))}
+      <article class="apps-help__card" id="open-source">
+        <h3>Open source</h3>
+        <ul>
+          <li><a href="https://github.com/kingdomseed/icloud_storage_plus" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i>icloud_storage_plus</a></li>
+          <li><a href="https://github.com/kingdomseed/mythic-dice-parser" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i>mythic_dice_parser</a></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>

@@ -262,6 +262,10 @@
     box-shadow: var(--shadow-lift);
     padding: 8px;
     min-width: 260px;
+    /* The header is sticky, so page scrolling cannot reveal a menu taller
+       than a short window; the menu scrolls itself instead. */
+    max-height: calc(100dvh - 72px);
+    overflow-y: auto;
     display: none;
     z-index: 20;
   }
@@ -282,6 +286,21 @@
   }
   .menu a:hover {
     background: #f2f6ff;
+  }
+  .menu-label {
+    padding: 10px 12px 4px;
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+  .menu-label:not(:first-child) {
+    margin-top: 6px;
+  }
+  .menu .menu-soon,
+  .nav-mobile-downloads .menu-soon {
+    color: var(--color-text-muted);
   }
 
   /* Mobile Navigation */

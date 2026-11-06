@@ -1,9 +1,10 @@
 # Apps Page Flow Inventory
 
-Last updated: 2026-05-28
+Last updated: 2026-11-05
 
-This is an inventory of the current production English Apps page. It records the
-page flow before rewriting so we can decide what each section is supposed to do.
+This is an inventory of the English Mythic GME page (formerly the Apps page). It
+records the page flow before rewriting so we can decide what each section is
+supposed to do.
 
 Scope note: this pass is copy refinement only. Section order, section removal,
 new sections, and v2 page strategy belong to the v2 website work or a later
@@ -12,8 +13,12 @@ is approved.
 
 ## Source Files
 
-- Route: `src/pages/apps.astro`
-- Page assembly, page metadata, and English/PT copy: `src/components/pages/AppsPage.astro`
+This copy now lives on the Mythic GME page. `/apps/` is a hub that links to
+each app's page (`src/components/pages/AppsHubPage.astro`), and the Adventure
+Crafter teaser moved to `/adventure-crafter/`.
+
+- Route: `src/pages/mythic-gme.astro`
+- Page assembly, page metadata, and English/PT copy: `src/components/pages/MythicGmePage.astro`
 - App product sections: `src/components/apps/AppSection.astro`
 - Product feature card: `src/components/apps/FeatureCard.astro`
 - Official content card: `src/components/apps/OfficialContent.astro`
@@ -25,12 +30,12 @@ is approved.
 
 | Order | Surface | Current copy / content | Current job | Flow notes |
 | --- | --- | --- | --- | --- |
-| 0 | Metadata | Title: "Apps - Mythic GME 2e Companions | Jason Holt Digital"; description: "Compare the official Mythic GME 2e apps for mobile and desktop, see what each version includes, and download on your platform."; OG description: "Official Mythic GME 2e apps for mobile and desktop, built to keep your tools close while you play." | Search/social first impression. | Approved. Keeps SEO utility while reducing repetition and adding a light player-outcome line. |
+| 0 | Metadata | Title: "Mythic GME 2e Apps — Mobile & Desktop | Jason Holt Digital"; description: "Compare the official Mythic GME 2e apps for mobile and desktop, see what each version includes, and download on your platform."; OG description: "Official Mythic GME 2e apps for mobile and desktop, built to keep your tools close while you play." | Search/social first impression. | Approved. Keeps SEO utility while reducing repetition and adding a light player-outcome line. |
 | 1 | Page header | Title: "Mythic GME Apps"; subtitle: "Mobile & Desktop, with you wherever you play."; description: "Official Mythic GME 2e apps for keeping the tools of play close at hand." | Orient visitors to the Apps page and establish official status. | Approved. Keeps the practical title/subtitle and sharpens the description. |
 | 2 | Mobile app section | Badge: "Mobile App"; title: "Mythic GME Mobile"; lead: "Solo role-players who want less lookup and more story wherever they play."; detail headings: "What it does", "Official content", "Download now". | Present the mobile app as the portable play surface. | Approved. The lead keeps the existing idea and smooths the ending. |
 | 3 | Mobile features | Fate Questions with Fate Chart/Fate Check, Fate Question-first flow, Characters/Threads/Features/Scenes, Adventure Log, Custom Tables, saved dice formulas, accessibility modes. | Explain the mobile feature set. | Approved. Uses canonical casing and shifts bullets toward player actions. Keep `Scenes` here unless a later precision pass chooses `Scene Summary`. |
 | 4 | Mobile official content and unlocks | 50 core Mythic GME 2e tables, 160+ Expanded Features tables, Random Event and Prepared Adventure Event Focus tables, major-release content updates, and permanent paid unlocks. | Build trust around official content and pricing. | Approved. Uses clearer table language and explains paid unlocks directly without `IAP`, `pro features`, or the Working Copy comparison. |
-| 5 | Adventure Crafter divider | Badge: "Coming Soon"; title: "Adventure Crafter"; lead: "A future companion app for creating adventures with guided prompts, hooks, and twists." | Tease the next app/product. | Approved. Keeps the teaser concrete without overpromising dates or launch details. |
+| 5 | Adventure Crafter divider (moved) | Not on this page. The approved teaser copy ("A future companion app for creating adventures with guided prompts, hooks, and twists.") is now the `/adventure-crafter/` page (`src/components/pages/AdventureCrafterPage.astro`). | Tease the next app/product. | Moved off the Mythic GME page when `/apps/` became a hub. |
 | 6 | Desktop app section | Badge: "Desktop App"; title: "Mythic GME Digital"; lead: "Windows, macOS, and Linux players who want more room for longer Mythic sessions."; detail headings: "What it does", "Official content", "Availability". | Present desktop as the long-session play surface. | Approved. Keeps platform clarity and makes the desktop reason more player-facing than `layout`. |
 | 7 | Desktop features | All Mythic GME Mobile features and systems on desktop, arrange Panels, undo many actions, search Help Center, keep multiple tools visible, everything included up front. | Explain the desktop feature set and pricing. | Approved. Keeps practical benefits, uses `Panels`, and avoids overclaiming with `any action`. |
 | 8 | Desktop official content and disclaimer | Official Mythic content for desktop play, tables and features unlocked up front, no subscriptions, and a Mac App Store bundle note. | Clarify content scope and purchase model. | Approved. Uses plain official-content language instead of `Mythic-verse` in this spot and avoids a direct no-IAP claim that would conflict with the Mac App Store note. |
@@ -41,18 +46,17 @@ is approved.
 
 ## Current Flow In Plain English
 
-The Apps page currently says:
+The Mythic GME page currently says:
 
 1. These are licensed Mythic companion apps for mobile and desktop.
 2. Mythic GME Mobile helps solo role-players keep story moving anywhere.
 3. The mobile app includes core Mythic tools, official content, custom tools,
    accessibility options, and permanent unlocks.
-4. Adventure Crafter is coming later.
-5. Mythic GME Digital is the desktop version for longer sessions.
-6. The desktop app includes desktop layout controls, undo, help, official
+4. Mythic GME Digital is the desktop version for longer sessions.
+5. The desktop app includes desktop layout controls, undo, help, official
    content, and a different purchase model depending on store.
-7. Players can buy the original books from DriveThruRPG.
-8. Players can find privacy, roadmap, support, feedback, and open source links.
+6. Players can buy the original books from DriveThruRPG.
+7. Players can find privacy, roadmap, support, feedback, and open source links.
 
 ## What Already Works
 

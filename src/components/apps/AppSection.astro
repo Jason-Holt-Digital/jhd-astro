@@ -23,6 +23,7 @@ interface Props {
   imageAlt?: string;
   images?: ImageMetadata[];
   lang?: 'en' | 'pt';
+  id?: string;
 }
 
 const {
@@ -38,6 +39,7 @@ const {
   imageAlt = "",
   images,
   lang = 'en',
+  id,
 } = Astro.props;
 
 const isPt = lang === 'pt';
@@ -55,7 +57,7 @@ const screenshotAlt = (index: number) => isPt
   : `${title} screenshot ${index}`;
 ---
 
-<section class:list={['app-section', { 'app-section--reverse': reverse }]}>
+<section id={id} class:list={['app-section', { 'app-section--reverse': reverse }]}>
   <!-- Layer reserved for future decoration; hidden by default -->
   <div class="grid-layer" aria-hidden="true"></div>
   <div class="container">

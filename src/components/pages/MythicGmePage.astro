@@ -144,13 +144,13 @@ const desktopApp = {
 <BaseLayout
   title={isPt
     ? "Apps Mythic GME 2e — Mobile e Desktop | Jason Holt Digital"
-    : "Apps — Mythic GME 2e Companions | Jason Holt Digital"}
+    : "Mythic GME 2e Apps — Mobile & Desktop | Jason Holt Digital"}
   description={isPt
     ? "Compare os apps oficiais Mythic GME 2e para mobile e desktop, veja o que cada versão inclui e baixe na sua plataforma."
     : "Compare the official Mythic GME 2e apps for mobile and desktop, see what each version includes, and download on your platform."}
-  canonicalPath={isPt ? "/pt/apps/" : "/apps/"}
+  canonicalPath={isPt ? "/pt/mythic-gme/" : "/mythic-gme/"}
   lang={lang}
-  alternatePath={isPt ? "/apps/" : "/pt/apps/"}
+  alternatePath={isPt ? "/mythic-gme/" : "/pt/mythic-gme/"}
   ogTitle={isPt
     ? "Apps Mythic GME 2e — Mobile e Desktop | Jason Holt Digital"
     : "Mythic GME 2e Apps — Mobile & Desktop | Jason Holt Digital"}
@@ -170,6 +170,7 @@ const desktopApp = {
 
   <!-- Mobile App Section (Left-aligned content) -->
   <AppSection
+    id="mobile"
     title={mobileApp.title}
     whoItsFor={mobileApp.whoItsFor}
     features={mobileApp.features}
@@ -182,39 +183,9 @@ const desktopApp = {
 	    lang={lang}
 	  />
 
-  <!-- Adventure Crafter Divider Section -->
-  <section
-    class="adventure-crafter-divider"
-    style="border-top: 4px solid var(--color-border); border-bottom: 4px solid var(--color-border); padding: 3rem 0;"
-  >
-    <div class="container">
-      <header
-        class="section-head"
-        style="justify-content: center; margin-bottom: 1.5rem;"
-        aria-hidden="true"
-      >
-        <span class="accent-line" aria-hidden="true"></span>
-        <span class="badge-text">{isPt ? "Em Breve" : "Coming Soon"}</span>
-      </header>
-      <h2
-        class="section-title"
-        style="text-align: center; margin-bottom: 1rem;"
-      >
-        Adventure Crafter
-      </h2>
-      <p
-        class="lead-accent"
-        style="text-align: center; margin-bottom: 0;"
-      >
-        {isPt
-          ? "Um futuro app companheiro para criar aventuras com prompts guiados, ganchos e reviravoltas."
-          : "A future companion app for creating adventures with guided prompts, hooks, and twists."}
-      </p>
-    </div>
-  </section>
-
   <!-- Desktop App Section (Left-aligned content) -->
   <AppSection
+    id="desktop"
     title={desktopApp.title}
     whoItsFor={desktopApp.whoItsFor}
     features={desktopApp.features}
