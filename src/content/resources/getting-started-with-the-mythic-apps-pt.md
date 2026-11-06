@@ -36,6 +36,9 @@ steps:
   - title: "Use Listas, Cenas e Tabelas de Significado"
     body: "É uma boa ideia adicionar Personagens e Tramas às suas Listas antes de começar seu primeiro jogo. Use Cenas para resumir ou prever, e Tabelas de Significado para interpretar os resultados."
 ---
+
+> Este guia descreve o Mythic GME 1.7.0 e posteriores.
+
 Bem-vindo! Este guia rápido parte do próprio app: você começa na Tabela de Destino e se move entre Listas, Cenas e Tabelas de Significado enquanto joga. Seus Diários ficam armazenados no seu dispositivo. No iPhone, no iPad e na versão da Mac App Store, você pode ativar Sincronização do iCloud para mantê-los no iCloud.
 
 > O que você precisa: Traga para a mesa

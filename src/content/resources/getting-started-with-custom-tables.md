@@ -64,6 +64,8 @@ related:
   - importing-and-exporting-custom-tables
 ---
 
+> This guide describes Mythic GME 1.7.0 and later.
+
 ## Where to find Custom Tables
 
 On a phone, open the navigation drawer and tap TABLE EDITOR under Tools. On a tablet or desktop, select Custom Tables in the navigation rail, or in the Classic 6-Panel Layout (Desktop) click the Custom Tables icon button at the lower right.

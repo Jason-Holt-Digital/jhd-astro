@@ -75,6 +75,8 @@ related:
   - formula-schema
 ---
 
+> This guide describes Mythic GME 1.7.0 and later.
+
 ## Read this first (no programming required)
 
 - Formulas are simple, readable expressions (like `2d6+3`).
@@ -108,7 +110,7 @@ Order and precedence gotchas
 
 ## Dice pools and labels
 
-> The pool lines, labels, label colors and Push are new in 1.7.0. The formula syntax on this page works the same in 1.6.x.
+> The pool lines, labels, label colors and Push are new in 1.7.0. The formula syntax on this page works the same in 1.6.8.
 
 A dice pool is a group of dice with a label. Write the label in quotes, then a colon, then the dice. Put a comma between dice pools.
 

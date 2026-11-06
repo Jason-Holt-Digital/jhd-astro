@@ -28,6 +28,8 @@ related:
   - dice-formulas-and-customization
 ---
 
+> Esta página descreve o Mythic GME 1.7.0 e posteriores.
+
 ## Visão Geral
 
 Esta página documenta o formato JSON para Fórmulas Salvas para que seus arquivos possam ser validados e compartilhados entre dispositivos ou ferramentas. Para um passo a passo prático de salvar, carregar, importar e exportar fórmulas da UI, veja [Salvando e Gerenciando Fórmulas de Dados](/pt/resources/saving-and-managing-dice-formulas-pt/).

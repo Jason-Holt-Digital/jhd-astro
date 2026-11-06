@@ -18,6 +18,9 @@ related:
   - using-meaning-tables-for-inspiration
   - guide-to-the-mythic-journals
 ---
+
+> This guide describes Mythic GME 1.7.0 and later.
+
 This guide distills the essential steps for starting players using the Lists module within the official Mythic GME companion apps. The apps are designed to complement the Mythic GME 2e rulebook, streamlining mechanics and minimizing lookup friction.
 
 ## 1) The purpose of Lists

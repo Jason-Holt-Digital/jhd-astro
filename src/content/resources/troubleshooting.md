@@ -14,6 +14,8 @@ keywords:
   - Help
 ---
 
+> This page describes Mythic GME 1.7.0 and later.
+
 ## I need a backup of my Journal
 
 The app does not back up a Journal during an ordinary save. To keep your own backup, open the Journal, go to **Settings**, then **Files**, and select **Export journal as JSON**.

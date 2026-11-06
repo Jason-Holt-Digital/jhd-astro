@@ -23,6 +23,8 @@ related:
   - linking-and-nesting-tables
 ---
 
+> This guide describes Mythic GME 1.7.0 and later.
+
 ## Where to import/export
 
 - Open the Custom Tables feature in the app (not in Settings).

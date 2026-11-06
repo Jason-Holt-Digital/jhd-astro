@@ -75,6 +75,8 @@ related:
   - formula-schema
 ---
 
+> Este guia descreve o Mythic GME 1.7.0 e posteriores.
+
 ## Leia isso primeiro (Sem programação necessária)
 
 - Fórmulas são expressões simples e legíveis (como `2d6+3`).
@@ -108,7 +110,7 @@ Pegadinhas de ordem e precedência
 
 ## Paradas de dados e rótulos
 
-> As linhas por parada, os rótulos, as cores dos rótulos e Forçar são novidades da versão 1.7.0. A sintaxe das fórmulas desta página funciona do mesmo jeito na 1.6.x.
+> As linhas por parada, os rótulos, as cores dos rótulos e Forçar são novidades da versão 1.7.0. A sintaxe das fórmulas desta página funciona do mesmo jeito na 1.6.8.
 
 Uma parada de dados é um grupo de dados com um rótulo. Escreva o rótulo entre aspas, depois dois-pontos, depois os dados. Coloque uma vírgula entre as paradas de dados.
 

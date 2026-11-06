@@ -18,6 +18,8 @@ related:
   - writing-and-organizing-scenes
 ---
 
+> This guide describes Mythic GME 1.7.0 and later.
+
 You can save a Journal as a file, send that file to someone, and bring a Journal file into the app. All of it is in **Settings**, on the **Files** tab, under **Export Journal** and **Import Journal**.
 
 ## Export a Journal

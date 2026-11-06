@@ -25,6 +25,8 @@ related:
   - using-meaning-tables-for-inspiration
 ---
 
+> Este guia descreve o Mythic GME 1.7.0 e posteriores.
+
 Jogar uma aventura pronta (como um módulo publicado de D&D) com Mythic requer apenas alguns passos simples de configuração. O app inclui funcionalidades especiais projetadas especificamente para este estilo de jogo.
 
 ## Passo 1: Mude Sua Tabela de Foco de Evento

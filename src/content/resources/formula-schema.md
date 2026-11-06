@@ -27,6 +27,9 @@ related:
   - saving-and-managing-dice-formulas
   - dice-formulas-and-customization
 ---
+
+> This page describes Mythic GME 1.7.0 and later.
+
 ## Overview
 
 This page documents the JSON format for Saved Formulas so your files can be validated and shared between devices or tools. For a practical walkthrough of saving, loading, importing, and exporting formulas from the UI, see [Saving and Managing Dice Formulas](/resources/saving-and-managing-dice-formulas/).

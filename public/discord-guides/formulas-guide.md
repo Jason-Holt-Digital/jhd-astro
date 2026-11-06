@@ -35,10 +35,10 @@ Starting points (ready to import)
 - D&D 5e, Pathfinder 2e, Blades in the Dark, Shadowrun, Savage Worlds, Year Zero, Vampire V5, PbtA, Fate Core, CoC 7e, Cypher, Warhammer d6, Lancer, Ironsworn/Starforged, DCC, TOR. Grab them from the Resources → Dice Formulas pages.
 
 Deep dives (Resources on the site)
-- Getting Started with Dice Studio — basics and layout
-- Dice Formulas & Customization — patterns, tips, and system recipes
-- Saving and Managing Dice Formulas — import/export, backups, best practices
-- Formula Schema — field names for tooling and integrations
+- Getting Started with Dice Studio: basics and layout
+- Dice Formulas & Customization: patterns, tips, and system recipes
+- Saving and Managing Dice Formulas: import/export, backups, best practices
+- Formula Schema: field names for tooling and integrations
 
 More help and downloads: https://jasonholtdigital.com/resources/dice-formulas-and-customization/
 

@@ -20,6 +20,8 @@ related:
   - using-meaning-tables-for-inspiration
 ---
 
+> Este guia descreve o Mythic GME 1.7.0 e posteriores.
+
 A tela de Cenas dos apps Mythic é o centro da sua aventura. Ela dá a cada trecho de jogo um lugar claro para que você acompanhe o que aconteceu e o que mudou.
 
 ## Desenvolvendo suas cenas no app
@@ -36,7 +38,7 @@ Cenas são as unidades básicas de tempo de jogo que trazem forma e ordem à sua
 - Após a primeira, toda nova cena começa como Esperada — como você acha que as coisas vão se desenrolar. Você pode testar essa expectativa com uma Verificação de Cena conforme desejado.
   - Toque em Teste de Cena para rolá-lo. Cena Esperada significa que a cena segue como você esperava.
   - Se a cena for Alterada — ajuste a localização, atividade ou um NPC; vá com o próximo resultado mais esperado.
-  - Se o resultado for Cena de Interrupção, sua expectativa é ignorada e o app rola o Evento Aleatório para você na mesma entrada do Registro de Aventura. Não toque também em Evento Aleatório, porque isso adiciona um segundo evento. O Evento Aleatório já inclui os resultados vinculados ao seu Foco do Evento e, com Rolar o Significado do Evento automaticamente ativado, pode incluir palavras de Tabela de Significado. Role outra Tabela de Significado pela aba Tabelas se quiser mais material para trabalhar.
+  - Se o resultado for Cena de Interrupção, sua expectativa é ignorada e o app rola o Evento Aleatório para você na mesma entrada do Registro de Aventura. Não toque também em Evento Aleatório, porque isso adiciona um segundo evento. O Evento Aleatório já inclui os resultados vinculados ao seu Foco do Evento e, com Significado automático ativado, pode incluir palavras de Tabela de Significado. Role outra Tabela de Significado pela aba Tabelas se quiser mais material para trabalhar.
   - Enquanto a Tabela de Foco de Eventos Preparados estiver selecionada, o Teste de Cena nunca dá Cena Alterada nem Cena de Interrupção. Ele dá Cena Esperada, e uma rolagem igual ou menor que o Fator de Caos adiciona um Evento Aleatório a ela.
 
 > ##### Dica

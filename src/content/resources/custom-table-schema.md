@@ -26,6 +26,8 @@ related:
   - linking-and-nesting-tables
 ---
 
+> This page describes Mythic GME 1.7.0 and later.
+
 ## Plain English
 
 No programming needed. This page lists field names used by imports/exports and by power users who maintain JSON directly.
@@ -53,7 +55,7 @@ Optional table fields
 - `defaultDoubleRoll` (boolean, default true). Set it to false to roll the table once. A table whose tags include `crafter` also rolls once. The 1×/2× choice on the table's row overrides both.
 - `isPremium` (boolean). Ignored on import. The app decides which tables need an unlock.
 - `replacement`, `displayRoll` (booleans). Kept from Foundry VTT imports and exported again. They do not change how the table rolls.
-- `dice` (legacy; ignored by current app). Use `baseDice`.
+- `dice` (legacy; ignored by Mythic GME 1.7.0 and later). Use `baseDice`.
 
 Entry fields
 - `range` [start, end] (required)

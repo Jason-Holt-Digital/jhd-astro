@@ -30,6 +30,8 @@ related:
   - saving-and-managing-dice-formulas
 ---
 
+> Este guia descreve o Mythic GME 1.7.0 e posteriores.
+
 # O que é um diário de aventura
 Um Diário é o registro salvo do app para uma aventura ou campanha: um único lugar onde você anota o que aconteceu, por que aconteceu e o que mudou. No app, é armazenado como JSON; você pode exportá-lo como JSON (para ida e volta) ou Markdown (para leitura e compartilhamento junto com suas anotações). A exportação em Markdown serve só para leitura. Ela deixa de fora Listas Personalizadas, Trilhas de Progresso de Trama, Cenas-Chave, Pontos de Progresso e o registro de cada dado, e o app não consegue importá-la.
 

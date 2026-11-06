@@ -27,6 +27,9 @@ related:
   - guide-to-the-mythic-journals
   - sharing-adventure-journals
 ---
+
+> Esta página descreve o Mythic GME 1.7.0 e posteriores.
+
 ## Visão Geral
 
 Esta página documenta as chaves canônicas para o formato de exportação do Diário Mythic e como cada campo é usado. Se você está construindo ferramentas ou validando exportações, comece aqui. Para um passo a passo prático de criação e gerenciamento de diários, veja [Guia dos Diários Mythic](/pt/resources/guide-to-the-mythic-journals-pt/).
@@ -35,9 +38,9 @@ Em Português Claro: Você não precisa saber código para usar diários. "JSON"
 
 ## Downloads
 
-Veja a seção de Downloads no final desta página para arquivos. O esquema JSON disponível ali é um validador legado do esquema 1 que espera chaves de nível superior em PascalCase, como `JournalName`. Ele não é um validador para os arquivos do esquema 6 em camelCase que o app exporta hoje. Para os nomes de chave atuais, como `journalName`, use a referência de campos do esquema 6 nesta página.
+Veja a seção de Downloads no final desta página para arquivos. O esquema JSON disponível ali é um validador legado do esquema 1 que espera chaves de nível superior em PascalCase, como `JournalName`. Ele não é um validador para os arquivos do esquema 6 em camelCase que o Mythic GME 1.7.0 e posteriores exportam. Para os nomes de chave atuais, como `journalName`, use a referência de campos do esquema 6 nesta página.
 
-Dica: Após baixar o modelo vazio, faça uma cópia e renomeie de `journal_template.json` para um nome significativo (por exemplo: `minha-aventura-2025.json`). Mantenha a extensão `.json`. O modelo é um arquivo legado do esquema 1 com chaves em PascalCase, então o nome do Diário vem do campo `JournalName` dentro do arquivo, não do nome do arquivo. Defina `JournalName` antes de importar. Os arquivos que o app exporta hoje usam chaves em camelCase, como `journalName`.
+Dica: Após baixar o modelo vazio, faça uma cópia e renomeie de `journal_template.json` para um nome significativo (por exemplo: `minha-aventura-2025.json`). Mantenha a extensão `.json`. O modelo é um arquivo legado do esquema 1 com chaves em PascalCase, então o nome do Diário vem do campo `JournalName` dentro do arquivo, não do nome do arquivo. Defina `JournalName` antes de importar. Os arquivos que o Mythic GME 1.7.0 e posteriores exportam usam chaves em camelCase, como `journalName`.
 
 ## Referência de campo (chaves de exportação canônicas)
 
@@ -57,7 +60,7 @@ O app grava os campos de nível superior declarados do diário em camelCase, por
 - `features` (array<string>): Locais, objetos e conceitos que dão cor e contexto aos eventos. Um espaço vazio é uma string vazia; formas de objeto legadas usam `Feature` ou `feature`.
 - `activatedThreadSections` / `activatedCharacterSections` / `activatedFeatureSections` (int, padrão 1): Quantas seções de 5 itens estão ativas em cada lista. O app mostra de 1 a 5 seções, então até 25 itens por lista ficam visíveis e entram nas rolagens. Esse número de 25 é a capacidade de exibição e de rolagem, não um limite de importação documentado. Arquivos antigos usam os nomes em PascalCase, como `ActivatedThreadSections`.
 - `logEntries` (array de objetos): Histórico do oráculo. Campos comuns:
-  - rollType é um texto livre, não uma lista fechada de valores. Exemplos produzidos pelo app atual: Scene, Fate Chart, Fate Check, Scene Check, Scene Adjustment, Random Event, Event Focus, Meaning Table, Narrative, Keyed Scene, Discovery Fate Question e General dice roll. Se rollType estiver ausente, ele é lido como Unknown. Uma entrada Scene é um separador de cena: seu outcome é o título da cena, seu odds é uma string vazia e seu sceneId é o valor createdAt da cena. Uma entrada General dice roll tem odds N/A, question vazia e um outcome no formato `<fórmula> = <total>`.
+  - rollType é um texto livre, não uma lista fechada de valores. Exemplos produzidos pelo Mythic GME 1.7.0 e posteriores: Scene, Fate Chart, Fate Check, Scene Check, Scene Adjustment, Random Event, Event Focus, Meaning Table, Narrative, Keyed Scene, Discovery Fate Question e General dice roll. Se rollType estiver ausente, ele é lido como Unknown. Uma entrada Scene é um separador de cena: seu outcome é o título da cena, seu odds é uma string vazia e seu sceneId é o valor createdAt da cena. Uma entrada General dice roll tem odds N/A, question vazia e um outcome no formato `<fórmula> = <total>`.
   - question (string): o texto digitado para uma pergunta de Destino. Uma entrada de Teste de Cena guarda aqui o texto fixo Scene Check, e seu outcome contém o rótulo da cena no idioma do app, por exemplo Expected Scene em inglês.
   - `odds` (string): Probabilidade (ex., Provável, 50/50).
   - `chaosFactor` (int): FC no momento da rolagem.
@@ -77,7 +80,7 @@ O app grava os campos de nível superior declarados do diário em camelCase, por
 
 ### Versões diferentes do app
 
-A versão 1.6.8 do app gravava o esquema 4. A versão 1.7.0 grava schemaVersion 6 e define minReaderVersion como a versão mais antiga que mantém todos os dados do Diário:
+A versão 1.6.8 do app gravava o esquema 4. A versão 1.7.0 e as posteriores gravam schemaVersion 6 e define minReaderVersion como a versão mais antiga que mantém todos os dados do Diário:
 
 - minReaderVersion 4 quando a versão 1.6.8 mantém tudo. A 1.6.8 consegue abrir o Diário. Listas personalizadas e Pontos de Progresso não mudam isso: a 1.6.8 os mantém no arquivo, mas não os mostra.
 - minReaderVersion 6 quando o Diário tem dados que a 1.6.8 perderia ou leria errado. Isso inclui uma rolagem de dados registrada no modo de dados, uma cena adicionada na 1.7.0 (ela cria uma entrada de cena no Registro de Aventura), resultados de tabelas ligadas em um Evento Aleatório ou Foco do Evento, uma Trilha de Progresso com dados de Conclusão, Vantagem, Proteção ou Horror, uma Cena-Chave aguardando a próxima cena e um item de lista chamado Choose. A 1.6.8 mostra "Atualização necessária" para esse Diário.

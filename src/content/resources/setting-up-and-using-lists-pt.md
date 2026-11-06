@@ -19,6 +19,8 @@ related:
   - guide-to-the-mythic-journals
 ---
 
+> Este guia descreve o Mythic GME 1.7.0 e posteriores.
+
 Este guia destila os passos essenciais para jogadores iniciantes usando o módulo de Listas dentro dos apps companheiros oficiais Mythic GME. Os apps são projetados para complementar o livro de regras Mythic GME 2e, simplificando mecânicas e minimizando o atrito de consulta.
 
 ## 1) O propósito das Listas

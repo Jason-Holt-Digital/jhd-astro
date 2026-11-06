@@ -17,6 +17,8 @@ related:
   - writing-and-organizing-scenes
 ---
 
+> This guide describes Mythic GME 1.7.0 and later.
+
 ## Guide: Mastering the Meaning Tables module
 
 The Meaning Tables module in the Mythic app is your fast‑access source for inspiration, designed to reduce lookup friction and keep you in story flow. It provides concrete narrative seeds when a simple Yes/No Fate Question isn’t enough.
@@ -34,7 +36,7 @@ Meaning Tables generate descriptive prompts that clarify narrative elements and 
 
 > Availability and content
 > - Included: 53 Meaning Tables (49 from the Mythic GME 2e core rulebook and 4 from Mythic Magazine 49) and 2 Event Focus tables.
-> - Expanded sets: 197 more Meaning Tables and 14 more Event Focus tables are available with Expanded Features. They come from Mythic Variations 1, The Adventure Crafter, The Location Crafter, The Creature Crafter, Mythic Magazine Compilations 1–7, and Mythic Magazine issues 43–71.
+> - Expanded sets: 197 more Meaning Tables and 14 more Event Focus tables are available with Expanded Features. They come from Mythic Variations 1, The Adventure Crafter, The Location Crafter, The Creature Crafter, Mythic Magazine Compilations 1 to 7, and Mythic Magazine issues 43 to 71.
 > - Pricing by platform: On Apple App Store, Google Play, and Amazon Appstore these expanded sets are part of a one‑time “Expanded Features” unlock (not a subscription). On Microsoft Store (Windows) and itch.io (DRM‑free), the one‑time purchase includes expanded features; no IAP.
 > - For the latest details, see Support → Purchases, Pricing & Upgrades: /support
 

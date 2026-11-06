@@ -36,6 +36,9 @@ steps:
   - title: "Use Lists, Scenes, and Meaning Tables"
     body: "It's a good idea to add Characters and Threads to your Lists before starting your first game. Use Scenes to summerize or predict, and meaning tables for interpreting outcomes."
 ---
+
+> This guide describes Mythic GME 1.7.0 and later.
+
 Welcome! This quick guide is based on the app itself: you start at the Fate Chart and move between Lists, Scenes, and Meaning Tables as you play. Your Journals are stored on your device. On iPhone, iPad, and the Mac App Store version you can turn on Use iCloud Sync to keep them in iCloud.
 
 > What you need: Bring these to the table

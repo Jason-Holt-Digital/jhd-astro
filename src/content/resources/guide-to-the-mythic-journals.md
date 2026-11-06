@@ -30,6 +30,8 @@ related:
   - saving-and-managing-dice-formulas
 ---
 
+> This guide describes Mythic GME 1.7.0 and later.
+
 # What is an adventure journal
 A Journal is the app's saved record of one adventure or campaign: a single place where you record what happened, why it happened, and what changed. In the app it’s stored as JSON; you can export it as JSON (for round‑trip) or Markdown (for reading and sharing alongside your notes). Markdown export is for reading only. It leaves out Custom Lists, Thread Progress Tracks, Keyed Scenes, Progress Points, and the per-die dice record, and the app cannot import it.
 

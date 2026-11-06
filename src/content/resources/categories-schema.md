@@ -27,6 +27,8 @@ related:
   - getting-started-with-custom-tables
 ---
 
+> This page describes Mythic GME 1.7.0 and later.
+
 ## Plain English
 
 Categories provide names and icons for table groups. The app ships with built‑ins, and you can edit them. You add your own alongside them.

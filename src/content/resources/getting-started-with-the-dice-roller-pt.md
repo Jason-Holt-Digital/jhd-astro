@@ -19,7 +19,7 @@ related:
 
 O Estúdio de Dados é onde você monta e testa fórmulas de dados. No celular, abra a gaveta e toque em ESTÚDIO DE DADOS. Este guia rápido mostra o básico para que você possa rolar com confiança imediatamente.
 
-> O Estúdio de Dados, os rótulos, Forçar e as configurações de dados 3D são novidades da versão 1.7.0. Na 1.6.x, esta tela se chama Rolador de Dados.
+> Este guia descreve o Mythic GME 1.7.0 e posteriores. O Estúdio de Dados, os rótulos, Forçar e as configurações de dados 3D são novidades da versão 1.7.0. Na 1.6.x, esta tela se chama Rolador de Dados.
 
 > ##### Motor de sintaxe e documentação
 > O rolador usa a versão própria do app do dart_dice_parser, do Adventuresmith. A página no pub.dev descreve o pacote original, então teste uma fórmula no app antes de confiar nela. Para a gramática completa e exemplos adicionais, veja: https://pub.dev/packages/dart_dice_parser

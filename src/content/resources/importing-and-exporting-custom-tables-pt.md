@@ -22,6 +22,8 @@ related:
   - linking-and-nesting-tables
 ---
 
+> Este guia descreve o Mythic GME 1.7.0 e posteriores.
+
 ## Onde importar/exportar
 
 - Abra a funcionalidade Tabelas Personalizadas no app (não em Configurações).

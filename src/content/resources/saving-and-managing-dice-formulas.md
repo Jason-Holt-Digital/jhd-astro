@@ -29,6 +29,8 @@ related:
   - dice-formulas-and-customization
 ---
 
+> This guide describes Mythic GME 1.7.0 and later.
+
 ## Where to find it
 
 - Open Dice Studio. On a phone, Save Formula and Manage Formulas are buttons under the formula field, and on a tablet or desktop they are above it.

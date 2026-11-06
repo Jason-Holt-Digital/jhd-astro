@@ -19,6 +19,8 @@ related:
   - writing-and-organizing-scenes
 ---
 
+> Este guia descreve o Mythic GME 1.7.0 e posteriores.
+
 Você pode salvar um Diário como arquivo, enviar esse arquivo para alguém e trazer um arquivo de Diário para o app. Tudo isso fica em **Configurações**, na aba **Arquivos**, em **Exportar Diário** e **Importar Diário**.
 
 ## Exportar um Diário

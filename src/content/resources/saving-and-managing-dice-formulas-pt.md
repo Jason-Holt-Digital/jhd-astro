@@ -29,6 +29,8 @@ related:
   - dice-formulas-and-customization
 ---
 
+> Este guia descreve o Mythic GME 1.7.0 e posteriores.
+
 ## Onde encontrar
 
 - Abra o Estúdio de Dados. No celular, Salvar Fórmula e Gerenciar Fórmulas são botões abaixo do campo da fórmula; em um tablet ou computador, ficam acima dele.

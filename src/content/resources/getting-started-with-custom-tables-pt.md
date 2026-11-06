@@ -63,6 +63,8 @@ related:
   - importing-and-exporting-custom-tables
 ---
 
+> Este guia descreve o Mythic GME 1.7.0 e posteriores.
+
 ## Onde encontrar Tabelas Personalizadas
 
 No celular, abra a gaveta de navegação e toque em EDITOR DE TABELAS, em Ferramentas. Em um tablet ou computador, selecione Tabelas Personalizadas no trilho de navegação ou, no Layout clássico de 6 painéis (Desktop), clique no botão de ícone Tabelas Personalizadas no canto inferior direito.

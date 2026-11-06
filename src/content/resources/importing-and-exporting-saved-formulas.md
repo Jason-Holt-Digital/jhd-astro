@@ -17,6 +17,9 @@ related:
   - saving-and-managing-dice-formulas
   - formula-schema
 ---
+
+> This guide describes Mythic GME 1.7.0 and later.
+
 This page collects the essentials for bringing Saved Formulas into the app and exporting yours for safekeeping or sharing. If you want to learn how to build formulas or manage the list, see the related guides below.
 
 ## Where to find it

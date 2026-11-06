@@ -27,6 +27,8 @@ related:
   - getting-started-with-custom-tables
 ---
 
+> Esta página descreve o Mythic GME 1.7.0 e posteriores.
+
 ## Em Português Claro
 
 Categorias fornecem nomes e ícones para grupos de tabelas. O app vem com itens integrados, e você pode editá-los. Você adiciona os seus ao lado deles.

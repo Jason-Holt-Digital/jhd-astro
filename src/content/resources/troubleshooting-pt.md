@@ -15,6 +15,8 @@ keywords:
   - Ajuda
 ---
 
+> Esta página descreve o Mythic GME 1.7.0 e posteriores.
+
 ## Preciso de um backup do meu Diário
 
 O app não faz backup de um Diário em um salvamento comum. Para manter seu próprio backup, abra o Diário, vá em **Configurações**, depois em **Arquivos**, e selecione **Exportar diário como JSON**.

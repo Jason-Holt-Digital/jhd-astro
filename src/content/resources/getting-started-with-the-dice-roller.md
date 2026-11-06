@@ -19,7 +19,7 @@ related:
 
 Dice Studio is where you build and test dice formulas. On a phone, open the drawer and tap DICE STUDIO. This quick start shows the basics so you can roll confidently right away.
 
-> Dice Studio, labels, Push and the 3D dice settings are new in 1.7.0. In 1.6.x, this screen is called Dice Roller.
+> This guide describes Mythic GME 1.7.0 and later. Dice Studio, labels, Push and the 3D dice settings are new in 1.7.0. In 1.6.x, this screen is called Dice Roller.
 
 > ##### Syntax engine and docs
 > The roller uses the app's own version of Adventuresmith's dart_dice_parser. The pub.dev page describes the original package, so check a formula in the app before you rely on it. For the full grammar and additional examples, see: https://pub.dev/packages/dart_dice_parser

@@ -25,6 +25,8 @@ related:
   - using-meaning-tables-for-inspiration
 ---
 
+> This guide describes Mythic GME 1.7.0 and later.
+
 Playing a prepared adventure (like a published D&D module) with Mythic requires just a few simple setup steps. The app includes special features designed specifically for this play style.
 
 ## Step 1: Change Your Event Focus Table

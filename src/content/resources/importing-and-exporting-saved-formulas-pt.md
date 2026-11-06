@@ -18,6 +18,8 @@ related:
   - formula-schema
 ---
 
+> Este guia descreve o Mythic GME 1.7.0 e posteriores.
+
 Esta página reúne o essencial para trazer Fórmulas Salvas para o app e exportar as suas para segurança ou compartilhamento. Se você quer aprender a construir fórmulas ou gerenciar a lista, veja os guias relacionados abaixo.
 
 ## Onde encontrar

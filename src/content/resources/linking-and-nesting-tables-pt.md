@@ -19,6 +19,8 @@ related:
   - importing-and-exporting-custom-tables
 ---
 
+> Este guia descreve o Mythic GME 1.7.0 e posteriores.
+
 Um vínculo faz uma rolagem levar a outra. Quando uma tabela com vínculo é rolada, o app também pode rolar a tabela ou lista vinculada.
 
 ## Dois tipos de vínculo

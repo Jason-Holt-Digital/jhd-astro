@@ -19,6 +19,8 @@ related:
   - importing-and-exporting-custom-tables
 ---
 
+> This guide describes Mythic GME 1.7.0 and later.
+
 A link makes one roll lead to another. When a table with a link is rolled, the app can roll the linked table or list as well.
 
 ## Two kinds of link

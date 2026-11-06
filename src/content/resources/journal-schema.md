@@ -27,6 +27,9 @@ related:
   - guide-to-the-mythic-journals
   - sharing-adventure-journals
 ---
+
+> This page describes Mythic GME 1.7.0 and later.
+
 ## Overview
 
 This page documents the canonical keys for the Mythic Journal export format and how each field is used. If you’re building tools or validating exports, start here. For a practical walkthrough of creating and managing journals, see [A Guide to the Mythic Journals](/resources/guide-to-the-mythic-journals/).
@@ -35,9 +38,9 @@ Plain English: You don’t need to know code to use journals. “JSON” is just
 
 ## Downloads
 
-See the Downloads section at the bottom of this page for files. The JSON schema download there is a legacy schema 1 validator that expects PascalCase top-level keys such as `JournalName`. It is not a validator for the camelCase schema 6 files the app exports today. For current key names such as `journalName`, use the schema 6 field reference on this page.
+See the Downloads section at the bottom of this page for files. The JSON schema download there is a legacy schema 1 validator that expects PascalCase top-level keys such as `JournalName`. It is not a validator for the camelCase schema 6 files that Mythic GME 1.7.0 and later export. For current key names such as `journalName`, use the schema 6 field reference on this page.
 
-Tip: After downloading the empty template, make a copy and rename it from `journal_template.json` to a meaningful name (for example: `my-adventure-2025.json`). Keep the `.json` extension. The template is a legacy schema 1 file with PascalCase keys, so the Journal's name comes from the `JournalName` field inside the file, not from the file's name. Set `JournalName` before you import. Files the app exports today use camelCase keys such as `journalName`.
+Tip: After downloading the empty template, make a copy and rename it from `journal_template.json` to a meaningful name (for example: `my-adventure-2025.json`). Keep the `.json` extension. The template is a legacy schema 1 file with PascalCase keys, so the Journal's name comes from the `JournalName` field inside the file, not from the file's name. Set `JournalName` before you import. Files that Mythic GME 1.7.0 and later export use camelCase keys such as `journalName`.
 
 ## Field reference (canonical export keys)
 
@@ -57,7 +60,7 @@ The app writes the journal's declared top-level fields in camelCase, for example
 - `features` (array<string>): Locations/objects/concepts that flavor events and context. An empty slot is an empty string; legacy object forms use `Feature` or `feature`.
 - `activatedThreadSections` / `activatedCharacterSections` / `activatedFeatureSections` (int, default 1): How many 5‑item sections are active in each list. The app shows 1–5 sections, so up to 25 items per list are visible and used for rolls. The 25-item figure is the display and roll capacity, not a documented import limit. Older files use the PascalCase names, such as `ActivatedThreadSections`.
 - `logEntries` (array of objects): Oracle history. Common fields:
-  - rollType is a free-form string, not a closed list of values. Examples the current app produces: Scene, Fate Chart, Fate Check, Scene Check, Scene Adjustment, Random Event, Event Focus, Meaning Table, Narrative, Keyed Scene, Discovery Fate Question, and General dice roll. A missing rollType is read as Unknown. A Scene entry is a scene separator: its outcome is the scene title, its odds is an empty string, and its sceneId is the scene's createdAt value. A General dice roll entry has odds N/A, an empty question, and an outcome in the form `<formula> = <total>`.
+  - rollType is a free-form string, not a closed list of values. Examples that Mythic GME 1.7.0 and later produce: Scene, Fate Chart, Fate Check, Scene Check, Scene Adjustment, Random Event, Event Focus, Meaning Table, Narrative, Keyed Scene, Discovery Fate Question, and General dice roll. A missing rollType is read as Unknown. A Scene entry is a scene separator: its outcome is the scene title, its odds is an empty string, and its sceneId is the scene's createdAt value. A General dice roll entry has odds N/A, an empty question, and an outcome in the form `<formula> = <total>`.
   - question (string): the text typed for a Fate question. A Scene Check entry stores the fixed text Scene Check here, and its outcome holds the scene label in the app's language, for example Expected Scene in English.
   - `odds` (string): Odds descriptor (e.g., Likely, 50/50).
   - `chaosFactor` (int): CF at the time of the roll.
@@ -77,7 +80,7 @@ The app writes the journal's declared top-level fields in camelCase, for example
 
 ### Mixed app versions
 
-Version 1.6.8 of the app wrote schema 4. Version 1.7.0 writes schemaVersion 6, and sets minReaderVersion to the oldest version that keeps all of the Journal's data:
+Version 1.6.8 of the app wrote schema 4. Version 1.7.0 and later write schemaVersion 6, and sets minReaderVersion to the oldest version that keeps all of the Journal's data:
 
 - minReaderVersion 4 when version 1.6.8 keeps everything. 1.6.8 can open the Journal. Custom Lists and Progress Points don't change this: 1.6.8 keeps them in the file but doesn't show them.
 - minReaderVersion 6 when the Journal holds data that 1.6.8 would lose or misread. That includes a dice roll logged in dice mode, a scene added in 1.7.0 (it adds a scene entry to the Adventure Log), linked table results on a Random Event or Event Focus, a Progress Track with Conclusion, Leverage, Protection or Horror data, a Keyed Scene waiting for the next scene, and a list entry named Choose. 1.6.8 shows "Update required" for this Journal.

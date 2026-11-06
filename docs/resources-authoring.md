@@ -21,14 +21,14 @@ Optional fields:
 - `duration: string`
 - `externalUrl: string` (valid URL)
 - `updated: string`
-- `appSummary: string` — shorter summary the Mythic app shows in its Help list (falls back to `summary`)
-- `fullArticleAvailable: boolean` — tells the Mythic app the page has a full article it can open
+- `appSummary: string` (shorter summary the Mythic app shows in its Help list; falls back to `summary`)
+- `fullArticleAvailable: boolean` (tells the Mythic app the page has a full article it can open)
 - `hero: image()` (optional local image)
 - `heroAlt: string` (required only if `hero` is provided)
 - `steps: { title: string; body?: string; image?: image(); imageAlt?: string }[]`
   - If a step `image` is provided, include `imageAlt`.
 - `downloads: { label: string; href: string; format?: string; size?: string }[]` (optional)
-- `related: string[]` — slugs of related resources to display in a Related Guides section (optional)
+- `related: string[]` (optional; slugs of related resources to display in a Related Guides section)
 
 Images use `astro:content`'s `image()` type, which enforces valid local image paths and feeds the `astro:assets` `<Image />` pipeline for responsive optimization.
 

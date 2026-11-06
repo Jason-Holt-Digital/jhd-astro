@@ -26,6 +26,8 @@ related:
   - linking-and-nesting-tables
 ---
 
+> Esta página descreve o Mythic GME 1.7.0 e posteriores.
+
 ## Em Português Claro
 
 Nenhuma programação necessária. Esta página lista nomes de campos usados por importações/exportações e por usuários avançados que mantêm JSON diretamente.
@@ -53,7 +55,7 @@ Campos de tabela opcionais
 - `defaultDoubleRoll` (booleano, padrão true). Defina como false para rolar a tabela uma vez. Uma tabela cujas tags incluem `crafter` também rola uma vez. A escolha 1×/2× na linha da tabela vale mais que os dois.
 - `isPremium` (booleano). Ignorado na importação. O app decide quais tabelas precisam ser desbloqueadas.
 - `replacement`, `displayRoll` (booleanos). Mantidos de importações do Foundry VTT e exportados de novo. Não mudam como a tabela rola.
-- `dice` (legado; ignorado pelo app atual). Use `baseDice`.
+- `dice` (legado; ignorado pelo Mythic GME 1.7.0 e posteriores). Use `baseDice`.
 
 Campos de entrada
 - `range` [início, fim] (obrigatório)

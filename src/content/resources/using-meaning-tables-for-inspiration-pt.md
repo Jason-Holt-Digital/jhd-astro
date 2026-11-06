@@ -17,6 +17,8 @@ related:
   - writing-and-organizing-scenes
 ---
 
+> Este guia descreve o Mythic GME 1.7.0 e posteriores.
+
 ## Guia: Dominando o módulo de Tabelas de Significado
 
 O módulo de Tabelas de Significado no app Mythic é sua fonte de acesso rápido para inspiração, projetado para reduzir o atrito de consulta e manter você no fluxo da história. Ele fornece sementes narrativas concretas quando uma simples Pergunta do Destino Sim/Não não é suficiente.
@@ -34,7 +36,7 @@ Tabelas de Significado geram prompts descritivos que esclarecem elementos narrat
 
 > Disponibilidade e conteúdo
 > - Incluídas: 53 Tabelas de Significado (49 do livro de regras básico Mythic GME 2e e 4 da Mythic Magazine 49) e 2 tabelas de Foco do Evento.
-> - Conjuntos expandidos: mais 197 Tabelas de Significado e mais 14 tabelas de Foco do Evento estão disponíveis com os Recursos Expandidos. Elas vêm de Mythic Variations 1, The Adventure Crafter, The Location Crafter, The Creature Crafter, Mythic Magazine Compilations 1–7 e das edições 43 a 71 da Mythic Magazine.
+> - Conjuntos expandidos: mais 197 Tabelas de Significado e mais 14 tabelas de Foco do Evento estão disponíveis com os Recursos Expandidos. Elas vêm de Mythic Variations 1, The Adventure Crafter, The Location Crafter, The Creature Crafter, Mythic Magazine Compilations 1 a 7 e das edições 43 a 71 da Mythic Magazine.
 > - Preço por plataforma: na Apple App Store, Google Play e Amazon Appstore, esses conjuntos expandidos fazem parte do desbloqueio único de Recursos Expandidos. Na Microsoft Store (Windows) e itch.io (sem DRM), a compra única do app inclui esses recursos.
 > - Para os detalhes mais recentes, veja Suporte → Compras, Preços e Atualizações: /pt/support
 
