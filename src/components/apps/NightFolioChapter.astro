@@ -1,11 +1,11 @@
 ---
 // Redesign direction A, "Night Folio chapters": each app is a chapter on the
 // dark Mythic canvas. Clips sit in tilted devices beside the approved feature
-// lines; the remaining lines, official content and store links sit on a light
-// folio page panel.
+// lines; the remaining lines, official content and the site's store buttons
+// sit on a site panel.
 import ClipDevice from "./ClipDevice.astro";
 import ChapterSky from "./ChapterSky.astro";
-import "./folio-keys.css";
+import StoreLinks from "./StoreLinks.astro";
 import { groupFeatures, type Clip } from "../../lib/mythic-gme-clips";
 
 interface Props {
@@ -60,7 +60,7 @@ const tilts = [-4, 3, -3];
       ))
     }
 
-    <div class="nf-page">
+    <div class="nf-page panel">
       <div class="nf-page-col">
         <h3 class="nf-label">{isPt ? "O que o app faz" : "What it does"}</h3>
         <ul class="nf-page-ledger">
@@ -74,24 +74,7 @@ const tilts = [-4, 3, -3];
         </ul>
         {app.iapInfo && <p class="nf-note">{app.iapInfo}</p>}
         {app.disclaimer && <p class="nf-note">{app.disclaimer}</p>}
-        <h3 class="nf-label">{isPt ? "Baixar agora" : "Download now"}</h3>
-        <div class="nf-stores">
-          {
-            app.storeLinks.map((store) =>
-              store.available === false ? (
-                <span class="folio-key folio-key--secondary" aria-disabled="true">
-                  <i class={store.icon} aria-hidden="true" />
-                  {store.name} · {isPt ? "Em breve" : "Coming soon"}
-                </span>
-              ) : (
-                <a class="folio-key folio-key--primary" href={store.url} target="_blank" rel="noopener noreferrer">
-                  <i class={store.icon} aria-hidden="true" />
-                  {store.name}
-                </a>
-              ),
-            )
-          }
-        </div>
+        <StoreLinks storeLinks={app.storeLinks} lang={lang} />
       </div>
     </div>
   </div>
@@ -103,9 +86,6 @@ const tilts = [-4, 3, -3];
     --nf-muted: #c9bfd6;
     --nf-gold: #d8be84;
     --nf-gold-deep: #b39556;
-    --nf-page: #fafaf8;
-    --nf-page-ink: #2a2520;
-    --nf-page-muted: #5a5248;
     position: relative;
     color: var(--nf-ink);
     padding: clamp(4rem, 8vw, 7rem) 0;
@@ -122,8 +102,7 @@ const tilts = [-4, 3, -3];
     margin-bottom: clamp(3rem, 6vw, 5rem);
   }
 
-  .nf-eyebrow,
-  .nf-label {
+  .nf-eyebrow {
     font-family: "IBM Plex Sans", system-ui, sans-serif;
     font-size: 0.75rem;
     font-weight: 600;
@@ -202,18 +181,19 @@ const tilts = [-4, 3, -3];
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: clamp(1.5rem, 4vw, 3.5rem);
-    background: var(--nf-page);
-    color: var(--nf-page-ink);
-    border-radius: 22px;
+    color: var(--color-text);
     padding: clamp(1.5rem, 4vw, 3rem);
-    box-shadow:
-      inset 0 1px 0 #fff,
-      0 18px 40px -12px rgba(0, 0, 0, 0.55);
   }
 
-  .nf-page .nf-label {
-    color: #8a7240;
-    margin-top: 0;
+  /* Same heading treatment as the "Download now" heading in StoreLinks. */
+  .nf-label {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
   }
 
   .nf-page-col > .nf-label + .nf-page-ledger {
@@ -231,21 +211,15 @@ const tilts = [-4, 3, -3];
     font-size: 1rem;
     line-height: 1.45;
     padding: 0.65rem 0;
-    border-bottom: 1px solid rgba(138, 130, 120, 0.3);
+    border-bottom: var(--border-subtle);
   }
 
   .nf-note {
     font-family: "IBM Plex Sans", system-ui, sans-serif;
     font-size: 0.875rem;
     line-height: 1.5;
-    color: var(--nf-page-muted);
+    color: var(--color-text-muted);
     margin: 0 0 1.5rem;
-  }
-
-  .nf-stores {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
   }
 
   @media (max-width: 860px) {
