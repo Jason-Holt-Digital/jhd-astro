@@ -15,8 +15,8 @@ const videoSrc = "https://media.jasonholtdigital.com/mythic-gme/1.7.0/mythic-gme
 const captionsBase = "/media/mythic-gme-1.7.0/mythic-gme-60-v1";
 const poster = await getImage({ src: posterSource, width: 1920, format: "webp" });
 
-// The film's cards are burned in, in English. The pt page turns on the pt-BR
-// track by default so the cards are translated; the en track stays optional.
+// The film's cards are burned in, in English, and it plays muted, so each page
+// shows its own language's captions by default.
 const creditParts = t("video.credit").split(/(\{track\}|\{license\})/);
 ---
 
@@ -25,16 +25,25 @@ const creditParts = t("video.credit").split(/(\{track\}|\{license\})/);
     <h2 id="promo-video-title" class="section-title">{t("video.heading")}</h2>
     <div class="promo-video-frame">
       <video
+        data-promo-video
         controls
-        preload="none"
+        muted
+        loop
         playsinline
+        preload="none"
         poster={poster.src}
         width="1920"
         height="1080"
         aria-describedby="promo-video-description"
       >
         <source src={videoSrc} type="video/mp4" />
-        <track kind="subtitles" src={`${captionsBase}.en.vtt`} srclang="en" label="English" />
+        <track
+          kind="subtitles"
+          src={`${captionsBase}.en.vtt`}
+          srclang="en"
+          label="English"
+          default={!isPt}
+        />
         <track
           kind="subtitles"
           src={`${captionsBase}.pt-BR.vtt`}
@@ -60,6 +69,53 @@ const creditParts = t("video.credit").split(/(\{track\}|\{license\})/);
     </p>
   </div>
 </section>
+
+<script>
+  // Autoplay is script-driven, with preload="none", rather than the autoplay
+  // attribute: Chromium starts streaming the whole 18 MB file on page load even
+  // with preload="metadata". play() loads the file once the player is on
+  // screen. Reduced-motion users get the poster and controls. A pause the
+  // viewer makes is never undone.
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  document.querySelectorAll<HTMLVideoElement>("[data-promo-video]").forEach((video) => {
+    // Some browsers ignore the default attribute on tracks, so turn on the
+    // page language's track explicitly.
+    const pageLang = document.documentElement.lang.startsWith("pt") ? "pt" : "en";
+    for (const track of video.textTracks) {
+      track.mode = track.language.startsWith(pageLang) ? "showing" : "disabled";
+    }
+
+    if (reducedMotion) return;
+
+    let pausedByViewer = false;
+    let pausingForScroll = false;
+    video.addEventListener("pause", () => {
+      if (!pausingForScroll) pausedByViewer = true;
+      pausingForScroll = false;
+    });
+    video.addEventListener("play", () => {
+      pausedByViewer = false;
+    });
+
+    new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        if (entry.isIntersecting) {
+          if (video.paused && !pausedByViewer) {
+            // A blocked autoplay (iOS Low Power Mode, browser settings) leaves
+            // the poster and controls in place.
+            video.play().catch(() => {});
+          }
+        } else if (!video.paused) {
+          pausingForScroll = true;
+          video.pause();
+        }
+      },
+      { threshold: 0.5 },
+    ).observe(video);
+  });
+</script>
 
 <style>
   .promo-video-frame {
