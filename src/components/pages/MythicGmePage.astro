@@ -1,34 +1,17 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHeader from '../../components/layout/PageHeader.astro';
-import AppSection from '../../components/apps/AppSection.astro';
 import PromoVideo from '../../components/media/PromoVideo.astro';
 import NightFolioChapter from '../../components/apps/NightFolioChapter.astro';
 import NightFolioCanvas from '../../components/apps/NightFolioCanvas.astro';
 import { getMythicGmeApps } from '../../lib/mythic-gme-apps';
 import { mobileGroups, digitalGroups } from '../../lib/mythic-gme-clips';
-import m1 from "../../assets/mobile/mobile-1.png";
-import m2 from "../../assets/mobile/mobile-2.png";
-import m3 from "../../assets/mobile/mobile-3.png";
-import m4 from "../../assets/mobile/mobile-4.png";
-import m5 from "../../assets/mobile/mobile-5.png";
-import m6 from "../../assets/mobile/mobile-6.png";
-import m7 from "../../assets/mobile/mobile-7.png";
-import d1 from "../../assets/desktop/desktop-1.png";
-import d2 from "../../assets/desktop/desktop-2.png";
-import d3 from "../../assets/desktop/desktop-3.png";
-import d4 from "../../assets/desktop/desktop-4.png";
-import d5 from "../../assets/desktop/desktop-5.png";
-import d6 from "../../assets/desktop/desktop-6.png";
-import d7 from "../../assets/desktop/desktop-7.png";
 
 interface Props {
   lang: 'en' | 'pt';
-  // Redesign previews for Jason to compare; "current" is the live layout.
-  variant?: 'current' | 'a';
 }
 
-const { lang, variant = 'current' } = Astro.props;
+const { lang } = Astro.props;
 const isPt = lang === 'pt';
 
 const { mobileApp, desktopApp } = getMythicGmeApps(isPt);
@@ -42,7 +25,6 @@ const { mobileApp, desktopApp } = getMythicGmeApps(isPt);
     ? "Compare os apps oficiais Mythic GME 2e para mobile e desktop, veja o que cada versão inclui e baixe na sua plataforma."
     : "Compare the official Mythic GME 2e apps for mobile and desktop, see what each version includes, and download on your platform."}
   canonicalPath={isPt ? "/pt/mythic-gme/" : "/mythic-gme/"}
-  noindex={variant !== 'current'}
   lang={lang}
   alternatePath={isPt ? "/mythic-gme/" : "/pt/mythic-gme/"}
   ogTitle={isPt
@@ -62,54 +44,16 @@ const { mobileApp, desktopApp } = getMythicGmeApps(isPt);
     visualElement="grid"
   />
 
-  <PromoVideo />
+  <PromoVideo priority />
 
-  {variant !== 'current' && (
-    <Fragment slot="head">
-      <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-    </Fragment>
-  )}
+  <Fragment slot="head">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  </Fragment>
 
-  {variant === 'a' && (
-    <NightFolioCanvas>
-      <NightFolioChapter id="mobile" badge={isPt ? 'App mobile' : 'Mobile App'} app={mobileApp} groups={mobileGroups} hue="#5b3f8c" lang={lang} />
-      <NightFolioChapter id="desktop" badge={isPt ? 'App desktop' : 'Desktop App'} app={desktopApp} groups={digitalGroups} hue="#1f5d63" lang={lang} />
-    </NightFolioCanvas>
-  )}
-
-  {variant === 'current' && (
-    <>
-    <!-- Mobile App Section (Left-aligned content) -->
-    <AppSection
-      id="mobile"
-      title={mobileApp.title}
-      whoItsFor={mobileApp.whoItsFor}
-      features={mobileApp.features}
-      officialContent={mobileApp.officialContent}
-      iapInfo={mobileApp.iapInfo}
-      storeLinks={mobileApp.storeLinks}
-      images={[m1, m2, m3, m4, m5, m6, m7]}
-  	    imageAlt={isPt ? "Capturas de tela do Mythic GME Mobile" : "Mythic GME Mobile screenshots"}
-  	    reverse={false}
-  	    lang={lang}
-  	  />
-
-    <!-- Desktop App Section (Left-aligned content) -->
-    <AppSection
-      id="desktop"
-      title={desktopApp.title}
-      whoItsFor={desktopApp.whoItsFor}
-      features={desktopApp.features}
-      officialContent={desktopApp.officialContent}
-      disclaimer={desktopApp.disclaimer}
-      storeLinks={desktopApp.storeLinks}
-      images={[d1, d2, d3, d4, d5, d6, d7]}
-  	    imageAlt={isPt ? "Capturas de tela do Mythic GME Digital" : "Mythic GME Digital screenshots"}
-  	    reverse={true}
-  	    lang={lang}
-  	  />
-    </>
-  )}
+  <NightFolioCanvas>
+    <NightFolioChapter id="mobile" badge={isPt ? 'App mobile' : 'Mobile App'} app={mobileApp} groups={mobileGroups} hue="#5b3f8c" lang={lang} />
+    <NightFolioChapter id="desktop" badge={isPt ? 'App desktop' : 'Desktop App'} app={desktopApp} groups={digitalGroups} hue="#1f5d63" lang={lang} />
+  </NightFolioCanvas>
 
   <!-- Buy the Books Section -->
   <section class="books-section">

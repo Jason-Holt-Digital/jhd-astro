@@ -1,6 +1,8 @@
 ---
 // A short muted looping app clip. Streams from R2 (Range support for Safari)
 // only once it is on screen; reduced-motion visitors see the poster still.
+// The poster is fetched only as the clip nears the screen, because a video's
+// poster attribute always downloads at page load.
 // Decorative: the feature text beside each clip says what it shows.
 import type { ImageMetadata } from "astro";
 import { getImage } from "astro:assets";
@@ -13,14 +15,14 @@ interface Props {
 }
 
 const { src, poster, width, class: className } = Astro.props;
-const posterImage = await getImage({ src: poster, width, format: "webp" });
+const posterImage = await getImage({ src: poster, width, format: "webp", quality: 70 });
 ---
 
 <video
   class:list={["loop-clip", className]}
   data-loop-clip
   data-src={src}
-  poster={posterImage.src}
+  data-poster={posterImage.src}
   width={posterImage.attributes.width}
   height={posterImage.attributes.height}
   muted
@@ -33,6 +35,19 @@ const posterImage = await getImage({ src: poster, width, format: "webp" });
 <script>
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const clips = document.querySelectorAll<HTMLVideoElement>("[data-loop-clip]");
+
+  const posterObserver = new IntersectionObserver(
+    (entries) => {
+      for (const { target, isIntersecting } of entries) {
+        if (!isIntersecting) continue;
+        const video = target as HTMLVideoElement;
+        if (video.dataset.poster) video.poster = video.dataset.poster;
+        posterObserver.unobserve(video);
+      }
+    },
+    { rootMargin: "100% 0px" },
+  );
+  clips.forEach((clip) => posterObserver.observe(clip));
 
   if (!reducedMotion) {
     const observer = new IntersectionObserver(
@@ -58,5 +73,6 @@ const posterImage = await getImage({ src: poster, width, format: "webp" });
     display: block;
     width: 100%;
     height: auto;
+    background: #1d1729;
   }
 </style>
