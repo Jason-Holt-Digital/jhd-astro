@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import { Image, getImage } from "astro:assets";
 import m1 from "../../assets/mobile/mobile-1.png";
 import m2 from "../../assets/mobile/mobile-2.png";
 import m3 from "../../assets/mobile/mobile-3.png";
@@ -19,6 +19,15 @@ const slideJoin = isPt ? "de" : "of";
 
 /** Pre-rendered phone mockups (device chrome is part of the PNG), same set as v2 hero */
 const slideImages = [m1, m2, m3, m4, m5, m6, m7];
+const slideWidths = [300, 450, 600];
+const slideSizes = "(max-width: 980px) 72vw, 300px";
+
+// The slides are stacked in the visible stage, so loading="lazy" would still
+// fetch all seven during page load. Slides 2-7 carry their sources in data-*
+// attributes and the script below fills them in after load.
+const laterSlides = await Promise.all(
+  slideImages.slice(1).map((src) => getImage({ src, widths: slideWidths, sizes: slideSizes })),
+);
 
 const slideLabels = [
   t("hero.slide.1"),
@@ -139,24 +148,40 @@ const storeLinks = [
 
         <div class="hero-phone-carousel" data-hero-phone>
           {
-            slideImages.map((src, index) => (
-              <div
-                class:list={["hero-phone-slide", { "is-active": index === 0 }]}
-                data-hero-slide
-                data-label={slideLabels[index]}
-                aria-hidden={index !== 0}
-              >
-                <Image
-                  src={src}
-                  alt={`${slideLabels[index]} — ${t("hero.aria.slide_alt")}`}
-                  widths={[300, 450, 600]}
-                  sizes="(max-width: 980px) 72vw, 300px"
-                  loading={index === 0 ? "eager" : "lazy"}
-                  fetchpriority={index === 0 ? "high" : "auto"}
-                  decoding="async"
-                />
-              </div>
-            ))
+            slideImages.map((src, index) => {
+              const later = laterSlides[index - 1];
+              const alt = `${slideLabels[index]} — ${t("hero.aria.slide_alt")}`;
+              return (
+                <div
+                  class:list={["hero-phone-slide", { "is-active": index === 0 }]}
+                  data-hero-slide
+                  data-label={slideLabels[index]}
+                  aria-hidden={index !== 0}
+                >
+                  {later ? (
+                    <img
+                      data-src={later.src}
+                      data-srcset={later.srcSet.attribute}
+                      sizes={slideSizes}
+                      width={later.attributes.width}
+                      height={later.attributes.height}
+                      alt={alt}
+                      decoding="async"
+                    />
+                  ) : (
+                    <Image
+                      src={src}
+                      alt={alt}
+                      widths={slideWidths}
+                      sizes={slideSizes}
+                      loading="eager"
+                      fetchpriority="high"
+                      decoding="async"
+                    />
+                  )}
+                </div>
+              );
+            })
           }
           <div class="hero-phone-caption">
             <span id="heroCaptLabel">{slideLabels[0]}</span>
@@ -204,6 +229,17 @@ const storeLinks = [
 
     const pad = (n: number) => String(n).padStart(2, "0");
 
+    const loadSlide = (slide: HTMLElement | undefined) => {
+      const img = slide?.querySelector<HTMLImageElement>("img[data-srcset]");
+      if (!img) return;
+      img.srcset = img.dataset.srcset ?? "";
+      img.src = img.dataset.src ?? "";
+      img.removeAttribute("data-srcset");
+    };
+    const loadAllSlides = () => slides.forEach(loadSlide);
+    if (document.readyState === "complete") loadAllSlides();
+    else window.addEventListener("load", loadAllSlides, { once: true });
+
     const slidePrefix = carouselRoot.dataset.slidePrefix || "Slide";
     const slideJoin = carouselRoot.dataset.slideJoin || "of";
 
@@ -219,6 +255,7 @@ const storeLinks = [
     const goTo = (index: number) => {
       if (!slides.length) return;
       activeIndex = ((index % slides.length) + slides.length) % slides.length;
+      loadSlide(slides[activeIndex]);
       slides.forEach((slide, i) => {
         const on = i === activeIndex;
         slide.classList.toggle("is-active", on);
