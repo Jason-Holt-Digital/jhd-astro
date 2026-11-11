@@ -1,0 +1,62 @@
+---
+// A short muted looping app clip. Streams from R2 (Range support for Safari)
+// only once it is on screen; reduced-motion visitors see the poster still.
+// Decorative: the feature text beside each clip says what it shows.
+import type { ImageMetadata } from "astro";
+import { getImage } from "astro:assets";
+
+interface Props {
+  src: string;
+  poster: ImageMetadata;
+  width: number;
+  class?: string;
+}
+
+const { src, poster, width, class: className } = Astro.props;
+const posterImage = await getImage({ src: poster, width, format: "webp" });
+---
+
+<video
+  class:list={["loop-clip", className]}
+  data-loop-clip
+  data-src={src}
+  poster={posterImage.src}
+  width={posterImage.attributes.width}
+  height={posterImage.attributes.height}
+  muted
+  loop
+  playsinline
+  preload="none"
+  aria-hidden="true"
+></video>
+
+<script>
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const clips = document.querySelectorAll<HTMLVideoElement>("[data-loop-clip]");
+
+  if (!reducedMotion) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const { target, isIntersecting } of entries) {
+          const video = target as HTMLVideoElement;
+          if (isIntersecting) {
+            if (!video.src && video.dataset.src) video.src = video.dataset.src;
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        }
+      },
+      { threshold: 0.4 },
+    );
+    clips.forEach((clip) => observer.observe(clip));
+  }
+</script>
+
+<style>
+  .loop-clip {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+</style>

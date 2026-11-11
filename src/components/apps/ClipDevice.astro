@@ -1,0 +1,70 @@
+---
+// App clip inside a phone or desktop-window frame, for the dark Night Folio
+// canvas of the Mythic GME page redesign previews.
+import LoopClip from "../media/LoopClip.astro";
+import type { Clip } from "../../lib/mythic-gme-clips";
+
+interface Props {
+  clip: Clip;
+  tilt?: number;
+}
+
+const { clip, tilt = 0 } = Astro.props;
+const isPhone = clip.device === "phone";
+---
+
+<div class:list={["clip-device", isPhone ? "clip-device--phone" : "clip-device--desktop"]} style={`--tilt: ${tilt}deg`}>
+  {!isPhone && (
+    <div class="clip-device-bar" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </div>
+  )}
+  <LoopClip src={clip.src} poster={clip.poster} width={isPhone ? 432 : 960} />
+</div>
+
+<style>
+  .clip-device {
+    position: relative;
+    overflow: hidden;
+    transform: rotate(var(--tilt));
+    background: #1d1729;
+    box-shadow:
+      0 30px 60px -20px rgba(0, 0, 0, 0.7),
+      0 0 0 1px rgba(255, 255, 255, 0.08);
+  }
+
+  .clip-device--phone {
+    width: min(100%, 300px);
+    border: 9px solid #1d1729;
+    border-radius: 40px;
+  }
+
+  .clip-device--phone :global(.loop-clip) {
+    border-radius: 31px;
+  }
+
+  .clip-device--desktop {
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  .clip-device-bar {
+    display: flex;
+    gap: 6px;
+    padding: 9px 12px;
+    background: #2a2438;
+  }
+
+  .clip-device-bar span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.22);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .clip-device {
+      transform: none;
+    }
+  }
+</style>

@@ -17,7 +17,11 @@ export default defineConfig({
           '/pt/404/',
           '/pt/contact/',
         ]);
-        return !pathname.startsWith('/v2/') && !redirectOrErrorPaths.has(pathname);
+        return (
+          !pathname.startsWith('/v2/') &&
+          !/^\/(pt\/)?preview\//.test(pathname) &&
+          !redirectOrErrorPaths.has(pathname)
+        );
       },
     }),
     oramaSearch({

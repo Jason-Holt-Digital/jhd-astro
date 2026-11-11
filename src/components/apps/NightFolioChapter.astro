@@ -1,0 +1,313 @@
+---
+// Redesign direction A, "Night Folio chapters": each app is a chapter on the
+// dark Mythic canvas. Clips sit in tilted devices beside the approved feature
+// lines; the remaining lines, official content and store links sit on a light
+// folio page panel.
+import { Image } from "astro:assets";
+import ClipDevice from "./ClipDevice.astro";
+import nebula from "../../assets/mythic-gme/1.7.0/nebula.jpg";
+import { groupFeatures, type Clip } from "../../lib/mythic-gme-clips";
+
+interface Props {
+  id: string;
+  badge: string;
+  app: {
+    title: string;
+    whoItsFor: string;
+    features: string[];
+    officialContent: string[];
+    iapInfo?: string;
+    disclaimer?: string;
+    storeLinks: Array<{ name: string; url: string; icon: string; available?: boolean }>;
+  };
+  groups: Array<{ clip: Clip; lines: number[] }>;
+  hue: string;
+  lang: "en" | "pt";
+}
+
+const { id, badge, app, groups, hue, lang } = Astro.props;
+const isPt = lang === "pt";
+const { groups: rows, rest } = groupFeatures(app.features, groups);
+const tilts = [-4, 3, -3];
+---
+
+<section id={id} class="nf" style={`--nf-hue: ${hue}`} aria-labelledby={`${id}-title`}>
+  <Image class="nf-sky" src={nebula} alt="" widths={[960, 1600, 2400]} sizes="100vw" loading="lazy" />
+  <div class="nf-inner">
+    <header class="nf-head">
+      <p class="nf-eyebrow" aria-hidden="true">{badge}</p>
+      <h2 id={`${id}-title`} class="nf-title">{app.title}</h2>
+      <p class="nf-lead">{app.whoItsFor}</p>
+    </header>
+
+    {
+      rows.map((row, i) => (
+        <article class:list={["nf-row", { "nf-row--flip": i % 2 === 1, "nf-row--wide": row.clip.device === "desktop" }]}>
+          <div class="nf-media">
+            <ClipDevice clip={row.clip} tilt={row.clip.device === "phone" ? tilts[i % tilts.length] : -1.5} />
+          </div>
+          <div class="nf-copy">
+            <h3 class="nf-headline">{row.headline}</h3>
+            {row.lines.length > 0 && (
+              <ul class="nf-ledger">
+                {row.lines.map((line) => (
+                  <li>{line}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </article>
+      ))
+    }
+
+    <div class="nf-page">
+      <div class="nf-page-col">
+        <h3 class="nf-label">{isPt ? "O que o app faz" : "What it does"}</h3>
+        <ul class="nf-page-ledger">
+          {rest.map((line) => <li>{line}</li>)}
+        </ul>
+      </div>
+      <div class="nf-page-col">
+        <h3 class="nf-label">{isPt ? "Conteúdo oficial" : "Official content"}</h3>
+        <ul class="nf-page-ledger">
+          {app.officialContent.map((line) => <li>{line}</li>)}
+        </ul>
+        {app.iapInfo && <p class="nf-note">{app.iapInfo}</p>}
+        {app.disclaimer && <p class="nf-note">{app.disclaimer}</p>}
+        <h3 class="nf-label">{isPt ? "Baixar agora" : "Download now"}</h3>
+        <div class="nf-stores">
+          {
+            app.storeLinks.map((store) =>
+              store.available === false ? (
+                <span class="nf-store nf-store--off" aria-disabled="true">
+                  <i class={store.icon} aria-hidden="true" />
+                  {store.name} · {isPt ? "Em breve" : "Coming soon"}
+                </span>
+              ) : (
+                <a class="nf-store" href={store.url} target="_blank" rel="noopener noreferrer">
+                  <i class={store.icon} aria-hidden="true" />
+                  {store.name}
+                </a>
+              ),
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .nf {
+    --nf-ink: #f3ecdf;
+    --nf-muted: #c9bfd6;
+    --nf-gold: #d8be84;
+    --nf-gold-deep: #b39556;
+    --nf-page: #fafaf8;
+    --nf-page-ink: #2a2520;
+    --nf-page-muted: #5a5248;
+    position: relative;
+    overflow: hidden;
+    color: var(--nf-ink);
+    background:
+      radial-gradient(120% 80% at 80% 0%, color-mix(in oklab, var(--nf-hue) 55%, transparent), transparent 60%),
+      linear-gradient(180deg, #241d33 0%, #1d1729 100%);
+    padding: clamp(4rem, 8vw, 7rem) 0;
+  }
+
+  .nf-sky {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.18;
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+
+  .nf-inner {
+    position: relative;
+    width: min(1120px, 100% - 2.5rem);
+    margin: 0 auto;
+  }
+
+  .nf-head {
+    max-width: 44rem;
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  .nf-eyebrow,
+  .nf-label {
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--nf-gold);
+    margin: 0 0 0.75rem;
+  }
+
+  .nf-title {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    color: var(--nf-ink);
+    margin: 0;
+  }
+
+  .nf-lead {
+    font-family: "Fraunces", Georgia, serif;
+    font-style: italic;
+    font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+    line-height: 1.35;
+    color: var(--nf-gold);
+    margin: 0.75rem 0 0;
+  }
+
+  .nf-row {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+    margin-bottom: clamp(3.5rem, 8vw, 6rem);
+  }
+
+  .nf-row--flip .nf-media {
+    order: 2;
+  }
+
+  .nf-row--wide {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  }
+
+  .nf-media {
+    display: grid;
+    place-items: center;
+  }
+
+  .nf-headline {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    line-height: 1.15;
+    color: var(--nf-ink);
+    margin: 0 0 1.25rem;
+  }
+
+  .nf-ledger {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 1.25rem;
+    border-left: 1px solid color-mix(in oklab, var(--nf-gold-deep) 60%, transparent);
+  }
+
+  .nf-ledger li {
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: var(--nf-muted);
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .nf-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    background: var(--nf-page);
+    color: var(--nf-page-ink);
+    border-radius: 22px;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    box-shadow:
+      inset 0 1px 0 #fff,
+      0 18px 40px -12px rgba(0, 0, 0, 0.55);
+  }
+
+  .nf-page .nf-label {
+    color: #8a7240;
+    margin-top: 0;
+  }
+
+  .nf-page-col > .nf-label + .nf-page-ledger {
+    margin-bottom: 1.75rem;
+  }
+
+  .nf-page-ledger {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nf-page-ledger li {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 1rem;
+    line-height: 1.45;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid rgba(138, 130, 120, 0.3);
+  }
+
+  .nf-note {
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--nf-page-muted);
+    margin: 0 0 1.5rem;
+  }
+
+  .nf-stores {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .nf-store {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #5c4820;
+    text-decoration: none;
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    background: linear-gradient(180deg, #c9ab6c 0%, #b39556 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.45),
+      0 2px 4px rgba(42, 37, 32, 0.15);
+  }
+
+  .nf-store:hover {
+    background: linear-gradient(180deg, #d4b87c 0%, #bea064 100%);
+  }
+
+  .nf-store:focus-visible {
+    outline: 2px solid color-mix(in oklab, #b39556 60%, transparent);
+    outline-offset: 2px;
+  }
+
+  .nf-store--off {
+    background: #ede9e3;
+    color: #8a8278;
+    box-shadow: none;
+  }
+
+  @media (max-width: 860px) {
+    .nf-row,
+    .nf-row--wide,
+    .nf-page {
+      grid-template-columns: 1fr;
+    }
+
+    .nf-row--flip .nf-media {
+      order: 0;
+    }
+
+    .nf-media :global(.clip-device--phone) {
+      width: min(72%, 280px);
+    }
+  }
+</style>
