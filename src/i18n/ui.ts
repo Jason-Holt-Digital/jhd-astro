@@ -74,10 +74,10 @@ export const ui = {
     "billboard.next": "Next screenshot",
     "billboard.pause": "Pause autoplay",
     "billboard.play": "Play autoplay",
-    // Placeholders until track B's lines for the app showcase arrive.
-    "showcase.badge": "[Section label: line from B]",
-    "showcase.title": "[Section heading: line from B]",
-    "showcase.lead": "[Section lead: line from B]",
+    "showcase.badge": "The apps",
+    "showcase.title": "Apps for tabletop roleplaying",
+    "showcase.lead":
+      "Mythic GME Mobile and Mythic GME Digital are available now, and TomeKeeper and Adventure Crafter are coming soon.",
     "benefit.badge": "Benefits",
     "benefit.title": "Why players choose Mythic GME Apps",
     "benefit.card1.title": "Ask & Roll Fast",
@@ -193,10 +193,10 @@ export const ui = {
     "billboard.next": "Próxima captura",
     "billboard.pause": "Pausar reprodução automática",
     "billboard.play": "Retomar reprodução automática",
-    // Placeholders until track B's lines for the app showcase arrive.
-    "showcase.badge": "[Rótulo da seção: linha do B]",
-    "showcase.title": "[Título da seção: linha do B]",
-    "showcase.lead": "[Texto de abertura: linha do B]",
+    "showcase.badge": "Os apps",
+    "showcase.title": "Apps para RPG de mesa",
+    "showcase.lead":
+      "O Mythic GME Mobile e o Mythic GME Digital já estão disponíveis, e o TomeKeeper e o Adventure Crafter chegam em breve.",
     "benefit.badge": "Benefícios",
     "benefit.title": "Por que jogadores escolhem os apps Mythic GME",
     "benefit.card1.title": "Pergunte e role rápido",
