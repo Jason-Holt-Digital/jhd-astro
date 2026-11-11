@@ -16,7 +16,6 @@
 @import "./utilities.css" layer(utilities);
 @import "./components/header.css" layer(components);
 @import "./components/hero.css" layer(components);
-@import "./components/billboard.css" layer(components);
 @import "./components/strip.css" layer(components);
 @import "./components/sections.css" layer(components);
 @import "./components/reviews-rotator.css" layer(components);

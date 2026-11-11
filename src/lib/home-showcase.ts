@@ -1,9 +1,10 @@
-// Slides for the homepage app showcase previews: one rotating set across the
-// apps, each app on its own canvas inside the site's frame. Every line here is
+// Slides for the homepage app showcase: one rotating set across the apps,
+// each app on its own canvas inside the site's frame. Every line here is
 // approved site copy: the Mythic GME lines are the web.billboard keys, the
 // TomeKeeper lines come from its own page, and names, taglines and summaries
-// come from lib/apps. The Mythic GME screens are placeholders until the
-// light Mythic recapture lands.
+// come from lib/apps. The Mythic GME screens are placeholders until the light
+// Mythic recapture lands; their alt text arrives from track B with it, so they
+// are decorative until then.
 import type { ImageMetadata } from "astro";
 import { getApps, statusLabel, type AppEntry, type Lang } from "./apps";
 import exceptionalYes from "../assets/mythic-gme/1.7.0/clips/exceptional-yes-poster.jpg";
@@ -176,14 +177,3 @@ export function getShowcase(lang: Lang): ShowcaseApp[] {
   ];
 }
 
-export function showcaseLabels(lang: Lang) {
-  const isPt = lang === "pt";
-  return {
-    badge: "Apps",
-    title: isPt ? "Ferramentas para RPG solo e de mesa." : "Tools for solo and tabletop roleplaying.",
-    apps: "Apps",
-    slide: isPt ? "Imagem" : "Slide",
-    of: isPt ? "de" : "of",
-    play: isPt ? "Retomar reprodução automática" : "Play autoplay",
-  };
-}
