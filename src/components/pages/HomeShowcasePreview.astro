@@ -1,0 +1,82 @@
+---
+// Noindex preview of the homepage with the app showcase in place of the
+// workspace billboard. Everything else is the live homepage.
+import { Font } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import UtilBar from "../layout/UtilBar.astro";
+import Hero from "../home/Hero.astro";
+import CoreBenefits from "../home/CoreBenefits.astro";
+import CommunitySupport from "../home/CommunitySupport.astro";
+import Partners from "../home/Partners.astro";
+import PopularResources from "../home/PopularResources.astro";
+import MakersNote from "../home/MakersNote.astro";
+import PromoVideo from "../media/PromoVideo.astro";
+import ReviewsRotator from "../home/ReviewsRotator.astro";
+import ShowcaseStage from "../home/showcase/ShowcaseStage.astro";
+import ShowcaseStrip from "../home/showcase/ShowcaseStrip.astro";
+
+interface Props {
+  lang: "en" | "pt";
+  direction: 1 | 2;
+}
+
+const { lang, direction } = Astro.props;
+const isPt = lang === "pt";
+const prefix = isPt ? "/pt" : "";
+const path = (d: number) => `${prefix}/preview/home-showcase-${d}/`;
+const other = direction === 1 ? 2 : 1;
+---
+
+<BaseLayout
+  title={`Preview: home showcase ${direction} | Jason Holt Digital`}
+  description="Preview of a homepage app showcase."
+  canonicalPath={path(direction)}
+  lang={lang}
+  alternatePath={isPt ? `/preview/home-showcase-${direction}/` : `/pt/preview/home-showcase-${direction}/`}
+  heroDockHeader
+  noindex
+>
+  <UtilBar slot="before-header" />
+  <Fragment slot="head">
+    <Font cssVariable="--font-fraunces" />
+    <Font cssVariable="--font-fraunces-italic" />
+    <Font cssVariable="--font-plex" />
+  </Fragment>
+
+  <Hero />
+  <PromoVideo />
+  <ReviewsRotator />
+  <CoreBenefits />
+  {direction === 1 ? <ShowcaseStage /> : <ShowcaseStrip />}
+  <CommunitySupport />
+  <Partners />
+  <PopularResources />
+  <MakersNote />
+
+  <aside class="preview-pill" lang="en">
+    <a href="#app-showcase">Preview {direction}: app showcase, placeholder Mythic GME screens</a>
+    <a href={path(other)}>See direction {other}</a>
+  </aside>
+</BaseLayout>
+
+<style>
+  .preview-pill {
+    position: fixed;
+    left: 12px;
+    bottom: 12px;
+    z-index: 50;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    max-width: calc(100vw - 24px);
+    padding: 8px 12px;
+    background: #000;
+    color: #fff;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    border: 2px solid #fff;
+  }
+  .preview-pill a {
+    color: inherit;
+  }
+</style>
