@@ -1,0 +1,24 @@
+---
+// One continuous dark canvas for the app chapters of the Mythic GME redesign
+// previews. It fades in from the white page above and back out to the white
+// page below, so no hard line shows where the dark sections begin and end.
+---
+
+<div class="nf-canvas"><slot /></div>
+
+<style>
+  .nf-canvas {
+    --fade: clamp(96px, 12vw, 200px);
+    position: relative;
+    overflow-x: clip;
+    color: #f3ecdf;
+    padding-block: calc(var(--fade) * 0.5);
+    background: linear-gradient(
+      in oklab 180deg,
+      #fff 0,
+      #241d33 var(--fade),
+      #1d1729 calc(100% - var(--fade)),
+      #fff 100%
+    );
+  }
+</style>

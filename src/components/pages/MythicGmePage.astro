@@ -5,6 +5,7 @@ import AppSection from '../../components/apps/AppSection.astro';
 import PromoVideo from '../../components/media/PromoVideo.astro';
 import NightFolioChapter from '../../components/apps/NightFolioChapter.astro';
 import StageScroll from '../../components/apps/StageScroll.astro';
+import NightFolioCanvas from '../../components/apps/NightFolioCanvas.astro';
 import { getMythicGmeApps } from '../../lib/mythic-gme-apps';
 import { mobileGroups, digitalGroups } from '../../lib/mythic-gme-clips';
 import m1 from "../../assets/mobile/mobile-1.png";
@@ -71,14 +72,16 @@ const { mobileApp, desktopApp } = getMythicGmeApps(isPt);
   )}
 
   {variant === 'a' && (
-    <>
+    <NightFolioCanvas>
       <NightFolioChapter id="mobile" badge={isPt ? 'App mobile' : 'Mobile App'} app={mobileApp} groups={mobileGroups} hue="#5b3f8c" lang={lang} />
       <NightFolioChapter id="desktop" badge={isPt ? 'App desktop' : 'Desktop App'} app={desktopApp} groups={digitalGroups} hue="#1f5d63" lang={lang} />
-    </>
+    </NightFolioCanvas>
   )}
 
   {variant === 'b' && (
-    <StageScroll mobileApp={mobileApp} desktopApp={desktopApp} mobileGroups={mobileGroups} digitalGroups={digitalGroups} lang={lang} />
+    <NightFolioCanvas>
+      <StageScroll mobileApp={mobileApp} desktopApp={desktopApp} mobileGroups={mobileGroups} digitalGroups={digitalGroups} lang={lang} />
+    </NightFolioCanvas>
   )}
 
   {variant === 'current' && (

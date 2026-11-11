@@ -3,9 +3,9 @@
 // dark Mythic canvas. Clips sit in tilted devices beside the approved feature
 // lines; the remaining lines, official content and store links sit on a light
 // folio page panel.
-import { Image } from "astro:assets";
 import ClipDevice from "./ClipDevice.astro";
-import nebula from "../../assets/mythic-gme/1.7.0/nebula.jpg";
+import ChapterSky from "./ChapterSky.astro";
+import "./folio-keys.css";
 import { groupFeatures, type Clip } from "../../lib/mythic-gme-clips";
 
 interface Props {
@@ -31,8 +31,8 @@ const { groups: rows, rest } = groupFeatures(app.features, groups);
 const tilts = [-4, 3, -3];
 ---
 
-<section id={id} class="nf" style={`--nf-hue: ${hue}`} aria-labelledby={`${id}-title`}>
-  <Image class="nf-sky" src={nebula} alt="" widths={[960, 1600, 2400]} sizes="100vw" loading="lazy" />
+<section id={id} class="nf" aria-labelledby={`${id}-title`}>
+  <ChapterSky hue={hue} />
   <div class="nf-inner">
     <header class="nf-head">
       <p class="nf-eyebrow" aria-hidden="true">{badge}</p>
@@ -79,12 +79,12 @@ const tilts = [-4, 3, -3];
           {
             app.storeLinks.map((store) =>
               store.available === false ? (
-                <span class="nf-store nf-store--off" aria-disabled="true">
+                <span class="folio-key folio-key--secondary" aria-disabled="true">
                   <i class={store.icon} aria-hidden="true" />
                   {store.name} · {isPt ? "Em breve" : "Coming soon"}
                 </span>
               ) : (
-                <a class="nf-store" href={store.url} target="_blank" rel="noopener noreferrer">
+                <a class="folio-key folio-key--primary" href={store.url} target="_blank" rel="noopener noreferrer">
                   <i class={store.icon} aria-hidden="true" />
                   {store.name}
                 </a>
@@ -107,23 +107,8 @@ const tilts = [-4, 3, -3];
     --nf-page-ink: #2a2520;
     --nf-page-muted: #5a5248;
     position: relative;
-    overflow: hidden;
     color: var(--nf-ink);
-    background:
-      radial-gradient(120% 80% at 80% 0%, color-mix(in oklab, var(--nf-hue) 55%, transparent), transparent 60%),
-      linear-gradient(180deg, #241d33 0%, #1d1729 100%);
     padding: clamp(4rem, 8vw, 7rem) 0;
-  }
-
-  .nf-sky {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.18;
-    mix-blend-mode: screen;
-    pointer-events: none;
   }
 
   .nf-inner {
@@ -261,38 +246,6 @@ const tilts = [-4, 3, -3];
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
-  }
-
-  .nf-store {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: "IBM Plex Sans", system-ui, sans-serif;
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: #5c4820;
-    text-decoration: none;
-    padding: 0.6rem 1rem;
-    border-radius: 10px;
-    background: linear-gradient(180deg, #c9ab6c 0%, #b39556 100%);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.45),
-      0 2px 4px rgba(42, 37, 32, 0.15);
-  }
-
-  .nf-store:hover {
-    background: linear-gradient(180deg, #d4b87c 0%, #bea064 100%);
-  }
-
-  .nf-store:focus-visible {
-    outline: 2px solid color-mix(in oklab, #b39556 60%, transparent);
-    outline-offset: 2px;
-  }
-
-  .nf-store--off {
-    background: #ede9e3;
-    color: #8a8278;
-    box-shadow: none;
   }
 
   @media (max-width: 860px) {
