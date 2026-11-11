@@ -1,0 +1,38 @@
+/*
+ * Global stylesheet entrypoint
+ *
+ * Layer order: tokens → base → utilities → components → overrides
+ * - tokens: CSS variables, palettes, sizing scales.
+ * - base: element defaults, typography, global a11y (focus/scroll).
+ * - utilities: layout helpers (.container, .row, etc.).
+ * - components: per-component styles. All responsive and
+ *   prefers-reduced-motion rules live in their respective
+ *   files under ./components/.
+ * - overrides: small one-off fixes (prefer changing source component first).
+ */
+@layer tokens, base, utilities, components, overrides;
+@import "./tokens.css" layer(tokens);
+@import "./base.css" layer(base);
+@import "./utilities.css" layer(utilities);
+@import "./components/header.css" layer(components);
+@import "./components/hero.css" layer(components);
+@import "./components/billboard.css" layer(components);
+@import "./components/strip.css" layer(components);
+@import "./components/sections.css" layer(components);
+@import "./components/reviews-rotator.css" layer(components);
+@import "./components/cards.css" layer(components);
+@import "./components/utilbar.css" layer(components);
+@import "./components/buttons.css" layer(components);
+@import "./components/forms.css" layer(components);
+@import "./components/makers-note.css" layer(components);
+@import "./components/page-header.css" layer(components);
+@import "./components/about-page.css" layer(components);
+@import "./components/support-tabs.css" layer(components);
+@import "./components/resources.css" layer(components);
+@import "./components/blog.css" layer(components);
+@import "./components/legal.css" layer(components);
+@import "./components/footer.css" layer(components);
+@import "./components/apps.css" layer(components);
+@import "./components/apps-hub.css" layer(components);
+@import "./components/search.css" layer(components);
+@import "./overrides.css" layer(overrides);

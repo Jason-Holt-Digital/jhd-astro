@@ -96,8 +96,7 @@ const creditParts = t("video.credit").split(/(\{track\}|\{license\})/);
   // Autoplay is script-driven, with preload="none", rather than the autoplay
   // attribute: Chromium starts streaming the whole 18 MB file on page load even
   // with preload="metadata". play() loads the file once the player is on
-  // screen. Reduced-motion users get the poster and controls. A pause the
-  // viewer makes is never undone.
+  // screen. A pause the viewer makes is never undone.
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   document.querySelectorAll<HTMLVideoElement>("[data-promo-video]").forEach((video) => {
@@ -108,7 +107,16 @@ const creditParts = t("video.credit").split(/(\{track\}|\{license\})/);
       track.mode = track.language.startsWith(pageLang) ? "showing" : "disabled";
     }
 
-    if (reducedMotion) return;
+    // Reduced motion, Save-Data and 2G connections get the poster and the
+    // play button instead of autoplay.
+    const connection = (navigator as Navigator & {
+      connection?: { saveData?: boolean; effectiveType?: string };
+    }).connection;
+    const constrained =
+      connection?.saveData === true ||
+      connection?.effectiveType === "2g" ||
+      connection?.effectiveType === "slow-2g";
+    if (reducedMotion || constrained) return;
 
     let pausedByViewer = false;
     let pausingForScroll = false;
