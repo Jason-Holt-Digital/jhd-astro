@@ -115,8 +115,11 @@ export function getShowcase(lang: Lang): ShowcaseApp[] {
           canvas: "tomekeeper",
           layout: "tablet-phone",
           screens: [
-            { src: tkHomeIpad, alt: "" },
-            { src: tkHomeIphone, alt: "" },
+            {
+              src: tkHomeIpad,
+              alt: 'A tela inicial do TomeKeeper em um iPad, com o Mythic Game Master Emulator 2e em "Continue Reading" e, abaixo, "My Books", "My Sets" e "Tables"',
+            },
+            { src: tkHomeIphone, alt: "A tela inicial do TomeKeeper em um iPhone" },
           ],
         },
       ]
