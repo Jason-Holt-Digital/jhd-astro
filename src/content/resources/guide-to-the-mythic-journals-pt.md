@@ -1,6 +1,6 @@
 ---
 title: "Guia dos Diários Mythic"
-summary: "Crie, importe e exporte Diários; entenda como Fator de Caos, Cenas, Listas e entradas do Diário de Aventura se conectam."
+summary: "Crie, importe e exporte Diários; entenda como Fator de Caos, Cenas, Listas e entradas do Registro de Aventura se conectam."
 category: "adventure-journals"
 order: 0
 icon: "fa-slab fa-regular fa-book-open"
@@ -95,7 +95,7 @@ Contabilidade de fim de cena
 ## Gerencie diários no app
 
 - Crie, importe e exporte diários da seção Configurações → Arquivos.
-- Cada diário é independente: mantém seu próprio Fator Caos, Cenas, Listas de Aventura (Personagens/Tramas/Aspectos), Notas de Lista e entradas do Diário de Aventura.
+- Cada diário é independente: mantém seu próprio Fator Caos, Cenas, Listas de Aventura (Personagens/Tramas/Aspectos), Notas de Lista e entradas do Registro de Aventura.
 - Use múltiplos diários para manter diferentes campanhas/sessões separadas; trocar diários não mistura suas listas ou logs.
 
 ## Como mapeia para Mythic
@@ -107,7 +107,7 @@ Contabilidade de fim de cena
   - Personagens: NPCs, facções, personas que podem aparecer em eventos.
   - Tramas: Lista de Tramas/objetivos que podem ser avançados/fechados ou referenciados por eventos.
   - Aspectos: Lugares, objetos ou conceitos que dão cor e contexto aos eventos.
-- Entradas do Diário de Aventura: registro ordenado por tempo de oráculos e verificações, incluindo respostas da Tabela de Destino/Verificação, Verificações de Cena, Eventos Aleatórios (Foco do Evento + Palavras de Descrição) e outros resultados.
+- Entradas do Registro de Aventura: histórico em ordem cronológica de oráculos e verificações, incluindo respostas da Tabela de Destino/Verificação, Verificações de Cena, Eventos Aleatórios (Foco do Evento + Palavras de Descrição) e outros resultados.
 
 ## Fluxo de trabalho básico
 

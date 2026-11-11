@@ -1,0 +1,92 @@
+---
+// Promo film for Mythic GME 1.7.0. The MP4 is served from the R2 bucket on
+// media.jasonholtdigital.com because Workers static assets answer Range
+// requests with 200, and Safari needs 206 to play video. Caption files stay
+// same-origin under /media/ so <track> needs no CORS.
+import { getImage } from "astro:assets";
+import posterSource from "../../assets/mythic-gme/1.7.0/video/mythic-gme-60-poster.jpg";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isPt = lang === "pt";
+
+const videoSrc = "https://media.jasonholtdigital.com/mythic-gme/1.7.0/mythic-gme-60-v1.mp4";
+const captionsBase = "/media/mythic-gme-1.7.0/mythic-gme-60-v1";
+const poster = await getImage({ src: posterSource, width: 1920, format: "webp" });
+
+// The film's cards are burned in, in English. The pt page turns on the pt-BR
+// track by default so the cards are translated; the en track stays optional.
+const creditParts = t("video.credit").split(/(\{track\}|\{license\})/);
+---
+
+<section class="section-block section-block--plain promo-video" aria-labelledby="promo-video-title">
+  <div class="container section">
+    <h2 id="promo-video-title" class="section-title">{t("video.heading")}</h2>
+    <div class="promo-video-frame">
+      <video
+        controls
+        preload="none"
+        playsinline
+        poster={poster.src}
+        width="1920"
+        height="1080"
+        aria-describedby="promo-video-description"
+      >
+        <source src={videoSrc} type="video/mp4" />
+        <track kind="subtitles" src={`${captionsBase}.en.vtt`} srclang="en" label="English" />
+        <track
+          kind="subtitles"
+          src={`${captionsBase}.pt-BR.vtt`}
+          srclang="pt-BR"
+          label="Português (Brasil)"
+          default={isPt}
+        />
+      </video>
+    </div>
+    <p id="promo-video-description" class="sr-only">{t("video.description")}</p>
+    <p class="promo-video-credit">
+      {
+        creditParts.map((part) =>
+          part === "{track}" ? (
+            <a href="https://punchdeck.bandcamp.com/track/frozen-shimmer" target="_blank" rel="noopener noreferrer">Frozen Shimmer</a>
+          ) : part === "{license}" ? (
+            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>
+          ) : (
+            part
+          ),
+        )
+      }
+    </p>
+  </div>
+</section>
+
+<style>
+  .promo-video-frame {
+    max-width: 960px;
+    margin: 0 auto;
+    border: var(--border-base);
+    border-radius: 15px;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    background: var(--color-surface-2);
+  }
+
+  .promo-video-frame video {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .promo-video-credit {
+    max-width: 960px;
+    margin: 0.75rem auto 0;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  .promo-video-credit a {
+    white-space: nowrap;
+  }
+</style>
