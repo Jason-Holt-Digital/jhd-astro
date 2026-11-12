@@ -2,7 +2,7 @@
 // the approved 1.7.0 promo footage and served from R2.
 import exceptionalYes from "../assets/mythic-gme/1.7.0/clips/exceptional-yes-poster.jpg";
 import meaningRoll from "../assets/mythic-gme/1.7.0/clips/meaning-roll-v2-poster.jpg";
-import listsRoll from "../assets/mythic-gme/1.7.0/clips/lists-roll-poster.jpg";
+import listsRoll from "../assets/mythic-gme/1.7.0/clips/lists-roll-v2-poster.jpg";
 import desktopThrow from "../assets/mythic-gme/1.7.0/clips/desktop-throw-poster.jpg";
 
 const base = "https://media.jasonholtdigital.com/mythic-gme/1.7.0/clips";
@@ -10,7 +10,7 @@ const base = "https://media.jasonholtdigital.com/mythic-gme/1.7.0/clips";
 export const clips = {
   exceptionalYes: { src: `${base}/exceptional-yes-v1.mp4`, poster: exceptionalYes, device: "phone" },
   meaningRoll: { src: `${base}/meaning-roll-v2.mp4`, poster: meaningRoll, device: "phone" },
-  listsRoll: { src: `${base}/lists-roll-v1.mp4`, poster: listsRoll, device: "phone" },
+  listsRoll: { src: `${base}/lists-roll-v2.mp4`, poster: listsRoll, device: "phone" },
   desktopThrow: { src: `${base}/desktop-throw-v1.mp4`, poster: desktopThrow, device: "desktop" },
 } as const;
 

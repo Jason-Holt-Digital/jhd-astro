@@ -9,7 +9,7 @@ import type { ImageMetadata } from "astro";
 import { getApps, statusLabel, type AppEntry, type Lang } from "./apps";
 import exceptionalYes from "../assets/mythic-gme/1.7.0/clips/exceptional-yes-poster.jpg";
 import meaningRoll from "../assets/mythic-gme/1.7.0/clips/meaning-roll-v2-poster.jpg";
-import listsRoll from "../assets/mythic-gme/1.7.0/clips/lists-roll-poster.jpg";
+import listsRoll from "../assets/mythic-gme/1.7.0/clips/lists-roll-v2-poster.jpg";
 import desktopThrow from "../assets/mythic-gme/1.7.0/clips/desktop-throw-poster.jpg";
 import panelsEn from "../assets/mythic-gme/1.7.0/desktop/en/window-1.png";
 import panelsPt from "../assets/mythic-gme/1.7.0/desktop/pt/window-1.png";
