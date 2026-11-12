@@ -1,6 +1,6 @@
 ---
 // TomeKeeper ships in English only, so this page has no PT alternate.
-import { Image } from "astro:assets";
+import { Image, Picture } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import AppIconTile from "../../components/apps/hub/AppIconTile.astro";
 import { getApps } from "../../lib/apps";
@@ -10,6 +10,8 @@ import setsIpad from "../../assets/apps/tomekeeper/sets-ipad.jpg";
 import toolsIpad from "../../assets/apps/tomekeeper/tools-ipad.jpg";
 import bookmarksIpad from "../../assets/apps/tomekeeper/bookmarks-ipad.jpg";
 import tableIpad from "../../assets/apps/tomekeeper/table-ipad.jpg";
+import ryanPhoto from "../../assets/people/ryan-holt.jpg";
+import RyanHoltNote from "../../components/makers/RyanHoltNote.astro";
 
 const tk = getApps("en").find((app) => app.slug === "tomekeeper")!;
 
@@ -189,6 +191,34 @@ const smallGroups = [
           <i class="fa-slab fa-regular fa-circle-info" aria-hidden="true"></i>
           TomeKeeper does not include any books. Bring your own PDFs.
         </p>
+      </div>
+    </section>
+
+    <section class="section tk-maker" id="makers-note" aria-labelledby="tk-maker-title">
+      <div class="container">
+        <article class="tk-maker__card">
+          <div class="tk-maker__who">
+            <Picture
+              class="tk-maker__photo"
+              src={ryanPhoto}
+              formats={["avif", "webp"]}
+              width={96}
+              height={96}
+              widths={[96, 192]}
+              sizes="96px"
+              alt="Ryan Holt"
+              loading="lazy"
+              decoding="async"
+            />
+            <div>
+              <h2 id="tk-maker-title" class="tk-maker__title">Maker’s note</h2>
+              <p class="tk-maker__name">Ryan Holt</p>
+            </div>
+          </div>
+          <div class="tk-maker__body">
+            <RyanHoltNote />
+          </div>
+        </article>
       </div>
     </section>
 
@@ -442,6 +472,47 @@ const smallGroups = [
   .tk-note i {
     color: var(--tk-brass);
   }
+  .tk-maker__card {
+    max-width: 820px;
+    margin-inline: auto;
+    padding: 2rem;
+    background: #fff;
+    border: var(--border-thick);
+    box-shadow: 8px 8px 0 0 var(--app-accent);
+  }
+  .tk-maker__who {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .tk-maker__photo {
+    flex: none;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    border: var(--border-base);
+    object-fit: cover;
+  }
+  .tk-maker__title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.875rem;
+    font-weight: 900;
+  }
+  .tk-maker__name {
+    margin: 0.25rem 0 0;
+    font-weight: 700;
+    color: var(--color-text-muted);
+  }
+  .tk-maker__body :global(p) {
+    margin: 0 0 1rem;
+    color: #333;
+    line-height: 1.7;
+  }
+  .tk-maker__body :global(p:last-child) {
+    margin-bottom: 0;
+  }
   .tk-help {
     background: #141f2d;
     color: #f5f3ed;
@@ -488,6 +559,18 @@ const smallGroups = [
     }
     .tk-feature {
       padding: 3rem 0;
+    }
+  }
+  @media (max-width: 768px) {
+    .tk-maker__card {
+      padding: 1.25rem;
+    }
+    .tk-maker__photo {
+      width: 72px;
+      height: 72px;
+    }
+    .tk-maker__title {
+      font-size: 1.5rem;
     }
   }
   @media (max-width: 560px) {
