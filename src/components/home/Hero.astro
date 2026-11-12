@@ -1,12 +1,19 @@
 ---
 import { Image, getImage } from "astro:assets";
-import m1 from "../../assets/mobile/mobile-1.png";
-import m2 from "../../assets/mobile/mobile-2.png";
-import m3 from "../../assets/mobile/mobile-3.png";
-import m4 from "../../assets/mobile/mobile-4.png";
-import m5 from "../../assets/mobile/mobile-5.png";
-import m6 from "../../assets/mobile/mobile-6.png";
-import m7 from "../../assets/mobile/mobile-7.png";
+import en1 from "../../assets/mythic-gme/1.7.0/phone/en/hero-1.png";
+import en2 from "../../assets/mythic-gme/1.7.0/phone/en/hero-2.png";
+import en3 from "../../assets/mythic-gme/1.7.0/phone/en/hero-3.png";
+import en4 from "../../assets/mythic-gme/1.7.0/phone/en/hero-4.png";
+import en5 from "../../assets/mythic-gme/1.7.0/phone/en/hero-5.png";
+import en6 from "../../assets/mythic-gme/1.7.0/phone/en/hero-6.png";
+import en7 from "../../assets/mythic-gme/1.7.0/phone/en/hero-7.png";
+import pt1 from "../../assets/mythic-gme/1.7.0/phone/pt/hero-1.png";
+import pt2 from "../../assets/mythic-gme/1.7.0/phone/pt/hero-2.png";
+import pt3 from "../../assets/mythic-gme/1.7.0/phone/pt/hero-3.png";
+import pt4 from "../../assets/mythic-gme/1.7.0/phone/pt/hero-4.png";
+import pt5 from "../../assets/mythic-gme/1.7.0/phone/pt/hero-5.png";
+import pt6 from "../../assets/mythic-gme/1.7.0/phone/pt/hero-6.png";
+import pt7 from "../../assets/mythic-gme/1.7.0/phone/pt/hero-7.png";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
@@ -17,8 +24,8 @@ const isPt = lang === "pt";
 const slidePrefix = isPt ? "Imagem" : "Slide";
 const slideJoin = isPt ? "de" : "of";
 
-/** Pre-rendered phone mockups (device chrome is part of the PNG), same set as v2 hero */
-const slideImages = [m1, m2, m3, m4, m5, m6, m7];
+/** Pre-rendered phone mockups (device chrome is part of the PNG), in the page's language */
+const slideImages = isPt ? [pt1, pt2, pt3, pt4, pt5, pt6, pt7] : [en1, en2, en3, en4, en5, en6, en7];
 const slideWidths = [300, 450, 600];
 const slideSizes = "(max-width: 980px) 72vw, 300px";
 
