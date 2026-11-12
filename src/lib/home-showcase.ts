@@ -5,9 +5,6 @@
 // come from lib/apps.
 import type { ImageMetadata } from "astro";
 import { getApps, statusLabel, type AppEntry, type Lang } from "./apps";
-import exceptionalYes from "../assets/mythic-gme/1.7.0/clips/exceptional-yes-poster.jpg";
-import meaningRoll from "../assets/mythic-gme/1.7.0/clips/meaning-roll-v2-poster.jpg";
-import listsRoll from "../assets/mythic-gme/1.7.0/clips/lists-roll-v2-poster.jpg";
 import desktopThrow from "../assets/mythic-gme/1.7.0/clips/desktop-throw-poster.jpg";
 import panelsEn from "../assets/mythic-gme/1.7.0/desktop/en/window-1.png";
 import panelsPt from "../assets/mythic-gme/1.7.0/desktop/pt/window-1.png";
@@ -16,6 +13,11 @@ import listsCharactersEn from "../assets/mythic-gme/1.7.0/phone/en/lists-charact
 import sceneEditorEn from "../assets/mythic-gme/1.7.0/phone/en/scene-editor.png";
 import exceptionalThrowEn from "../assets/mythic-gme/1.7.0/phone/en/exceptional-throw.png";
 import meaningSearchEn from "../assets/mythic-gme/1.7.0/phone/en/meaning-search.png";
+import fateDarkPt from "../assets/mythic-gme/1.7.0/phone/pt/fate-dark.png";
+import listsCharactersPt from "../assets/mythic-gme/1.7.0/phone/pt/lists-characters.png";
+import sceneEditorPt from "../assets/mythic-gme/1.7.0/phone/pt/scene-editor.png";
+import exceptionalThrowPt from "../assets/mythic-gme/1.7.0/phone/pt/exceptional-throw.png";
+import meaningSearchPt from "../assets/mythic-gme/1.7.0/phone/pt/meaning-search.png";
 import tkHomeIpad from "../assets/apps/tomekeeper/home-ipad.jpg";
 import tkHomeIphone from "../assets/apps/tomekeeper/home-iphone.jpg";
 import tkTableIpad from "../assets/apps/tomekeeper/table-ipad.jpg";
@@ -58,9 +60,7 @@ export function getShowcase(lang: Lang): ShowcaseApp[] {
   const crafter = app("adventure-crafter");
   const labels = statusLabel[lang];
   const more = isPt ? "Veja o que ele faz" : "See what it does";
-  // The pt-BR phone captures are not in yet, so the pt slides keep the clip
-  // posters (decorative) rather than show the English app.
-  const phone = (en: Screen, ptPoster: ImageMetadata): Screen => (isPt ? { src: ptPoster, alt: "" } : en);
+  const phone = (en: Screen, pt: Screen): Screen => (isPt ? pt : en);
 
   const mythicSlides: Slide[] = [
     {
@@ -76,18 +76,24 @@ export function getShowcase(lang: Lang): ShowcaseApp[] {
       screens: [
         phone(
           { src: fateDarkEn, alt: "The Fate Chart in Mythic GME Mobile in the dark theme, with Yes and Exceptional Yes answers in the Adventure Log" },
-          meaningRoll,
+          {
+            src: fateDarkPt,
+            alt: "A Tabela de Destino do Mythic GME Mobile no tema escuro, com respostas Sim e Sim Excepcional no Registro de Aventura",
+          },
         ),
         phone(
           {
             src: listsCharactersEn,
             alt: "The Lists screen in Mythic GME Mobile on the Characters tab, with a d10 list of five characters from Ines Varro, cartographer, to Captain Sefa Rhune",
           },
-          exceptionalYes,
+          {
+            src: listsCharactersPt,
+            alt: "A tela Listas do Mythic GME Mobile na aba Personagens, com uma lista de d10 de cinco personagens, de Ines Varro, cartógrafa, a Capitã Sefa Rhune",
+          },
         ),
         phone(
           { src: sceneEditorEn, alt: "The scene editor in Mythic GME Mobile, with the scene's journal notes and the Chaos Factor set to 6" },
-          listsRoll,
+          { src: sceneEditorPt, alt: "O editor de cena do Mythic GME Mobile, com as anotações da cena e o Fator de Caos em 6" },
         ),
       ],
     },
@@ -110,7 +116,10 @@ export function getShowcase(lang: Lang): ShowcaseApp[] {
         },
         phone(
           { src: exceptionalThrowEn, alt: "3D dice landing on the Fate Chart in Mythic GME Mobile, with an Exceptional answer" },
-          exceptionalYes,
+          {
+            src: exceptionalThrowPt,
+            alt: "Dados 3D caindo na Tabela de Destino do Mythic GME Mobile, com uma resposta excepcional",
+          },
         ),
       ],
     },
@@ -136,7 +145,10 @@ export function getShowcase(lang: Lang): ShowcaseApp[] {
             src: meaningSearchEn,
             alt: 'Meaning Tables in Mythic GME Mobile, searched for "Meaning", with the Action, Descriptor, Location, Object and Powers meaning tables in the results',
           },
-          listsRoll,
+          {
+            src: meaningSearchPt,
+            alt: "As Tabelas de Significado do Mythic GME Mobile, com o grupo Tabelas Principais aberto e Significado de Ação 1 marcada como favorita",
+          },
         ),
       ],
     },
