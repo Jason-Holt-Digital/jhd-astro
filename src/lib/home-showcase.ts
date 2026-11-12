@@ -11,6 +11,8 @@ import exceptionalYes from "../assets/mythic-gme/1.7.0/clips/exceptional-yes-pos
 import meaningRoll from "../assets/mythic-gme/1.7.0/clips/meaning-roll-poster.jpg";
 import listsRoll from "../assets/mythic-gme/1.7.0/clips/lists-roll-poster.jpg";
 import desktopThrow from "../assets/mythic-gme/1.7.0/clips/desktop-throw-poster.jpg";
+import panelsEn from "../assets/mythic-gme/1.7.0/desktop/en/window-1.png";
+import panelsPt from "../assets/mythic-gme/1.7.0/desktop/pt/window-1.png";
 import tkHomeIpad from "../assets/apps/tomekeeper/home-ipad.jpg";
 import tkHomeIphone from "../assets/apps/tomekeeper/home-iphone.jpg";
 import tkTableIpad from "../assets/apps/tomekeeper/table-ipad.jpg";
@@ -97,7 +99,12 @@ export function getShowcase(lang: Lang): ShowcaseApp[] {
       hue: "#3f4f8c",
       layout: "desktop-phone",
       screens: [
-        { src: desktopThrow, alt: "" },
+        {
+          src: isPt ? panelsPt : panelsEn,
+          alt: isPt
+            ? "O Mythic GME Digital no computador com três painéis lado a lado: Tabelas de Significado, o Registro de Aventura com as Ações do Destino e as Listas na aba Tramas, com a aba Tabelas na borda direita."
+            : "Mythic GME Digital on a desktop with three panels side by side: Meaning Tables, the Adventure Log with Fate Actions, and Lists on the Threads tab, with the Tables tab on the right edge.",
+        },
         { src: listsRoll, alt: "" },
       ],
     },
