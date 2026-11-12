@@ -32,7 +32,7 @@ related:
 - Para compartilhar ou fazer backup de tabelas, exporte uma tabela pelo menu dela ou use uma opção de exportação na aba Arquivos e escolha Arquivo JSON único. Você pode importar qualquer um desses arquivos pela aba Arquivos, mas uma exportação ZIP precisa ser descompactada e seus arquivos importados um por vez.
 - Nota de desbloqueio: no Google Play, Amazon e Apple App Store, Tabelas Personalizadas fazem parte do desbloqueio único de Recursos Expandidos. No itch.io e na Microsoft Store, elas fazem parte da compra única do app desktop.
 
-![Aba Arquivos de Tabelas Personalizadas com opções para importar Tabelas Oráculo e Tabelas de Foco de Evento](/images/resources/custom-tables/custom-tables-files-tab.png)
+![Aba Arquivos de Tabelas Personalizadas com opções para importar Tabelas Oracle e Tabelas de Foco do Evento](../../assets/mythic-gme/1.7.0/guides/pt/files-tab.png)
 
 ## Importando uma nova tabela de um arquivo
 
@@ -40,7 +40,7 @@ Use este fluxo quando quiser adicionar uma nova tabela personalizada a partir de
 
 1. Abra **Tabelas Personalizadas**.
 2. Escolha a aba **Arquivos**.
-3. Escolha **Tabelas Oracle** para uma tabela de significado, ou **Tabelas de Foco de Evento** para uma tabela de foco de evento.
+3. Escolha **Tabelas Oracle** para uma tabela de significado, ou **Tabelas de Foco do Evento** para uma tabela de foco de evento.
 4. Selecione um arquivo `.csv`, `.txt`, `.psv` ou `.json`.
 5. O app salva a tabela importada e a abre no editor de tabela para revisão.
 
@@ -55,7 +55,7 @@ Ao editar uma tabela existente, a aba Importar do editor de tabela tem dois cami
 - Arquivos JSON podem ser mesclados quando o ID da tabela importada corresponde à tabela que você está editando. Se os IDs não coincidirem, escolha Substituir tudo para sobrescrever a tabela. Salve suas alterações antes de importar um arquivo JSON aqui. Uma mesclagem ou Substituir Tudo parte da tabela salva, então as edições não salvas são descartadas.
 - Arquivos CSV, TXT e PSV substituem as entradas atuais no editor. A alteração fica preparada até você escolher Criar ou Atualizar.
 
-![Aba Importar do editor de tabela existente com a caixa de colagem Substituir todas as entradas](/images/resources/custom-tables/editor-files-paste.png)
+![Aba Importar do editor de tabela existente com a caixa de colagem Substituir todas as entradas](../../assets/mythic-gme/1.7.0/guides/pt/paste.png)
 
 Essa caixa de colagem serve para substituir entradas em uma tabela que você já está editando. Ela não é o fluxo de importação de uma tabela nova.
 
