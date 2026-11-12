@@ -1,0 +1,194 @@
+---
+// Promo film for Mythic GME 1.7.0. The MP4 is served from the R2 bucket on
+// media.jasonholtdigital.com because Workers static assets answer Range
+// requests with 200, and Safari needs 206 to play video. Caption files stay
+// same-origin under /media/ so <track> needs no CORS.
+//
+// The poster is a responsive <picture> under the video rather than the
+// video's poster attribute, which takes one URL: phones get a phone-sized
+// image, and on the Mythic GME page it is the first-screen (LCP) image. A
+// video with preload="none" and no poster paints nothing until it has a
+// frame, so the picture shows through with the native controls on top.
+import { Picture } from "astro:assets";
+import posterSource from "../../assets/mythic-gme/1.7.0/video/mythic-gme-60-poster.jpg";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+interface Props {
+  /** Set where the player is in the first screen, so its poster loads first. */
+  priority?: boolean;
+}
+
+const { priority = false } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isPt = lang === "pt";
+
+const videoSrc = "https://media.jasonholtdigital.com/mythic-gme/1.7.0/mythic-gme-60-v1.mp4";
+const captionsBase = "/media/mythic-gme-1.7.0/mythic-gme-60-v1";
+
+// The film's cards are burned in, in English, and it plays muted, so each page
+// shows its own language's captions by default.
+const creditParts = t("video.credit").split(/(\{track\}|\{license\})/);
+---
+
+<section class="section-block section-block--plain promo-video" aria-labelledby="promo-video-title">
+  <div class="container section">
+    <h2 id="promo-video-title" class="section-title">{t("video.heading")}</h2>
+    <div class="promo-video-frame">
+      <Picture
+        class="promo-video-poster"
+        src={posterSource}
+        alt=""
+        formats={["avif", "webp"]}
+        widths={[480, 720, 960, 1440, 1920]}
+        sizes="(max-width: 1000px) calc(100vw - 2rem), 960px"
+        quality={60}
+        loading={priority ? "eager" : "lazy"}
+        fetchpriority={priority ? "high" : "auto"}
+        aria-hidden="true"
+      />
+      <video
+        data-promo-video
+        controls
+        muted
+        loop
+        playsinline
+        preload="none"
+        width="1920"
+        height="1080"
+        aria-describedby="promo-video-description"
+      >
+        <source src={videoSrc} type="video/mp4" />
+        <track
+          kind="subtitles"
+          src={`${captionsBase}.en.vtt`}
+          srclang="en"
+          label="English"
+          default={!isPt}
+        />
+        <track
+          kind="subtitles"
+          src={`${captionsBase}.pt-BR.vtt`}
+          srclang="pt-BR"
+          label="Português (Brasil)"
+          default={isPt}
+        />
+      </video>
+    </div>
+    <p id="promo-video-description" class="sr-only">{t("video.description")}</p>
+    <p class="promo-video-credit">
+      {
+        creditParts.map((part) =>
+          part === "{track}" ? (
+            <a href="https://punchdeck.bandcamp.com/track/frozen-shimmer" target="_blank" rel="noopener noreferrer">Frozen Shimmer</a>
+          ) : part === "{license}" ? (
+            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>
+          ) : (
+            part
+          ),
+        )
+      }
+    </p>
+  </div>
+</section>
+
+<script>
+  // Autoplay is script-driven, with preload="none", rather than the autoplay
+  // attribute: Chromium starts streaming the whole 18 MB file on page load even
+  // with preload="metadata". play() loads the file once the player is on
+  // screen. A pause the viewer makes is never undone.
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  document.querySelectorAll<HTMLVideoElement>("[data-promo-video]").forEach((video) => {
+    // Some browsers ignore the default attribute on tracks, so turn on the
+    // page language's track explicitly.
+    const pageLang = document.documentElement.lang.startsWith("pt") ? "pt" : "en";
+    for (const track of video.textTracks) {
+      track.mode = track.language.startsWith(pageLang) ? "showing" : "disabled";
+    }
+
+    // Reduced motion, Save-Data and 2G connections get the poster and the
+    // play button instead of autoplay.
+    const connection = (navigator as Navigator & {
+      connection?: { saveData?: boolean; effectiveType?: string };
+    }).connection;
+    const constrained =
+      connection?.saveData === true ||
+      connection?.effectiveType === "2g" ||
+      connection?.effectiveType === "slow-2g";
+    if (reducedMotion || constrained) return;
+
+    let pausedByViewer = false;
+    let pausingForScroll = false;
+    video.addEventListener("pause", () => {
+      if (!pausingForScroll) pausedByViewer = true;
+      pausingForScroll = false;
+    });
+    video.addEventListener("play", () => {
+      pausedByViewer = false;
+    });
+
+    // Start watching only after the page has loaded, so the film's download
+    // never competes with the first-screen images.
+    const watch = () => new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        if (entry.isIntersecting) {
+          if (video.paused && !pausedByViewer) {
+            // A blocked autoplay (iOS Low Power Mode, browser settings) leaves
+            // the poster and controls in place.
+            video.play().catch(() => {});
+          }
+        } else if (!video.paused) {
+          pausingForScroll = true;
+          video.pause();
+        }
+      },
+      { threshold: 0.5 },
+    ).observe(video);
+    if (document.readyState === "complete") watch();
+    else window.addEventListener("load", watch, { once: true });
+  });
+</script>
+
+<style>
+  .promo-video-frame {
+    position: relative;
+    max-width: 960px;
+    margin: 0 auto;
+    border: var(--border-base);
+    border-radius: 15px;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    background: var(--color-surface-2);
+  }
+
+  .promo-video-frame video,
+  .promo-video-frame :global(.promo-video-poster) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .promo-video-frame :global(.promo-video-poster) {
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+  }
+
+  .promo-video-frame video {
+    position: relative;
+  }
+
+  .promo-video-credit {
+    max-width: 960px;
+    margin: 0.75rem auto 0;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  .promo-video-credit a {
+    white-space: nowrap;
+  }
+</style>

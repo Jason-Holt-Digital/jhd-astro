@@ -15,7 +15,7 @@ keywords:
   - Módulo publicado
   - Tabela de Foco de Evento
   - Evento Aleatório
-  - Característica de Aventura
+  - Aspecto de Aventura
   - Lista de Aspectos
   - Fator Caos
   - Cena Esperada

@@ -1,0 +1,373 @@
+---
+// Homepage app showcase: one framed stage that cross-fades slide by slide
+// through every app. The app tabs are site buttons, and the frame's offset
+// shadow takes the current app's accent.
+import AppIconTile from "../../apps/hub/AppIconTile.astro";
+import ShowcaseSlide from "./ShowcaseSlide.astro";
+import { getShowcase } from "../../../lib/home-showcase";
+import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isPt = lang === "pt";
+const slideLabel = isPt ? "Imagem" : "Slide";
+const ofLabel = isPt ? "de" : "of";
+const showcase = getShowcase(lang);
+const slides = showcase.flatMap((entry) => entry.slides.map((slide) => ({ entry, slide })));
+const pad = (n: number) => String(n).padStart(2, "0");
+---
+
+<section class="app-showcase section-block section-block--band" id="app-showcase" aria-labelledby="app-showcase-title">
+  <div class="container section">
+    <header class="section-head section-head--left" aria-hidden="true">
+      <span class="accent-line" aria-hidden="true"></span>
+      <span class="badge-text">{t("showcase.badge")}</span>
+    </header>
+    <h2 id="app-showcase-title" class="section-title section-title--left">{t("showcase.title")}</h2>
+    <p class="stage-lead">{t("showcase.lead")}</p>
+
+    <div
+      class="stage"
+      data-showcase
+      aria-roledescription="carousel"
+      aria-label={t("billboard.aria_label")}
+      data-pause-label={t("billboard.pause")}
+      data-play-label={t("billboard.play")}
+      data-slide-label={slideLabel}
+      data-of-label={ofLabel}
+      style={`--app-accent:${showcase[0]!.app.accent}`}
+    >
+      <div class="stage-tabs" role="group" aria-label="Apps">
+        {showcase.map((entry, i) => (
+          <button
+            type="button"
+            class="btn btn--tertiary btn--compact stage-tab"
+            data-app-btn
+            data-app={entry.app.slug}
+            aria-pressed={i === 0 ? "true" : "false"}
+            style={`--tab-accent:${entry.app.accent}`}
+          >
+            <AppIconTile app={entry.app} size={28} />
+            {entry.app.name}
+          </button>
+        ))}
+      </div>
+
+      <div class="stage-frame" data-frame>
+        <div class="stage-slides">
+          {slides.map(({ entry, slide }, i) => (
+            <div
+              class:list={["stage-slide", { "is-active": i === 0 }]}
+              data-slide
+              data-app={entry.app.slug}
+              data-accent={entry.app.accent}
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`${slideLabel} ${i + 1} ${ofLabel} ${slides.length}`}
+              inert={i !== 0}
+            >
+              <ShowcaseSlide entry={entry} slide={slide} isPt={isPt} />
+            </div>
+          ))}
+        </div>
+
+        <div class="stage-bar">
+          <ol class="stage-segs" aria-hidden="true">
+            {slides.map(({ entry }, i) => (
+              <li data-seg class:list={{ "is-active": i === 0 }} style={`--seg-accent:${entry.app.accent}`}></li>
+            ))}
+          </ol>
+          <span class="stage-count" data-count aria-hidden="true">01 / {pad(slides.length)}</span>
+          <div class="stage-buttons">
+            <button type="button" class="stage-btn stage-prev" aria-label={t("billboard.prev")}>
+              <i class="fa-slab fa-regular fa-angle-left" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="stage-btn stage-pause" aria-pressed="false" aria-label={t("billboard.pause")}>
+              <i class="fa-slab fa-regular fa-pause" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="stage-btn stage-next" aria-label={t("billboard.next")}>
+              <i class="fa-slab fa-regular fa-angle-right" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <p class="sr-only" data-status aria-live="off">{slideLabel} 1 {ofLabel} {slides.length}</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { createCarousel } from "../../../lib/carousel";
+
+  document.querySelectorAll<HTMLElement>("[data-showcase]").forEach((root) => {
+    const slides = Array.from(root.querySelectorAll<HTMLElement>("[data-slide]"));
+    const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-app-btn]"));
+    const segs = Array.from(root.querySelectorAll<HTMLElement>("[data-seg]"));
+    const frame = root.querySelector<HTMLElement>("[data-frame]");
+    const count = root.querySelector<HTMLElement>("[data-count]");
+    const status = root.querySelector<HTMLElement>("[data-status]");
+    const btnPrev = root.querySelector<HTMLButtonElement>(".stage-prev");
+    const btnNext = root.querySelector<HTMLButtonElement>(".stage-next");
+    const btnPause = root.querySelector<HTMLButtonElement>(".stage-pause");
+    if (!slides.length || !frame || !btnPrev || !btnNext || !btnPause) return;
+
+    const { pauseLabel = "", playLabel = "", slideLabel = "", ofLabel = "" } = root.dataset;
+    const total = slides.length;
+    const pad = (n: number) => String(n).padStart(2, "0");
+
+    const carousel = createCarousel({
+      itemCount: total,
+      intervalMs: 7000,
+      pauseTargets: [frame],
+      keyboardTarget: root,
+      onActivate: (index) => {
+        const app = slides[index]!.dataset.app;
+        slides.forEach((slide, i) => {
+          slide.classList.toggle("is-active", i === index);
+          slide.inert = i !== index;
+        });
+        tabs.forEach((tab) => tab.setAttribute("aria-pressed", String(tab.dataset.app === app)));
+        segs.forEach((seg, i) => {
+          seg.classList.toggle("is-active", i === index);
+          seg.classList.toggle("is-done", i < index);
+        });
+        root.style.setProperty("--app-accent", slides[index]!.dataset.accent ?? "");
+        if (count) count.textContent = `${pad(index + 1)} / ${pad(total)}`;
+        if (status) status.textContent = `${slideLabel} ${index + 1} ${ofLabel} ${total}`;
+      },
+    });
+
+    // createCarousel never starts autoplay with reduced motion, so there is
+    // nothing to pause.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      btnPause.hidden = true;
+      root.classList.add("is-paused");
+    }
+
+    let userPaused = false;
+    const showPaused = () => {
+      root.classList.toggle("is-paused", userPaused);
+      // Announce slide changes only once rotation is stopped, not every 7 s.
+      status?.setAttribute("aria-live", userPaused ? "polite" : "off");
+      btnPause.setAttribute("aria-pressed", String(userPaused));
+      btnPause.setAttribute("aria-label", userPaused ? playLabel : pauseLabel);
+      btnPause.querySelector("i")?.setAttribute("class", `fa-slab fa-regular ${userPaused ? "fa-play" : "fa-pause"}`);
+    };
+    const stop = () => {
+      userPaused = true;
+      carousel.pause();
+      showPaused();
+    };
+
+    // Rotation runs only while the stage is on screen.
+    new IntersectionObserver(
+      ([entry]) => {
+        root.classList.toggle("is-idle", !entry!.isIntersecting);
+        if (userPaused) return;
+        if (entry!.isIntersecting) carousel.resume();
+        else carousel.pause();
+      },
+      { threshold: 0.35 },
+    ).observe(root);
+
+    btnPrev.addEventListener("click", () => { stop(); carousel.prev(); });
+    btnNext.addEventListener("click", () => { stop(); carousel.next(); });
+    btnPause.addEventListener("click", () => {
+      userPaused = !userPaused;
+      if (userPaused) carousel.pause();
+      else carousel.resume();
+      showPaused();
+    });
+    tabs.forEach((tab) =>
+      tab.addEventListener("click", () => {
+        stop();
+        carousel.goTo(slides.findIndex((s) => s.dataset.app === tab.dataset.app));
+      }),
+    );
+  });
+</script>
+
+<style>
+  .stage-lead {
+    max-width: 42rem;
+    margin: 0 0 1.5rem;
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    color: var(--color-text);
+    font-weight: 500;
+  }
+  .stage-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .stage-tab {
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 0 var(--tab-accent);
+  }
+  .stage-tab :global(.app-icon-tile) {
+    border-width: 1px;
+    box-shadow: none;
+  }
+  .stage-tab[aria-pressed="true"] {
+    background: #000;
+    color: #fff;
+    box-shadow: 6px 6px 0 0 var(--tab-accent);
+  }
+  .stage-tab:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+
+  .stage-frame {
+    border: var(--border-thick);
+    background: #fff;
+    box-shadow: 12px 12px 0 0 var(--app-accent);
+    transition: box-shadow 0.4s var(--easing-standard);
+  }
+  /* Every slide shares one grid cell, so the stage is as tall as the tallest
+     slide and never jumps between apps. */
+  .stage-slides {
+    display: grid;
+    border-bottom: var(--border-thick);
+  }
+  .stage-slide {
+    grid-area: 1 / 1;
+    min-height: clamp(30rem, 44vw, 39rem);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s var(--easing-standard), visibility 0s 0.6s;
+  }
+  .stage-slide.is-active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.6s var(--easing-standard), visibility 0s;
+  }
+
+  .stage-bar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 14px;
+  }
+  .stage-segs {
+    display: flex;
+    flex: 1;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .stage-segs li {
+    position: relative;
+    flex: 1;
+    height: 10px;
+    border: var(--border-subtle);
+    background: var(--color-surface-2);
+    overflow: hidden;
+  }
+  .stage-segs li::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--seg-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  .stage-segs li.is-done::after {
+    transform: none;
+  }
+  /* The active segment fills over the 7 s interval while rotation runs. */
+  .stage-segs li.is-active::after {
+    animation: stage-fill 7s linear forwards;
+  }
+  .stage.is-paused .stage-segs li.is-active::after,
+  .stage.is-idle .stage-segs li.is-active::after,
+  .stage-frame:hover .stage-segs li.is-active::after,
+  .stage-frame:focus-within .stage-segs li.is-active::after {
+    animation: none;
+    transform: none;
+  }
+  @keyframes stage-fill {
+    to {
+      transform: none;
+    }
+  }
+  .stage-count {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .stage-buttons {
+    display: flex;
+    gap: 8px;
+  }
+  .stage-btn {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background: #fff;
+    color: #000;
+    border: var(--border-base);
+    border-radius: 0;
+    box-shadow: 4px 4px 0 0 var(--app-accent);
+    cursor: pointer;
+    transition: transform 0.15s var(--easing-standard), box-shadow 0.15s var(--easing-standard);
+  }
+  .stage-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 0 var(--app-accent);
+  }
+  .stage-btn:active {
+    transform: translate(-1px, -1px);
+  }
+  .stage-btn:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+  .stage-btn[hidden] {
+    display: none;
+  }
+
+  @media (max-width: 760px) {
+    .stage-tabs {
+      gap: 12px 10px;
+    }
+    .stage-tab {
+      font-size: 0.9375rem;
+    }
+    .stage-frame {
+      box-shadow: 8px 8px 0 0 var(--app-accent);
+    }
+    .stage-slide {
+      min-height: 0;
+    }
+  }
+  @media (max-width: 560px) {
+    .stage-bar {
+      gap: 10px;
+      padding: 10px;
+    }
+    .stage-count {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .stage-frame,
+    .stage-slide,
+    .stage-slide.is-active,
+    .stage-btn {
+      transition: none;
+    }
+    .stage-segs li.is-active::after {
+      animation: none;
+      transform: none;
+    }
+  }
+</style>

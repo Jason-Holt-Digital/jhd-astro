@@ -1,0 +1,308 @@
+---
+// One slide of the homepage app showcase: the app's own canvas (Night Folio
+// for Mythic GME, navy and brass for TomeKeeper, the site's yellow for apps
+// still to come), its approved lines, and its screens in device frames.
+import { Image, Picture } from "astro:assets";
+import nebula from "../../../assets/mythic-gme/1.7.0/nebula.jpg";
+import type { ShowcaseApp, Slide } from "../../../lib/home-showcase";
+
+interface Props {
+  entry: ShowcaseApp;
+  slide: Slide;
+  isPt: boolean;
+}
+
+const { entry, slide, isPt } = Astro.props;
+const { app } = entry;
+const linkLang = isPt && app.englishOnly ? "en" : undefined;
+const deviceClass = (i: number) => {
+  if (slide.layout === "phones") return "phone";
+  if (slide.layout === "desktop-phone") return i === 0 ? "desktop" : "phone";
+  if (slide.layout === "tablet-phone") return i === 0 ? "tablet" : "phone";
+  return "tablet";
+};
+const imgWidths = (kind: string) => (kind === "phone" ? [240, 432] : [640, 960, 1280]);
+const imgSizes = (kind: string) => (kind === "phone" ? "(max-width: 760px) 30vw, 180px" : "(max-width: 760px) 80vw, 560px");
+---
+
+<div class:list={["sc-canvas", `sc-canvas--${slide.canvas}`]} style={slide.hue ? `--sky-hue:${slide.hue}` : undefined}>
+  {slide.canvas === "night-folio" && (
+    <div class="sc-sky" aria-hidden="true">
+    <Picture
+      src={nebula}
+      alt=""
+      formats={["avif", "webp"]}
+      widths={[640, 1024, 1600]}
+      sizes="(max-width: 760px) 100vw, 1140px"
+      quality={30}
+      loading="lazy"
+      decoding="async"
+    />
+    </div>
+  )}
+  <div class="sc-copy">
+    <p class="sc-eyebrow">{slide.eyebrow}</p>
+    <h3 class="sc-title">
+      {slide.title}
+      {slide.titleAccent && <span class="sc-title-accent">{slide.titleAccent}</span>}
+    </h3>
+    <p class="sc-lead">{slide.lead}</p>
+    {slide.note && <p class="sc-note">{slide.note}</p>}
+    <div class="sc-actions">
+      <span class:list={["app-status", `app-status--${app.status}`]}>{entry.status}</span>
+      <a class="btn btn--tertiary btn--compact sc-cta" href={app.href} hreflang={linkLang}>
+        {entry.cta}<i class="fa-slab fa-regular fa-arrow-right" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+  {slide.screens.length > 0 && (
+    <div class:list={["sc-media", `sc-media--${slide.layout}`]}>
+      {slide.screens.map((screen, i) => (
+        <div class:list={["sc-device", `sc-device--${deviceClass(i)}`, `sc-device--n${i}`]}>
+          {deviceClass(i) === "desktop" && slide.canvas === "night-folio" && (
+            <span class="sc-device-bar" aria-hidden="true"><span></span><span></span><span></span></span>
+          )}
+          <Image
+            src={screen.src}
+            alt={screen.alt}
+            widths={imgWidths(deviceClass(i))}
+            sizes={imgSizes(deviceClass(i))}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+
+<style>
+  .sc-canvas {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    height: 100%;
+    padding: clamp(1.5rem, 4.5vw, 3.5rem);
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .sc-canvas:not(:has(.sc-media)) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Night Folio: the dark Mythic theme with the app's nebula art, faint. */
+  .sc-canvas--night-folio {
+    --sc-ink: #f3ecdf;
+    --sc-muted: #c9bfd6;
+    --sc-accent: #d8be84;
+    background: #1d1729;
+    color: var(--sc-ink);
+  }
+  .sc-canvas--night-folio::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(70% 70% at 78% 45%, color-mix(in oklab, var(--sky-hue) 60%, transparent), transparent);
+  }
+  .sc-sky {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    opacity: 0.2;
+  }
+  .sc-sky :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* TomeKeeper: its navy and brass, as on its own page. */
+  .sc-canvas--tomekeeper {
+    --sc-ink: #f5f3ed;
+    --sc-muted: rgba(245, 243, 237, 0.82);
+    --sc-accent: #d9a85f;
+    --tk-brass: #b88743;
+    color: var(--sc-ink);
+    background:
+      radial-gradient(80% 90% at 80% 40%, rgba(53, 87, 129, 0.9), transparent 70%),
+      #141f2d;
+  }
+
+  /* Apps still to come sit on the site's own yellow and grid. */
+  .sc-canvas--coming-soon {
+    --sc-ink: var(--color-text);
+    --sc-muted: var(--color-text-muted);
+    --sc-accent: var(--color-text);
+    color: var(--sc-ink);
+    background:
+      linear-gradient(var(--color-border) 1px, transparent 1px) 0 0 / 24px 24px,
+      linear-gradient(90deg, var(--color-border) 1px, transparent 1px) 0 0 / 24px 24px,
+      var(--color-accent);
+    background-blend-mode: soft-light, soft-light, normal;
+  }
+
+  .sc-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    min-width: 0;
+    max-width: 34rem;
+  }
+  .sc-eyebrow {
+    margin: 0;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sc-accent);
+  }
+  .sc-title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3.4vw, 3rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1.04;
+    color: var(--sc-ink);
+  }
+  .sc-title-accent {
+    display: block;
+    color: var(--sc-accent);
+  }
+  .sc-lead {
+    margin: 0;
+    font-size: clamp(1rem, 1.3vw, 1.125rem);
+    line-height: 1.55;
+    color: var(--sc-muted);
+  }
+  .sc-note {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+  .sc-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    margin-top: 8px;
+  }
+  .sc-cta {
+    box-shadow: 5px 5px 0 0 var(--app-accent);
+    color: #000;
+    text-decoration: none;
+  }
+  .sc-cta:hover {
+    box-shadow: 7px 7px 0 0 var(--app-accent);
+  }
+
+  .sc-canvas--night-folio .sc-eyebrow {
+    font-family: var(--font-plex);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+  }
+  .sc-canvas--night-folio .sc-title {
+    font-family: var(--font-fraunces);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .sc-canvas--night-folio .sc-title-accent {
+    font-family: var(--font-fraunces-italic);
+    font-style: italic;
+    font-weight: 500;
+  }
+  .sc-canvas--night-folio .sc-lead {
+    font-family: var(--font-plex);
+  }
+  /* Mythic's own gold, not the site blue, behind its button on the dark page. */
+  .sc-canvas--night-folio .sc-cta {
+    box-shadow: 5px 5px 0 0 var(--sc-accent);
+  }
+  .sc-canvas--tomekeeper .sc-cta {
+    box-shadow: 5px 5px 0 0 var(--tk-brass);
+  }
+  .sc-canvas--coming-soon .sc-cta {
+    box-shadow: 5px 5px 0 0 var(--color-border);
+  }
+
+  /* Devices */
+  .sc-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+  }
+  .sc-device {
+    position: absolute;
+    overflow: hidden;
+  }
+  .sc-device :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .sc-canvas--night-folio .sc-device {
+    background: #120e1a;
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  }
+  .sc-canvas--night-folio .sc-device--phone {
+    border: 5px solid #120e1a;
+    border-radius: clamp(14px, 2.2vw, 26px);
+  }
+  .sc-canvas--night-folio .sc-device--desktop {
+    border-radius: 10px;
+  }
+  .sc-device-bar {
+    display: flex;
+    gap: 5px;
+    padding: 7px 10px;
+    background: #2a2438;
+  }
+  .sc-device-bar span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.22);
+  }
+  .sc-canvas--tomekeeper .sc-device {
+    border: var(--border-thick);
+    border-radius: 16px;
+    box-shadow: 8px 8px 0 0 var(--tk-brass);
+  }
+  .sc-canvas--tomekeeper .sc-device--phone {
+    border-radius: 18px;
+    box-shadow: 6px 6px 0 0 var(--app-accent);
+  }
+
+  .sc-media--phones .sc-device { width: 30%; top: 12%; }
+  .sc-media--phones .sc-device--n0 { left: 3%; transform: rotate(-5deg); }
+  .sc-media--phones .sc-device--n1 { left: 35%; top: 0; z-index: 1; }
+  .sc-media--phones .sc-device--n2 { left: 67%; transform: rotate(5deg); }
+
+  .sc-media--desktop-phone .sc-device--n0 { width: 90%; right: 0; top: 6%; }
+  .sc-media--desktop-phone .sc-device--n1 { width: 23%; left: 0; top: 28%; z-index: 1; }
+
+  .sc-media--tablet-phone .sc-device--n0 { width: 84%; left: 0; top: 4%; }
+  .sc-media--tablet-phone .sc-device--n1 { width: 24%; right: 2%; bottom: 0; z-index: 1; }
+
+  .sc-media--tablet .sc-device--n0 { width: 92%; left: 4%; top: 6%; }
+
+  @media (max-width: 760px) {
+    .sc-canvas {
+      grid-template-columns: minmax(0, 1fr);
+      align-content: start;
+      gap: 1.25rem;
+    }
+    .sc-canvas--night-folio .sc-device--phone {
+      border-width: 3px;
+    }
+    .sc-canvas--tomekeeper .sc-device {
+      border-width: 2px;
+      box-shadow: 5px 5px 0 0 var(--tk-brass);
+    }
+  }
+</style>

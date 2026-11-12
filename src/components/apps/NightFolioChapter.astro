@@ -1,0 +1,240 @@
+---
+// Redesign direction A, "Night Folio chapters": each app is a chapter on the
+// dark Mythic canvas. Clips sit in tilted devices beside the approved feature
+// lines; the remaining lines, official content and the site's store buttons
+// sit on a site panel.
+import ClipDevice from "./ClipDevice.astro";
+import ChapterSky from "./ChapterSky.astro";
+import StoreLinks from "./StoreLinks.astro";
+import { groupFeatures, type Clip } from "../../lib/mythic-gme-clips";
+
+interface Props {
+  id: string;
+  badge: string;
+  app: {
+    title: string;
+    whoItsFor: string;
+    features: string[];
+    officialContent: string[];
+    iapInfo?: string;
+    disclaimer?: string;
+    storeLinks: Array<{ name: string; url: string; icon: string; available?: boolean }>;
+  };
+  groups: Array<{ clip: Clip; lines: number[] }>;
+  hue: string;
+  lang: "en" | "pt";
+}
+
+const { id, badge, app, groups, hue, lang } = Astro.props;
+const isPt = lang === "pt";
+const { groups: rows, rest } = groupFeatures(app.features, groups);
+const tilts = [-4, 3, -3];
+---
+
+<section id={id} class="nf" aria-labelledby={`${id}-title`}>
+  <ChapterSky hue={hue} />
+  <div class="nf-inner">
+    <header class="nf-head">
+      <p class="nf-eyebrow" aria-hidden="true">{badge}</p>
+      <h2 id={`${id}-title`} class="nf-title">{app.title}</h2>
+      <p class="nf-lead">{app.whoItsFor}</p>
+    </header>
+
+    {
+      rows.map((row, i) => (
+        <article class:list={["nf-row", { "nf-row--flip": i % 2 === 1, "nf-row--wide": row.clip.device === "desktop" }]}>
+          <div class="nf-media">
+            <ClipDevice clip={row.clip} tilt={row.clip.device === "phone" ? tilts[i % tilts.length] : -1.5} />
+          </div>
+          <div class="nf-copy">
+            <h3 class="nf-headline">{row.headline}</h3>
+            {row.lines.length > 0 && (
+              <ul class="nf-ledger">
+                {row.lines.map((line) => (
+                  <li>{line}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </article>
+      ))
+    }
+
+    <div class="nf-page panel">
+      <div class="nf-page-col">
+        <h3 class="nf-label">{isPt ? "O que o app faz" : "What it does"}</h3>
+        <ul class="nf-page-ledger">
+          {rest.map((line) => <li>{line}</li>)}
+        </ul>
+      </div>
+      <div class="nf-page-col">
+        <h3 class="nf-label">{isPt ? "Conteúdo oficial" : "Official content"}</h3>
+        <ul class="nf-page-ledger">
+          {app.officialContent.map((line) => <li>{line}</li>)}
+        </ul>
+        {app.iapInfo && <p class="nf-note">{app.iapInfo}</p>}
+        {app.disclaimer && <p class="nf-note">{app.disclaimer}</p>}
+        <StoreLinks storeLinks={app.storeLinks} lang={lang} />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .nf {
+    --nf-ink: #f3ecdf;
+    --nf-muted: #c9bfd6;
+    --nf-gold: #d8be84;
+    --nf-gold-deep: #b39556;
+    position: relative;
+    color: var(--nf-ink);
+    padding: clamp(4rem, 8vw, 7rem) 0;
+  }
+
+  .nf-inner {
+    position: relative;
+    width: min(1120px, 100% - 2.5rem);
+    margin: 0 auto;
+  }
+
+  .nf-head {
+    max-width: 44rem;
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  .nf-eyebrow {
+    font-family: var(--font-plex);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--nf-gold);
+    margin: 0 0 0.75rem;
+  }
+
+  .nf-title {
+    font-family: var(--font-fraunces);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    color: var(--nf-ink);
+    margin: 0;
+  }
+
+  .nf-lead {
+    font-family: var(--font-fraunces-italic);
+    font-style: italic;
+    font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+    line-height: 1.35;
+    color: var(--nf-gold);
+    margin: 0.75rem 0 0;
+  }
+
+  .nf-row {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+    margin-bottom: clamp(3.5rem, 8vw, 6rem);
+  }
+
+  .nf-row--flip .nf-media {
+    order: 2;
+  }
+
+  .nf-row--wide {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  }
+
+  .nf-media {
+    display: grid;
+    place-items: center;
+  }
+
+  .nf-headline {
+    font-family: var(--font-fraunces);
+    font-weight: 600;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    line-height: 1.15;
+    color: var(--nf-ink);
+    margin: 0 0 1.25rem;
+  }
+
+  .nf-ledger {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 1.25rem;
+    border-left: 1px solid color-mix(in oklab, var(--nf-gold-deep) 60%, transparent);
+  }
+
+  .nf-ledger li {
+    font-family: var(--font-plex);
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: var(--nf-muted);
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .nf-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    color: var(--color-text);
+    padding: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  /* Same heading treatment as the "Download now" heading in StoreLinks. */
+  .nf-label {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .nf-page-col > .nf-label + .nf-page-ledger {
+    margin-bottom: 1.75rem;
+  }
+
+  .nf-page-ledger {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nf-page-ledger li {
+    font-family: var(--font-fraunces);
+    font-size: 1rem;
+    line-height: 1.45;
+    padding: 0.65rem 0;
+    border-bottom: var(--border-subtle);
+  }
+
+  .nf-note {
+    font-family: var(--font-plex);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+    margin: 0 0 1.5rem;
+  }
+
+  @media (max-width: 860px) {
+    .nf-row,
+    .nf-row--wide,
+    .nf-page {
+      grid-template-columns: 1fr;
+    }
+
+    .nf-row--flip .nf-media {
+      order: 0;
+    }
+
+    .nf-media :global(.clip-device--phone) {
+      width: min(72%, 280px);
+    }
+  }
+</style>

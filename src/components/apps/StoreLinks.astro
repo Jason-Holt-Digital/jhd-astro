@@ -16,6 +16,7 @@ const isPt = lang === 'pt';
 const getStoreShadowClass = (storeName: string) => {
   const storeMap: Record<string, string> = {
     'Apple App Store': 'btn--shadow-apple',
+    'Mac App Store': 'btn--shadow-apple',
     'Google Play': 'btn--shadow-google',
     'Amazon Appstore': 'btn--shadow-amazon',
     'itch.io (DRM\u2011free)': 'btn--shadow-itch',
@@ -32,7 +33,7 @@ const getStoreShadowClass = (storeName: string) => {
   {storeLinks.length === 0 ? (
     <div class="coming-soon-notice">
       <i class="fa-slab fa-regular fa-clock" aria-hidden="true"></i>
-      <span>{isPt ? 'Em breve — acompanhe as atualizações.' : 'Coming soon — Stay tuned for updates!'}</span>
+      <span>{isPt ? 'Em breve. Acompanhe as atualizações.' : 'Coming soon. Stay tuned for updates!'}</span>
     </div>
   ) : (
     storeLinks.map(store => (
@@ -44,7 +45,7 @@ const getStoreShadowClass = (storeName: string) => {
       ) : (
         <span class="btn btn--tertiary" aria-disabled="true">
           <i class={store.icon} aria-hidden="true"></i>
-          {store.name} — {isPt ? 'Em breve' : 'Coming soon'}
+          {store.name} · {isPt ? 'Em breve' : 'Coming soon'}
         </span>
       )
     ))

@@ -2,13 +2,15 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import UtilBar from '../../components/layout/UtilBar.astro';
 import Hero from '../../components/home/Hero.astro';
-import AppWorkspaceShowcase from '../../components/home/AppWorkspaceShowcase.astro';
+import AppShowcase from '../../components/home/showcase/AppShowcase.astro';
 import CoreBenefits from '../../components/home/CoreBenefits.astro';
 import CommunitySupport from '../../components/home/CommunitySupport.astro';
 import Partners from '../../components/home/Partners.astro';
 import PopularResources from '../../components/home/PopularResources.astro';
 import MakersNote from '../../components/home/MakersNote.astro';
+import PromoVideo from '../../components/media/PromoVideo.astro';
 import ReviewsRotator from '../../components/home/ReviewsRotator.astro';
+import { Font } from 'astro:assets';
 ---
 <BaseLayout
   title="Apps oficiais Mythic GME 2e — Jason Holt Digital"
@@ -22,6 +24,11 @@ import ReviewsRotator from '../../components/home/ReviewsRotator.astro';
 >
   <UtilBar slot="before-header" />
   <Fragment slot="head">
+    <!-- Fraunces and IBM Plex Sans only style the Mythic GME slides of the app
+         showcase far below the first screen, so they are not preloaded. -->
+    <Font cssVariable="--font-fraunces" />
+    <Font cssVariable="--font-fraunces-italic" />
+    <Font cssVariable="--font-plex" />
     <!-- JSON-LD Structured Data -->
     <script is:inline type="application/ld+json">
       {
@@ -43,9 +50,10 @@ import ReviewsRotator from '../../components/home/ReviewsRotator.astro';
   </Fragment>
 
   <Hero />
+  <PromoVideo />
   <ReviewsRotator />
   <CoreBenefits />
-  <AppWorkspaceShowcase />
+  <AppShowcase />
   <CommunitySupport />
   <Partners />
   <PopularResources />

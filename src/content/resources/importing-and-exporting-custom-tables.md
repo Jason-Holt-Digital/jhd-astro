@@ -33,7 +33,7 @@ related:
 - To share or back up tables, export one table from its menu, or use an export option on the Files tab and choose Single JSON File. You can import either file from the Files tab, but a ZIP export must be unzipped and its files imported one at a time.
 - Unlocking note: on Google Play, Amazon, and the Apple App Store, Custom Tables requires an IAP; Itch.io and Microsoft Store include it with a higher‑priced purchase.
 
-![Custom Tables Files tab with Oracle Tables and Event Focus Tables import options](/images/resources/custom-tables/custom-tables-files-tab.png)
+![Custom Tables Files tab with Oracle Tables and Event Focus Tables import options](../../assets/mythic-gme/1.7.0/guides/en/files-tab.png)
 
 ## Importing a new table from a file
 
@@ -56,7 +56,7 @@ When you edit an existing table, the table editor's Import tab has two import pa
 - JSON files can merge when the imported table ID matches the table you are editing. If the IDs do not match, choose Replace All to overwrite the table. Save your changes before you import a JSON file here. A merge or Replace All starts from the saved table, so edits you have not saved are discarded.
 - CSV, TXT, and PSV files replace the current entries in the editor. The change is staged until you choose Create or Update.
 
-![Existing table editor Import tab with the Replace All Entries paste box](/images/resources/custom-tables/editor-files-paste.png)
+![Existing table editor Import tab with the Replace All Entries paste box](../../assets/mythic-gme/1.7.0/guides/en/paste.png)
 
 This paste box is for replacing entries in a table you are already editing. It is not the brand-new-table import flow.
 

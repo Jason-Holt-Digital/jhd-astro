@@ -1,0 +1,45 @@
+@layer tokens {
+  /* Neo‑Brutalist tokens (flat, high contrast) */
+  :root {
+    /* color tokens */
+    --color-bg: #ffffff; /* canvas */
+    --color-surface: #ffffff; /* cards/panels */
+    --color-surface-2: #f9f9f9; /* subtle alt */
+    --color-text: #1a1a1a; /* main text */
+    --color-text-muted: #444444; /* secondary text */
+    --color-border: #000000; /* structural border */
+    --color-primary: #0066ff; /* primary blue */
+    --color-accent: #ffd700; /* accent yellow (secondary) */
+    --color-electric-blue: #0057ff;
+    --color-electric-yellow: #ffe817;
+
+    /* border tokens - strategic thickness */
+    --border-subtle: 1px solid var(--color-border); /* for secondary elements */
+    --border-base: 2px solid var(--color-border); /* standard structural */
+    --border-thick: 3px solid var(--color-border); /* primary CTAs only */
+    --border-heavy: 4px solid var(--color-border); /* hero elements only */
+
+    /* radius */
+    --radius-base: 0;
+    --radius-lg: 0;
+    --radius-pill: 0;
+
+    /* shadows */
+    --shadow-base: 6px 6px 0 0 rgba(0, 0, 0, 0.12);
+    --shadow-lift: 10px 10px 0 0 rgba(0, 0, 0, 0.18);
+
+    /* motion & layout */
+    --easing-standard: cubic-bezier(0.2, 0.7, 0.2, 1);
+    --container-max: 1140px;
+
+    /* hero-specific tokens */
+    --hero-bg-primary: linear-gradient(135deg, rgba(0, 102, 255, 0.08) 0%, rgba(255, 215, 0, 0.05) 100%);
+    --hero-bg-accent: rgba(255, 255, 255, 0.95);
+    --hero-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    --hero-stats-bg: rgba(255, 255, 255, 0.9);
+    --hero-stats-border: var(--border-thick);
+    --hero-overlay: rgba(255, 255, 255, 0.8);
+
+    /* --font-display and --font-body come from the fonts config in astro.config.mjs */
+  }
+}
