@@ -2,9 +2,7 @@
 // each app on its own canvas inside the site's frame. Every line here is
 // approved site copy: the Mythic GME lines are the web.billboard keys, the
 // TomeKeeper lines come from its own page, and names, taglines and summaries
-// come from lib/apps. The Mythic GME screens are placeholders until the light
-// Mythic recapture lands; their alt text arrives from track B with it, so they
-// are decorative until then.
+// come from lib/apps.
 import type { ImageMetadata } from "astro";
 import { getApps, statusLabel, type AppEntry, type Lang } from "./apps";
 import exceptionalYes from "../assets/mythic-gme/1.7.0/clips/exceptional-yes-poster.jpg";
@@ -13,6 +11,11 @@ import listsRoll from "../assets/mythic-gme/1.7.0/clips/lists-roll-v2-poster.jpg
 import desktopThrow from "../assets/mythic-gme/1.7.0/clips/desktop-throw-poster.jpg";
 import panelsEn from "../assets/mythic-gme/1.7.0/desktop/en/window-1.png";
 import panelsPt from "../assets/mythic-gme/1.7.0/desktop/pt/window-1.png";
+import fateDarkEn from "../assets/mythic-gme/1.7.0/phone/en/fate-dark.png";
+import listsCharactersEn from "../assets/mythic-gme/1.7.0/phone/en/lists-characters.png";
+import sceneEditorEn from "../assets/mythic-gme/1.7.0/phone/en/scene-editor.png";
+import exceptionalThrowEn from "../assets/mythic-gme/1.7.0/phone/en/exceptional-throw.png";
+import meaningSearchEn from "../assets/mythic-gme/1.7.0/phone/en/meaning-search.png";
 import tkHomeIpad from "../assets/apps/tomekeeper/home-ipad.jpg";
 import tkHomeIphone from "../assets/apps/tomekeeper/home-iphone.jpg";
 import tkTableIpad from "../assets/apps/tomekeeper/table-ipad.jpg";
@@ -55,6 +58,9 @@ export function getShowcase(lang: Lang): ShowcaseApp[] {
   const crafter = app("adventure-crafter");
   const labels = statusLabel[lang];
   const more = isPt ? "Veja o que ele faz" : "See what it does";
+  // The pt-BR phone captures are not in yet, so the pt slides keep the clip
+  // posters (decorative) rather than show the English app.
+  const phone = (en: Screen, ptPoster: ImageMetadata): Screen => (isPt ? { src: ptPoster, alt: "" } : en);
 
   const mythicSlides: Slide[] = [
     {
@@ -68,9 +74,21 @@ export function getShowcase(lang: Lang): ShowcaseApp[] {
       hue: "#5b3f8c",
       layout: "phones",
       screens: [
-        { src: meaningRoll, alt: "" },
-        { src: exceptionalYes, alt: "" },
-        { src: listsRoll, alt: "" },
+        phone(
+          { src: fateDarkEn, alt: "The Fate Chart in Mythic GME Mobile in the dark theme, with Yes and Exceptional Yes answers in the Adventure Log" },
+          meaningRoll,
+        ),
+        phone(
+          {
+            src: listsCharactersEn,
+            alt: "The Lists screen in Mythic GME Mobile on the Characters tab, with a d10 list of five characters from Ines Varro, cartographer, to Captain Sefa Rhune",
+          },
+          exceptionalYes,
+        ),
+        phone(
+          { src: sceneEditorEn, alt: "The scene editor in Mythic GME Mobile, with the scene's journal notes and the Chaos Factor set to 6" },
+          listsRoll,
+        ),
       ],
     },
     {
@@ -84,8 +102,16 @@ export function getShowcase(lang: Lang): ShowcaseApp[] {
       hue: "#1f5d63",
       layout: "desktop-phone",
       screens: [
-        { src: desktopThrow, alt: "" },
-        { src: exceptionalYes, alt: "" },
+        {
+          src: desktopThrow,
+          alt: isPt
+            ? "Dados 3D lançados sobre o layout de três painéis do Mythic GME Digital no desktop"
+            : "3D dice thrown across the three-panel layout of Mythic GME Digital on desktop",
+        },
+        phone(
+          { src: exceptionalThrowEn, alt: "3D dice landing on the Fate Chart in Mythic GME Mobile, with an Exceptional answer" },
+          exceptionalYes,
+        ),
       ],
     },
     {
@@ -105,7 +131,13 @@ export function getShowcase(lang: Lang): ShowcaseApp[] {
             ? "O Mythic GME Digital no computador com três painéis lado a lado: Tabelas de Significado, o Registro de Aventura com as Ações do Destino e as Listas na aba Tramas, com a aba Tabelas na borda direita."
             : "Mythic GME Digital on a desktop with three panels side by side: Meaning Tables, the Adventure Log with Fate Actions, and Lists on the Threads tab, with the Tables tab on the right edge.",
         },
-        { src: listsRoll, alt: "" },
+        phone(
+          {
+            src: meaningSearchEn,
+            alt: 'Meaning Tables in Mythic GME Mobile, searched for "Meaning", with the Action, Descriptor, Location, Object and Powers meaning tables in the results',
+          },
+          listsRoll,
+        ),
       ],
     },
   ];
