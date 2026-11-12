@@ -1,15 +1,20 @@
 ---
-// Maker’s note provides a personal introduction from Jason.  The
-// layout uses the avatar monogram and muted text colours to
-// complement the rest of the page.
-import { Image } from "astro:assets";
-import headshot from "../../assets/people/jason-school.jpg";
+// Home page notes from the people who make each app. Each card shows an
+// excerpt and links to the full note.
+import { Image, Picture } from "astro:assets";
+import jasonPhoto from "../../assets/people/jason-school.jpg";
+import ryanPhoto from "../../assets/people/ryan-holt.jpg";
+import RyanHoltNote from "../makers/RyanHoltNote.astro";
+import { getApps } from "../../lib/apps";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const l = (path: string) => getRelativeLocaleUrl(lang, path);
+const apps = getApps(lang);
+const mythic = apps.find((app) => app.slug === "mythic-gme")!;
+const tomekeeper = apps.find((app) => app.slug === "tomekeeper")!;
+const englishNote = lang === "pt" ? "(em inglês)" : null;
 ---
 
 <section
@@ -18,36 +23,71 @@ const l = (path: string) => getRelativeLocaleUrl(lang, path);
   aria-labelledby="about-title"
 >
   <div class="container section">
-    <div class="note">
-      <header class="section-head" aria-hidden="true">
-        <span class="accent-line" aria-hidden="true"></span>
-        <span class="badge-text">{t("makers.badge")}</span>
-      </header>
-      <h2 id="about-title" class="section-title" style="margin-bottom: 10px">
-        {t("makers.title")}
-      </h2>
-      <div class="row" style="align-items: center; justify-content: center">
-        <div class="avatar">
-          <Image
-            class="avatar-img"
-            src={headshot}
+    <header class="section-head" aria-hidden="true">
+      <span class="accent-line" aria-hidden="true"></span>
+      <span class="badge-text">{t("makers.badge")}</span>
+    </header>
+    <h2 id="about-title" class="section-title makers-title">{t("makers.title")}</h2>
+    <div class="makers-grid">
+      <article class="makers-card" style={`--maker-accent:${mythic.accent}`}>
+        <div class="makers-card__who">
+          <Picture
+            class="makers-card__photo"
+            src={jasonPhoto}
+            formats={["avif", "webp"]}
+            width={64}
+            height={64}
+            widths={[64, 128]}
+            sizes="64px"
             alt="Jason Holt"
-            width={80}
-            height={80}
             loading="lazy"
             decoding="async"
           />
+          <div>
+            <p class="makers-card__name">Jason Holt</p>
+            <p class="makers-card__app">
+              <Image src={mythic.icon!} alt="" width={20} height={20} />{mythic.name}
+            </p>
+          </div>
         </div>
-        <div>
-          <p style="margin: .5rem 0; color: var(--muted)">{t("makers.text.before")}<strong>{t("makers.text.emphasis")}</strong>{t("makers.text.after")}</p>
-          <p class="cta">
-            <a class="btn btn--shadow-primary btn--compact" href={l("about")}>
-              {t("makers.cta")}
-              <i class="fa-slab fa-regular fa-arrow-right" aria-hidden="true"></i>
-            </a>
-          </p>
+        <div class="makers-card__excerpt">
+          <p>{t("makers.text.before")}<strong>{t("makers.text.emphasis")}</strong>{t("makers.text.after")}</p>
         </div>
-      </div>
+        <a class="makers-card__more" href={getRelativeLocaleUrl(lang, "about")}>
+          <span>{t("makers.cta")}</span><span class="sr-only">{t("makers.cta.jason")}</span>
+          <i class="fa-slab fa-regular fa-arrow-right" aria-hidden="true"></i>
+        </a>
+      </article>
+
+      <article class="makers-card" style={`--maker-accent:${tomekeeper.accent}`}>
+        <div class="makers-card__who">
+          <Picture
+            class="makers-card__photo"
+            src={ryanPhoto}
+            formats={["avif", "webp"]}
+            width={64}
+            height={64}
+            widths={[64, 128]}
+            sizes="64px"
+            alt="Ryan Holt"
+            loading="lazy"
+            decoding="async"
+          />
+          <div>
+            <p class="makers-card__name">Ryan Holt</p>
+            <p class="makers-card__app">
+              <Image src={tomekeeper.icon!} alt="" width={20} height={20} />{tomekeeper.name}
+            </p>
+          </div>
+        </div>
+        <div class="makers-card__excerpt" lang="en">
+          <RyanHoltNote />
+        </div>
+        <a class="makers-card__more" href="/tomekeeper/#makers-note">
+          <span>{t("makers.cta")}</span><span class="sr-only">{t("makers.cta.ryan")}</span>{englishNote && <span class="makers-card__lang">{englishNote}</span>}
+          <i class="fa-slab fa-regular fa-arrow-right" aria-hidden="true"></i>
+        </a>
+      </article>
     </div>
   </div>
 </section>
