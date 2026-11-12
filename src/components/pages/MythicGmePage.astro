@@ -47,6 +47,13 @@ const { mobileApp, desktopApp } = getMythicGmeApps(isPt);
 
   <PromoVideo priority />
 
+  <div class="container beta-notice-wrap">
+    <p class="beta-notice">
+      <i class="fa-slab fa-regular fa-flask" aria-hidden="true"></i>
+      <strong>{isPt ? "1.7 em beta agora" : "1.7 in beta now"}</strong>
+      <a href="#beta">{isPt ? "Participe do beta" : "Join the beta"}</a>
+    </p>
+  </div>
   <Fragment slot="head">
     <!-- Fraunces and IBM Plex Sans only style the app chapters below the first
          screen, so they are not preloaded. -->
@@ -60,6 +67,53 @@ const { mobileApp, desktopApp } = getMythicGmeApps(isPt);
     <NightFolioChapter id="desktop" badge={isPt ? 'App desktop' : 'Desktop App'} app={desktopApp} groups={digitalGroups} hue="#1f5d63" lang={lang} />
   </NightFolioCanvas>
 
+  <section class="beta-section" id="beta" aria-labelledby="beta-title">
+    <div class="container">
+      <header class="section-head" style="justify-content: center;" aria-hidden="true">
+        <span class="accent-line" aria-hidden="true"></span>
+        <span class="badge-text">Beta</span>
+      </header>
+      <h2 id="beta-title" class="section-title">{isPt ? "Como participar do beta 1.7" : "How to join the 1.7 beta"}</h2>
+      <p class="beta-intro">
+        {isPt ? (
+          <>Versões beta podem ter bugs. Conte o que encontrar no <a href="https://discord.gg/PEDHrhzcnk" target="_blank" rel="noopener noreferrer">Discord</a> ou na <a href="https://jasonholtdigital.itch.io/mythic-gme-digital/community" target="_blank" rel="noopener noreferrer">comunidade do itch.io</a>.</>
+        ) : (
+          <>Beta builds can have bugs. Tell us what you find on <a href="https://discord.gg/PEDHrhzcnk" target="_blank" rel="noopener noreferrer">Discord</a> or in the <a href="https://jasonholtdigital.itch.io/mythic-gme-digital/community" target="_blank" rel="noopener noreferrer">itch.io community</a>.</>
+        )}
+      </p>
+      <div class="beta-grid">
+        <div class="info-card">
+          <h3><i class="fa-brands fa-apple" aria-hidden="true"></i>{isPt ? "iPhone, iPad e Mac" : "iPhone, iPad and Mac"}</h3>
+          <p>{isPt
+            ? "O beta usa o TestFlight, o app de testes da Apple. Instale o TestFlight pela App Store e abra o link de convite no seu iPhone, iPad ou Mac."
+            : "The beta runs in TestFlight, Apple's app for testing. Install TestFlight from the App Store, then open the invite link on your iPhone, iPad or Mac."}</p>
+          <a class="btn btn--shadow-primary" href="https://testflight.apple.com/join/3gT6NuYu" target="_blank" rel="noopener noreferrer">
+            {isPt ? "Entrar pelo TestFlight" : "Join on TestFlight"}
+          </a>
+        </div>
+        <div class="info-card">
+          <h3><i class="fa-brands fa-google-play" aria-hidden="true"></i>Android</h3>
+          <p>{isPt
+            ? "Abra a página de testes do Google Play, entre no programa e atualize o Mythic GME pelo Google Play. A versão beta pode demorar um pouco para chegar."
+            : "Open the Google Play testing page, join the program, then update Mythic GME from Google Play. The beta can take a while to arrive."}</p>
+          <a class="btn btn--shadow-primary" href="https://play.google.com/apps/testing/com.jasonholtdigital.mythicgme2e" target="_blank" rel="noopener noreferrer">
+            {isPt ? "Entrar pelo Google Play" : "Join on Google Play"}
+          </a>
+        </div>
+        <div class="info-card">
+          <h3><i class="fa-brands fa-itch-io" aria-hidden="true"></i>{isPt ? "Windows, macOS e Linux" : "Windows, macOS and Linux"}</h3>
+          <p>{isPt ? (
+            <>No itch.io, depois de comprar o Mythic GME Digital, baixe os arquivos com a versão 1.7.0. Os marcados como Latest são a versão atual. Para receber atualizações beta no app do itch, veja o <a href="https://jasonholtdigital.itch.io/mythic-gme-digital/devlog/1286100/beta-releases-on-itch-158" target="_blank" rel="noopener noreferrer">post sobre o beta</a> (em inglês).</>
+          ) : (
+            <>On itch.io, once you own Mythic GME Digital, download the files marked version 1.7.0. The ones marked Latest are the current release. To get beta updates in the itch app, see the <a href="https://jasonholtdigital.itch.io/mythic-gme-digital/devlog/1286100/beta-releases-on-itch-158" target="_blank" rel="noopener noreferrer">beta post</a>.</>
+          )}</p>
+          <a class="btn btn--shadow-primary" href="https://jasonholtdigital.itch.io/mythic-gme-digital" target="_blank" rel="noopener noreferrer">
+            {isPt ? "Abrir no itch.io" : "Open on itch.io"}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- Buy the Books Section -->
   <section class="books-section">
     <div class="container">

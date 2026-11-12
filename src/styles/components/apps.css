@@ -42,6 +42,69 @@
     margin: 0 0 1.5rem;
   }
 
+  /* "1.7 in beta now" notice under the promo video, and the join section it links to. */
+  .beta-notice-wrap {
+    padding-block: 1.25rem 0.5rem;
+  }
+  .beta-notice {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem 0.75rem;
+    margin: 0 auto;
+    max-width: 40rem;
+    padding: 0.75rem 1rem;
+    background: var(--color-accent);
+    border: var(--border-base);
+    box-shadow: 3px 3px 0 0 var(--color-border);
+    color: var(--color-text);
+    text-align: center;
+  }
+  .beta-notice a {
+    font-weight: 700;
+    color: var(--color-text);
+    text-decoration: underline;
+  }
+  .beta-notice a:hover { text-decoration: none; }
+
+  .beta-section {
+    padding: 4rem 0;
+    background: var(--color-surface);
+    border-top: var(--border-base);
+    scroll-margin-top: 5rem;
+  }
+  .beta-intro {
+    max-width: 640px;
+    margin: 0 auto 2rem;
+    text-align: center;
+    color: var(--color-text-muted);
+  }
+  .beta-intro a { color: var(--color-primary); text-decoration: underline; }
+  .beta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .beta-grid .info-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .beta-grid .info-card h3,
+  .beta-grid .info-card p { margin: 0; }
+  .beta-grid .info-card .btn {
+    margin-top: auto;
+    align-self: flex-start;
+    text-decoration: none;
+  }
+
+  @media (max-width: 960px) {
+    .beta-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+  @media (max-width: 768px) {
+    .beta-section { padding: 3rem 0; }
+  }
   .app-info-section {
     padding: 4rem 0;
     background: var(--color-surface-2);
