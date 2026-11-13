@@ -74,7 +74,9 @@ const pad = (n: number) => String(n).padStart(2, "0");
         <div class="stage-bar">
           <ol class="stage-segs" aria-hidden="true">
             {slides.map(({ entry }, i) => (
-              <li data-seg class:list={{ "is-active": i === 0 }} style={`--seg-accent:${entry.app.accent}`}></li>
+              <li data-seg class:list={{ "is-active": i === 0 }} style={`--seg-accent:${entry.app.accent}`}>
+                <button type="button" class="stage-seg" tabindex="-1" data-seg-btn={i}></button>
+              </li>
             ))}
           </ol>
           <span class="stage-count" data-count aria-hidden="true">01 / {pad(slides.length)}</span>
@@ -119,6 +121,9 @@ const pad = (n: number) => String(n).padStart(2, "0");
       itemCount: total,
       intervalMs: 7000,
       pauseTargets: [frame],
+      // The stage fills most of a desktop screen, so pausing on hover would
+      // keep it from ever rotating while someone looks at it.
+      pauseOnHover: false,
       keyboardTarget: root,
       onActivate: (index) => {
         const app = slides[index]!.dataset.app;
@@ -178,6 +183,12 @@ const pad = (n: number) => String(n).padStart(2, "0");
       else carousel.resume();
       showPaused();
     });
+    root.querySelectorAll<HTMLButtonElement>("[data-seg-btn]").forEach((btn) =>
+      btn.addEventListener("click", () => {
+        stop();
+        carousel.goTo(Number(btn.dataset.segBtn));
+      }),
+    );
     tabs.forEach((tab) =>
       tab.addEventListener("click", () => {
         stop();
@@ -268,6 +279,24 @@ const pad = (n: number) => String(n).padStart(2, "0");
     background: var(--color-surface-2);
     overflow: hidden;
   }
+  /* Segments are mouse shortcuts; keyboard users have the arrow keys and the
+     prev and next buttons, so the list stays out of the tab order. */
+  .stage-seg {
+    position: absolute;
+    inset: -10px 0;
+    z-index: 1;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+  .stage-segs li:hover {
+    background: var(--color-surface);
+    border-color: var(--color-text);
+  }
+  .stage-segs li {
+    overflow: visible;
+  }
   .stage-segs li::after {
     content: "";
     position: absolute;
@@ -285,8 +314,7 @@ const pad = (n: number) => String(n).padStart(2, "0");
   }
   .stage.is-paused .stage-segs li.is-active::after,
   .stage.is-idle .stage-segs li.is-active::after,
-  .stage-frame:hover .stage-segs li.is-active::after,
-  .stage-frame:focus-within .stage-segs li.is-active::after {
+  .stage-frame:has(:focus-visible) .stage-segs li.is-active::after {
     animation: none;
     transform: none;
   }

@@ -49,10 +49,10 @@ const imgSizes = (kind: string) => (kind === "phone" ? "(max-width: 760px) 30vw,
     <p class="sc-lead">{slide.lead}</p>
     {slide.note && <p class="sc-note">{slide.note}</p>}
     <div class="sc-actions">
-      <span class:list={["app-status", `app-status--${app.status}`]}>{entry.status}</span>
       <a class="btn btn--tertiary btn--compact sc-cta" href={app.href} hreflang={linkLang}>
         {entry.cta}<i class="fa-slab fa-regular fa-arrow-right" aria-hidden="true"></i>
       </a>
+      <span class:list={["sc-status", `sc-status--${app.status}`]}>{entry.status}</span>
     </div>
   </div>
   {slide.screens.length > 0 && (
@@ -189,8 +189,35 @@ const imgSizes = (kind: string) => (kind === "phone" ? "(max-width: 760px) 30vw,
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 14px;
+    gap: 14px 18px;
     margin-top: 8px;
+  }
+  /* App status reads as a label beside the one real button: no fill, no
+     shadow, a dot in the canvas accent (hollow for apps still to come). */
+  .sc-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 3px 8px;
+    border: 1px solid color-mix(in oklab, var(--sc-ink) 45%, transparent);
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--sc-ink);
+  }
+  .sc-status::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--sc-accent);
+  }
+  .sc-status--coming-soon::before {
+    background: none;
+    box-shadow: inset 0 0 0 1.5px var(--sc-ink);
   }
   .sc-cta {
     box-shadow: 5px 5px 0 0 var(--app-accent);
