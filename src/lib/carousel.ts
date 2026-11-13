@@ -11,6 +11,8 @@ interface CarouselConfig {
   intervalMs?: number;
   /** Element(s) whose hover/focus pauses auto-advance */
   pauseTargets?: HTMLElement[];
+  /** Pause while the pointer is over a pause target (default true) */
+  pauseOnHover?: boolean;
   /** Element to attach keyboard listeners to */
   keyboardTarget?: HTMLElement;
   /** Start index (default 0) */
@@ -34,6 +36,7 @@ export function createCarousel(config: CarouselConfig): CarouselHandle {
     onActivate,
     intervalMs = 0,
     pauseTargets = [],
+    pauseOnHover = true,
     keyboardTarget,
     startIndex = 0,
   } = config;
@@ -41,6 +44,7 @@ export function createCarousel(config: CarouselConfig): CarouselHandle {
   let index = startIndex;
   let paused = false;
   let hoverPaused = false;
+  let focusPaused = false;
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let timer: number | null = null;
 
@@ -52,7 +56,7 @@ export function createCarousel(config: CarouselConfig): CarouselHandle {
   }
 
   function startTimer() {
-    if (prefersReduced || paused || hoverPaused || intervalMs <= 0) return;
+    if (prefersReduced || paused || hoverPaused || focusPaused || intervalMs <= 0) return;
     stopTimer();
     timer = window.setInterval(next, intervalMs);
   }
@@ -70,12 +74,22 @@ export function createCarousel(config: CarouselConfig): CarouselHandle {
 
   const onHoverPause = () => { hoverPaused = true; stopTimer(); };
   const onHoverResume = () => { hoverPaused = false; startTimer(); };
+  // Only keyboard focus pauses: a mouse click on a control also focuses it in
+  // Chromium, and that would keep rotation stopped after the click.
+  const onFocusPause = (e: FocusEvent) => {
+    if (!(e.target as Element).matches(':focus-visible')) return;
+    focusPaused = true;
+    stopTimer();
+  };
+  const onFocusResume = () => { focusPaused = false; startTimer(); };
 
   for (const el of pauseTargets) {
-    el.addEventListener('mouseenter', onHoverPause);
-    el.addEventListener('mouseleave', onHoverResume);
-    el.addEventListener('focusin', onHoverPause);
-    el.addEventListener('focusout', onHoverResume);
+    if (pauseOnHover) {
+      el.addEventListener('mouseenter', onHoverPause);
+      el.addEventListener('mouseleave', onHoverResume);
+    }
+    el.addEventListener('focusin', onFocusPause);
+    el.addEventListener('focusout', onFocusResume);
   }
 
   const onKeydown = (e: KeyboardEvent) => {
@@ -94,8 +108,8 @@ export function createCarousel(config: CarouselConfig): CarouselHandle {
     for (const el of pauseTargets) {
       el.removeEventListener('mouseenter', onHoverPause);
       el.removeEventListener('mouseleave', onHoverResume);
-      el.removeEventListener('focusin', onHoverPause);
-      el.removeEventListener('focusout', onHoverResume);
+      el.removeEventListener('focusin', onFocusPause);
+      el.removeEventListener('focusout', onFocusResume);
     }
     if (keyboardTarget) {
       keyboardTarget.removeEventListener('keydown', onKeydown);
