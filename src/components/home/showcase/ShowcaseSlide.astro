@@ -52,7 +52,7 @@ const imgSizes = (kind: string) => (kind === "phone" ? "(max-width: 760px) 30vw,
       <a class="btn btn--tertiary btn--compact sc-cta" href={app.href} hreflang={linkLang}>
         {entry.cta}<i class="fa-slab fa-regular fa-arrow-right" aria-hidden="true"></i>
       </a>
-      <span class:list={["sc-status", `sc-status--${app.status}`]}>{entry.status}</span>
+      <span class:list={["sc-status", `sc-status--${app.status}`]}>{slide.status ?? entry.status}</span>
     </div>
   </div>
   {slide.screens.length > 0 && (
