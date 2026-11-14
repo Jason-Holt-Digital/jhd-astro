@@ -38,6 +38,8 @@ export interface Slide {
   titleAccent?: string;
   lead: string;
   note?: string;
+  /** Replaces the app's status label on this slide. */
+  status?: string;
   canvas: Canvas;
   hue?: string;
   layout: Layout;
@@ -61,6 +63,9 @@ export function getShowcase(lang: Lang): ShowcaseApp[] {
   const labels = statusLabel[lang];
   const more = isPt ? "Veja o que ele faz" : "See what it does";
   const phone = (en: Screen, pt: Screen): Screen => (isPt ? pt : en);
+  // Each Mythic GME slide leads with a 1.7 feature, and 1.7 is in public
+  // beta. Back to the app's own status when 1.7.0 reaches production.
+  const beta = isPt ? "1.7 em beta" : "1.7 in beta";
 
   const mythicSlides: Slide[] = [
     {
@@ -70,6 +75,7 @@ export function getShowcase(lang: Lang): ShowcaseApp[] {
       lead: isPt
         ? "Listas de aventuras para Personagens, Tramas e Aspectos, além de Listas Personalizadas com Recursos Expandidos"
         : "Adventure Lists for Characters, Threads, & Features, plus Custom Lists with Expanded Features",
+      status: beta,
       canvas: "night-folio",
       hue: "#5b3f8c",
       layout: "phones",
@@ -104,6 +110,7 @@ export function getShowcase(lang: Lang): ShowcaseApp[] {
       lead: isPt
         ? "Respostas excepcionais, Eventos Aleatórios e Cenas de Interrupção terminam em câmera lenta"
         : "Exceptional answers, Random Events & Interrupt Scenes end in slow motion",
+      status: beta,
       canvas: "night-folio",
       hue: "#1f5d63",
       layout: "desktop-phone",
@@ -130,6 +137,7 @@ export function getShowcase(lang: Lang): ShowcaseApp[] {
       lead: isPt
         ? "Tabelas de Jogo a uma aba de distância em celulares, dobráveis, tablets e desktop"
         : "Game Tables one tab away on phones, foldables, tablets & desktop",
+      status: beta,
       canvas: "night-folio",
       hue: "#3f4f8c",
       layout: "desktop-phone",
