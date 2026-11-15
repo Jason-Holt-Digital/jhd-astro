@@ -14,7 +14,7 @@ const { class: className = "legal-article" } = Astro.props;
   <h2>The Short Version</h2>
   <ul>
     <li>TomeKeeper has no accounts and never asks for your name, email address or phone number.</li>
-    <li>Your PDFs, bookmarks, page tags, sets, Tables, clips and settings stay on your device. I don't host them on any server.</li>
+    <li>Your PDFs, bookmarks, page tags, sets, Tables, clips and settings stay on your device unless you turn on iCloud Sync. Synced library data goes only to your own private iCloud account. Jason Holt Digital does not receive or store it.</li>
     <li>There are no ads, no analytics and no tracking. I don't sell data.</li>
     <li>Diagnostics are on so I can fix errors and slow screens. You can turn them off in Settings, under Diagnostics.</li>
     <li>The app checks for fixes when it starts and while it's open.</li>
@@ -23,15 +23,38 @@ const { class: className = "legal-article" } = Astro.props;
 
   <h2>What This Policy Covers</h2>
   <p>This policy applies to TomeKeeper on iPhone, iPad, Mac, Windows and Android, including beta versions from TestFlight and Google Play and the Windows version from the Microsoft Store.</p>
+  <p>iCloud Sync is available only on iPhone, iPad and Mac.</p>
 
   <h2>What Stays on Your Device</h2>
   <p>
     The PDFs you import are copied into TomeKeeper's storage on your device. Your library, sets, bookmarks, page tags,
-    Tables, clips and settings are stored there too. TomeKeeper doesn't upload any of them. On iPhone, iPad and Mac,
-    your device's own backups may include them, depending on your backup settings.
+    Tables, clips and settings are stored there too. If you turn on iCloud Sync, the library data described below also
+    goes to your own private iCloud account. On iPhone, iPad and Mac, your device's own backups may include this data,
+    depending on your backup settings.
   </p>
 
   <h2>What the App Sends</h2>
+
+  <h3>iCloud Sync (Only If You Turn It On)</h3>
+  <p>
+    iCloud Sync is optional and off by default on each device. On iPhone, iPad and Mac, you can turn it on in TomeKeeper's
+    Settings.
+  </p>
+  <p>
+    It syncs library data, including book details and covers, sets, bookmarks, reading positions, page tags, shared
+    settings, and Tables with their clips, notes, images and attached PDFs. Book PDF files also upload when
+    <strong>Sync book files</strong> is on. That switch starts on when you first enable iCloud Sync; you can turn it off
+    separately. Book PDFs download on your other devices when you open them.
+  </p>
+  <p>
+    This data goes directly between your devices and the private CloudKit database in your own iCloud account. Jason Holt
+    Digital does not receive, store or have access to your synced library data. Apple provides iCloud under its
+    <a href="https://www.apple.com/legal/privacy/en-ww/" target="_blank" rel="noopener noreferrer">privacy policy</a>.
+  </p>
+  <p>
+    To stop syncing on a device, turn off <strong>iCloud Sync</strong> in TomeKeeper's Settings. Turning it off, or
+    uninstalling TomeKeeper, does not delete copies already in iCloud or on your other devices.
+  </p>
 
   <h3>Diagnostics</h3>
   <p>
@@ -95,8 +118,8 @@ const { class: className = "legal-article" } = Astro.props;
 
   <h3>What the App Never Sends</h3>
   <ul>
-    <li>Your PDFs, their file names or their titles</li>
-    <li>Bookmarks, page tags, notes, set names, Table contents or clips</li>
+    <li>Your PDFs, their file names or their titles, except to your own private iCloud account if you turn on iCloud Sync. Book PDF uploads also require Sync book files.</li>
+    <li>Bookmarks, page tags, notes, set names, Table contents or clips, except to your own private iCloud account if you turn on iCloud Sync</li>
     <li>Screenshots or recordings of your screen</li>
     <li>Your name, email address or phone number</li>
     <li>Your exact location</li>
@@ -130,6 +153,11 @@ const { class: className = "legal-article" } = Astro.props;
     <li>
       <strong>DriveThruRPG</strong>, only if you connect it, as described above.
     </li>
+    <li>
+      <strong>Apple (iCloud)</strong> stores your synced library data in your own private iCloud account, only if you turn
+      on iCloud Sync, under its
+      <a href="https://www.apple.com/legal/privacy/en-ww/" target="_blank" rel="noopener noreferrer">privacy policy</a>.
+    </li>
   </ul>
   <p>
     If you get TomeKeeper from the App Store, TestFlight, Google Play or the Microsoft Store, that store handles your download under its own
@@ -145,6 +173,7 @@ const { class: className = "legal-article" } = Astro.props;
 
   <h2>Your Choices</h2>
   <ul>
+    <li><strong>iCloud Sync:</strong> Settings, iCloud Sync. Off until you turn it on, separately on each iPhone, iPad or Mac. Sync book files controls book PDF uploads.</li>
     <li><strong>Diagnostics:</strong> Settings, Diagnostics, Share diagnostics. On until you turn them off.</li>
     <li><strong>DriveThruRPG:</strong> off until you connect it. Disconnect it at any time to delete the stored key and token.</li>
     <li><strong>Your device:</strong> your operating system's settings control what it shares with Apple, Google or Microsoft.</li>
@@ -153,7 +182,7 @@ const { class: className = "legal-article" } = Astro.props;
   <h2>Legal Basis (GDPR)</h2>
   <p>For people in the European Union and the United Kingdom, I rely on:</p>
   <ul>
-    <li><strong>Providing the service you asked for:</strong> delivering updates, and connecting to DriveThruRPG when you ask.</li>
+    <li><strong>Providing the service you asked for:</strong> delivering updates, connecting to DriveThruRPG when you ask, and syncing with your own iCloud account when you turn on iCloud Sync.</li>
     <li><strong>Legitimate interests:</strong> diagnostics, so I can keep the app working. You can object at any time by turning them off in Settings.</li>
     <li><strong>Replying to you:</strong> when you email me.</li>
   </ul>
@@ -162,6 +191,11 @@ const { class: className = "legal-article" } = Astro.props;
   <p>
     Depending on where you live, privacy laws may give you rights to access, correct, delete, export, restrict, or object
     to processing of your personal information, and to complain to a privacy regulator.
+  </p>
+  <p>
+    Your synced library data is in your own iCloud account. You can delete TomeKeeper's iCloud data through your device's
+    iCloud storage settings. Jason Holt Digital cannot retrieve or delete those private copies for you. Keep copies of
+    anything you want to save before deleting it.
   </p>
   <p>
     Diagnostics can't be matched to you, by design: they carry a random installation ID that the app doesn't show you,
