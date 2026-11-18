@@ -1,0 +1,23 @@
+# Questionnaire answers used to generate the QA skills. Phases 1-3 complete.
+completed_categories: [default_target, personas, critical_flows, external_services, cleanup, imagemagick, ci_integration, failure_learning]
+platform: github
+default_target: local
+environments:
+  production: https://jasonholtdigital.com
+  production_restrictions: ['never target for PR QA']
+preview_deployments: false
+auth: none
+personas: [visitor, mobile_visitor]
+test_accounts: none
+cleanup: none
+imagemagick: true
+ci:
+  generate_workflow: true
+  required: false
+  triggers: ['pull_request: opened, reopened, ready_for_review', 'workflow_dispatch']
+  skip: ['draft PRs', 'head branch factory/droid-wiki']
+video_evidence: false
+droid_control:
+  compose: false
+failure_learning: suggest_in_report
+orchestrator_skill_name: qa-orchestrator

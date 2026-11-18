@@ -1,0 +1,182 @@
+# Functional QA of the PR branch with Droid and droid-control. Informational only:
+# do not add this check to branch protection. It builds the branch, serves the
+# production build locally, runs the qa-orchestrator skill (.factory/skills/qa),
+# and keeps one sticky QA comment on the PR.
+name: QA
+
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review]
+    paths:
+      - 'src/**'
+      - '!src/**/*.test.ts'
+      - 'public/**'
+      - 'astro.config.mjs'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'wrangler.jsonc'
+      - 'tsconfig.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: qa-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qa:
+    # Fork PRs get no secrets, so FACTORY_API_KEY would be empty. Wiki refresh PRs
+    # change only generated docs.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.pull_request.draft == false &&
+       github.head_ref != 'factory/droid-wiki' &&
+       github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      QA_BASE_URL: http://127.0.0.1:4321
+      QA_RUN_ID: ${{ github.run_id }}-${{ github.run_attempt }}
+      QA_DIFF_BASE: origin/${{ github.base_ref || 'main' }}
+      WRANGLER_SEND_METRICS: 'false'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      # Evidence settings are read at run time so editing config.yaml is enough
+      # to change them.
+      - name: Read QA config
+        id: config
+        run: |
+          config=.factory/skills/qa/config.yaml
+          {
+            echo "imagemagick=$(yq '.imagemagick' "$config")"
+            echo "video_evidence=$(yq '.video_evidence' "$config")"
+            echo "compose=$(yq '.droid_control.compose' "$config")"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Install ImageMagick and ffmpeg
+        env:
+          IMAGEMAGICK: ${{ steps.config.outputs.imagemagick }}
+          VIDEO_EVIDENCE: ${{ steps.config.outputs.video_evidence }}
+          COMPOSE: ${{ steps.config.outputs.compose }}
+        run: |
+          packages=()
+          if [ "$IMAGEMAGICK" = "true" ]; then packages+=(imagemagick); fi
+          if [ "$VIDEO_EVIDENCE" = "true" ] || [ "$COMPOSE" = "true" ]; then
+            packages+=(ffmpeg)
+          fi
+          if [ "${#packages[@]}" -gt 0 ]; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq "${packages[@]}"
+          fi
+
+      - name: Set up Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      # .npmrc maps only the @fortawesome and @awesome.me scopes to the Font
+      # Awesome registry; no dependency uses them, so no token is needed.
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build site
+        run: npm run build
+
+      # The Cloudflare adapter's preview (workerd) applies _redirects and the 404
+      # page; a plain static server would not. It needs no Cloudflare login.
+      - name: Start preview server
+        run: |
+          nohup npm run preview -- --host 127.0.0.1 --port 4321 > preview.log 2>&1 &
+          for _ in $(seq 1 60); do
+            if curl -fsS -o /dev/null "$QA_BASE_URL/"; then exit 0; fi
+            sleep 1
+          done
+          cat preview.log
+          exit 1
+
+      - name: Install Droid
+        run: |
+          curl --retry 5 --retry-delay 2 --retry-all-errors -fsSL https://app.factory.ai/cli | sh
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Run QA
+        id: qa
+        continue-on-error: true
+        timeout-minutes: 20
+        env:
+          FACTORY_API_KEY: ${{ secrets.FACTORY_API_KEY }}
+          CI: 'true'
+          VIDEO_EVIDENCE: ${{ steps.config.outputs.video_evidence }}
+          COMPOSE: ${{ steps.config.outputs.compose }}
+        run: |
+          set -o pipefail
+          mkdir -p "qa-results/$QA_RUN_ID"
+          prompt="You are running in a non-interactive CI environment. There is NO human available.
+          Do NOT use AskUser, do NOT wait for confirmations, do NOT pause for input.
+          Run the qa-orchestrator skill (.factory/skills/qa/SKILL.md), not the conversational qa skill in .agents/skills/qa.
+          The site is already built and served at $QA_BASE_URL; do not start another server. The diff base is $QA_DIFF_BASE.
+          Never submit the contact form. Write the final report to qa-results/report.md"
+          if [ "$VIDEO_EVIDENCE" = "true" ]; then
+            prompt="$prompt
+          Use droid-control Capture and upload video evidence per the qa-orchestrator skill's Evidence Capture rules."
+          fi
+          if [ "$VIDEO_EVIDENCE" = "true" ] && [ "$COMPOSE" = "true" ]; then
+            prompt="$prompt
+          Run droid-control Compose for each captured flow before upload."
+          fi
+          droid exec --auto high "$prompt" 2>&1 | tee qa-output.txt
+
+      - name: Upload QA artifacts
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: qa-results-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            qa-results/
+            qa-output.txt
+            preview.log
+          retention-days: 14
+          if-no-files-found: ignore
+
+      - name: Post QA report as PR comment
+        if: always() && github.event_name == 'pull_request'
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+        env:
+          QA_OUTCOME: ${{ steps.qa.outcome }}
+        with:
+          script: |
+            const fs = require('fs');
+            const marker = '<!-- qa-report -->';
+            let report;
+            if (fs.existsSync('qa-results/report.md')) {
+              report = fs.readFileSync('qa-results/report.md', 'utf8').trim();
+            } else {
+              const output = fs.existsSync('qa-output.txt')
+                ? fs.readFileSync('qa-output.txt', 'utf8').slice(-50000)
+                : 'No QA output was captured.';
+              report = `:no_entry: QA did not write a report (step outcome: ${process.env.QA_OUTCOME}).\n\n<details>\n<summary>QA output</summary>\n\n\`\`\`\n${output}\n\`\`\`\n\n</details>`;
+            }
+            if (!report.startsWith('## QA Report')) report = `## QA Report\n\n${report}`;
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const footer = `\n\n---\n\nScreenshots and logs: [workflow artifacts](${runUrl}#artifacts) · [workflow run](${runUrl})`;
+            const body = `${marker}\n${report}`.slice(0, 65000 - footer.length) + footer;
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              ...context.repo,
+              issue_number: context.issue.number,
+              per_page: 100,
+            });
+            const existing = comments.find((comment) => comment.body?.startsWith(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({ ...context.repo, comment_id: existing.id, body });
+            } else {
+              await github.rest.issues.createComment({ ...context.repo, issue_number: context.issue.number, body });
+            }
