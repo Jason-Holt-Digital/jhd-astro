@@ -22,8 +22,8 @@ There are no per-PR preview deployments. Test a production build of the checked-
   1. Use Node 22 from `.nvmrc` (`fnm use` or `nvm use`). `package.json` requires `>=22.22.3 <23`.
   2. `npm ci` (no token needed; see Known Failure Modes).
   3. `npm run build` (about 15 seconds on a Mac mini; it downloads Google Fonts, optimizes images with sharp, and writes `dist/client/` plus Orama indexes in `dist/client/assets/`).
-  4. Start `npm run preview -- --host 127.0.0.1 --port 4321` in the background. This runs the Cloudflare adapter's workerd preview, which applies `dist/client/_redirects` and serves the 404 page. It needs no Cloudflare login.
-  5. Poll `http://127.0.0.1:4321/` until it returns 200 (it is usually ready within a few seconds), then use it as the base URL.
+  4. If port 4321 is already in use (`lsof -nP -iTCP:4321 -sTCP:LISTEN`), pick a free port, since another checkout may be serving it. Start `npm run preview -- --host 127.0.0.1 --port <port>` in the background. This runs the Cloudflare adapter's workerd preview, which applies `dist/client/_redirects` and serves the 404 page. It needs no Cloudflare login.
+  5. Poll `http://127.0.0.1:<port>/` until it returns 200 (it is usually ready within a few seconds), then use it as the base URL.
   6. Stop the server when finished.
 - **Never fall back to `https://jasonholtdigital.com`** or any other remote URL for PR QA. If the local build or server fails, report every web flow as BLOCKED with the failing command's error.
 
@@ -34,13 +34,13 @@ Do not serve `dist/` with a generic static file server: it ignores `_redirects`,
 - `visitor`: anonymous, desktop viewport about 1440x900.
 - `mobile_visitor`: anonymous, phone viewport 390x844.
 
-There is no login. Use `mobile_visitor` in addition to `visitor` when the diff touches layout, CSS (`public/global.css`, `public/styles/**`, component `<style>` blocks), navigation, or a component with responsive rules.
+There is no login. Run F14 as `mobile_visitor`. Use `mobile_visitor` in addition to `visitor` for the other selected flows when the diff touches layout, CSS (`public/global.css`, `public/styles/**`, component `<style>` blocks), navigation, or a component with responsive rules.
 
 ## Site facts
 
 - Routes use trailing slashes (`/about/`). A request without the slash gets a 307 to the slashed URL; follow it.
 - English is the default locale without a prefix; Portuguese mirrors live under `/pt/`. PT has no blog category pages and no TomeKeeper pages.
-- `BaseLayout` renders the header (with the search trigger) and footer (with the language switch) on every page.
+- `BaseLayout` renders the header, the search overlay, and the footer (with the language switch) on every page. The header has no search button; search opens only with Ctrl+K / Cmd+K or `/`.
 - The Font Awesome kit loads from `kit.fontawesome.com` at runtime. Missing icons alone are not a FAIL unless the diff touched icons.
 - `/v2/*` is a redesign preview, excluded from the sitemap.
 
@@ -53,8 +53,8 @@ Pick only the flows whose source paths match the diff, plus adjacent integration
 Paths: `src/pages/index.astro`, `src/pages/pt/index.astro`, `src/components/home/**`, `src/components/media/**`, `src/i18n/**`
 
 1. Open `/` and `/pt/`.
-2. Success: one H1; hero CTAs "Learn More" goes to `/apps/` and "Get Resources" goes to `/resources/` (PT equivalents under `/pt/`); the app showcase/billboard carousel advances with its controls; the reviews rotator and partners strip render; no broken images (check `naturalWidth > 0` on visible `img` elements); no horizontal scroll (`document.documentElement.scrollWidth <= innerWidth`).
-3. PT page text is Portuguese, and `<html lang>` is `pt` (or `pt-BR`) on `/pt/` and `en` on `/`.
+2. Success: one H1; the hero "Get the App" button ("Baixar o App" on PT) opens `#heroDownloadMenu` with store links that open in a new tab, and "Get Resources" ("Ver recursos") goes to `/resources/` (`/pt/resources/` on PT); the app showcase/billboard carousel advances with its controls; the reviews rotator and partners strip render; no broken images (check `naturalWidth > 0` on visible `img` elements); no horizontal scroll (`document.documentElement.scrollWidth <= innerWidth`).
+3. PT page text is Portuguese, and `<html lang>` is exactly `pt-BR` on `/pt/` and `en` on `/`.
 
 ### F2. Header and footer navigation
 
@@ -70,16 +70,16 @@ Paths: `src/components/layout/Header.astro`, `src/components/layout/Footer.astro
 Paths: `src/pages/apps.astro`, `src/pages/mythic-gme.astro`, `src/pages/adventure-crafter.astro`, `src/pages/pt/{apps,mythic-gme,adventure-crafter}.astro`, `src/components/apps/**`, `src/components/pages/**`
 
 1. Open `/apps/`, `/mythic-gme/`, `/adventure-crafter/` (and the `/pt/` versions when PT files changed).
-2. Success: each page renders its H1 and app tiles; store links (App Store, Google Play, desktop downloads) have real `https://` hrefs and open in a new tab with `rel="noopener noreferrer"`. Do not follow store links beyond reading their href.
+2. Success: `/apps/` renders its app tiles; `/mythic-gme/` store links (App Store, Google Play, desktop downloads) have real `https://` hrefs and open in a new tab with `rel="noopener noreferrer"`; `/adventure-crafter/` shows its "Coming soon" subtitle ("Em breve" on PT) and the source-book card, with no store links. Do not follow store links beyond reading their href.
 3. Videos and loop clips do not block rendering; posters show.
 
 ### F4. Resources index and help docs
 
 Paths: `src/pages/resources/**`, `src/pages/pt/resources/**`, `src/content/resources/**`, `src/content.config.ts`
 
-1. Open `/resources/` and open at least one changed article, or `getting-started-with-the-mythic-apps` when none changed.
+1. For each locale the diff changed, open its index (`/resources/` or `/pt/resources/`) and the changed article. PT articles have their own slugs ending in `-pt` (`/pt/resources/formula-schema-pt/`). With no changed article, use `getting-started-with-the-mythic-apps`.
 2. If any schema doc changed (`categories-schema`, `custom-table-schema`, `formula-schema`, `journal-schema`), open it and check headings, tables, and code blocks render without raw Markdown.
-3. Success: the article H1 matches its frontmatter title; in-page anchor links scroll to existing ids; the index links to the article.
+3. Success: the article H1 matches its frontmatter title; in-page anchor links scroll to existing ids; the index of the same locale links to the article.
 4. Negative: `/resources/this-page-does-not-exist/` returns the 404 page.
 
 ### F5. Blog index, category, post, and RSS
@@ -88,7 +88,7 @@ Paths: `src/pages/blog/**`, `src/pages/pt/blog/**`, `src/content/blog/**`, `src/
 
 1. Open `/blog/`, one category page (`/blog/category/release-notes/`, `announcement`, `community`, or `guides`), and a changed post (or the newest post).
 2. Success: posts list in date order; posts with `isSample` show a "Sample" badge; the category page lists only posts in that category; the post page renders, and its share bar links are well-formed.
-3. `curl -s $BASE/rss.xml` returns 200 `application/xml` and includes a changed or new post's link.
+3. `curl -s -o rss.xml -w '%{http_code} %{content_type}' $BASE/rss.xml` prints `200 application/xml`. The feed holds English posts only, so check that a changed English post's link is in it; for PT-only changes, check only status and type.
 4. PT: `/pt/blog/` and one PT post render in Portuguese.
 
 ### F6. Search overlay (Orama)
@@ -96,7 +96,7 @@ Paths: `src/pages/blog/**`, `src/pages/pt/blog/**`, `src/content/blog/**`, `src/
 Paths: `src/components/search/**`, `src/integrations/**`, `astro.config.mjs`, and any change to `src/content/**` that adds or renames pages
 
 1. `curl` `/assets/oramaDB_resources.json`, `oramaDB_blog.json`, `oramaDB_resources_pt.json`, `oramaDB_blog_pt.json`: each returns 200 JSON.
-2. On `/`, open search with the header search button (`[data-search-trigger]`), then with Ctrl+K (or Cmd+K) and `/`. The `#search-dialog` opens with focus in `#search-input`.
+2. On `/`, press Ctrl+K (or Cmd+K): a dialog opens and focus moves to its search field (`#search-dialog` and `#search-input` are locators, not pass criteria). Close it with Escape, then press `/` and check the same. Ctrl+K toggles, so start each attempt from a closed dialog.
 3. Search for a term from a known article (for example "formula"). Resource and blog results appear in `#search-results`; ArrowDown moves the highlight; Enter or a click opens the result page.
 4. Negative: search for `zzqxnotaword`. The empty state reads "No results for “zzqxnotaword”" (on `/pt/` it reads "Nenhum resultado para “zzqxnotaword”").
 5. Escape closes the dialog and returns focus to the page.
@@ -158,7 +158,7 @@ Then open `/contact` in the browser and confirm the contact tab is open after th
 
 Paths: `src/pages/v2/**`, `src/components/v2/**`, `public/styles/v2/**`, `public/styles/v2.css`
 
-1. Open the changed `/v2/` pages (`/v2/`, `/v2/about/`, `/v2/blog/`, `/v2/resources/`, `/v2/support/`, `/v2/privacy/`, `/v2/terms/`).
+1. Open the changed `/v2/` pages (`/v2/`, `/v2/about/`, `/v2/blog/`, `/v2/resources/`, `/v2/support/`, `/v2/privacy/`, `/v2/terms/`). Every v2 page uses the shared `V2Refined*` header and footer, so for changes to shared v2 components or styles open `/v2/` and `/v2/support/`.
 2. Success: pages render with the v2 header and footer and no broken images; interactive pieces in the diff (tweaks panel, billboard, marquee) respond.
 3. `/v2/` URLs do not appear in `/sitemap-0.xml`.
 
@@ -168,7 +168,7 @@ Paths: `src/components/layout/Header.astro`, `public/global.css`, `public/styles
 
 1. At 390x844 on `/`, the desktop nav is hidden and the toggle (`[data-mobile-toggle]`, `aria-controls="mobileNav"`) is visible.
 2. Open it: the off-canvas panel (`[data-mobile-nav]`) slides in, the overlay (`[data-mobile-overlay]`) appears, `aria-expanded` is `true`, and the page behind does not scroll.
-3. Close it with the close button (`[data-mobile-close]`), by clicking the overlay, and with Escape if supported. The panel leaves the screen fully and does not intercept taps.
+3. Close it three ways, reopening between each: click the same toggle again (it shows an X while open), click the overlay, and press Escape. Each time the panel leaves the screen fully and does not intercept taps.
 4. Follow one link from the panel.
 5. On every page touched by the diff, check for horizontal overflow at this width.
 
@@ -180,4 +180,3 @@ Paths: `src/components/layout/Header.astro`, `public/global.css`, `public/styles
 4. **Third-party scripts in CI.** Font Awesome kit, Google-hosted assets, and Turnstile load from the internet. If one is slow or blocked, note it and judge only what the diff changed.
 5. **Build needs network.** `npm run build` downloads Google Fonts. A build failure from a fonts fetch error is BLOCKED (environment), not FAIL.
 6. **`.npmrc` scoped registries.** `.npmrc` points the `@fortawesome` and `@awesome.me` scopes at npm.fontawesome.com, but the project installs no packages from those scopes and every lockfile entry resolves from registry.npmjs.org, so `npm ci` needs no Font Awesome token. An install error mentioning npm.fontawesome.com means a dependency from those scopes was added; report BLOCKED and name the package.
-7. **Port in use.** If 4321 is taken locally, start the preview on another port and use that base URL.

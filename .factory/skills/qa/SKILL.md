@@ -43,6 +43,7 @@ Map changed files to apps using `path_patterns` and `exclude_patterns` in config
 
 - If the `web` app is affected, run only the relevant `qa-web` flows plus targeted tests generated from the diff.
 - If no app is affected (docs-only, CI-only, skill-only, or test-only changes), report INCONCLUSIVE: "No site code changed -- QA not applicable for this diff." Do not run any flows.
+- Smoke test (only when the user asks for one): skip the diff and run `qa-web` flows F1, F2, F6, F7, F12, and F14.
 
 ## Step 4: Pre-flight checks (affected apps only)
 
@@ -50,7 +51,7 @@ For the `web` app:
 
 1. `droid-control@factory-plugins` is active.
 2. `QA_BASE_URL` (or the local server you started) returns HTTP 200 for `/`.
-3. Compose prerequisites from the droid-control skill, only when `droid_control.compose: true`. When Compose is on, let the droid-control Compose stage resolve its own plugin root; if its `remotion/node_modules` is missing, install from the lockfile in that `remotion` directory before rendering. Never install Remotion dependencies when Compose is off.
+3. Compose prerequisites from the droid-control skill, only when both `video_evidence: true` and `droid_control.compose: true`. When Compose is on, let the droid-control Compose stage resolve its own plugin root; if its `remotion/node_modules` is missing, install from the lockfile in that `remotion` directory before rendering. Never install Remotion dependencies when Compose is off.
 
 If a pre-flight check fails, report the affected flows as BLOCKED with the error and the fix.
 
@@ -62,7 +63,7 @@ Read `.factory/skills/qa-web/SKILL.md`. It contains a menu of flows, each labele
 2. Add adjacent flows that prove the change integrates (for example, a changed Header component needs the desktop header flow and the mobile nav flow; a new resource article needs its page, the resources index, and a search that finds it).
 3. Do not run unrelated flows.
 4. If no flow covers the change, write an ad-hoc test that verifies the changed behavior directly.
-5. Run each relevant flow as both personas when the change affects layout, navigation, or anything responsive. Otherwise `visitor` is enough.
+5. Choose personas as the Personas section of `qa-web` says.
 
 ## Step 6: Evidence capture
 
@@ -79,7 +80,7 @@ Text snapshots are the primary evidence because they render inline in the PR com
 1. Follow the droid-control Capture atom for recording start, interactions, recording stop, and raw-output verification. Record one video per flow.
 2. If `droid_control.compose: false`, keep the raw WebM. If `droid_control.compose: true`, hand it to the droid-control Compose atom to render `./qa-results/$RUN_ID/<flow-slug>.mp4` with a `single` layout and the literal `"preset": "factory"`. No other preset is allowed. Trim dead time, add a short title card, keep it at 60 seconds or less, and run Compose's finalization checks.
 3. Verify the evidence file exists and is non-empty. Retry a failed capture or Compose once, then fall back to text evidence.
-4. Upload with GitHub's user-attachments endpoint. It is undocumented and accepts only a classic PAT with `repo` scope in `QA_EVIDENCE_TOKEN` (the workflow `GITHUB_TOKEN` returns 404; fine-grained PATs return 403):
+4. If `QA_EVIDENCE_TOKEN` is unset (the CI workflow does not pass it), skip steps 4-5 and leave videos in `./qa-results/$RUN_ID/` for the workflow artifact. Otherwise upload with GitHub's user-attachments endpoint. It is undocumented and accepts only a classic PAT with `repo` scope in `QA_EVIDENCE_TOKEN` (the workflow `GITHUB_TOKEN` returns 404; fine-grained PATs return 403):
 
    ```bash
    REPO_ID="${REPO_ID:-$(gh api "repos/$GITHUB_REPOSITORY" --jq .id)}"
