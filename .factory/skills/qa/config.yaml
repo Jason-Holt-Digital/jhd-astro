@@ -1,0 +1,82 @@
+# Single source of truth for the QA skills in .factory/skills/qa and .factory/skills/qa-web.
+project: jhd-astro
+platform: github
+imagemagick: true
+video_evidence: false # record interactive flows through droid-control
+droid_control:
+  plugin: droid-control@factory-plugins
+  compose: false # runtime toggle for edited MP4 output; applies only when video_evidence is true
+
+environments:
+  local:
+    url: http://127.0.0.1:4321
+    description: >-
+      Production build of the checked-out branch served by `npm run preview`
+      (Cloudflare adapter, workerd). Honors dist/client/_redirects and the 404 page.
+      Needs no Cloudflare login and no secrets.
+    restrictions: []
+  production:
+    url: https://jasonholtdigital.com
+    restrictions:
+      - Never target for PR QA; it runs different code than the PR branch.
+      - Read-only. Never submit the contact form.
+
+default_target: local
+
+auth:
+  method: none
+  provider: none
+
+personas:
+  - name: visitor
+    description: 'Anonymous desktop visitor (about 1440x900)'
+    credentials_source: none
+    test_focus: ['header and footer nav', 'apps and product pages', 'resources and blog', 'search overlay', 'support page', 'language switch', 'legal pages']
+    cannot_do: ['submit the contact form without completing Turnstile']
+  - name: mobile_visitor
+    description: 'Anonymous phone visitor (390x844 viewport)'
+    credentials_source: none
+    test_focus: ['off-canvas mobile nav', 'search overlay at phone width', 'no horizontal overflow', 'support tabs at phone width']
+    cannot_do: ['scroll the page behind an open mobile nav']
+
+apps:
+  web:
+    path_patterns:
+      - 'src/**'
+      - 'public/**'
+      - 'astro.config.mjs'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'wrangler.jsonc'
+      - 'tsconfig.json'
+    exclude_patterns:
+      - 'src/**/*.test.ts'
+    skill: qa-web
+    test_tool: agent-browser
+    install_command: 'npm ci'
+    build_command: 'npm run build'
+    serve_command: 'npm run preview -- --host 127.0.0.1 --port 4321'
+
+feature_flags:
+  provider: none
+
+integrations:
+  contact_form:
+    provider: Formspark
+    notes: 'Form posts to submit-form.com. QA checks render and client-side validation only; never submit.'
+  bot_protection:
+    provider: Cloudflare Turnstile
+    notes: 'The submit button stays disabled until Turnstile succeeds. The site key may not allow 127.0.0.1, so the widget can show an error locally.'
+  icons:
+    provider: Font Awesome kit (CDN script)
+    notes: 'Loaded at runtime from kit.fontawesome.com; no npm package or token is needed.'
+  search:
+    provider: Orama
+    notes: 'Indexes built at build time to /assets/oramaDB_{resources,blog,resources_pt,blog_pt}.json and queried client-side.'
+
+cleanup:
+  auto_cleanup: false
+  strategy: none
+  instructions: 'QA is read-only; nothing to clean up.'
+
+failure_learning: suggest_in_report

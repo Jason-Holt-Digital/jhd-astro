@@ -1,0 +1,270 @@
+# Functional QA of the PR branch with Droid and droid-control. Informational only:
+# do not add this check to branch protection. It builds the branch, serves the
+# production build locally, runs the qa-orchestrator skill (.factory/skills/qa),
+# and keeps one sticky QA comment on the PR.
+name: QA
+
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review]
+    paths:
+      - 'src/**'
+      - '!src/**/*.test.ts'
+      - 'public/**'
+      - 'astro.config.mjs'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'wrangler.jsonc'
+      - 'tsconfig.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: qa-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qa:
+    # Fork PRs get no secrets, so FACTORY_API_KEY would be empty. Wiki refresh PRs
+    # change only generated docs.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.pull_request.draft == false &&
+       github.head_ref != 'factory/droid-wiki' &&
+       github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    defaults:
+      run:
+        shell: bash
+    env:
+      QA_BASE_URL: http://127.0.0.1:4321
+      QA_RUN_ID: ${{ github.run_id }}-${{ github.run_attempt }}
+      QA_DIFF_BASE: origin/${{ github.base_ref || 'main' }}
+      WRANGLER_SEND_METRICS: 'false'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      # Evidence settings are read at run time so editing config.yaml is enough
+      # to change them.
+      - name: Read QA config
+        id: config
+        run: |
+          mkdir -p setup-logs
+          config=.factory/skills/qa/config.yaml
+          for key in imagemagick video_evidence droid_control.compose; do
+            value=$(yq ".$key" "$config")
+            case "$value" in
+              true|false) echo "${key##*.}=$value" >> "$GITHUB_OUTPUT" ;;
+              *) echo "::error::$config: $key must be true or false, got '$value'"; exit 1 ;;
+            esac
+          done
+
+      - name: Install ImageMagick and ffmpeg
+        env:
+          IMAGEMAGICK: ${{ steps.config.outputs.imagemagick }}
+          VIDEO_EVIDENCE: ${{ steps.config.outputs.video_evidence }}
+        run: |
+          packages=()
+          if [ "$IMAGEMAGICK" = "true" ]; then packages+=(imagemagick); fi
+          if [ "$VIDEO_EVIDENCE" = "true" ]; then packages+=(ffmpeg); fi
+          if [ "${#packages[@]}" -gt 0 ]; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq "${packages[@]}"
+          fi
+
+      - name: Set up Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      # .npmrc maps only the @fortawesome and @awesome.me scopes to the Font
+      # Awesome registry; no dependency uses them, so no token is needed.
+      - name: Install dependencies
+        id: install
+        run: npm ci --no-audit --no-fund 2>&1 | tee setup-logs/install.log
+
+      - name: Build site
+        id: build
+        run: npm run build 2>&1 | tee setup-logs/build.log
+
+      # The Cloudflare adapter's preview (workerd) applies _redirects and the 404
+      # page; a plain static server would not. It needs no Cloudflare login.
+      - name: Start preview server
+        id: preview
+        run: |
+          nohup npm run preview -- --host 127.0.0.1 --port 4321 > setup-logs/preview.log 2>&1 &
+          for _ in $(seq 1 60); do
+            if curl -fsS -o /dev/null "$QA_BASE_URL/"; then exit 0; fi
+            sleep 1
+          done
+          exit 1
+
+      # droid-control drives the site with agent-browser. Use the runner image's
+      # Google Chrome rather than downloading one, and prove it launches.
+      - name: Install agent-browser
+        id: browser
+        run: |
+          {
+            npm install -g agent-browser@0.43.0
+            chrome=$(command -v google-chrome)
+            echo "AGENT_BROWSER_EXECUTABLE_PATH=$chrome" >> "$GITHUB_ENV"
+            export AGENT_BROWSER_EXECUTABLE_PATH="$chrome" AGENT_BROWSER_SESSION=setup-check
+            agent-browser open "$QA_BASE_URL/"
+            agent-browser eval 'document.title'
+            agent-browser close
+          } 2>&1 | tee setup-logs/browser.log
+
+      - name: Install Droid
+        id: droid
+        run: |
+          {
+            curl --retry 5 --retry-delay 2 --retry-all-errors -fsSL https://app.factory.ai/cli | sh
+            echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          } 2>&1 | tee setup-logs/droid.log
+
+      - name: Run QA
+        id: qa
+        continue-on-error: true
+        timeout-minutes: 20
+        env:
+          FACTORY_API_KEY: ${{ secrets.FACTORY_API_KEY }}
+          CI: 'true'
+          VIDEO_EVIDENCE: ${{ steps.config.outputs.video_evidence }}
+          COMPOSE: ${{ steps.config.outputs.compose }}
+        run: |
+          mkdir -p "qa-results/$QA_RUN_ID"
+          prompt="You are running in a non-interactive CI environment. There is NO human available.
+          Do NOT use AskUser, do NOT wait for confirmations, do NOT pause for input.
+          Run the qa-orchestrator skill (.factory/skills/qa/SKILL.md), not the conversational qa skill in .agents/skills/qa.
+          The site is already built and served at $QA_BASE_URL; do not start another server. The diff base is $QA_DIFF_BASE.
+          Never submit the contact form. Write the final report to qa-results/report.md"
+          if [ "$VIDEO_EVIDENCE" = "true" ]; then
+            prompt="$prompt
+          Use droid-control Capture for each flow and keep videos in qa-results for the workflow artifact."
+          fi
+          if [ "$VIDEO_EVIDENCE" = "true" ] && [ "$COMPOSE" = "true" ]; then
+            prompt="$prompt
+          Run droid-control Compose for each captured flow."
+          fi
+          droid exec --auto high "$prompt" 2>&1 | tee qa-output.txt
+
+      - name: Write PR comment body
+        if: always() && github.event_name == 'pull_request'
+        env:
+          INSTALL: ${{ steps.install.outcome }}
+          BUILD: ${{ steps.build.outcome }}
+          PREVIEW: ${{ steps.preview.outcome }}
+          BROWSER: ${{ steps.browser.outcome }}
+          DROID: ${{ steps.droid.outcome }}
+          QA_OUTCOME: ${{ steps.qa.outcome }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          failed=""
+          for step in install:"$INSTALL" build:"$BUILD" preview:"$PREVIEW" browser:"$BROWSER" droid:"$DROID"; do
+            if [ "${step#*:}" = "failure" ]; then failed="${step%%:*}"; break; fi
+          done
+          run_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          mkdir -p comment
+          {
+            echo '<!-- qa-report -->'
+            echo '## QA Report'
+            echo
+            if [ -n "$failed" ]; then
+              echo ":no_entry: QA did not run: the \`$failed\` setup step failed."
+              echo
+              echo "<details><summary>Last 80 lines of setup-logs/$failed.log</summary>"
+              echo
+              echo '```'
+              tail -n 80 "setup-logs/$failed.log" 2>/dev/null || echo "No log was written."
+              echo '```'
+              echo
+              echo '</details>'
+            elif [ -f qa-results/report.md ]; then
+              if [ "$QA_OUTCOME" != "success" ]; then
+                echo ":warning: The QA run ended early (outcome: $QA_OUTCOME). This report may be incomplete; see the workflow logs."
+                echo
+              fi
+              head -c 60000 qa-results/report.md | sed '1{/^## QA Report/d;}'
+            else
+              echo ":no_entry: QA did not write a report (outcome: $QA_OUTCOME)."
+              echo
+              echo '<details><summary>Last 200 lines of QA output</summary>'
+              echo
+              echo '```'
+              tail -n 200 qa-output.txt 2>/dev/null || echo "No QA output was captured."
+              echo '```'
+              echo
+              echo '</details>'
+            fi
+            echo
+            echo '---'
+            echo
+            echo "Tested \`$HEAD_SHA\` · logs and screenshots: [workflow artifacts]($run_url#artifacts) · [workflow run]($run_url)"
+          } > comment/body.md
+
+      - name: Upload QA artifacts
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: qa-results-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            qa-results/
+            qa-output.txt
+            setup-logs/
+          retention-days: 14
+          if-no-files-found: ignore
+
+      - name: Upload PR comment body
+        if: always() && github.event_name == 'pull_request'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: qa-comment-${{ github.run_id }}-${{ github.run_attempt }}
+          path: comment/body.md
+          retention-days: 1
+
+  # Posts the report without running PR code, so only this job can write to the PR.
+  comment:
+    needs: qa
+    if: always() && github.event_name == 'pull_request' && needs.qa.result != 'skipped'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Download PR comment body
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: qa-comment-${{ github.run_id }}-${{ github.run_attempt }}
+
+      - name: Post QA report as PR comment
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+        with:
+          script: |
+            const fs = require('fs');
+            const marker = '<!-- qa-report -->';
+            const body = fs.readFileSync('body.md', 'utf8');
+            const { data: pr } = await github.rest.pulls.get({ ...context.repo, pull_number: context.issue.number });
+            if (pr.head.sha !== context.payload.pull_request.head.sha) {
+              core.notice(`Not posting: this run tested ${context.payload.pull_request.head.sha}, but the PR head is now ${pr.head.sha}.`);
+              return;
+            }
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              ...context.repo,
+              issue_number: context.issue.number,
+              per_page: 100,
+            });
+            const existing = comments.find((comment) =>
+              comment.user?.login === 'github-actions[bot]' && comment.body?.startsWith(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({ ...context.repo, comment_id: existing.id, body });
+            } else {
+              await github.rest.issues.createComment({ ...context.repo, issue_number: context.issue.number, body });
+            }
