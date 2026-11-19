@@ -82,7 +82,8 @@ const smallGroups = [
   {
     title: "Private by design",
     icon: "fa-slab fa-regular fa-shield",
-    body: "No account, no ads, no tracking. Your PDFs, bookmarks, tags and Tables stay on your device unless you turn on optional iCloud Sync on iPhone, iPad or Mac. Synced library data goes only to your own private iCloud account; Jason Holt Digital does not receive or store it. The app sends error reports and performance data so I can fix problems. You can turn this off in Settings, under Diagnostics.",
+    body: "No account, no ads, no tracking. Your library stays on your device or in your own iCloud or Google Drive.",
+    link: { href: "/tomekeeper/privacy/", text: "Privacy policy" },
   },
 ];
 ---
@@ -183,7 +184,7 @@ const smallGroups = [
           {smallGroups.map((group) => (
             <article class="tk-more__card">
               <h3><i class={group.icon} aria-hidden="true"></i>{group.title}</h3>
-              <p>{group.body}</p>
+              <p>{group.body}{group.link && <> <a href={group.link.href}>{group.link.text}</a></>}</p>
             </article>
           ))}
         </div>
@@ -461,6 +462,15 @@ const smallGroups = [
     margin: 0;
     color: var(--color-text-muted);
     line-height: 1.6;
+  }
+  .tk-more__card a {
+    color: var(--app-accent);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .tk-more__card a:hover {
+    text-decoration-thickness: 2px;
   }
   .tk-note {
     display: flex;
