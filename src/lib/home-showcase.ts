@@ -1,7 +1,7 @@
 // Slides for the homepage app showcase: one rotating set across the apps,
 // each app on its own canvas inside the site's frame. Every line here is
 // approved site copy: the Mythic GME lines are the web.billboard keys, the
-// TomeKeeper lines come from its own page, and names, taglines and summaries
+// Tome Keeper lines come from its own page, and names, taglines and summaries
 // come from lib/apps.
 import type { ImageMetadata } from "astro";
 import { getApps, statusLabel, type AppEntry, type Lang } from "./apps";
@@ -63,9 +63,8 @@ export function getShowcase(lang: Lang): ShowcaseApp[] {
   const labels = statusLabel[lang];
   const more = isPt ? "Veja o que ele faz" : "See what it does";
   const phone = (en: Screen, pt: Screen): Screen => (isPt ? pt : en);
-  // Each Mythic GME slide leads with a 1.7 feature, and 1.7 is in public
-  // beta. Back to the app's own status when 1.7.0 reaches production.
-  const beta = isPt ? "1.7 em beta" : "1.7 in beta";
+  // Each Mythic GME slide highlights a feature introduced in 1.7.0.
+  const releaseBadge = isPt ? "Novo na 1.7" : "New in 1.7";
 
   const mythicSlides: Slide[] = [
     {
@@ -75,7 +74,7 @@ export function getShowcase(lang: Lang): ShowcaseApp[] {
       lead: isPt
         ? "Listas de aventuras para Personagens, Tramas e Aspectos, além de Listas Personalizadas com Recursos Expandidos"
         : "Adventure Lists for Characters, Threads, & Features, plus Custom Lists with Expanded Features",
-      status: beta,
+      status: releaseBadge,
       canvas: "night-folio",
       hue: "#5b3f8c",
       layout: "phones",
@@ -110,7 +109,7 @@ export function getShowcase(lang: Lang): ShowcaseApp[] {
       lead: isPt
         ? "Respostas excepcionais, Eventos Aleatórios e Cenas de Interrupção terminam em câmera lenta"
         : "Exceptional answers, Random Events & Interrupt Scenes end in slow motion",
-      status: beta,
+      status: releaseBadge,
       canvas: "night-folio",
       hue: "#1f5d63",
       layout: "desktop-phone",
@@ -137,7 +136,7 @@ export function getShowcase(lang: Lang): ShowcaseApp[] {
       lead: isPt
         ? "Tabelas de Jogo a uma aba de distância em celulares, dobráveis, tablets e desktop"
         : "Game Tables one tab away on phones, foldables, tablets & desktop",
-      status: beta,
+      status: releaseBadge,
       canvas: "night-folio",
       hue: "#3f4f8c",
       layout: "desktop-phone",
@@ -162,7 +161,7 @@ export function getShowcase(lang: Lang): ShowcaseApp[] {
     },
   ];
 
-  // TomeKeeper ships in English only; the pt site shows its pt tagline and
+  // Tome Keeper ships in English only; the pt site shows its pt tagline and
   // summary on one slide and says the app is in English.
   const tkSlides: Slide[] = isPt
     ? [
@@ -176,9 +175,9 @@ export function getShowcase(lang: Lang): ShowcaseApp[] {
           screens: [
             {
               src: tkHomeIpad,
-              alt: 'A tela inicial do TomeKeeper em um iPad, com o Mythic Game Master Emulator 2e em "Continue Reading" e, abaixo, "My Books", "My Sets" e "Tables"',
+              alt: 'A tela inicial do Tome Keeper em um iPad, com o Mythic Game Master Emulator 2e em "Continue Reading" e, abaixo, "My Books", "My Sets" e "Tables"',
             },
-            { src: tkHomeIphone, alt: "A tela inicial do TomeKeeper em um iPhone" },
+            { src: tkHomeIphone, alt: "A tela inicial do Tome Keeper em um iPhone" },
           ],
         },
       ]
@@ -186,40 +185,40 @@ export function getShowcase(lang: Lang): ShowcaseApp[] {
         {
           eyebrow: tk.tagline,
           title: tk.name,
-          lead: "A PDF reader built for tabletop roleplaying games. Bring your rulebooks, adventures and supplements into one library, mark what matters, and find it again fast in the middle of a session.",
+          lead: "Enjoy full-page art, spreads, and stories in your tabletop RPG books without clunky toolbars in the way, then jump straight into finding rules and prepping sessions.",
           canvas: "tomekeeper",
           layout: "tablet-phone",
           screens: [
             {
               src: tkHomeIpad,
-              alt: "TomeKeeper's home screen on iPad: Mythic Game Master Emulator 2e under Continue Reading, with My Books, My Sets and Tables below.",
+              alt: "Tome Keeper's home screen on iPad showing Mythic Game Master Emulator 2e under Continue Reading, with My Books, My Sets, and Tables below.",
             },
-            { src: tkHomeIphone, alt: "TomeKeeper's home screen on iPhone." },
+            { src: tkHomeIphone, alt: "Tome Keeper's home screen on iPhone." },
           ],
         },
         {
           eyebrow: tk.name,
           title: "Tables",
-          lead: "Set up a solo player table. Put the rules you keep checking, the counters you track and the maps you play on together on one board, next to the books they came from.",
+          lead: "Clip sections or whole pages from multiple books onto one Table and arrange them in a way that makes sense for you and your players, alongside notes, trackers, and fillable sheets.",
           canvas: "tomekeeper",
           layout: "tablet",
           screens: [
             {
               src: tkTableIpad,
-              alt: "A Table named Broken Empires solo game on iPad, with the Broken Empires map, an adventure cover, the Mythic Fate Chart, a Chaos Factor counter and a note for the next scene.",
+              alt: "A Table in Tome Keeper on iPad with a Broken Empires map, an adventure cover, the Mythic Fate Chart, a Chaos Factor counter, and a note for the next scene.",
             },
           ],
         },
         {
           eyebrow: tk.name,
           title: "Find it at the table",
-          lead: "Bookmarks with category colors appear as tabs on the page edge. One tap takes you there.",
+          lead: "Mark rules across 8 bookmark categories plus custom colors as page-edge tabs. One tap takes you there.",
           canvas: "tomekeeper",
           layout: "tablet",
           screens: [
             {
               src: tkBookmarksIpad,
-              alt: "The Fabula Ultima introduction on iPad, with colored bookmark tabs on the page edge: Introduction, Scenes, Checks, Clocks, Conflict and Fabula Points.",
+              alt: "The Fabula Ultima introduction in Tome Keeper on iPad, with colored bookmark tabs on the page edge for Introduction, Scenes, Checks, Clocks, Conflict, and Fabula Points.",
             },
           ],
         },
