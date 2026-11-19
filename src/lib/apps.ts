@@ -49,13 +49,13 @@ export function getApps(lang: Lang): AppEntry[] {
     },
     {
       slug: "tomekeeper",
-      name: "TomeKeeper",
+      name: "Tome Keeper",
       href: "/tomekeeper/",
       tagline: isPt ? "Leitor de PDF para RPG de mesa" : "PDF reader for tabletop RPGs",
       summary: isPt
-        ? "Leia seus PDFs de RPG na mesa. Marque regras, adicione tags às páginas e pesquise em vários livros de uma vez. Sem conta, sem anúncios."
-        : "Read your RPG PDFs at the table. Bookmark rules, tag pages, search a whole set of books, and pin clips to a Table. No account, no ads.",
-      platforms: ["iPhone", "iPad", "Mac", "Android"],
+        ? "Aproveite a arte e as histórias dos seus PDFs de RPG de mesa em um leitor sem distrações, e organize recortes de vários livros em uma Table para preparar e jogar. Sem conta, sem anúncios."
+        : "Enjoy the art and stories in your tabletop RPG PDFs in an uncluttered reader, then clip pages from multiple books onto a Table for prep and play. No account, no ads.",
+      platforms: ["iPhone", "iPad", "Mac", "Windows", "Android"],
       status: "coming-soon",
       accent: "#355781",
       icon: tomekeeperIcon,

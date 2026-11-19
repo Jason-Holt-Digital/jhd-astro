@@ -1,5 +1,5 @@
 ---
-// TomeKeeper ships in English only, so this page has no PT alternate.
+// Tome Keeper ships in English only, so this page has no PT alternate.
 import { Image, Picture } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import AppIconTile from "../../components/apps/hub/AppIconTile.astro";
@@ -17,27 +17,29 @@ const tk = getApps("en").find((app) => app.slug === "tomekeeper")!;
 
 const featureGroups = [
   {
-    id: "library",
-    title: "Your library",
-    icon: "fa-slab fa-regular fa-book-bookmark",
-    shot: setsIpad,
-    alt: "My Sets on iPad with five sets: Mythic Solo, Fabula Ultima, Legend in the Mist, Broken Empires and Daggerheart.",
-    items: [
-      "Import PDFs from your device. TomeKeeper keeps its own copy, so the book stays put even if you move the original.",
-      "Connect your DriveThruRPG account with your own API key and import the PDFs you bought.",
-      "Organize books with library tags, and group them into sets, for example everything for one campaign.",
-    ],
-  },
-  {
     id: "reading",
     title: "Reading",
     icon: "fa-slab fa-regular fa-book-open",
     shot: toolsIpad,
-    alt: "A two-page spread of the Mythic GME 2e Fate Chart on iPad, with the Tools panel open: Open Books, View, Search, Contents, Bookmarks, Bookmark, Clip and Tags.",
+    alt: "A two-page spread of the Mythic GME 2e Fate Chart in Tome Keeper on iPad, with the Tools panel open showing Open Books, View, Search, Contents, Bookmarks, Bookmark, Clip, and Tags.",
+    lead: "Read your books for the full-page art, spreads, and stories first. The Tools button stays tucked in the corner until you need it, so nothing sits between you and the page.",
     items: [
-      "Single page, two-page spread, or Stitch for continuous reading.",
-      "Jump with the page scrubber, Go to page, or the book's contents.",
-      "Every tool lives in one Tools panel, so the page stays clear.",
+      "Read in single-page view or a two-page open-book spread with a faint fold crease, and turn on Show first page as cover when a cover belongs on its own.",
+      "Use Lock layout to keep your chosen view steady as you rotate your device, and move fast with the page scrubber, Go to page, or the book's contents.",
+      "Open the Tools panel in the corner whenever you want to switch from reading straight into bookmarking, searching, or clipping for game prep.",
+    ],
+  },
+  {
+    id: "library",
+    title: "Your library",
+    icon: "fa-slab fa-regular fa-book-bookmark",
+    shot: setsIpad,
+    alt: "My Sets in Tome Keeper on iPad showing five sets, including Mythic Solo, Fabula Ultima, Legend in the Mist, Broken Empires, and Daggerheart.",
+    items: [
+      "Import one or more PDFs from your device or send them straight in from the system Share Sheet. Tome Keeper keeps its own copy on your device, so your book stays put even if you move or delete the original.",
+      "Connect your DriveThruRPG account with your own API key and import the PDFs you already own.",
+      "Sort your shelf with Library Tags and group up to 8 books into a Set for a campaign or system.",
+      "Switch between open books from the top Book Strip or the open-books stack without losing your page.",
     ],
   },
   {
@@ -45,11 +47,11 @@ const featureGroups = [
     title: "Find it at the table",
     icon: "fa-slab fa-regular fa-bookmark",
     shot: bookmarksIpad,
-    alt: "The Fabula Ultima introduction on iPad, with colored bookmark tabs on the page edge: Introduction, Scenes, Checks, Clocks, Conflict and Fabula Points.",
+    alt: "The Fabula Ultima introduction in Tome Keeper on iPad, with colored bookmark tabs on the page edge for Introduction, Scenes, Checks, Clocks, Conflict, and Fabula Points.",
     items: [
-      "Bookmarks with category colors appear as tabs on the page edge. One tap takes you there.",
-      "Page tags pin named markers to a spot on the page, such as a monster stat block or a trap.",
-      "Search one book or every book in a set, across text, contents, bookmarks and page tags.",
+      "Mark key rules across 8 bookmark categories plus your own custom colors. Bookmarks show up as tabs on the page edge so one tap takes you right there.",
+      "Pin Page Tags to specific spots on maps and pages, such as a monster stat block, a room key, or a trap.",
+      "Search one book or every book in a Set at once, with matching Bookmarks and Page Tags ranked ahead of body text.",
     ],
   },
   {
@@ -57,13 +59,13 @@ const featureGroups = [
     title: "Tables",
     icon: "fa-slab fa-regular fa-chess-board",
     shot: tableIpad,
-    alt: "A Table named Broken Empires solo game on iPad, with the Broken Empires map, an adventure cover, the Mythic Fate Chart, a Chaos Factor counter and a note for the next scene.",
-    lead: "Set up a solo player table. Put the rules you keep checking, the counters you track and the maps you play on together on one board, next to the books they came from.",
+    alt: "A Table in Tome Keeper on iPad with a Broken Empires map, an adventure cover, the Mythic Fate Chart, a Chaos Factor counter, and a note for the next scene.",
+    lead: "Jump straight from reading into prep and play. Whether you run a group campaign or play solo, pull sections or whole pages from multiple books onto one Table and arrange them in a way that makes sense for you and your players.",
     items: [
-      "Clip a rules table, a stat block or a map from any page. Select a clip and tap Source to open the book at that page.",
-      "Track the Chaos Factor or any other meta-currency with a counter, and keep notes and checklists beside it.",
-      "Import any PDF onto the Table: maps, handouts, character sheets. Fill in fillable sheets and export a filled copy.",
-      "Link the Table to a set, then open it from whichever book you are reading.",
+      "Clip a rules table, stat block, map, or whole page from any book onto your Table, then select any clip to jump straight back to its source page.",
+      "Keep your prep intact when a publisher releases a revised PDF. Replace the book file and update your clips from the new edition.",
+      "Build out your board with sticky notes, frames, counters, checklists, shapes, images, and fillable PDF character sheets from Components > Import > PDF. Your original PDFs stay untouched.",
+      "Link a Table to a Set so you can open your prep board from whichever book you are reading.",
     ],
   },
 ];
@@ -72,24 +74,24 @@ const smallGroups = [
   {
     title: "Dice",
     icon: "fa-slab fa-regular fa-dice-d20",
-    body: "Roll dice from the Viewer without leaving the page.",
+    body: "Roll up to 12 3D dice from d4 through d100 in the Viewer or on a Table, and check your roll history anytime.",
   },
   {
     title: "Make it yours",
     icon: "fa-slab fa-regular fa-palette",
-    body: "Light, dark or system theme, seven interface colors, and fourteen app icons.",
+    body: "Choose Light, Dark, or System theme, 7 bookcloth colors, 3 spine bindings in Linen, Smooth, or Quarter cloth, and 7 woven cloth app icons on Apple and Android.",
   },
   {
     title: "Private by design",
     icon: "fa-slab fa-regular fa-shield",
-    body: "No account, no ads, no tracking. Your library stays on your device or in your own iCloud or Google Drive.",
+    body: "No account, no ads, and no tracking. Your Tome Keeper library stays on your device, with optional iCloud Sync on Apple devices and Google Drive Sync on Android.",
     link: { href: "/tomekeeper/privacy/", text: "Privacy policy" },
   },
 ];
 ---
 <BaseLayout
-  title="TomeKeeper: PDF reader for tabletop RPGs | Jason Holt Digital"
-  description="TomeKeeper is a PDF reader for tabletop RPGs on iPhone, iPad, Mac and Android. Bookmark rules, tag pages, search a set of books, and pin clips to a Table."
+  title="Tome Keeper: PDF reader for tabletop RPGs | Jason Holt Digital"
+  description="Tome Keeper is a PDF reader for tabletop RPGs on iPhone, iPad, Mac, Windows, and Android. Enjoy full-page art and spreads without clutter, then clip pages from multiple books onto a Table for prep and play."
   canonicalPath="/tomekeeper/"
   noAlternate
 >
@@ -97,7 +99,7 @@ const smallGroups = [
     <nav class="tk-crumbs container" aria-label="Breadcrumb">
       <a href="/apps/">Apps</a>
       <i class="fa-slab fa-regular fa-angle-right" aria-hidden="true"></i>
-      <span aria-current="page">TomeKeeper</span>
+      <span aria-current="page">Tome Keeper</span>
     </nav>
 
     <section class="tk-hero" aria-labelledby="tk-title">
@@ -107,25 +109,25 @@ const smallGroups = [
             <AppIconTile app={tk} size={88} />
             <div>
               <p class="tk-kicker">{tk.tagline}</p>
-              <h1 id="tk-title" class="tk-hero__title">TomeKeeper</h1>
+              <h1 id="tk-title" class="tk-hero__title">Tome Keeper</h1>
             </div>
           </div>
           <p class="tk-hero__lead">
-            A PDF reader built for tabletop roleplaying games. Bring your rulebooks, adventures and supplements into one library, mark what matters, and find it again fast in the middle of a session.
+            Enjoy the art, spreads, and stories in your tabletop RPG books without clunky PDF toolbars getting in the way. When it is time to prep or run a game, clip pages from multiple books onto one Table and arrange them the way you and your players actually use them.
           </p>
           <ul class="platform-chips" aria-label="Platforms">
             {tk.platforms.map((platform) => <li>{platform}</li>)}
           </ul>
           <div class="tk-download" id="download">
             <span class="app-status app-status--coming-soon">Coming soon</span>
-            <p>TomeKeeper is coming soon. Store links will appear here when it launches.</p>
+            <p>Tome Keeper is coming soon. Store links will appear here when it launches.</p>
           </div>
         </div>
         <figure class="tk-hero__media">
           <Image
             class="tk-shot tk-hero__tablet"
             src={homeIpad}
-            alt="TomeKeeper's home screen on iPad: Mythic Game Master Emulator 2e under Continue Reading, with My Books, My Sets and Tables below."
+            alt="Tome Keeper's home screen on iPad showing Mythic Game Master Emulator 2e under Continue Reading, with My Books, My Sets, and Tables below."
             widths={[640, 960, 1280, 1600]}
             sizes="(max-width: 900px) 88vw, 560px"
             loading="eager"
@@ -134,7 +136,7 @@ const smallGroups = [
           <Image
             class="tk-shot tk-hero__phone"
             src={homeIphone}
-            alt="TomeKeeper's home screen on iPhone."
+            alt="Tome Keeper's home screen on iPhone."
             widths={[240, 480]}
             sizes="(max-width: 900px) 26vw, 170px"
             loading="eager"
@@ -190,7 +192,7 @@ const smallGroups = [
         </div>
         <p class="tk-note">
           <i class="fa-slab fa-regular fa-circle-info" aria-hidden="true"></i>
-          TomeKeeper does not include any books. Bring your own PDFs.
+          Tome Keeper does not include any books. Bring your own PDFs.
         </p>
       </div>
     </section>
@@ -212,7 +214,7 @@ const smallGroups = [
               decoding="async"
             />
             <div>
-              <h2 id="tk-maker-title" class="tk-maker__title">Maker’s note</h2>
+              <h2 id="tk-maker-title" class="tk-maker__title">Maker's note</h2>
               <p class="tk-maker__name">Ryan Holt</p>
             </div>
           </div>
@@ -227,11 +229,14 @@ const smallGroups = [
       <div class="container tk-help__row">
         <div>
           <h2 id="tk-help-title" class="tk-help__title">Questions or problems?</h2>
-          <p>Read the answers to common questions, or email me with bugs and beta feedback.</p>
+          <p>Browse the guides, read answers to common questions, or email me with bugs and beta feedback.</p>
         </div>
         <div class="tk-help__links">
-          <a class="btn btn--shadow-primary" href="/tomekeeper/support/">
-            <i class="fa-slab fa-regular fa-life-ring" aria-hidden="true"></i>TomeKeeper support
+          <a class="btn btn--shadow-primary" href="/tomekeeper/guides/">
+            <i class="fa-slab fa-regular fa-book-open" aria-hidden="true"></i>Tome Keeper guides
+          </a>
+          <a class="btn btn--shadow-accent" href="/tomekeeper/support/">
+            <i class="fa-slab fa-regular fa-life-ring" aria-hidden="true"></i>Tome Keeper support
           </a>
           <a class="btn btn--tertiary" href="/privacy/#tomekeeper">
             <i class="fa-slab fa-regular fa-shield" aria-hidden="true"></i>Privacy policy

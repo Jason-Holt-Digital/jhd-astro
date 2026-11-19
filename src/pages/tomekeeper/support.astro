@@ -3,16 +3,16 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHeader from '../../components/layout/PageHeader.astro';
 ---
 <BaseLayout
-  title="TomeKeeper Support | Jason Holt Digital"
-  description="Get help with TomeKeeper, the PDF reader for tabletop roleplaying games: email support and answers to common questions."
+  title="Tome Keeper Support | Jason Holt Digital"
+  description="Get help with Tome Keeper, the PDF reader for tabletop roleplaying games, including guides, email support, and answers to common questions."
   canonicalPath="/tomekeeper/support/"
   noAlternate
   mainClass="support-main"
 >
   <PageHeader
-    title="TomeKeeper Support"
+    title="Tome Keeper Support"
     subtitle="Help with your books at the table"
-    description="Email support and answers to common questions about TomeKeeper."
+    description="Guides, email support, and answers to common questions about Tome Keeper."
     accent="Support"
     layout="left"
     icon="fa-solid fa-life-ring"
@@ -27,24 +27,36 @@ import PageHeader from '../../components/layout/PageHeader.astro';
         <span class="badge-text">Support</span>
       </header>
       <div class="support-intro">
-        <h2 id="tk-support-title" class="section-title">Get help with TomeKeeper</h2>
+        <h2 id="tk-support-title" class="section-title">Get help with Tome Keeper</h2>
         <p class="support-intro__summary">
-          Email me with bugs and questions, or browse the answers below.
+          Browse the guides, read the answers below, or email me with bugs and questions.
         </p>
       </div>
 
       <section aria-labelledby="tk-help-title">
         <h2 id="tk-help-title">How to Get Help</h2>
-        <div class="panel">
-          <h3>Email Support</h3>
-          <p>Send bug reports, beta feedback, and questions by email. Include your device, the app version, and what happened.</p>
-          <p>
-            <a class="btn btn--shadow-primary" href="mailto:ryan@jasonholtdigital.com?subject=TomeKeeper%20support">
-              <i class="fa-slab fa-regular fa-envelope" aria-hidden="true"></i>
-              Email Support
-            </a>
-          </p>
-          <p class="support-subnote"><a href="mailto:ryan@jasonholtdigital.com">ryan@jasonholtdigital.com</a></p>
+        <div class="twoup">
+          <div class="panel">
+            <h3>Guides</h3>
+            <p>Walkthroughs for importing books, setting up Sets and bookmarks, building Tables, and turning on sync.</p>
+            <p>
+              <a class="btn btn--shadow-primary" href="/tomekeeper/guides/">
+                <i class="fa-slab fa-regular fa-book-open" aria-hidden="true"></i>
+                Read the Guides
+              </a>
+            </p>
+          </div>
+          <div class="panel">
+            <h3>Email Support</h3>
+            <p>Send bug reports, beta feedback, and questions by email. Include your device, the app version, and what happened.</p>
+            <p>
+              <a class="btn btn--shadow-primary" href="mailto:ryan@jasonholtdigital.com?subject=Tome%20Keeper%20support">
+                <i class="fa-slab fa-regular fa-envelope" aria-hidden="true"></i>
+                Email Support
+              </a>
+            </p>
+            <p class="support-subnote"><a href="mailto:ryan@jasonholtdigital.com">ryan@jasonholtdigital.com</a></p>
+          </div>
         </div>
       </section>
 
@@ -54,7 +66,7 @@ import PageHeader from '../../components/layout/PageHeader.astro';
         <div class="faq-section">
           <h3 class="faq-section-heading">
             <button class="faq-section-header" aria-expanded="true" aria-controls="tk-general-section">
-              About TomeKeeper
+              About Tome Keeper
               <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
             </button>
           </h3>
@@ -62,11 +74,11 @@ import PageHeader from '../../components/layout/PageHeader.astro';
 
             <div class="faq-item">
               <button class="faq-question" aria-expanded="false" aria-controls="tk-what-is">
-                <strong>What is TomeKeeper?</strong>
+                <strong>What is Tome Keeper?</strong>
                 <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
               </button>
               <div id="tk-what-is" class="faq-answer" inert>
-                <p>TomeKeeper is a PDF reader for tabletop roleplaying games. Import your rulebooks and adventures, mark the pages you need with bookmarks and page tags, group books into sets, and lay out clips from your books on a Table for quick reference during play.</p>
+                <p>Tome Keeper is a PDF reader for tabletop roleplaying games. Read your rulebooks and adventures without clunky toolbars getting in the way, organize your library with tags and Sets, and jump straight into prep or play by clipping sections or whole pages from multiple books onto a Table for yourself or your group.</p>
               </div>
             </div>
 
@@ -76,7 +88,7 @@ import PageHeader from '../../components/layout/PageHeader.astro';
                 <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
               </button>
               <div id="tk-platforms" class="faq-answer" inert>
-                <p>iPhone, iPad, Mac, Windows and Android. During the beta, you can join through TestFlight on Apple devices and through Google Play on Android. On Windows, you can get it from the Microsoft Store.</p>
+                <p>iPhone, iPad, Mac, Windows, and Android. During the beta, you can join through TestFlight on Apple devices and through Google Play on Android. On Windows, you can get it from the Microsoft Store.</p>
               </div>
             </div>
 
@@ -86,7 +98,7 @@ import PageHeader from '../../components/layout/PageHeader.astro';
                 <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
               </button>
               <div id="tk-account" class="faq-answer" inert>
-                <p>No. TomeKeeper has no accounts. Open the app and import a PDF.</p>
+                <p>No. Tome Keeper has no accounts. Open the app and import a PDF.</p>
               </div>
             </div>
           </div>
@@ -107,7 +119,7 @@ import PageHeader from '../../components/layout/PageHeader.astro';
                 <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
               </button>
               <div id="tk-import" class="faq-answer" inert>
-                <p>Tap Import on the home screen, stay on Local PDF, and tap Choose PDF to pick one or more PDFs from your device. TomeKeeper copies each PDF into its own storage, so the book stays available even if you move or delete the original file.</p>
+                <p>Tap Import on the home screen, stay on Local PDF, and tap Choose PDF to pick one or more PDFs from your device. You can also send a PDF straight into Tome Keeper from another app using the system Share Sheet, Open In, or Open With. Tome Keeper copies each PDF into its own storage, so the book stays available even if you move or delete the original file.</p>
               </div>
             </div>
 
@@ -127,7 +139,7 @@ import PageHeader from '../../components/layout/PageHeader.astro';
                 <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
               </button>
               <div id="tk-where-stored" class="faq-answer" inert>
-                <p>On your device, unless you turn on iCloud Sync on iPhone, iPad or Mac. Sync is optional and off by default on each device. Synced library data goes only to your own private iCloud account; Jason Holt Digital does not receive or store it. Book PDFs upload when Sync book files is on. Deleting the app does not delete copies already in iCloud or on your other devices. Keep your original PDFs.</p>
+                <p>Your library stays on your device by default. On Windows, books and notes stay in local storage on that device. On iPhone, iPad, and Mac, you can turn on optional iCloud Sync in Settings to sync through your own private iCloud account. On Android, you can turn on optional Google Drive Sync in Settings to sync through a hidden app data folder in your own Google Drive, where book PDFs upload only on Wi-Fi. Sync is off by default on each device, and Jason Holt Digital never receives or stores your synced library data. Book PDFs upload only when Sync book files is on. Deleting the app does not delete copies already in iCloud, Google Drive, or on your other devices, and you should still keep your original PDFs.</p>
               </div>
             </div>
           </div>
