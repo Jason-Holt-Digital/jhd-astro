@@ -1,11 +1,12 @@
 ---
+fullArticleAvailable: true
 title: "Guia dos Diários Mythic"
-summary: "Crie, importe e exporte Diários; entenda como Fator de Caos, Cenas, Listas e entradas do Registro de Aventura se conectam."
+summary: "O que um Diário de Aventura guarda e como criar, importar e exportar seus Diários."
 category: "adventure-journals"
 order: 0
 icon: "fa-slab fa-regular fa-book-open"
 duration: "6 min de leitura"
-updated: "2026-11-04"
+updated: "2026-11-19"
 lang: "pt"
 tags: ["journals", "getting-started", "import", "export"]
 keywords:
@@ -25,111 +26,86 @@ downloads:
     href: "/downloads/journal.schema.json"
     format: "JSON"
 related:
-  - writing-and-organizing-scenes
-  - sharing-adventure-journals
-  - saving-and-managing-dice-formulas
+  - writing-and-organizing-scenes-pt
+  - sharing-adventure-journals-pt
+  - saving-and-managing-dice-formulas-pt
 ---
 
 > Este guia descreve o Mythic GME 1.7.0 e posteriores.
 
-# O que é um diário de aventura
-Um Diário é o registro salvo do app para uma aventura ou campanha: um único lugar onde você anota o que aconteceu, por que aconteceu e o que mudou. No app, é armazenado como JSON; você pode exportá-lo como JSON (para ida e volta) ou Markdown (para leitura e compartilhamento junto com suas anotações). A exportação em Markdown serve só para leitura. Ela deixa de fora Listas Personalizadas, Trilhas de Progresso de Trama, Cenas-Chave, Pontos de Progresso e o registro de cada dado, e o app não consegue importá-la.
+Um Diário de Aventura (ou simplesmente Diário) é o registro salvo no app para uma aventura ou campanha. Tudo o que acontece naquele jogo fica guardado dentro dele, então você pode manter várias campanhas ao mesmo tempo sem misturar listas, cenas ou registros.
 
-## O que ele contém (resumo)
+## Crie e jogue em um Diário
 
-- Linha do tempo do Fator Caos: o mostrador (1–9) em momentos chave. O app salva o Fator de Caos atual do Diário em cada nova cena. Editar uma cena anterior não muda o Fator de Caos do Diário; só a sua cena mais recente o define.
-- Cenas: títulos curtos + resumos que marcam os ritmos de jogo
-- Registro de Aventura: perguntas de Destino (chances, rolagem, resultado) e resultados de Tabelas de Significado. Para adicionar sua própria interpretação, toque no botão de adicionar no cabeçalho do Registro de Aventura, escreva-a na folha Adicionar Narrativa e toque em Adicionar ao Registro.
-- Listas de Aventura: Personagens, Tramas e Aspectos que você referencia e atualiza entre cenas
-- Contabilidade: ajustes de fim de cena (FC para cima/baixo) e quaisquer mudanças de lista
+Para jogar normalmente, você não precisa de nenhum arquivo de modelo. Abra **Configurações > Arquivos**, toque em **Criar Novo Diário** e digite um nome.
 
-## Use-o fora do app
+Se esse nome já estiver em uso, o app não substitui o Diário existente a menos que você confirme separadamente a substituição. Se confirmar, o app cria um Diário vazio com esse nome e substitui o conteúdo antigo.
 
-O app armazena seu diário como JSON. Para leitura e compartilhamento fora do app, exporte para Markdown e cole em sua ferramenta de notas (Apple Notes, Obsidian, Notion, Google Docs). Para edição/importação de volta para o app, use a exportação JSON. Mantenha um arquivo por campanha.
+Veja como uma sessão típica funciona no app:
 
-- Antes da sessão
-  - Crie/abra seu documento de diário
-  - Defina Nome do Diário e Fator Caos atual
-  - Semeie algumas Tramas e Personagens que você espera ver
-- Durante o jogo (cada cena)
-  - Cabeçalho de cena: número, título e FC no início da cena
-  - Expectativa: Esperada, Alterada ou Interrompida (da Verificação de Cena)
-  - Perguntas do Destino: escreva a pergunta, escolha probabilidades, registre rolagem + resultado, adicione uma interpretação de uma linha
-  - Eventos Aleatórios: registre Foco do Evento + Palavras de Descrição e o que significam no contexto; anote quaisquer vínculos (Personagem/Trama/Aspecto)
-  - Notas: algumas frases sobre o que aconteceu (não escreva um romance a menos que queira)
-- Entre cenas (contabilidade)
-  - Ajuste FC: para baixo se você estava no controle; para cima se as coisas saíram do controle
-  - Atualize Listas: adicione/remova/promova Personagens/Tramas/Aspectos conforme a história muda
+1. **Antes de começar.** Abra seu Diário, defina o Fator de Caos inicial e adicione algumas Tramas e Personagens que você espera ver (além de Aspectos, se estiver jogando uma Aventura Preparada).
+2. **Durante cada cena.** Defina sua Cena Esperada, faça uma Verificação de Cena, faça Perguntas de Destino e role em Tabelas de Significado ou Eventos Aleatórios conforme a história avança. Rolagens de Destino, Verificações de Cena e Eventos Aleatórios são salvos automaticamente no Registro de Aventura.
+3. **Adicione suas próprias notas.** Para incluir uma interpretação ou um resumo rápido direto no Registro de Aventura, toque no botão de adicionar no cabeçalho do Registro de Aventura, escreva na folha **Adicionar Narrativa** e toque em **Adicionar ao Registro**.
+4. **Entre cenas.** Ajuste o Fator de Caos (para baixo se seu personagem manteve o controle, para cima se as coisas saíram do controle) e atualize suas Listas de Aventura conforme a história muda.
 
-> Dica
-> Exporte Markdown para manter um log de campanha legível no seu app de notas, e use exportações/importações JSON quando precisar de fidelidade de ida e volta com o app. Consistência supera complexidade.
+## O que um Diário guarda
 
-## Um modelo de cena simples (copiar/colar)
+Cada Diário é independente e acompanha estes elementos separadamente:
+
+- **Fator de Caos.** O marcador central do Mythic, de 1 a 9, que influencia as Verificações de Cena e as chances do oráculo. O app salva o Fator de Caos atual do Diário em cada nova cena. Editar uma cena anterior não altera o Fator de Caos do Diário, pois só a sua cena mais recente o define.
+- **Cenas.** Títulos curtos e resumos que marcam os momentos do jogo. O tipo de uma cena (Esperada, Alterada ou Interrompida) fica registrado como uma entrada no registro gerada pela Verificação de Cena, e não na cena em si.
+- **Registro de Aventura.** O histórico em ordem cronológica das respostas da Tabela de Destino ou Verificação de Destino, Verificações de Cena, Eventos Aleatórios, rolagens em Tabelas de Significado, rolagens de dados e notas narrativas.
+- **Listas de Aventura.** Personagens (NPCs, facções e elementos ativos), Tramas (objetivos e linhas narrativas) e Aspectos (a terceira lista que o Mythic adiciona para Aventuras Preparadas, cobrindo locais especiais, objetos ou encontros), junto com as Notas de Lista de cada item.
+- **Ferramentas expandidas de campanha.** Listas Personalizadas, Trilhas de Progresso de Trama, Cenas-Chave e Pontos de Progresso.
+
+## Exportação, importação e backups
+
+Gerencie os arquivos de seus Diários em **Configurações > Arquivos**.
+
+- **Exportar diário como JSON.** Salva o Diário inteiro. Use JSON sempre que quiser fazer backup ou planejar importar o Diário de volta para o app depois.
+- **Exportar diário como Markdown.** Salva uma versão em texto limpo para ler ou colar no Apple Notes, Obsidian, Notion ou Google Docs. A exportação em Markdown serve apenas para leitura. Ela deixa de fora Listas Personalizadas, Trilhas de Progresso de Trama, Cenas-Chave, Pontos de Progresso e o registro individual de cada dado, e o app não consegue importar arquivos Markdown de volta.
+
+No iOS e no Android, exportar abre a folha de compartilhamento para você salvar ou enviar o arquivo para onde preferir. No Windows, no macOS e no Linux, abre uma janela para salvar o arquivo.
+
+Quando você importa um arquivo `.json` com um único Diário, o app abre primeiro uma tela de revisão e lista eventuais pendências em **Problemas encontrados**. Se o nome já pertencer a um Diário no app, você pode renomear o arquivo importado ou escolher **Sobrescrever diário existente**. Sobrescrever substitui o Diário existente sem guardar uma cópia, então exporte-o antes se houver chance de querer recuperá-lo. Um arquivo com uma lista de Diários é importado na hora, sem tela de revisão, e recebe um número nos nomes repetidos para nada ser sobrescrito.
+
+Salvar um Diário não cria um arquivo de backup separado, então exporte em JSON em **Configurações > Arquivos** sempre que quiser uma cópia sob seu controle. O app tenta guardar uma cópia de backup apenas em situações específicas:
+
+- Uma mudança de armazenamento (inclusive mover para dentro ou para fora do iCloud) ou **Importar pasta anterior** encontra um Diário com o mesmo nome nos dois lugares.
+- Uma restauração substitui um Diário nos apps para iOS, Android, Windows, macOS ou Linux. Uma restauração na demonstração web não guarda cópia.
+- Um salvamento bem-sucedido no iCloud encontra versões em conflito não resolvidas de um Diário. Nesse caso, o app tenta copiar essas versões para backups antes de marcá-las como resolvidas. Um salvamento comum, sem conflito, não cria backup.
+
+Para ver o passo a passo completo de exportação e importação, consulte [Compartilhando Diários de Aventura](/pt/resources/sharing-adventure-journals-pt/).
+
+## Usando uma cópia no seu app de notas
+
+Se você gosta de manter um registro legível da campanha junto com suas outras anotações de RPG, exporte o Diário em Markdown e mantenha um arquivo por campanha com um nome fácil de identificar, como `diario-elderspire.md` ou `minha-aventura-2026-09.md`.
+
+Se preferir anotar as cenas à mão fora do app, aqui está um modelo leve para copiar e colar:
 
 ```markdown
 ### Cena N: Título (FC: X no início)
 
 - Expectativa: Esperada | Alterada | Interrompida
-- Pergunta do Destino: … (Probabilidade: Provável/50–50/… → Rolagem: 43 → Resultado: Sim) — Interpretação: …
-- Evento Aleatório (se houver): Foco: … • Palavras de Descrição: Ação=…, Assunto=… — Interpretação: …
-- Notas: 2–4 frases sobre o que realmente aconteceu
+- Pergunta de Destino: ... (Chances: Provável, Rolagem: 43, Resultado: Sim) Interpretação: ...
+- Evento Aleatório (se houver): Foco: ... | Significado: Ação=..., Assunto=... | Interpretação: ...
+- Notas: 2 a 4 frases sobre o que realmente aconteceu
 
 Contabilidade de fim de cena
-- Ajuste de FC: −1 | +1 (motivo)
-- Mudanças de Listas: +Personagem …, +Trama …, −Aspecto …
+- Ajuste de FC: -1 | +1 (motivo)
+- Mudanças nas Listas: +Personagem ..., +Trama ..., -Aspecto ...
 ```
 
-## Organização de arquivos e backups
+## Editando um arquivo de Diário à mão
 
-- Um arquivo por campanha ou aventura
-- Nomes que você pode escanear: `minha-aventura-2025-09.md` ou `diario-elderspire.md`
-- Backups: Salvar um Diário não cria um backup separado dele, então vá em Configurações, depois Arquivos, e use Exportar diário como JSON para guardar sua própria cópia. O app também tenta guardar uma cópia de backup quando uma mudança para outro local de armazenamento, para dentro ou fora do iCloud, ou Importar pasta anterior encontra o mesmo Diário nos dois lugares, e, nos apps para iOS, Android, Windows, macOS e Linux, quando uma restauração substitui um Diário. Na versão web, uma restauração não guarda cópia. Exceção: quando um salvamento bem-sucedido no iCloud encontra versões em conflito não resolvidas de um Diário, o app tenta copiar essas versões para backups antes de marcá-las como resolvidas. Um salvamento comum, sem conflito, não cria backup.
-- Exportações: use app → Configurações → Arquivos para exportar JSON (ida e volta) ou Markdown (compartilhável)
+Você nunca precisa abrir nem editar um arquivo JSON para usar Diários. O app cuida de criar, ler e exportar arquivos `.json` para você.
 
-## Nenhuma programação necessária
+Se você quiser montar um arquivo manualmente ou inspecionar a estrutura, o Mythic GME 1.7.0 e posteriores exportam arquivos na versão 6 do esquema, usando chaves em camelCase como `journalName` e `chaosFactor`. O modelo vazio na seção de Downloads abaixo (`journal_template.json`) usa o formato legado do esquema 1, com chaves em PascalCase. O app ainda o importa e converte para o esquema 6, mas ele não corresponde ao formato atual de exportação.
 
-- Se palavras como "JSON" ou "esquema" soam técnicas—não se preocupe. Você não precisa aprender programação para usar diários.
-- JSON é simplesmente um arquivo de texto estruturado. O app cria, abre e exporta para você. Pense nisso como um documento formatado ordenadamente que o app entende.
-- Um "esquema" é apenas um livro de regras que ajuda ferramentas a verificar "este arquivo parece certo?". É opcional e voltado para usuários avançados ou ferramentas de terceiros. Você pode ignorá-lo.
+Se você começar a partir de `journal_template.json`:
 
-## Gerencie diários no app
+1. Faça uma cópia com um nome claro, como `minha-aventura-2026.json`, e mantenha a extensão `.json`.
+2. Preencha `JournalName` e defina `ChaosFactor` com um número de 1 a 9. Os dois campos são obrigatórios na importação.
+3. Se adicionar cenas à mão, defina você mesmo o `SceneChaosFactor` em cada cena.
 
-- Crie, importe e exporte diários da seção Configurações → Arquivos.
-- Cada diário é independente: mantém seu próprio Fator Caos, Cenas, Listas de Aventura (Personagens/Tramas/Aspectos), Notas de Lista e entradas do Registro de Aventura.
-- Use múltiplos diários para manter diferentes campanhas/sessões separadas; trocar diários não mistura suas listas ou logs.
-
-## Como mapeia para Mythic
-
-- Diário: Seu contêiner de campanha/sessão. Guarda o Fator Caos, Cenas, Listas de Aventura (Personagens/Tramas/Aspectos) e o Log do jogo. Um Diário também guarda suas Listas Personalizadas, Trilhas de Progresso de Trama e Cenas-Chave.
-- Fator Caos (FC): Mostrador central do Mythic (1–9) controlando imprevisibilidade. Atualizado ao longo do tempo (tipicamente cena a cena) e afeta Verificações de Cena e oráculos.
-- Cenas: Segmentos narrativos. Tipo de cena (Esperada/Alterada/Interrompida) é capturado como uma Entrada de Log de uma Verificação de Cena, não armazenado na cena em si.
-- Listas da Aventura: Personagens, Tramas e Aspectos. Tramas e Personagens são as duas Listas das regras básicas de Mythic, e Aspectos é a terceira Lista que as regras acrescentam para jogar uma Aventura Preparada.
-  - Personagens: NPCs, facções, personas que podem aparecer em eventos.
-  - Tramas: Lista de Tramas/objetivos que podem ser avançados/fechados ou referenciados por eventos.
-  - Aspectos: Lugares, objetos ou conceitos que dão cor e contexto aos eventos.
-- Entradas do Registro de Aventura: histórico em ordem cronológica de oráculos e verificações, incluindo respostas da Tabela de Destino/Verificação, Verificações de Cena, Eventos Aleatórios (Foco do Evento + Palavras de Descrição) e outros resultados.
-
-## Fluxo de trabalho básico
-
-1) No jogo normal, você não precisa do modelo. Vá em Configurações, depois Arquivos, toque em Criar Novo Diário e digite um nome. Se o nome já estiver em uso, o app não substitui esse Diário a menos que você confirme separadamente a substituição. Se confirmar, ele cria um Diário vazio com esse nome e o conteúdo do Diário existente é substituído. Conforme joga, você adiciona Cenas e Listas no app, e o app registra suas rolagens no Registro de Aventura.
-2) O app salva o Fator de Caos atual do Diário em cada nova cena. Editar uma cena anterior não muda o Fator de Caos do Diário; só a sua cena mais recente o define. As rolagens de Destino, os Testes de Cena e os Eventos Aleatórios são salvos automaticamente no Registro de Aventura, então você não precisa registrá-los.
-3) Edição manual de JSON (opcional): o modelo vazio linkado acima, `journal_template.json`, usa o formato de importação antigo, com chaves em PascalCase. O app consegue importá-lo, mas ele não é um exemplo da exportação atual do app, que usa outros nomes de chave. Faça uma cópia e renomeie-a para algo significativo (por exemplo: `minha-aventura-2025.json`).
-   - Mantenha a extensão `.json`—isso ajuda o app e seu sistema a reconhecer o arquivo.
-   - Dica: Adicione uma data ou nome de campanha para evitar sobrescrever backups antigos.
-   - Preencha `JournalName` e mantenha `ChaosFactor` em 1–9. A importação exige os dois.
-   - Se adicionar Cenas à mão, defina você mesmo o `SceneChaosFactor` de cada Cena.
-4) Exporte seu diário atual em Configurações → Arquivos: JSON para uma cópia legível por máquina, Markdown para compartilhamento/leitura.
-
-## Dicas
-
-- Cada diário tipicamente representa uma única aventura.
-- Cada arquivo de diário inclui suas próprias Listas, Cenas e dados de log.
-- No iOS e no Android, exportar abre a folha de compartilhamento para você enviar o arquivo para onde quiser. No Windows, no macOS e no Linux, abre uma janela para salvar o arquivo.
-- Diários podem ser exportados como Markdown para uso em outros apps.
-
-### Reafirmação para não-técnicos
-
-- Quando você importa um arquivo com um só Diário, o app mostra antes uma folha de revisão e lista os problemas em Problemas encontrados. Um arquivo com uma lista de Diários é importado de uma vez, sem revisão, e um Diário cujo nome já está em uso recebe um número no nome.
-- Sobrescrever diário existente é uma escolha que você faz na importação. Ela substitui o Diário que já está no app, e essa importação não guarda cópia dele, então exporte esse Diário antes se quiser recuperá-lo depois.
-- Você nunca precisa editar JSON à mão—use o app para criar e exportar.
-- Se você espiar dentro de um arquivo JSON, é apenas texto legível. Feche sem salvar se não tiver certeza.
+Para a referência completa dos campos do esquema 6, consulte [Esquema de Diário](/pt/resources/journal-schema-pt/).

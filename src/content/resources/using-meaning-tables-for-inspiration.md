@@ -6,7 +6,7 @@ category: "start-here"
 order: 4
 icon: "fa-slab fa-regular fa-lightbulb"
 duration: "6 min read"
-updated: "2026-11-04"
+updated: "2026-11-19"
 tags: ["meaning-tables", "inspiration", "guides"]
 keywords:
   - Meaning Tables
@@ -17,68 +17,70 @@ related:
   - writing-and-organizing-scenes
 ---
 
-> This guide describes Mythic GME 1.7.0 and later.
+> This guide covers Mythic GME 1.7.0 and later.
 
-## Guide: Mastering the Meaning Tables module
+Fate Questions answer "does it happen?". Meaning Tables answer the open-ended questions like "what does it look like?", "what happens next?", or "what is really going on?". You can roll on a Meaning Table any time you want a pair of words to spark an idea.
 
-The Meaning Tables module in the Mythic app is your fast‑access source for inspiration, designed to reduce lookup friction and keep you in story flow. It provides concrete narrative seeds when a simple Yes/No Fate Question isn’t enough.
+## Where to find Meaning Tables in the app
 
-Layout
-- Phone: Meaning Tables is its own screen, with the result under Roll Results. On the Fate screen, the Tables tab on the edge of the screen opens the tables without leaving the Adventure Log.
-- Tablet and desktop: the Game Tables Pull-Out sits on the right edge of the Fate Chart screen. Its tabs open Meaning Tables and Event Focus, plus Tracks and Keyed Scenes while they are turned on. Tap a tab to slide it open over your panels, and tap it again to close it. You can also place a Meaning Tables panel in your layout. To turn the pull-out off, use Game Tables Pull-Out in Layout Settings.
+- **Phone.** **Meaning Tables** has its own screen, with results shown under **Roll Results**. While you are on the **Fate** screen, tap the **Tables** tab on the edge of the screen to roll without leaving the Adventure Log.
+- **Tablet and desktop.** The **Game Tables Pull-Out** sits on the right edge of the Fate Chart screen. Its tabs open **Meaning Tables** and **Event Focus**, plus **Tracks** and **Keyed Scenes** while those features are turned on. Tap a tab to slide it out over your panels, and tap it again to close it. You can also place a **Meaning Tables** panel directly in your layout. That panel has no separate result box, so read its rolls in the **Adventure Log**. To hide the pull-out, turn off **Game Tables Pull-Out** in **Layout Settings**.
 
-## The purpose of Meaning Tables
+Every Meaning Table roll is saved automatically to the **Adventure Log**. To find a table, search or scroll the list, then tap it to roll. Press and hold a table to view its details, and tap the heart icon to filter down to your favorites.
 
-Meaning Tables generate descriptive prompts that clarify narrative elements and inject meaning into the adventure.
+## What tables are included
 
-- Inspirational prompts for details: Use when you want information that doesn’t fit a Yes/No question.
-- Pairs well with Fate: Fate answers “does it happen?”; Meaning adds “what does it look like?” or “what’s really going on?”.
+- **Included with the base app.** 53 Meaning Tables (49 from the Mythic GME 2e core rulebook and 4 from *Mythic Magazine* 49) and 2 Event Focus tables.
+- **Included with Expanded Features.** 197 more Meaning Tables and 14 more Event Focus tables, drawn from *Mythic Variations 1*, *The Adventure Crafter*, *The Location Crafter*, *The Creature Crafter*, *Mythic Magazine Compilations 1 to 7*, and *Mythic Magazine* issues 43 to 71.
+- **How purchases work by store.** On the Apple App Store, Google Play, and Amazon Appstore, Expanded Features is a one-time purchase (not a subscription). On the Microsoft Store (Windows) and itch.io (DRM-free), the one-time desktop app purchase already includes Expanded Features with no in-app purchase.
 
-> Availability and content
-> - Included: 53 Meaning Tables (49 from the Mythic GME 2e core rulebook and 4 from Mythic Magazine 49) and 2 Event Focus tables.
-> - Expanded sets: 197 more Meaning Tables and 14 more Event Focus tables are available with Expanded Features. They come from Mythic Variations 1, The Adventure Crafter, The Location Crafter, The Creature Crafter, Mythic Magazine Compilations 1 to 7, and Mythic Magazine issues 43 to 71.
-> - Pricing by platform: On Apple App Store, Google Play, and Amazon Appstore these expanded sets are part of a one‑time “Expanded Features” unlock (not a subscription). On Microsoft Store (Windows) and itch.io (DRM‑free), the one‑time purchase includes expanded features; no IAP.
-> - For the latest details, see Support → Purchases, Pricing & Upgrades: /support
+For current purchase and upgrade details, check the [Support page](/support/).
 
-## When and how to use the module
+## When to roll on Meaning Tables
 
-You can open Meaning Tables at any time to get a pair of words for inspiration.
+### Random Events
 
-### 1) Random Events (Event Meaning)
-- Timing: a Random Event happens when a Fate Chart or Fate Check roll comes up doubles at or under the Chaos Factor, or when a Scene Check comes up Interrupt Scene. With a prepared Event Focus table selected, such as the Prepared Adventure Event Focus Table, a Scene Check gives an Expected Scene instead, and a roll at or under the Chaos Factor adds a Random Event.
-- Application: After the Event Focus (e.g., New NPC, PC Negative), roll an Event Meaning word pair (Actions, Descriptions, or Elements). Combine Context + Focus + Meaning to invent the twist.
+A Random Event happens when a Fate Chart or Fate Check roll comes up doubles at or under the Chaos Factor, or when a Scene Check lands on **Interrupt Scene**. With a prepared Event Focus table selected, such as the **Prepared Adventure Event Focus Table**, a Scene Check gives an **Expected Scene** instead, and a roll at or under the Chaos Factor adds a Random Event to it.
 
-### 2) Discovering Meaning (adding details)
-- Describing the unknown: Define what an object looks like, a character’s background, or what action is taking place in a scene.
-- Creating characters: Generate first actions, appearance, background, or identity for a new NPC.
-- Starting an adventure: for your First Scene you can roll word pairs with no Event Focus. For a 4W opener, roll Characters for Who, Location Meaning for Where, and Action Meaning 1 and Action Meaning 2 for What and for Why.
-- Clarifying ambiguity: If a Fate or event result feels vague, roll again on Meaning to suggest an angle and narrow the interpretation.
-- Altered scenes: If your Expected Scene is Altered and you’re unsure how, roll a word pair to inspire a simple tweak or the next most expected outcome.
+After the Event Focus tells you what the twist centers on (such as New NPC or PC Negative), roll a Meaning word pair (Actions, Descriptions, or Elements). Put your current context, the Event Focus, and the word pair together to invent the twist.
 
-## Choosing the right table
+### Discovering Meaning
 
-The book describes three kinds of Meaning Tables. The app sorts its tables into categories instead, such as Core Tables and Character & Identity. Picking the best fit often yields the clearest interpretation.
+You do not need to wait for a Random Event to roll a Meaning Table. Roll whenever you need concrete details:
 
-1) Actions: Active verbs — what someone/something is doing or having done to them.
-2) Descriptions: Adjectives/qualities — what someone/something looks like or feels like.
-3) Elements: Themed sets (e.g., Location, Character, Spell Effects) for more targeted prompts when you want granularity.
+- **Describe something unknown.** Work out what an object looks like, what a character is hiding, or what action is unfolding in a room.
+- **Sketch a new NPC.** Roll for a character's first action, appearance, background, or identity.
+- **Open a new adventure.** For your first scene, roll word pairs without an Event Focus. For a 4W opener, roll **Characters** for Who, **Location Meaning** for Where, and **Action Meaning 1** and **Action Meaning 2** for What and Why.
+- **Clarify a vague result.** If a Fate answer or Random Event feels fuzzy, roll another Meaning pair to pick a clear angle.
+- **Shape an Altered Scene.** When a Scene Check comes up Altered and you are not sure how to shift your Expected Scene, roll a word pair to spark a tweak or point to the next most expected outcome.
 
-## Interpreting the prompts
+## Choose the right kind of table
 
-- Context is key: Let expectations and ongoing context guide your interpretation; whatever you settle on becomes the new fact.
-- Embrace abstraction: Words are prompts, not constraints — stretch as needed to land on what makes sense.
-- Roll until satisfied: Roll as many times as needed across tables until you have enough input to decide.
-- Intensification: If you roll the same Element twice, “double down” on that word — interpret it with greater intensity.
-- Connector words: If a pair feels awkward, add “of”, “‑ly”, “and”, or “but” between them to form a useful phrase.
+The Mythic rulebook groups Meaning Tables into three kinds, while the app sorts them into categories such as **Core Tables** and **Character & Identity**. Knowing the three kinds helps you pick a table that fits your question:
 
-## In the app
+1. **Actions.** Active verbs for what someone or something is doing, or having done to them.
+2. **Descriptions.** Adjectives and qualities for how something looks, sounds, or feels.
+3. **Elements.** Themed sets (such as Location, Character, or Spell Effects) when you want tighter, more specific prompts.
 
-- Finding a table: search or scroll the list, then tap a table to roll it. Press and hold a table to see its details, and tap the heart to show only your favorites.
-- Copy to notes: On a tablet or desktop, open the Tables tab of the Game Tables Pull-Out, or keep a Meaning Tables panel in your layout, while you write scene notes. The panel has no result area, so read the result in the Adventure Log. On a phone, open the Tables tab on the edge of the Fate screen to roll without leaving the Adventure Log. Every roll is saved to the Adventure Log.
-- Random Events flow: when a twist hits, the app rolls the Event Focus table first. It also rolls that table's links to Meaning Tables. If the rolled entry links to a Meaning Table, another Event Focus table, an Adventure List, or a Custom List, the app rolls that linked table or list too. A second Event Focus table rolls only its links to Adventure Lists and Custom Lists and does not follow links to other tables. All of these rolls are saved in one Adventure Log entry. If you turn on Auto Roll Event Meaning, which is off by default, the app also adds a pair of Action Meaning words, unless the Random Event already has its own Meaning words or a result from one of your Custom Lists. Read the entry and write your interpretation in the Scene's Summary.
+Use Elements when you want targeted prompts, and reach for Actions or Descriptions when you want broader sparks.
 
-## Tips
+## How Random Events chain tables in the app
 
-- Use Meaning when you’re stuck translating Fate results into specifics.
-- Prefer Elements for targeted, easy‑to‑interpret prompts; use Actions/Descriptions when you want broader sparks.
-- Keep your interpretation short and decisive — one sentence is usually enough to push play forward.
+When a Random Event triggers, the app handles the linked rolls for you in order:
+
+1. The app rolls your **Event Focus** table first, along with any Meaning Table links attached to that table.
+2. If the rolled entry links to a Meaning Table, another Event Focus table, an Adventure List, or a Custom List, the app rolls that linked table or list too.
+3. If it chains into a second Event Focus table, that second table rolls only its links to Adventure Lists and Custom Lists and does not chain into further tables.
+4. Every roll in the chain lands in one **Adventure Log** entry.
+5. If **Auto Roll Event Meaning** is turned on (it is off by default), the app also adds a pair of Action Meaning words, unless the Random Event already has its own Meaning words or a result from one of your Custom Lists.
+
+Read the combined Adventure Log entry, then write your interpretation in the Scene's **Summary**.
+
+## Interpret your word pairs
+
+- **Start from context.** Let your expectations and the current scene guide what the words mean. Once you pick an interpretation, it becomes the new fact in play.
+- **Treat words loosely.** Words are prompts, not rigid rules. Stretch a word if that leads to an answer that fits the story.
+- **Roll again if needed.** If the first pair draws a blank, roll again or try another table until something clicks.
+- **Double down on repeats.** If you roll the same Element word twice, lean into it and play up that trait with greater intensity.
+- **Add connector words.** When two words feel awkward side by side, drop in "of", "-ly", "and", or "but" to turn them into a natural phrase.
+- **Keep it short.** One decisive sentence is usually all you need to move play forward.

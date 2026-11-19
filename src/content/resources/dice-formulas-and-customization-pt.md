@@ -1,12 +1,13 @@
 ---
-title: Fórmulas de Dados e Personalização
-summary: "Monte rolagens com vantagem, limites, dados explosivos ou compostos, manter/descartar e mais."
+fullArticleAvailable: true
+title: "Fórmulas de Dados e Personalização"
+summary: "Notação de dados, paradas rotuladas, regras de Forçar e fórmulas prontas para vários sistemas de RPG."
 category: dice-roller
 order: 3
 icon: fa-slab fa-regular fa-sliders
 duration: 12 min de leitura
-updated: 2026-11-04
-lang: pt
+updated: "2026-11-19"
+lang: "pt"
 tags:
   - dice
   - formulas
@@ -71,201 +72,200 @@ downloads:
     href: "/downloads/formulas_one_ring.json"
     format: "JSON"
 related:
-  - saving-and-managing-dice-formulas
-  - formula-schema
+  - saving-and-managing-dice-formulas-pt
+  - formula-schema-pt
 ---
 
 > Este guia descreve o Mythic GME 1.7.0 e posteriores.
 
-## Leia isso primeiro (Sem programação necessária)
+Você só precisa de uma expressão curta como `2d6+3` para rolar e salvar uma fórmula no Estúdio de Dados. Volte a esta página sempre que precisar de modificadores, paradas com rótulo, regras de Forçar ou fórmulas iniciais para um RPG específico.
 
-- Fórmulas são expressões simples e legíveis (como `2d6+3`).
-- Você pode digitar uma fórmula, rolá-la e tocar em Salvar Fórmula para guardá-la. No celular, Salvar Fórmula e Gerenciar Fórmulas ficam abaixo do campo da fórmula; em um tablet ou computador, ficam acima dele.
-- Salvar armazena o que quer que esteja atualmente no campo de texto e permite nomear e adicionar uma descrição. Gerenciar permite importar, exportar, renomear, reordenar e excluir.
+Para ver o passo a passo de como salvar, organizar e gerenciar sua lista de fórmulas no Estúdio de Dados, consulte [Salvando e Gerenciando Fórmulas de Dados](/pt/resources/saving-and-managing-dice-formulas-pt/).
 
-> **Dica**: Para salvar, você só precisa do texto da fórmula—não é necessário entender cada opção abaixo. Volte aqui quando quiser fazer algo mais avançado.
+## Guia rápido de notação de dados
 
-## Folha de dicas básica
+- **Rolagens básicas.** `XdY`, como `2d6`, `1d20` ou `1d%` para `d100`.
+- **Dados especiais.** `1D66` (`D` maiúsculo), `4dF` (dados Fate) e faces personalizadas como `2d[2,3,5,7]`.
+- **Matemática e agrupamento.** `+`, `-`, `*` e parênteses `( )`. Divisão não é suportada.
+- **Manter e descartar.** `kh` (manter os maiores), `kl` (manter os menores), `-H` (descartar os maiores) e `-L` (descartar os menores), como `3d20kh2` ou `4d6-L`.
+- **Explodir e explosão composta.** `!` (explodir) e `!!` (explosão composta). Adicione `o` para ativar apenas uma vez (`!o`, `!!o`), como `4d6!` ou `5d10!!o>=8`.
+- **Rerrolar.** `r` (rerrolar resultados que combinam) e `ro` (rerrolar uma vez), como `4d4r<=2` ou `4d4ro<2`.
+- **Contar e pontuar.**
+  - `#` retorna apenas a contagem e descarta os resultados individuais dos dados, como `6d6#>=5`.
+  - `#s`, `#f`, `#cs` e `#cf` marcam dados como sucessos, falhas, sucessos críticos e falhas críticas. Os dados rolados e a soma continuam intactos, e a linha da rolagem lista as contagens, como `6d6 #f<=2 #s>=5 #cs6 #cf1`.
+  - Uma contagem lê apenas o número logo depois dela. `4d10#>=6+2` conta os dados com resultado 6 ou maior e depois soma 2 a essa contagem.
+- **Limitar (teto ou piso).** `C<` e `C>`, como `4d20 C<5` ou `4d20 C>15`.
+- **Tags de Forçar.** `@push=N` permite forçar a rolagem `N` vezes, e `@lock=s`, `@lock=sf` ou `@lock=none` define quais dados ficam travados ao forçar, como `5d6#s6 @push=1`.
 
-- Rolar dados: `XdY` (ex., `2d6`, `1d20`, `1d%` para d100)
-- Dados especiais: `1D66` (D maiúsculo), `4dF` (dados Fate), faces personalizadas: `2d[2,3,5,7]`
-- Matemática e agrupamento: `+`, `-`, `*`, parênteses `( )` (divisão não é suportada)
-- Manter / Largar: `kh` manter maior, `kl` manter menor, `-H` largar maior, `-L` largar menor (ex., `3d20kh2`, `4d6-L`)
-- Explosão / Explosão composta: `!` (explodir), `!!` (explodir no mesmo dado), adicione `o` para uma vez: `!o`, `!!o` (ex., `4d6!`, `5d10!!o>=8`)
-- Re-rolar: `r` (re-rolar correspondências), `ro` (re-rolar uma vez) (ex., `4d4r<=2`, `4d4ro<2`)
-- Contar / Pontuação:
-  - \# retorna uma contagem e descarta os resultados individuais dos dados: 6d6#>=5
-  - #s, #f, #cs e #cf marcam dados como sucessos, falhas, sucessos críticos e falhas críticas. Os dados e a soma continuam como foram rolados, e a linha da rolagem lista as contagens. Por exemplo: `6d6 #f<=2 #s>=5 #cs6 #cf1`
-  - Uma contagem usa só o número logo depois dela. `4d10#>=6+2` conta os dados de 6 ou mais e depois soma 2 à contagem.
-- Limitar (cap): `C<` e `C>` (ex., `4d20 C<5`, `4d20 C>15`)
-- Regras de Forçar: `@push=N` deixa a rolagem ser forçada N vezes, e `@lock=s`, `@lock=sf` ou `@lock=none` define quais dados Forçar mantém (ex., `5d6#s6 @push=1`). Veja Forçar abaixo.
+### Pegadinhas de ordem e precedência
 
-Pegadinhas de ordem e precedência
-- A ordem importa com manter e com os contadores de marcação. 2d20 kh #cf #cs descarta primeiro o dado mais baixo. Para marcar os dois dados antes de manter, escreva (2d20 #cf #cs) kh. Manter depois de uma contagem precisa dos parênteses, então 2d20 #cf #cs kh é um erro. O mesmo vale para `(4d6#s6)kh2`.
-- Uma contagem vale para os dados logo antes dela. `2d6#s6 - 2d6#s6` avalia cada 2d6 separadamente e depois subtrai o segundo do primeiro.
-- Operadores de Largar/filtrar ligam mais forte que aritmética. `(5d6+5d10)-L2` larga dos dados combinados; `5d6+5d10-L2` larga apenas dos d10s.
-- Use `D66` maiúsculo (minúsculo `d66` é um dado de 66 lados, não D66).
-- Não existe contagem de "diferente de". `6d6#s!=1` não é uma fórmula válida.
-- Uma fórmula que termina em um operador, ou um rótulo sem dados depois dele, não rola. Por exemplo, `2d6+` e `"Damage":` estão incompletos, e o campo de fórmula mostra que estão incompletos.
+- **Manter junto com contadores de marcação.** A ordem importa. `2d20 kh #cf #cs` descarta o dado mais baixo primeiro. Para marcar os dois dados antes de manter o mais alto, agrupe com parênteses: `(2d20 #cf #cs) kh`. Colocar manter depois de uma contagem sem parênteses (`2d20 #cf #cs kh`) gera um erro. O mesmo vale para `(4d6#s6)kh2`.
+- **Escopo da contagem.** Uma contagem se aplica apenas aos dados logo antes dela. `2d6#s6 - 2d6#s6` avalia cada `2d6` separadamente e depois subtrai o segundo resultado do primeiro.
+- **Operadores de descartar têm precedência sobre aritmética.** `(5d6+5d10)-L2` descarta os dois menores dados da parada combinada, enquanto `5d6+5d10-L2` descarta apenas dos `d10`.
+- **D66 em maiúsculo.** Use `1D66` com `D` maiúsculo. Em minúsculo, `d66` rola um dado de 66 lados.
+- **Sem contagem de "diferente de".** `6d6#s!=1` não é uma fórmula válida.
+- **Expressões incompletas.** Uma fórmula que termina em um operador (`2d6+`) ou um rótulo sem dados depois dele (`"Dano":`) não rola, e o campo de fórmula marca a expressão como incompleta.
 
 ## Paradas de dados e rótulos
 
-> As linhas por parada, os rótulos, as cores dos rótulos e Forçar são novidades da versão 1.7.0. A sintaxe das fórmulas desta página funciona do mesmo jeito na 1.6.8.
+> Linhas por parada, rótulos, cores de rótulos e Forçar são novidades da versão 1.7.0. A sintaxe básica de fórmulas acima funciona da mesma forma na 1.6.8.
 
-Uma parada de dados é um grupo de dados com um rótulo. Escreva o rótulo entre aspas, depois dois-pontos, depois os dados. Coloque uma vírgula entre as paradas de dados.
+Uma parada de dados é um grupo de dados com um rótulo. Escreva o rótulo entre aspas duplas, seguido de dois-pontos e dos dados, separando as paradas com vírgula:
 
-- `"Attack": 2d6, "Damage": 1d8`
+`"Ataque": 2d6, "Dano": 1d8`
 
-Uma Rolagem de teste do estúdio mostra uma linha para cada parada de dados, com o rótulo, o total da parada e seus dados. No Registro de Aventura, uma rolagem com rótulos é uma única entrada.
+Uma Rolagem de teste do estúdio mostra uma linha por parada com o rótulo, o total e os dados rolados. No Registro de Aventura, uma rolagem com rótulos fica registrada como uma única entrada.
 
-Na aba **Unir**, toque em um rótulo salvo para colocá-lo na frente dos seus dados. Toque em **+** para salvar um novo rótulo. Toque e segure um rótulo para renomeá-lo, removê-lo ou mudar a ordem dos seus rótulos. Renomear ou remover um rótulo não muda as fórmulas que já o usam. Um rótulo não pode conter `"`, e dois rótulos não podem ser diferentes só nas letras maiúsculas e minúsculas.
+Na aba **Unir** do Estúdio de Dados, toque em um rótulo salvo para inseri-lo antes dos dados, toque em **+** para salvar um novo rótulo ou pressione e segure um rótulo para renomear, remover, reordenar ou mudar a cor dele. Você também pode definir cores em **Gerenciar rótulos** usando o botão **Cor** de cada rótulo, escolhendo uma cor rápida ou **Personalizada** e tocando em **Concluir**.
 
-Para escolher a cor de um rótulo, toque e segure o rótulo e toque em **Alterar cor**, ou toque no botão **Cor** abaixo do nome dele em **Gerenciar rótulos**. Escolha uma das cores sugeridas ou toque em **Personalizada** para escolher qualquer cor e depois toque em **Concluir**.
-
-As fórmulas salvas guardam o texto do rótulo que você digitou. Uma exportação das suas fórmulas salvas não inclui seus rótulos nem as cores deles.
+Renomear ou remover um rótulo não altera fórmulas que já o utilizam. Um rótulo não pode conter `"`, e dois rótulos não podem diferir apenas entre maiúsculas e minúsculas. As fórmulas salvas mantêm o texto do rótulo que você digitou, mas exportar fórmulas salvas não inclui seus rótulos salvos nem as cores deles.
 
 ## Forçar
 
 Forçar rerrola parte da sua Rolagem de teste do estúdio mais recente.
 
 1. Na Rolagem de teste do estúdio mais recente, toque na seta no fim da linha.
-2. Toque em **Forçar**. É o primeiro dos dois botões que aparecem.
+2. Toque em **Forçar** (o primeiro dos dois botões que aparecem).
 
-Forçar mantém cada dado que é um sucesso ou um sucesso crítico. Rerrola os outros dados e adiciona o resultado como uma nova Rolagem de teste do estúdio. Números como o `+3` de `2d6+3` ficam como estão. Forçar também rerrola os dados depois de um sinal de menos, como em `2d6#s6 - 2d6#s6`. Um novo dado é avaliado pelas mesmas contagens. Dados forçados não reaplicam `r`, `C`, explosão (`!`), explosão composta (`!!`) nem manter (`k`), então um novo dado fica na face que tirar.
+Por padrão, Forçar mantém cada sucesso e sucesso crítico, rerrola os dados restantes e adiciona o resultado como uma nova Rolagem de teste do estúdio. Números fixos como o `+3` em `2d6+3` ficam como estão. Forçar também rerrola dados após um sinal de menos, como em `2d6#s6 - 2d6#s6`.
 
-Em uma Rolagem de teste do estúdio e em uma rolagem de dados do seu Registro de Aventura, uma marca de verificação vem depois de cada sucesso ou sucesso crítico, uma cruz vem depois de cada falha ou falha crítica, e um cadeado vem antes de cada dado que Forçar manteve.
+Os novos dados são avaliados pelas mesmas regras de contagem. Dados forçados não reaplicam rerrolagem (`r`), limite (`C`), explosão (`!`), explosão composta (`!!`) nem manter (`k`), então cada dado rerrolado fica com a face em que cair.
 
-Adicione uma tag à fórmula para mudar como Forçar funciona:
+Tanto nas Rolagens de teste do estúdio quanto nas rolagens de dados do Registro de Aventura, uma marca de verificação aparece depois de cada sucesso ou sucesso crítico, uma cruz aparece depois de cada falha ou falha crítica, e um cadeado aparece antes de cada dado mantido por uma forçada.
 
-- `@push=N`: a rolagem pode ser forçada N vezes. Sem esta tag, não há limite.
-- `@lock=s`: forçar mantém os sucessos e sucessos críticos. É o padrão.
-- `@lock=sf`: forçar também mantém as falhas e falhas críticas.
-- `@lock=none`: forçar rerrola todos os dados.
+Adicione uma tag à fórmula para controlar o comportamento de Forçar:
 
-`@push` vale para a rolagem inteira. Uma tag `@lock` depois de uma parada de dados vale só para essa parada. Por exemplo, em `"Base": 3d6#s6#f1 @lock=sf, "Gear": 2d6#s6#f1`, Forçar mantém os 1 da parada Base e rerrola os 1 da parada Gear.
+- `@push=N` permite até `N` forçadas. Sem essa tag, não há limite.
+- `@lock=s` mantém sucessos e sucessos críticos (comportamento padrão).
+- `@lock=sf` mantém também falhas e falhas críticas.
+- `@lock=none` rerrola todos os dados.
 
-Se só **Copiar** aparecer nessa linha, a rolagem não pode ser forçada. Isso acontece quando a rolagem já foi forçada tantas vezes quanto `@push` permite, quando nenhum dado seria rerrolado, ou quando um dado que seria rerrolado é um dado Fate, um dado de faces personalizadas ou um D66.
+`@push` vale para a rolagem inteira, enquanto uma tag `@lock` após uma parada vale apenas para aquela parada. Em `"Base": 3d6#s6#f1 @lock=sf, "Equipamento": 2d6#s6#f1`, Forçar trava os 1s da parada Base e rerrola os 1s da parada Equipamento.
 
-Você também pode forçar uma rolagem de dados do seu Registro de Aventura. Toque na seta no fim da linha e depois em **Forçar**. A rolagem forçada é escrita no seu diário como uma entrada nova, uma **Rolagem de dados forçada**. A rolagem que você forçou fica como estava e não pode ser forçada de novo. Se em uma rolagem de dados do seu Registro de Aventura só aparecerem **Copiar** e **Excluir entrada**, ela não pode ser forçada. Isso acontece pelos mesmos motivos que em uma Rolagem de teste do estúdio, quando a rolagem já foi forçada ou quando uma versão anterior do app a registrou. Forçar uma Rolagem de teste do estúdio nunca é escrito no seu diário.
+Se apenas **Copiar** aparecer na linha de uma Rolagem de teste do estúdio, aquela rolagem não pode ser forçada. Isso acontece quando a rolagem atingiu o limite de `@push`, quando nenhum dado seria rerrolado ou quando um dado que seria rerrolado é um dado Fate, um dado de faces personalizadas ou um `D66`.
 
-## Padrões que você usará muito
+Você também pode forçar uma rolagem de dados no seu Registro de Aventura. Toque na seta no fim da linha e toque em **Forçar**. O resultado é salvo no seu Diário como uma nova **Rolagem de dados forçada**, enquanto a rolagem original continua igual e não pode ser forçada de novo. Se apenas **Copiar** e **Excluir entrada** aparecerem em uma rolagem do Registro de Aventura, ela não pode ser forçada pelos mesmos motivos acima, porque já foi forçada ou porque foi registrada por uma versão anterior do app. Forçar uma Rolagem de teste do estúdio nunca grava no seu Diário.
 
-- Vantagem / Desvantagem: `2d20kh+MOD` e `2d20kl+MOD`
-- Melhor / Pior de N: `NdXkh1` ou `NdXkl1` (ex., `3d6kh1`)
-- Valores de Habilidade (4d6 largar menor): `4d6-L`
-- Explodir uma vez vs. livremente: `4d6!o` (explodir apenas uma vez) vs `4d6!` (repetir)
-- Explosão composta (estilo Shadowrun/L5R): `5d6!!` ou com limite `5d6!!>=5`
-- Sucessos por limite: `NdX#>=TN` (ex., `6d6#>=5`)
-- Re-rolar uma vez vs. repetir: `ro` vs `r` (ex., `4d6ro1` vs `4d6r1`)
-- Manter/largar em paradas de dados combinadas: `(1d8!!+1d6!!) kh` (Traço Savage Worlds + dado selvagem)
+## Padrões comuns
 
-## Pontos de partida de sistemas (receitas rápidas)
+- Vantagem e Desvantagem: `2d20kh+MOD` e `2d20kl+MOD`
+- Melhor ou pior de N: `NdXkh1` ou `NdXkl1` (por exemplo, `3d6kh1`)
+- Atributos (4d6 descartando o menor): `4d6-L`
+- Explodir uma vez vs. repetir: `4d6!o` vs. `4d6!`
+- Explosão composta (estilo Shadowrun ou L5R): `5d6!!` ou com limite `5d6!!>=5`
+- Sucessos por número-alvo: `NdX#>=TN` (por exemplo, `6d6#>=5`)
+- Rerrolar uma vez vs. repetir: `4d6ro1` vs. `4d6r1`
+- Manter ou descartar em paradas combinadas: `(1d8!!+1d6!!) kh` (dado de traço e dado selvagem de Savage Worlds)
 
-Estes exemplos dão a você fórmulas iniciais sólidas. Alguns sistemas usam dados de símbolos personalizados—aqueles são notados como "Não suportado".
+## Pontos de partida por sistema
 
-D&D 5e / Pathfinder 2e
-- Ataque/teste: `1d20+MOD`
-- Vantagem/Desvantagem: `2d20kh+MOD` / `2d20kl+MOD`
-- Valores de Habilidade: `4d6-L`
-- Críticos: role dados de dano dobrados manualmente (ex., `2d6` → `4d6`)
+Estas receitas trazem fórmulas iniciais prontas para jogos populares. Sistemas que dependem de dados com símbolos personalizados estão marcados como não suportados.
 
-Powered by the Apocalypse (PbtA)
-- Movimento básico: `2d6+STAT` → interprete 10+, 7–9, 6- manualmente
+### D&D 5e e Pathfinder 2e
 
-Fate Core
-- Dados Fate: `4dF` (já suportado)
+- Ataque ou teste: `1d20+MOD`
+- Vantagem e Desvantagem: `2d20kh+MOD` e `2d20kl+MOD`
+- Atributos: `4d6-L`
+- Acertos críticos: role o dobro de dados de dano manualmente (por exemplo, `4d6` em vez de `2d6`)
 
-Blades in the Dark
-- Parada de dados, manter maior: `Nd6kh1` (ex., `3d6kh1`)
-- Críticos pontuais (dois 6s): adicione `Nd6#=6` para contar seis ao lado de sua rolagem
+### Powered by the Apocalypse (PbtA)
 
-Shadowrun (acertos e falhas)
+- Movimento básico: `2d6+STAT` (interprete 10+, 7-9 e 6- manualmente)
+
+### Fate Core
+
+- Dados Fate: `4dF` (suportado nativamente)
+
+### Blades in the Dark
+
+- Parada pegando o maior: `Nd6kh1` (por exemplo, `3d6kh1`)
+- Identificar críticos (dois 6s): adicione `Nd6#=6` para contar os 6s junto com sua rolagem
+
+### Shadowrun (acertos e falhas críticas)
+
 - Acertos: `Nd6#>=5`
-- Rastrear 1s para regras de falha: adicione `Nd6#f=1`
+- Rastrear 1s para falhas críticas: adicione `Nd6#f=1`
 
-Savage Worlds (traço + dado selvagem)
-- Rolar ambos, manter maior: `(TRAIT!! + 1d6!!) kh + MOD`
-- Aumentos (+4) são interpretados manualmente do total
+### Savage Worlds (dado de traço e dado selvagem)
 
-Vampire: The Masquerade (V5)
+- Rolar ambos e manter o maior: `(TRAIT!! + 1d6!!) kh + MOD`
+- Ampliações (+4) são lidas manualmente a partir do total
+
+### Vampire: The Masquerade (V5)
+
 - Sucessos: `Nd10#>=6`
-- Rastrear 10s: adicione `Nd10#=10` (pares críticos/impactos requerem regras de mesa)
+- Rastrear 10s: adicione `Nd10#=10` (trate pares críticos e efeitos na mesa)
 
-Call of Cthulhu 7e
-- Rolar abaixo (roll-under): `1d100` vs perícia
-- Dados de Bônus/Penalidade: lide como um método manual de dois passos (substituição de dado de dezenas não codificada)
+### Call of Cthulhu 7e
 
-Cypher System
-- Rolagem de tarefa: `1d20+MOD` (passo/dificuldade permanece narrativo)
+- Teste de perícia (rolar abaixo): `1d100` contra a perícia
+- Dados de Bônus e Penalidade: faça como uma verificação manual em duas etapas (a substituição do dado de dezenas não é codificada)
 
-Warhammer/estilo 40K paradas de d6
-- Acertos/ferimentos: `Nd6#>=TN` (defina TN para sua mesa)
+### Cypher System
 
-Dungeon Crawl Classics (cadeia de dados)
-- Tamanhos de dados ímpares são ok: `1d7`, `1d16`, `1d24`, `1d30`
+- Rolagem de tarefa: `1d20+MOD` (nível e dificuldade ficam na narrativa)
 
-Lancer (precisão/dificuldade)
+### Warhammer e paradas de d6 estilo 40K
+
+- Acertos ou ferimentos: `Nd6#>=TN` (defina `TN` conforme a sua mesa)
+
+### Dungeon Crawl Classics (cadeia de dados)
+
+- Tamanhos de dados incomuns funcionam direto: `1d7`, `1d16`, `1d24`, `1d30`
+
+### Lancer (precisão e dificuldade)
+
 - Precisão: `1d20 + (Xd6kh1) + MOD`
 - Dificuldade: `1d20 - (Xd6kh1) + MOD`
 
-Year Zero Engine (Free League: Alien, Forbidden Lands, Vaesen, etc.)
-- Três paradas de dados coloridas (base/perícia, stress, equipamento): Role as três paradas em uma só fórmula com rótulos, por exemplo "Base": 4d6 #s=6, "Stress": 2d6 #s=6, "Gear": 1d6 #s=6. No Estúdio de Dados e no Registro de Aventura, a rolagem mostra cada parada em sua própria linha, com o rótulo e o total.
-- Sucessos: `Nd6#s=6` em cada parada; rastreie 1s em stress/equipamento com `#f=1`.
-- Para forçar, role a parada com uma marca de sucesso, por exemplo `5d6#s6 @push=1`, depois toque na seta no fim da linha e toque em Forçar. Forçar mantém os dados marcados como sucessos e rola de novo todos os outros, inclusive os 1. `@push=1` quer dizer que a rolagem pode ser forçada uma vez.
-- Em Forbidden Lands, Forçar mantém os 6 e os 1. Escreva `3d6#s6#f1 @lock=sf`.
-- Você também pode forçar uma rolagem de dados do seu Registro de Aventura. A rolagem forçada é escrita no seu diário como uma nova Rolagem de dados forçada, e a rolagem que você forçou não pode ser forçada de novo.
-- Limitações: resolução de pânico/quebra permanece na mesa.
+### Year Zero Engine (Alien, Forbidden Lands, Vaesen e outros)
 
-The One Ring 2e (aproximação)
-- Grosseiramente: `1d12 + Nd6`
-- Notas: Gandalf/Olho e seis Tengwar são efeitos de símbolo; trate especiais manualmente
+- Role paradas coloridas juntas usando rótulos: `"Base": 4d6 #s=6, "Estresse": 2d6 #s=6, "Equipamento": 1d6 #s=6`. No Estúdio de Dados e no Registro de Aventura, cada parada aparece na própria linha com rótulo e total.
+- Marque sucessos com `Nd6#s=6` em cada parada e acompanhe 1s nos dados de estresse ou equipamento com `#f=1`.
+- Para forçar, role com uma marca de sucesso como `5d6#s6 @push=1`, toque na seta no fim da linha e toque em **Forçar**. Forçar mantém os sucessos marcados e rerrola os outros dados (inclusive os 1s). `@push=1` limita a rolagem a uma forçada.
+- Em Forbidden Lands, Forçar trava tanto 6s quanto 1s: `3d6#s6#f1 @lock=sf`.
+- Você também pode forçar rolagens no seu Registro de Aventura. A rolagem forçada é salva no seu Diário como uma nova **Rolagem de dados forçada**, e a rolagem original não pode ser forçada de novo.
+- Regras de pânico e desgaste de equipamento ficam na mesa.
 
-Legend of the Five Rings
-- AEG 1e–4e (Rolar e Manter, explodindo 10s): `Xd10!!khY`
-- FFG/Edge 5e (dados de símbolo): Não suportado
+### The One Ring 2e (aproximação)
 
-Genesys / FFG Star Wars (dados narrativos)
-- Usa dados de símbolo personalizados: Não suportado
+- Rolagem aproximada: `1d12 + Nd6`
+- Gandalf, Olho e 6s Tengwar são efeitos de símbolo e precisam ser resolvidos manualmente.
 
-Ironsworn / Starforged
-- Rolagem de ação: `1d6+MOD` vs dois dados de desafio `2d10` → compare manualmente (vencer ambos=Acerto Forte; um=Acerto Fraco; nenhum=Errou).
-- Movimentos de progresso: role `2d10` vs valor de progresso atual (0–10) e compare manualmente.
+### Legend of the Five Rings
+
+- AEG 1e a 4e (Rolar e Manter, explodindo 10s): `Xd10!!khY`
+- FFG e Edge 5e (dados de símbolo): Não suportado.
+
+### Genesys e FFG Star Wars (dados narrativos)
+
+- Dados de símbolo personalizados: Não suportado.
+
+### Ironsworn e Starforged
+
+- Rolagem de ação: role `1d6+MOD` contra dois dados de desafio `2d10` e compare manualmente (supere ambos para Acerto Forte, um para Acerto Fraco, nenhum para Erro).
+- Movimentos de progresso: role `2d10` contra seu valor atual de progresso (0 a 10) e compare manualmente.
 
 ## Downloads iniciais
 
-Baixe amostras de Fórmulas Salvas para sistemas populares que estão prontas para importar. Use Gerenciar Fórmulas → Importar. Importar adiciona todas as fórmulas do arquivo ao final da sua lista. Nunca substitui a lista e não pula fórmulas que você já tem. Veja a seção de Downloads no final desta página para arquivos.
+Conjuntos prontos de Fórmulas Salvas para esses sistemas estão na seção de Downloads no final desta página. Abra **Gerenciar Fórmulas > Importar** no Estúdio de Dados para adicionar qualquer conjunto à sua lista.
 
-Importante: Se você colocar um arquivo manualmente, nomeie-o saved_formulas.json e coloque-o na pasta formulas dentro da pasta de armazenamento do app. Esse arquivo passa a ser sua lista inteira. O fluxo de Importação não exige um nome de arquivo específico. Nos apps nativos, o arquivo precisa terminar em .json (com letras maiúsculas ou minúsculas). Na web, o seletor pede arquivos .json, mas o app não confere a extensão separadamente. O nome do arquivo não garante que o conteúdo seja um arquivo de fórmulas válido.
+Para ver todos os detalhes sobre importação, exportação, duplicatas e colocação manual de `saved_formulas.json`, consulte [Importando e Exportando Fórmulas Salvas](/pt/resources/importing-and-exporting-saved-formulas-pt/).
 
-## Salvar, carregar, importar, exportar (resumo da UI)
+## Solução de problemas e pegadinhas
 
-- Celular: "Salvar Fórmula" e "Gerenciar Fórmulas" estão sob o campo de texto da fórmula, quando os botões de ação estão ativados.
-- Desktop: ambos aparecem acima do campo de texto.
-- Salvar adiciona a fórmula atual à sua lista Salva e abre um diálogo para nomear/descrever.
-- Gerenciar permite importar, exportar, reordenar, renomear e excluir.
-- Importar adiciona todas as fórmulas do arquivo ao final da sua lista. Nunca substitui a lista e não pula fórmulas que você já tem.
+- **Minhas contagens parecem erradas com vantagem.** Coloque os contadores antes de manter ou descartar e agrupe com parênteses: `(2d20 #cf #cs) kh`.
+- **`4d6-L2+2` deu um resultado inesperado.** `4d6-L2+2` e `(4d6-L2)+2` são a mesma rolagem. Ela descarta os dois menores dados de `4d6` e depois soma `2`.
+- **Meu D66 parece errado.** Use `1D66` com `D` maiúsculo.
+- **Quero que os dados explodam apenas uma vez.** Use `!o` (explodir uma vez) ou `!!o` (explosão composta uma vez).
+- **Quero manter o total e ainda ver sucessos ou falhas.** Use `#s`, `#f`, `#cs` e `#cf`. Os dados rolados e a soma continuam intactos, e a linha da rolagem lista as contagens.
 
-## Solução de problemas e dicas
-
-- Minhas contagens parecem erradas com vantagem
-  - Coloque contadores antes de manter/largar, agrupando-os: `(2d20 #cf #cs) kh`.
-- `4d6-L2+2` não fez o que eu esperava
-  - 4d6-L2+2 e (4d6-L2)+2 são a mesma rolagem: descarte os dois menores de 4d6 e some 2.
-- Meu D66 parece errado
-  - Use maiúsculo: `1D66`.
-- Eu preciso explodir "uma vez"
-  - Use `!o` (explodir uma vez) ou `!!o` (explodir uma vez no mesmo dado).
-- Eu quero manter o total mas também saber sucessos/falhas
-  - #s, #f, #cs e #cf marcam dados como sucessos, falhas, sucessos críticos e falhas críticas. Os dados e a soma continuam como foram rolados, e a linha da rolagem lista as contagens.
+O Estúdio de Dados usa o motor de dados próprio do app (derivado do `dart_dice_parser` do Adventuresmith), então teste qualquer fórmula personalizada no Estúdio de Dados antes de confiar nela durante uma sessão.
 
 ## Próximos passos
 
-- Salve suas expressões favoritas: veja "Salvando e Gerenciando Fórmulas de Dados".
-- Compartilhe e mantenha uma lista portátil: veja "Esquema de Fórmulas".
+- [Salvando e Gerenciando Fórmulas de Dados](/pt/resources/saving-and-managing-dice-formulas-pt/) mostra como salvar, editar e organizar suas rolagens favoritas.
+- [Importando e Exportando Fórmulas Salvas](/pt/resources/importing-and-exporting-saved-formulas-pt/) explica os conjuntos prontos, exportações e colocação manual de arquivos.
+- [Esquema de Fórmulas](/pt/resources/formula-schema-pt/) documenta o formato de arquivo JSON.
 
-> ##### Motor de sintaxe e docs
-> O rolador usa a versão própria do app do dart_dice_parser, do Adventuresmith. A página no pub.dev descreve o pacote original, então teste uma fórmula no app antes de confiar nela. Para a gramática completa e exemplos adicionais, veja: https://pub.dev/packages/dart_dice_parser
-
-## Viu um problema?
-
-Ajude-me a manter esta página e conteúdo atualizados! Se você ver um problema, por favor reporte-o: support@jasonholtdigital.com
+Se encontrar algum erro nesta página ou quiser sugerir um conjunto de fórmulas para outro sistema, me avise pela [página de Suporte](/pt/support/).

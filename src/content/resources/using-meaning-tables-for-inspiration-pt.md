@@ -1,11 +1,12 @@
 ---
+fullArticleAvailable: true
 title: "Usando Tabelas de Significado para Inspiração"
-summary: "Use Tabelas de Significado quando precisar de prompts claros para decidir o que acontece em seguida."
+summary: "Quando e como rolar nas Tabelas de Significado para destravar ideias durante o jogo."
 category: "start-here"
 order: 4
 icon: "fa-slab fa-regular fa-lightbulb"
 duration: "6 min de leitura"
-updated: "2026-11-04"
+updated: "2026-11-19"
 lang: "pt"
 tags: ["meaning-tables", "inspiration", "guides"]
 keywords:
@@ -13,72 +14,74 @@ keywords:
   - Inspiração
   - Prompts
 related:
-  - setting-up-and-using-lists
-  - writing-and-organizing-scenes
+  - setting-up-and-using-lists-pt
+  - writing-and-organizing-scenes-pt
 ---
 
-> Este guia descreve o Mythic GME 1.7.0 e posteriores.
+> Este guia cobre o Mythic GME 1.7.0 e versões posteriores.
 
-## Guia: Dominando o módulo de Tabelas de Significado
+As Perguntas de Destino respondem "isso acontece?". Já as Tabelas de Significado respondem perguntas abertas como "como isso se parece?", "o que acontece em seguida?" ou "o que está realmente acontecendo?". Você pode rolar em uma Tabela de Significado sempre que quiser um par de palavras para disparar uma ideia.
 
-O módulo de Tabelas de Significado no app Mythic é sua fonte de acesso rápido para inspiração, projetado para reduzir o atrito de consulta e manter você no fluxo da história. Ele fornece sementes narrativas concretas quando uma simples Pergunta do Destino Sim/Não não é suficiente.
+## Onde encontrar as Tabelas de Significado no app
 
-Layout
-- Celular: Tabelas de Significado é uma tela própria, com o resultado em Resultados da rolagem. Na tela de Destino, a aba Tabelas na borda da tela abre as tabelas sem sair do Registro de Aventura.
-- Tablet e computador: o Painel deslizante de Tabelas de Jogo fica na borda direita da tela Tabela de Destino. Suas abas abrem Tabelas de Significado e Foco do Evento, e também Trilhas e Cenas-Chave enquanto estiverem ativadas. Toque em uma aba para abri-la sobre seus painéis e toque de novo para fechá-la. Você também pode colocar um painel Tabelas de Significado no seu layout. Para desativar o painel deslizante, use Painel deslizante de Tabelas de Jogo nas Configurações de Layout.
+- **Celular.** **Tabelas de Significado** tem uma tela própria, com os resultados exibidos em **Resultados da rolagem**. Enquanto estiver na tela de **Destino**, toque na aba **Tabelas**, na borda da tela, para rolar sem sair do Diário de Aventura.
+- **Tablet e computador.** O **Painel deslizante de Tabelas de Jogo** fica na borda direita da tela da Tabela de Destino. Suas abas abrem **Tabelas de Significado** e **Foco do Evento**, além de **Trilhas** e **Cenas-Chave** quando Trilhas de Progresso e Cenas com Gatilho estiverem ativadas. Toque em uma aba para deslizá-la sobre os painéis e toque de novo para fechar. Você também pode colocar um painel de **Tabelas de Significado** direto no seu layout. Esse painel não tem caixa de resultado separada, então leia as rolagens no **Diário de Aventura**. Para ocultar o painel deslizante, desative **Painel deslizante de Tabelas de Jogo** em **Configurações de Layout**.
 
-## O propósito das Tabelas de Significado
+Cada rolagem em Tabela de Significado é salva automaticamente no **Diário de Aventura**. Para encontrar uma tabela, pesquise ou role a lista e toque nela para rolar. Mantenha o toque pressionado sobre uma tabela para ver seus detalhes, e toque no ícone de coração para filtrar apenas as suas favoritas.
 
-Tabelas de Significado geram prompts descritivos que esclarecem elementos narrativos e injetam significado na aventura.
+## Quais tabelas vêm incluídas
 
-- Prompts inspiradores para detalhes: Use quando quiser informações que não se encaixam em uma pergunta Sim/Não.
-- Combina bem com Destino: Destino responde "isso acontece?"; Significado adiciona "como isso se parece?" ou "o que está realmente acontecendo?".
+- **Incluídas no app base.** 53 Tabelas de Significado (49 do livro básico Mythic GME 2e e 4 da *Mythic Magazine* 49) e 2 tabelas de Foco de Evento.
+- **Incluídas nos Recursos Expandidos.** Mais 197 Tabelas de Significado e mais 14 tabelas de Foco de Evento, reunidas de *Mythic Variations 1*, *The Adventure Crafter*, *The Location Crafter*, *The Creature Crafter*, *Mythic Magazine Compilations* 1 a 7 e das edições 43 a 71 da *Mythic Magazine*.
+- **Como funciona a compra em cada loja.** Na Apple App Store, no Google Play e na Amazon Appstore, os Recursos Expandidos são um desbloqueio único (não é assinatura). Na Microsoft Store (Windows) e no itch.io (sem DRM), a compra única do app para computador já inclui os Recursos Expandidos, sem nenhuma compra adicional dentro do app.
 
-> Disponibilidade e conteúdo
-> - Incluídas: 53 Tabelas de Significado (49 do livro de regras básico Mythic GME 2e e 4 da Mythic Magazine 49) e 2 tabelas de Foco do Evento.
-> - Conjuntos expandidos: mais 197 Tabelas de Significado e mais 14 tabelas de Foco do Evento estão disponíveis com os Recursos Expandidos. Elas vêm de Mythic Variations 1, The Adventure Crafter, The Location Crafter, The Creature Crafter, Mythic Magazine Compilations 1 a 7 e das edições 43 a 71 da Mythic Magazine.
-> - Preço por plataforma: na Apple App Store, Google Play e Amazon Appstore, esses conjuntos expandidos fazem parte do desbloqueio único de Recursos Expandidos. Na Microsoft Store (Windows) e itch.io (sem DRM), a compra única do app inclui esses recursos.
-> - Para os detalhes mais recentes, veja Suporte → Compras, Preços e Atualizações: /pt/support
+Para detalhes atualizados sobre compras e versões, confira a [página de Suporte](/pt/support/).
 
-## Quando e como usar o módulo
+## Quando rolar nas Tabelas de Significado
 
-Você pode abrir Tabelas de Significado a qualquer momento para obter um par de palavras para inspiração.
+### Eventos Aleatórios
 
-### 1) Eventos Aleatórios (Significado de Evento)
-- Momento: um Evento Aleatório acontece quando uma rolagem da Tabela de Destino ou do Teste do Destino dá um duplo igual ou menor que o Fator de Caos, ou quando um Teste de Cena dá Cena de Interrupção. Enquanto uma tabela de Foco do Evento preparada estiver selecionada, como a Tabela de Foco de Eventos Preparados, o Teste de Cena nunca dá Cena Alterada nem Cena de Interrupção. Ele dá Cena Esperada, e uma rolagem igual ou menor que o Fator de Caos adiciona um Evento Aleatório a ela.
-- Aplicação: Após o Foco de Evento (ex., Novo NPC, Negativo para PJ), role um par de palavras de Significado de Evento (Ações, Descrições ou Elementos). Combine Contexto + Foco + Significado para inventar a reviravolta.
+Um Evento Aleatório acontece quando uma rolagem na Tabela de Destino ou na Verificação de Destino dá números repetidos iguais ou menores que o Fator de Caos, ou quando um Teste de Cena resulta em **Cena de Interrupção**. Com uma tabela de Foco de Evento preparada selecionada, como a **Tabela de Foco de Eventos Preparados**, o Teste de Cena retorna **Cena Esperada** e uma rolagem igual ou menor que o Fator de Caos acrescenta um Evento Aleatório a ela.
 
-### 2) Descobrindo Significado (adicionando detalhes)
-- Descrevendo o desconhecido: Defina como um objeto se parece, o passado de um personagem ou qual ação está ocorrendo em uma cena.
-- Criando personagens: Gere primeiras ações, aparência, passado ou identidade para um novo NPC.
-- Começando uma aventura: na sua Primeira Cena, você pode rolar pares de palavras sem Foco de Evento. Para uma abertura 4W, role Personagens para Quem (Who), Significado de Localização para Onde (Where), e Significado de Ação 1 e Significado de Ação 2 para O quê (What) e para Por quê (Why).
-- Esclarecendo ambiguidade: Se um resultado de Destino ou evento parecer vago, role novamente em Significado para sugerir um ângulo e estreitar a interpretação.
-- Cenas alteradas: Se sua Cena Esperada for Alterada e você não tiver certeza de como, role um par de palavras para inspirar um ajuste simples ou o próximo resultado mais esperado.
+Depois que o Foco de Evento aponta sobre o que gira a reviravolta (como Novo NPC ou Negativo para PJ), role um par de palavras de Significado (Ações, Descrições ou Elementos). Junte o contexto atual, o Foco de Evento e o par de palavras para inventar o que acontece.
 
-## Escolhendo a tabela certa
+### Descobrindo significado
 
-O livro descreve três tipos de Tabelas de Significado. Em vez disso, o app organiza suas tabelas em categorias, como Tabelas Principais e Personagem e Identidade. Escolher o melhor ajuste frequentemente produz a interpretação mais clara.
+Você não precisa esperar um Evento Aleatório para usar uma Tabela de Significado. Role sempre que quiser detalhes concretos:
 
-1) Ações: Verbos ativos — o que alguém/algo está fazendo ou tendo feito a eles.
-2) Descrições: Adjetivos/qualidades — como alguém/algo se parece ou se sente.
-3) Elementos: Conjuntos temáticos (ex., Localização, Personagem, Efeitos de Magia) para prompts mais direcionados quando você quer granularidade.
+- **Descreva algo desconhecido.** Defina a aparência de um objeto, o que um personagem está escondendo ou qual ação está rolando em uma sala.
+- **Esboce um novo NPC.** Role para descobrir a primeira ação, a aparência, o passado ou a identidade de um personagem recém-chegado.
+- **Abra uma nova aventura.** Na primeira cena, role pares de palavras sem Foco de Evento. Para uma abertura no formato 4W, role **Personagens** para Quem, **Significado de Localização** para Onde, e **Significado de Ação 1** e **Significado de Ação 2** para O quê e Por quê.
+- **Esclareça um resultado vago.** Se uma resposta do Destino ou um Evento Aleatório parecer aberto demais, role outro par de Significado para escolher um ângulo claro.
+- **Molde uma Cena Alterada.** Quando um Teste de Cena der Cena Alterada e você não souber bem o que mudar na sua Cena Esperada, role um par de palavras para inspirar um ajuste ou apontar o próximo desdobramento mais provável.
 
-## Interpretando os prompts
+## Escolha o tipo certo de tabela
 
-- Contexto é chave: Deixe expectativas e contexto em andamento guiarem sua interpretação; o que quer que você decida se torna o novo fato.
-- Abrace a abstração: Palavras são prompts, não restrições — estenda conforme necessário para chegar ao que faz sentido.
-- Role até ficar satisfeito: Role quantas vezes for necessário entre tabelas até ter entrada suficiente para decidir.
-- Intensificação: Se você rolar o mesmo Elemento duas vezes, "dobre a aposta" nessa palavra — interprete-a com maior intensidade.
-- Palavras de conexão: Se um par parecer estranho, adicione "de", "-mente", "e", ou "mas" entre eles para formar uma frase útil.
+O livro do Mythic agrupa as Tabelas de Significado em três tipos, enquanto o app as organiza em categorias como **Tabelas Principais** e **Personagem e Identidade**. Conhecer os três tipos ajuda a escolher a tabela ideal para a sua pergunta:
 
-## No app
+1. **Ações.** Verbos ativos que mostram o que alguém ou algo está fazendo, ou sofrendo.
+2. **Descrições.** Adjetivos e qualidades para como algo parece, soa ou se sente.
+3. **Elementos.** Conjuntos temáticos (como Localização, Personagem ou Efeitos de Magia) para ideias mais diretas e específicas.
 
-- Como encontrar uma tabela: pesquise ou percorra a lista e toque em uma tabela para rolá-la. Mantenha uma tabela pressionada para ver seus detalhes e toque no coração para mostrar apenas suas favoritas.
-- Copiar para notas: Em um tablet ou computador, abra a aba Tabelas do Painel deslizante de Tabelas de Jogo, ou mantenha um painel Tabelas de Significado no seu layout, enquanto escreve notas de cena. O painel não tem área de resultado, então leia o resultado no Registro de Aventura. No celular, abra a aba Tabelas na borda da tela de Destino para rolar sem sair do Registro de Aventura. Toda rolagem é salva no Registro de Aventura.
-- Fluxo dos Eventos Aleatórios: quando surge uma reviravolta, o app rola primeiro a tabela de Foco do Evento. Ele também rola os vínculos dessa tabela com Tabelas de Significado. Se a entrada sorteada estiver vinculada a uma Tabela de Significado, a outra tabela de Foco do Evento, a uma Lista da Aventura ou a uma Lista Personalizada, o app também rola essa tabela ou lista vinculada. Uma segunda tabela de Foco do Evento rola apenas seus vínculos com Listas da Aventura e Listas Personalizadas e não segue vínculos para outras tabelas. Todas essas rolagens são salvas em uma única entrada do Registro de Aventura. Se você ativar Significado automático, que vem desativado por padrão, o app também adiciona um par de palavras de Significado de Ação, a menos que o Evento Aleatório já tenha suas próprias palavras de Significado ou um resultado de uma das suas Listas Personalizadas. Leia a entrada e escreva sua interpretação no Resumo da Cena.
+Use Elementos quando quiser resultados direcionados e recorra a Ações ou Descrições quando quiser faíscas mais abertas.
 
-## Dicas
+## Como os Eventos Aleatórios encadeiam tabelas no app
 
-- Use Significado quando estiver preso traduzindo resultados de Destino em especificidades.
-- Prefira Elementos para prompts direcionados e fáceis de interpretar; use Ações/Descrições quando quiser faíscas mais amplas.
-- Mantenha sua interpretação curta e decisiva — uma frase geralmente é suficiente para empurrar o jogo para frente.
+Quando um Evento Aleatório dispara, o app resolve as rolagens vinculadas em ordem para você:
+
+1. O app rola primeiro sua tabela de **Foco de Evento**, junto com quaisquer vínculos de Tabelas de Significado ligados a ela.
+2. Se o item sorteado apontar para uma Tabela de Significado, outra tabela de Foco de Evento, uma Lista da Aventura ou uma Lista Personalizada, o app rola essa tabela ou lista vinculada também.
+3. Se o encadeamento levar a uma segunda tabela de Foco de Evento, essa segunda tabela rola apenas seus vínculos com Listas da Aventura e Listas Personalizadas, sem seguir encadeando outras tabelas.
+4. Todas as rolagens da cadeia ficam reunidas em uma única entrada do **Diário de Aventura**.
+5. Se **Significado automático** estiver ativado (ele vem desativado por padrão), o app também adiciona um par de palavras de Significado de Ação, a menos que o Evento Aleatório já tenha suas próprias palavras de Significado ou um resultado de uma das suas Listas Personalizadas.
+
+Leia a entrada completa no Diário de Aventura e escreva sua interpretação no **Resumo** da Cena.
+
+## Como interpretar os pares de palavras
+
+- **Comece pelo contexto.** Deixe suas expectativas e a cena atual guiarem o sentido das palavras. Assim que você escolher uma interpretação, ela vira o novo fato em jogo.
+- **Trate as palavras com liberdade.** As palavras são pontos de partida, não regras rígidas. Estique o sentido de uma palavra se isso levar a uma resposta que encaixe melhor na história.
+- **Role de novo se precisar.** Se o primeiro par der branco, role novamente ou tente outra tabela até alguma ideia clicar.
+- **Dobre a aposta em repetições.** Se você tirar a mesma palavra de Elemento duas vezes, abrace a repetição e destaque esse traço com ainda mais força.
+- **Adicione palavras de ligação.** Quando duas palavras parecerem estranhas lado a lado, encaixe "de", "-mente", "e" ou "mas" para formar uma frase natural.
+- **Mantenha curto.** Uma frase direta geralmente basta para fazer o jogo andar.

@@ -1,11 +1,12 @@
 ---
+fullArticleAvailable: true
 title: "Esquema de Categorias"
-summary: "Defina e estenda o registro de categorias para Tabelas Personalizadas (ícones, rótulos, ordem)."
+summary: "Referência do formato de arquivo JSON de categorias de tabelas."
 category: "advanced"
 order: 4
 icon: "fa-slab fa-regular fa-sort"
 duration: "Referência"
-updated: "2026-11-04"
+updated: "2026-11-19"
 lang: "pt"
 tags: ["schema", "categories", "custom-tables", "reference"]
 keywords:
@@ -23,17 +24,17 @@ downloads:
     href: "/downloads/categories_sample.json"
     format: "JSON"
 related:
-  - organizing-custom-tables
-  - getting-started-with-custom-tables
+  - organizing-custom-tables-pt
+  - getting-started-with-custom-tables-pt
 ---
 
 > Esta página descreve o Mythic GME 1.7.0 e posteriores.
 
-## Em Português Claro
+## Visão geral
 
-Categorias fornecem nomes e ícones para grupos de tabelas. O app vem com itens integrados, e você pode editá-los. Você adiciona os seus ao lado deles.
+As categorias definem nomes de exibição, ícones e ordem de exibição para grupos de Tabelas Personalizadas. O app traz categorias integradas que você pode editar, e você pode adicionar suas próprias categorias ao lado delas em `categories.json`. Para gerenciar categorias dentro do app, veja [Organizando Tabelas Personalizadas](/pt/resources/organizing-custom-tables-pt/).
 
-## Estrutura Raiz
+## Estrutura raiz
 
 ```json
 {
@@ -46,35 +47,35 @@ Categorias fornecem nomes e ícones para grupos de tabelas. O app vem com itens 
 }
 ```
 
-- `defaultCategories`: as categorias integradas que vêm com o app. Você pode editar uma categoria integrada no app. O app registra os ids das categorias integradas que você editou em uma lista opcional `editedBuiltInCategoryIds`.
-- `categories`: as categorias que você criou. Adicione, renomeie ou remova aqui.
+- `defaultCategories` (array, obrigatório). Categorias integradas que vêm com o app. Quando você edita uma categoria integrada no app, o `id` dela fica registrado em um array opcional `editedBuiltInCategoryIds`.
+- `categories` (array, obrigatório). Categorias criadas por você. Adicione, renomeie ou remova suas categorias personalizadas aqui.
 
-Os dois arrays são obrigatórios, e qualquer um deles pode estar vazio.
+Os dois arrays são obrigatórios, e qualquer um deles pode ficar vazio.
 
-## Campos TableCategoryInfo
+## Campos de `TableCategoryInfo`
 
-- `id` (string em kebab-case)
-- `displayName` (string)
-- iconKey (string). O arquivo incluído usa chaves como dice, user, map, book e question. Uma chave que o app não conhece mostra um ícone de ponto de interrogação.
-- sortOrder (inteiro, números menores primeiro). As categorias criadas no app recebem 900, e você só pode mudar a ordem editando este arquivo.
-- `isBuiltIn` (booleano)
-- Opcional: `description` (string), `displayNameTranslations` (objeto de código de idioma para string), `descriptionTranslations` (objeto de código de idioma para string), `tags` (array de strings) e `source` (string)
+- `id` (string, obrigatório). Identificador em kebab-case.
+- `displayName` (string, obrigatório). Rótulo da categoria exibido no app.
+- `iconKey` (string, obrigatório). Nome do ícone. Categorias inclusas usam chaves como `dice`, `user`, `map`, `book` e `question`. Uma chave não reconhecida exibe um ícone de ponto de interrogação.
+- `sortOrder` (int, obrigatório). Números menores aparecem primeiro. Categorias criadas no app recebem `900`, e a ordem só pode ser alterada editando `categories.json`.
+- `isBuiltIn` (bool, obrigatório). Indica se a categoria pertence a `defaultCategories` (`true`) ou a `categories` (`false`).
+- Os campos opcionais incluem `description` (string), `displayNameTranslations` (objeto que mapeia código de idioma para string), `descriptionTranslations` (objeto que mapeia código de idioma para string), `tags` (array de strings) e `source` (string).
 
-Todo item precisa de id, displayName, iconKey, sortOrder e isBuiltIn. Se algum estiver faltando ou tiver o tipo errado, o app não consegue carregar nenhuma categoria do arquivo e tenta salvar uma cópia chamada invalidated-categories com data e hora.
+Cada entrada precisa incluir `id`, `displayName`, `iconKey`, `sortOrder` e `isBuiltIn` com os tipos JSON corretos. Se algum campo obrigatório estiver ausente ou com o tipo errado, o app não carrega nenhuma categoria do arquivo e tenta salvar uma cópia com data e hora chamada `invalidated-categories`.
 
 ## Ciclo de vida no app
 
-- Cópia da base: com premium, o app pode copiar um `categories.json` base para seu local de armazenamento atual (meaning_tables/categories.json), que pode ser a pasta do próprio app, uma pasta personalizada ou o iCloud. Normalmente ele mantém um arquivo existente em vez de sobrescrevê-lo.
-- Editar categoria também funciona nas categorias integradas. Uma categoria integrada não pode ser excluída. Você pode ocultar uma que não editou, e pode excluir sua versão editada de uma para recuperar a original. Algumas categorias integradas, como Personalizado e Foco do Evento, não podem ser ocultadas.
-- Redefinir categorias para os padrões, em Configurações de tabelas, restaura cada categoria integrada como ela vem com o app, então suas alterações nas categorias integradas são removidas. Categorias cujo isBuiltIn é false são mantidas, e as categorias ocultas continuam ocultas.
-- Defina isBuiltIn como false nas suas próprias categorias. Quando o app salva, ele coloca cada item no array que combina com essa marcação. Se uma categoria conta como integrada no app, com Ocultar e Excluir minha versão editada, depende de o id dela ser o de uma categoria que vem com o app.
-- O modelo e o exemplo de categorias em Downloads têm só algumas categorias, com `defaultCategories` vazio. Copie os itens deles para o seu próprio categories.json. Não substitua o arquivo inteiro por eles, ou as categorias integradas somem até você usar Redefinir categorias para os padrões.
+- Com os Recursos Expandidos desbloqueados, o app pode copiar um `categories.json` base para `meaning_tables/categories.json` dentro do seu local de armazenamento atual (a pasta do app, uma pasta personalizada ou o iCloud). O app mantém um arquivo existente em vez de sobrescrevê-lo.
+- **Editar categoria** funciona tanto nas categorias integradas quanto nas suas. Categorias integradas não podem ser excluídas, mas você pode ocultar uma categoria integrada não editada ou excluir sua versão editada para restaurar a original. Algumas categorias integradas, como **Personalizado** e **Foco do Evento**, não podem ser ocultadas.
+- **Redefinir categorias para os padrões**, em **Configurações de tabelas**, restaura todas as categorias integradas ao estado original e remove edições feitas nelas. Categorias com `isBuiltIn` definido como `false` são mantidas, e categorias ocultas continuam ocultas.
+- Defina `isBuiltIn` como `false` nas suas próprias categorias. Ao salvar, o app coloca cada entrada no array correspondente ao seu valor de `isBuiltIn`. O comportamento de uma categoria como integrada no app (oferecendo **Ocultar esta categoria** e **Excluir minha versão editada**) depende de o `id` corresponder a uma categoria inclusa.
+- O modelo e o exemplo em Downloads trazem apenas algumas entradas e um array `defaultCategories` vazio. Copie as entradas deles para o seu `categories.json` existente em vez de substituir o arquivo inteiro, ou as categorias integradas desaparecerão até você executar **Redefinir categorias para os padrões**.
 
 ## Downloads
 
-Veja a seção de Downloads no final desta página para os arquivos.
+A seção Downloads no final desta página inclui `categories.schema.json`, `categories_template.json` e `categories_sample.json`.
 
-## Relacionado
+## Relacionados
 
-- Dicas de organização e primeiros passos: "Começando com Tabelas Personalizadas", "Organizando Tabelas Personalizadas"
-- Esquemas de tabelas: "Esquema de Tabela Personalizada"
+- [Começando com Tabelas Personalizadas](/pt/resources/getting-started-with-custom-tables-pt/) e [Organizando Tabelas Personalizadas](/pt/resources/organizing-custom-tables-pt/) para criar e gerenciar categorias no app.
+- [Esquema de Tabela Personalizada](/pt/resources/custom-table-schema-pt/) para o formato JSON de Tabelas de Significado e tabelas de Foco de Evento.

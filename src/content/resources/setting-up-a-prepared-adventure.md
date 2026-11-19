@@ -6,7 +6,7 @@ category: "start-here"
 order: 5
 icon: "fa-slab fa-regular fa-book-open"
 duration: "4 min read"
-updated: "2026-11-04"
+updated: "2026-11-19"
 tags: ["prepared-adventure", "modules", "event-focus", "random-events", "features", "scenes"]
 keywords:
   - Mythic GME
@@ -25,60 +25,51 @@ related:
   - using-meaning-tables-for-inspiration
 ---
 
-> This guide describes Mythic GME 1.7.0 and later.
+> This guide covers Mythic GME 1.7.0 and later.
 
-Playing a prepared adventure (like a published D&D module) with Mythic requires just a few simple setup steps. The app includes special features designed specifically for this play style.
+Running a prepared adventure (like a published D&D module) with Mythic takes a few setup steps. There is no separate Prepared Adventure toggle in the app. Prepared Adventure rules turn on automatically whenever you pick a prepared Event Focus table.
 
-## Step 1: Change Your Event Focus Table
+## 1. Switch your Event Focus Table
 
-The first thing you'll need to do is switch to the **Prepared Adventure Event Focus Table**.
+Start by selecting the **Prepared Adventure Event Focus Table**:
 
-1. On a phone, open the drawer, tap SETTINGS, choose the Game Behavior tab, and find Event Focus Table in the Fate Chart section. You can also tap the gear on the Fate screen, which shows the same Event Focus Table control.
-2. Select **Prepared Adventure Event Focus Table**
+1. On a phone, open the navigation drawer, tap **Settings**, go to the **Game Behavior** tab, and find **Event Focus Table** under **Fate Chart**. You can also tap the gear icon on the Fate screen for the same control. On a tablet or desktop, open **Settings** from the navigation rail and go to **Fate Chart**, or tap the gear icon on the Fate panel.
+2. Select **Prepared Adventure Event Focus Table** (or **Published Adventure Event Focus Table**, if you have Expanded Features).
 
-This special table removes events that the published adventure already handles (like "Move Toward a Thread" or "New NPC") and adds **Adventure Feature** as a possible Random Event. This keeps Mythic from overriding the adventure's structure while still providing surprises and GM emulation.
+This table leaves out events that a published module already handles (such as "Move Toward a Thread" or "New NPC") and adds **Adventure Feature** as a Random Event. Mythic can still throw surprises into play without fighting the module's plot.
 
-## Step 2: Populate Your Features List
+## 2. Fill in your Features list
 
-The **Features List** (shown in the Lists section) is where you'll track unique elements from your prepared adventure that could appear as Random Events.
+Open **Lists** and go to the **Features** tab. Add recurring elements from the adventure that could turn up as Random Events, such as:
 
-Add items like:
 - Wandering monster encounters
 - Special environmental hazards
 - Random visions or dreams
 - Sudden NPC appearances
-- Random encounter tables from the adventure
-- Special mechanics (poison progression, pursuit by villains, etc.)
+- Random encounter tables from the module
+- Special mechanics like poison progression or pursuit by a villain
 
-**Example:** In a vampire hunting adventure, you might add:
-- "Vampire lord attacks"
-- "Random vision"
-- "Wandering monster"
-- "Weather worsens"
+For a vampire-hunting module, your Features list might hold "Vampire lord attacks", "Random vision", "Wandering monster", and "Weather worsens".
 
-When you roll Adventure Feature as a Random Event, the app rolls your Features list and shows the entry in the Adventure Log. If the roll lands on an empty line it shows Choose, and you pick an entry yourself.
+When a Random Event rolls **Adventure Feature**, the app rolls on your Features list and shows the entry in the **Adventure Log**. If the roll lands on an empty slot, the app shows **Choose**, and you pick an entry yourself.
 
-## Step 3: Set Up Your Other Lists
+## 3. Set up Characters and Threads
 
-As you read the introduction of your prepared adventure:
-- Add important NPCs to your **Characters List**
-- Add plot hooks and objectives to your **Threads List**
+As you read the adventure's introduction, fill in your other two main lists:
 
-This primes Mythic to generate Random Events that feel appropriate to the adventure's tone and setting.
+- Add key NPCs to your **Characters** list.
+- Add plot hooks and main objectives to your **Threads** list.
 
-## Important Notes
+That gives Mythic concrete people and goals to pull into play right from the opening scene.
 
-**Prepared Adventures use a modified scene structure:**
-- Use Expected Scenes normally
-- No Altered Scenes
-- No Interrupt Scenes
-- Random Events are added to Expected Scenes (not replacing them)
-- The Scene Adjust button is hidden while a prepared table is selected. To show it, turn off Hide Scene Adjust in Prepared Adventures.
+## How Prepared Adventures change Scene Checks
 
-These rules apply while a prepared Event Focus table is selected: the Prepared Adventure Event Focus Table, the Published Adventure Event Focus Table, or any table tagged `prepared`. To get Altered Scene and Interrupt Scene results back, select an Event Focus table without the `prepared` tag.
+Prepared Adventure rules stay active whenever you select the **Prepared Adventure Event Focus Table**, the **Published Adventure Event Focus Table**, or any custom Event Focus table tagged `prepared`. To get Altered Scene and Interrupt Scene results back, switch to an Event Focus table without the `prepared` tag.
 
-When you tap Scene Check and the roll is at or under the Chaos Factor, the app adds a Random Event to the same Adventure Log entry. Carry on with your Expected Scene and do not roll another Random Event. The Random Event adds a twist without derailing the prepared adventure.
+While a prepared table is active, Scene Checks and Scene Adjust behave differently:
 
----
+- **Expected Scenes only.** You run Expected Scenes as usual, with no Altered Scenes and no Interrupt Scenes.
+- **Random Events add to the Expected Scene.** When you tap **Scene Check** and the roll is at or under the Chaos Factor, the app keeps the Expected Scene and adds a Random Event to that same Adventure Log entry. Keep playing your Expected Scene and do not roll another Random Event. The twist happens inside the scene instead of replacing it.
+- **Scene Adjust stays hidden.** The **Scene Adjust** button is hidden by default while a prepared table is selected. To show it again, turn off **Hide Scene Adjust in Prepared Adventures** in Fate settings.
 
-**Ready to play?** Start your first Scene based on the adventure's opening, and let Mythic add surprises as you explore!
+Start your first Scene from the adventure's opening and let Mythic add surprises as you explore.

@@ -7,7 +7,7 @@ category: "custom-tables"
 order: 2
 icon: "fa-slab fa-regular fa-list-squares"
 duration: "5 min read"
-updated: "2026-11-04"
+updated: "2026-11-19"
 tags: ["custom-tables", "categories", "icons", "tags", "linking"]
 keywords:
   - Categories
@@ -22,62 +22,73 @@ related:
 
 > This guide describes Mythic GME 1.7.0 and later.
 
+As your library of Custom Tables grows, categories, icons, and tags keep everything easy to find during play.
+
 ## Where to organize
 
-- On a phone, open the navigation drawer and tap TABLE EDITOR under Tools. On a tablet or desktop, select Custom Tables in the navigation rail, or in the Classic 6-Panel Layout (Desktop) click the Custom Tables icon button at the lower right.
-- On a phone, choose the Category tab. On a tablet or desktop, choose the third icon in the left sidebar (Categories).
-- Categories, icons, and translations are managed alongside your tables.
-> - Unlocking note: 
-> - on Google Play, Amazon, and the Apple App Store, Custom Tables is an IAP; Itch.io and Microsoft Store include it with a higher‑priced purchase.
+On a phone, open the navigation drawer and tap **TABLE EDITOR** under **Tools**, then tap the **Category** tab. On a tablet or desktop, select **Custom Tables** in the navigation rail, then select the third icon in the left sidebar (**Categories**).
 
-## Meaning vs Event Focus
+Categories, icons, and translations live right alongside your tables.
 
-- Meaning Tables: give prompt words for you to interpret, and can chain to other tables.
-- Event Focus Tables: decide what kind of event happens (e.g., NPC Action), often the first roll in an event workflow
+> ### How to unlock Custom Tables
+>
+> - On the Apple App Store, Google Play, and Amazon, Custom Tables is part of the one-time Expanded Features unlock.
+> - On the Microsoft Store and itch.io, Custom Tables is included with Mythic GME Digital.
 
-## Categories & icons
+## Meaning Tables and Event Focus tables
 
-- Categories define icon, label, and sort behavior for table groups
-- The app seeds built‑in categories from an asset file. You can restore the built-in categories with Reset Categories to Defaults in Table Settings. The categories you created are kept.
-- You can edit a built-in category, or add your own with the + button on the Category tab. Your own categories appear in the same list as the built-in ones, and the app has no control to reorder them.
+- **Meaning Tables** give you prompt words to interpret and can chain to other tables.
+- **Event Focus tables** decide what kind of event happens, such as NPC Action, and often act as the first roll in a Random Event.
 
-Removing and hiding categories
-- A built-in category you have not edited offers **Hide this category**. Its tables leave your lists along with it. No files are deleted.
-- A built-in category you have edited offers **Delete my edited version**, which brings back the original category.
+## Categories and icons
+
+Categories set the icon, label, and sort behavior for groups of tables. They control how tables are grouped in the app. They do not chain rolls together. If you want one roll to trigger another, use table linking instead.
+
+The app seeds built-in categories from a bundled asset file. You can restore the built-in categories with **Reset Categories to Defaults** in **Table Settings**, and any categories you created yourself stay untouched.
+
+You can edit a built-in category or create your own with the **+** button on the **Category** tab. Your custom categories appear in the same list as the built-in ones. The app has no in-app control to reorder categories, though you can adjust `sortOrder` directly in `categories.json` as covered in [Categories Schema](/resources/categories-schema/).
+
+### Removing and hiding categories
+
+- An unedited built-in category offers **Hide this category**. Its tables leave your lists along with it, and no files are deleted.
+- An edited built-in category offers **Delete my edited version**, which restores the original category.
 - A category you created yourself offers **Delete**.
 - Deleting a category cannot be undone.
 - Some unedited built-in categories cannot be hidden, including **Custom** and **Event Focus**. A category that holds the **Random Event Focus Table** cannot be hidden either, and neither can that table.
-- To show hidden items again, open **Table Settings** and expand **Hidden tables** or **Hidden categories**. Use **Show** for one item or **Show all** for everything in that list. When you show a category, its tables come back too, except any table that is still hidden on its own.
-- To go back to the original built-in tables after editing them, use **Discard Edits to Built-in Tables** in Table Settings.
+- To show hidden items again, open **Table Settings** and expand **Hidden tables** or **Hidden categories**. Choose **Show** for one item or **Show all** for the whole list. Showing a category brings back its tables too, except any table you hid on its own.
+- To restore the original built-in tables after editing them, use **Discard Edits to Built-in Tables** in **Table Settings**.
 
-Best practices
-- Short display names; add detail in descriptions
-- Swap in your preferred language. The app is available in English, Portuguese, Brazilian Portuguese, Spanish, Mexican Spanish, French, Italian, and German. Thank you, Retropunk, for the Portuguese support!
+### Naming and language tips
+
+Keep display names short and put extra context in the description field so table rows stay readable on small screens.
+
+You can add translations in your preferred language. The app supports English, Portuguese, Brazilian Portuguese, Spanish, Mexican Spanish, French, Italian, and German. Thanks to RetroPunk for the Brazilian Portuguese support.
 
 ## Tags and search
 
-- Add tags to tables to improve search and grouping. An entry can carry tags only through a tags column in an imported CSV or through JSON.
-- Use consistent tags for adventure arcs, biomes, factions, tones, etc.
+Add tags to your tables to make search and grouping faster. Consistent tags work well for adventure arcs, biomes, factions, and tones.
 
-## Linking tables
+An entry can carry tags only through a `tags` column in an imported CSV or through JSON.
 
-- Set a link on a specific entry to roll another table or an Adventure List right away when that result comes up.
-- Use Linked Tables on the Controls tab to roll one or more other Meaning Tables every time this table is rolled, unless the table uses weights. A list can be linked only from a single entry.
+## Categories vs. linking and nesting tables
+
+Categories organize tables into groups so you can find them quickly. Linking and nesting connect rolls so that rolling one table automatically triggers another table or Adventure List.
+
+- Set an **Entry Link** on a specific entry to roll another table or an Adventure List whenever that result comes up.
+- Use **Linked Tables** on the **Controls** tab to roll one or more other Meaning Tables every time a table is rolled, unless that table uses weights. Lists can be linked only from a single entry.
 - Chained rolls stop after 10 levels.
 
-## Starter files
+For the full breakdown of entry links, table-level links, and Random Event chains, see [Linking & Nesting Tables](/resources/linking-and-nesting-tables/).
 
-- Meaning templates/samples: JSON, CSV, TXT, PSV
-- Event Focus templates/samples: JSON, CSV, TXT, PSV
-- Categories template/sample
-- Find them under the “Getting Started with Custom Tables” guide’s Starter downloads
+## Starter files and weighted tables
 
-## Weighted tables
+JSON, CSV, TXT, and PSV templates and samples for Meaning Tables and Event Focus tables, plus a Categories template and sample, live under Starter downloads in [Getting Started with Custom Tables](/resources/getting-started-with-custom-tables/).
 
-- You can't build a weighted table by hand yet. You can import a Meaning Table CSV with result and weight columns, up to 100 rows. When any entry has a weight above 1, the app picks an entry by weight instead of rolling on the ranges. See “Getting Started with Custom Tables” for details.
+You cannot build a weighted table by hand yet, though you can import a Meaning Table CSV with `result` and `weight` columns up to 100 rows. When any entry has a weight above 1, the app picks results by weight instead of rolling on the ranges. See [Getting Started with Custom Tables](/resources/getting-started-with-custom-tables/) for details.
 
 ## Next steps
 
-- Get oriented and create your first tables: see “Getting Started with Custom Tables”
-- Import/Export details: see “Importing & Exporting Custom Tables”
-- JSON field reference: see “Custom Table Schema” and “Categories Schema”
+- Create your first tables in [Getting Started with Custom Tables](/resources/getting-started-with-custom-tables/).
+- Set up chained rolls in [Linking & Nesting Tables](/resources/linking-and-nesting-tables/).
+- Import and export files in [Importing & Exporting Custom Tables](/resources/importing-and-exporting-custom-tables/).
+- Look up JSON fields in [Custom Table Schema](/resources/custom-table-schema/) and [Categories Schema](/resources/categories-schema/).

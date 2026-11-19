@@ -6,7 +6,7 @@ category: "advanced"
 order: 2
 icon: "fa-slab fa-regular fa-map"
 duration: "Reference"
-updated: "2026-11-04"
+updated: "2026-11-19"
 tags: ["schema", "formulas", "reference", "download"]
 keywords:
   - Schema
@@ -32,45 +32,43 @@ related:
 
 ## Overview
 
-This page documents the JSON format for Saved Formulas so your files can be validated and shared between devices or tools. For a practical walkthrough of saving, loading, importing, and exporting formulas from the UI, see [Saving and Managing Dice Formulas](/resources/saving-and-managing-dice-formulas/).
+This reference documents the JSON format for Saved Formulas so you can validate files or move them between devices and external tools. For a walkthrough of saving, loading, importing, and exporting formulas in the app, see [Saving and Managing Dice Formulas](/resources/saving-and-managing-dice-formulas/).
 
-Plain English: You don’t need to know code to use this. “JSON” is just a structured text file the app reads and writes, and the “schema” is a rulebook for tools to double‑check that a file looks right. Most players can ignore the details below.
+## Downloads and file naming
 
-## Downloads
+The Downloads section at the bottom of this page contains the JSON Schema validator (`saved_formulas.schema.json`), an empty template, and a filled sample.
 
-See the Downloads section at the bottom of this page for files.
+Import accepts any file name. In the native apps, the file name must end in `.json` (any letter case). On the web, the file picker filters for `.json` files without running a separate extension check. Only the app's own storage file must be named `saved_formulas.json`.
 
-Important: Import does not require a particular file name. In the native apps, the file must end in .json (in any letter case). On the web, the file picker asks for .json files, but the app does not check the extension separately. A file name does not make the contents valid. Only the app's own storage file must be named saved_formulas.json.
+## File shapes
 
-## Format (canonical)
-
-There are two kinds of file: the app's own storage file and the file that Export writes. They have different shapes.
+The app uses two JSON shapes, one for its internal storage file and another for files written by Export.
 
 ### Storage file (`formulas/saved_formulas.json`)
 
-The app keeps your saved formulas in `saved_formulas.json` inside the `formulas` folder of its storage location. The app reads two shapes:
+The app stores your saved formulas in `saved_formulas.json` inside the `formulas` folder of its storage location. The reader accepts two shapes:
 
-- A plain array of formula objects. This is what the app writes until you save a label.
-- A wrapped object with `formulas` (array of formula objects) and `poolLabels` (array of strings), plus `poolLabelColors` once you choose a color for a label. The app writes this shape after you save your first label on the Join tab in Dice Studio.
+- A plain array of formula objects. The app writes this shape until you save a pool label.
+- A wrapped object containing `formulas` (array of formula objects) and `poolLabels` (array of strings), plus `poolLabelColors` once you assign a color to a label. The app switches to this shape after you save your first label on the **Join** tab in Dice Studio.
 
 When you remove your last label, the app writes a plain array again. Other fields in a wrapped storage file are kept when the app saves.
 
-Labels in `poolLabels`:
+### Rules for `poolLabels`
 
 - Each label is a string. The app trims spaces from both ends.
 - A label cannot contain a double quote (`"`).
 - Labels are unique, ignoring letter case.
-- When you move storage, or use Import Previous Folder, the app merges the labels. The labels in the destination keep their order, and labels that are new to it are added after them. Labels are compared ignoring letter case. A label keeps its color from the destination, or takes the other location's color when it has none in the destination.
+- When you move storage or use **Import Previous Folder**, the app merges labels. Labels in the destination keep their order, and new labels append after them (compared ignoring letter case). A label keeps its color from the destination, or inherits the incoming color if the destination has none.
 
-Label colors in `poolLabelColors`:
+### Rules for `poolLabelColors`
 
-- An object that maps a label name to its color. A name that is not in `poolLabels` is ignored.
-- A color is a quick color, `white`, `red`, `black`, `teal`, `purple` or `brown`, or a custom color written as `#RRGGBB`. The app writes custom colors in uppercase.
-- A label with no entry uses Automatic: it takes a quick color that the other pools in the roll are not using. A value the app does not recognize is ignored, so that label uses Automatic too.
+- An object that maps each label name to its color. Any name not listed in `poolLabels` is ignored.
+- A color is a quick color (`white`, `red`, `black`, `teal`, `purple`, or `brown`) or a custom hex color formatted as `#RRGGBB`. The app writes custom colors in uppercase.
+- A label with no entry uses Automatic and takes a quick color not used by other pools in the roll. Any unrecognized color value is ignored and also falls back to Automatic.
 - The app writes `poolLabelColors` only when at least one label has a chosen color.
 - Renaming a label keeps its color. Removing a label removes its color.
 
-Storage file with labels:
+### Storage file example with labels
 
 ```json
 {
@@ -84,50 +82,51 @@ Storage file with labels:
 
 ### Mixed app versions
 
-Version 1.6.x of the app can read the wrapped storage file, but it writes a plain array every time it saves a formula. If a device on 1.6.x saves a formula, the labels and their colors are removed for every device that shares that iCloud account or synced folder. Your formulas are kept. Update every device to 1.7.0 before you save labels.
+Version 1.6.x reads the wrapped storage file, though it writes a plain array every time it saves a formula. If a device running 1.6.x saves a formula, `poolLabels` and `poolLabelColors` are removed for every device sharing that iCloud account or synced folder while your formulas remain intact. Update every device to 1.7.0 before saving labels.
 
-### Storage rules
+### Storage validation rules
 
-- `formula` is required and cannot be empty.
-- `name`, `description`, and `id` are optional strings.
-- `dateAdded` is an optional ISO 8601 string. In the storage file, `"dateAdded": null` or a date the app cannot read makes the whole file unreadable. The app then tries its backups.
+- `formula` (string, required). Must be non-empty.
+- `name`, `description`, and `id` (strings, optional).
+- `dateAdded` (ISO 8601 string, optional). In `saved_formulas.json`, setting `"dateAdded": null` or an unreadable date makes the entire file unreadable and causes the app to fall back to backups.
 
 ### Backups
 
-- With folder storage, the app keeps `saved_formulas.json.bak`, `saved_formulas.json.bak.1`, and `saved_formulas.json.bak.2` next to the storage file.
-- With iCloud, the app keeps one `saved_formulas.json.bak`. This is new in 1.7.
-- On desktop and tablet, Restore Backup appears when the Saved Formulas list cannot load.
-- Restore Backup tries the backups from newest to oldest and skips any it cannot read. If none can be restored, the app shows "Failed to restore from backup".
-- On the web, formulas live in browser storage, and there are no backups.
+- With folder storage, the app keeps `saved_formulas.json.bak`, `saved_formulas.json.bak.1`, and `saved_formulas.json.bak.2` beside `saved_formulas.json`.
+- With iCloud, the app keeps a single `saved_formulas.json.bak` (new in 1.7.0).
+- On desktop and tablet, **Restore Backup** appears when Saved Formulas cannot load.
+- **Restore Backup** checks backups from newest to oldest and skips any unreadable file. If none can be restored, the app shows `"Failed to restore from backup"`.
+- On the web, formulas live in browser storage and no backups are kept.
 
-### Export file
+## Export file
 
-Export always writes a wrapped object with these fields:
+Export always writes a wrapped object with three top-level keys:
 
-- `formulas` (array): The list of saved formulas.
-- version (string): Export always writes "1.0". Import ignores this field.
-- schemaVersion (string): Export writes "1". Import ignores this field.
+- `formulas` (array). List of saved formula objects.
+- `version` (string). Export always writes `"1.0"`. Import ignores this field.
+- `schemaVersion` (string). Export writes `"1"`. Import ignores this field.
 
-Export does not include labels or their colors, and Import ignores `poolLabels` and `poolLabelColors` in a file.
+Export omits `poolLabels` and `poolLabelColors`, and Import ignores both keys if present.
 
-### Formula object fields (import and export)
+## Formula object fields
 
-- formula (required string): must be non-empty and valid dice notation. If any entry in the file fails, nothing in the file is imported.
-- `name` (optional string): Display label; defaults to `formula` if missing.
-- `description` (optional string): Extra context.
-- dateAdded (optional ISO 8601 string): when the formula was created. On import, a missing or unreadable value becomes the time of the import.
-- id (optional string): Export writes an id for each formula, but Import ignores it and gives every imported formula a new id. Importing the same file twice adds two separate entries.
+- `formula` (string, required). Must be non-empty and valid dice notation. If any entry fails validation, nothing in the file is imported.
+- `name` (string, optional). Display label. Defaults to `formula` when missing.
+- `description` (string, optional). Extra context for the formula.
+- `dateAdded` (ISO 8601 string, optional). Creation timestamp. On import, a missing or unreadable value is replaced with the import time.
+- `id` (string, optional). Export writes an `id` for each formula, though Import ignores it and assigns a new `id` to every imported formula. Importing the same file twice creates duplicate entries.
 
-### How Import works
+## Import behavior
 
-- Import is all or nothing. If any formula in the file is not valid, nothing is imported.
-- Import adds the formulas to the end of your list. It does not check for duplicates.
-- Import gives every formula a new id and trims spaces from each formula.
-- The whole import is saved at once, so the backup holds your list from before the import.
+- Import is all or nothing. If any formula in the file is invalid, nothing is imported.
+- Import appends formulas to the end of your existing list without checking for duplicates.
+- Import assigns a new `id` to each formula and trims leading and trailing spaces from `formula`.
+- The full import writes in one save, so the backup preserves your list from before the import.
+- Import accepts either the wrapped export object or a top-level array of formula objects. A single bare formula object is rejected.
 
-### Minimal import example
+## Minimal import example
 
-This is a minimal import template, not a complete captured export. An export also includes `description`, `dateAdded`, and `id` for each formula. On import, `id` is ignored and a new one is assigned.
+This minimal example is valid for import. A full export written by the app also includes `description`, `dateAdded`, and `id` on each formula.
 
 ```json
 {
@@ -138,7 +137,3 @@ This is a minimal import template, not a complete captured export. An export als
   ]
 }
 ```
-
-### Compatibility
-
-- Import accepts the wrapped object shown above or a top-level array of formula objects. A single formula object on its own is rejected.

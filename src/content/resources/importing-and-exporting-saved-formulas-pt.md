@@ -1,11 +1,12 @@
 ---
+fullArticleAvailable: true
 title: "Importando e Exportando Fórmulas Salvas"
-summary: "Importe fórmulas de outros jogadores e faça backup das suas."
+summary: "Como importar conjuntos prontos, fazer backup e compartilhar suas fórmulas de dados salvas."
 category: "dice-roller"
-order: 3
+order: 4
 icon: "fa-slab fa-regular fa-exchange"
 duration: "5 min de leitura"
-updated: "2026-11-04"
+updated: "2026-11-19"
 lang: "pt"
 tags: ["dice", "formulas", "import", "export"]
 keywords:
@@ -14,26 +15,28 @@ keywords:
   - Exportar
   - JSON
 related:
-  - saving-and-managing-dice-formulas
-  - formula-schema
+  - saving-and-managing-dice-formulas-pt
+  - formula-schema-pt
 ---
 
 > Este guia descreve o Mythic GME 1.7.0 e posteriores.
 
-Esta página reúne o essencial para trazer Fórmulas Salvas para o app e exportar as suas para segurança ou compartilhamento. Se você quer aprender a construir fórmulas ou gerenciar a lista, veja os guias relacionados abaixo.
+Use este guia quando quiser importar conjuntos prontos de fórmulas, levar suas Fórmulas Salvas para outro dispositivo ou guardar uma cópia de backup. Se estiver procurando notação de dados ou edição da lista no dia a dia, comece por [Fórmulas de Dados e Personalização](/pt/resources/dice-formulas-and-customization-pt/) ou [Salvando e Gerenciando Fórmulas de Dados](/pt/resources/saving-and-managing-dice-formulas-pt/).
 
-## Onde encontrar
+## Onde encontrar Importar e Exportar
 
-- Abra o Estúdio de Dados. No celular, Salvar Fórmula e Gerenciar Fórmulas são botões abaixo do campo da fórmula; em um tablet ou computador, ficam acima dele.
+Abra o **Estúdio de Dados** e toque em **Gerenciar Fórmulas**. No celular, **Salvar Fórmula** e **Gerenciar Fórmulas** aparecem abaixo do campo de fórmula. Em tablets e computadores, aparecem acima dele.
 
-## Importar
+## Importar Fórmulas Salvas
 
-- Toque em "Gerenciar Fórmulas" → Importar e escolha um arquivo JSON.
-- Importar adiciona todos os itens do arquivo ao final da sua lista. Não há opção de substituir nem verificação de duplicatas.
-- Nomes de arquivo: A importação não exige um nome de arquivo específico. Nos apps nativos, o arquivo precisa terminar em .json (com letras maiúsculas ou minúsculas). Na web, o seletor pede arquivos .json, mas o app não confere a extensão separadamente. O nome do arquivo não garante que o conteúdo seja válido. Se você colocar um arquivo manualmente em vez de importar, ele deve ser nomeado `saved_formulas.json`.
+Toque em **Gerenciar Fórmulas > Importar** e escolha um arquivo `.json`. A importação adiciona cada item do arquivo ao final da sua lista de Fórmulas Salvas. Não existe opção de substituir nem verificação de duplicatas.
 
-Formatos suportados
-- Arquivo envolvido canônico (recomendado):
+A importação não exige um nome de arquivo específico. Nos apps nativos, o arquivo precisa terminar em `.json` (com letras maiúsculas ou minúsculas). Na web, o seletor de arquivos pede arquivos `.json` sem conferir a extensão separadamente.
+
+### Formatos JSON aceitos
+
+O formato recomendado é o objeto envolvido canônico:
+
 ```json
 {
   "formulas": [
@@ -43,20 +46,28 @@ Formatos suportados
   "schemaVersion": "1"
 }
 ```
-- Um arquivo exportado tem "version": "1.0" e "schemaVersion": "1", ambos como texto. Importar ignora os dois campos.
-- Compatibilidade: o app também aceita um array de nível superior com objetos de fórmula. Um único objeto de fórmula sozinho é rejeitado, então coloque-o dentro de um array. Exportar sempre grava o formato envolvido.
 
-## Exportar
+Um arquivo exportado sempre inclui `"version": "1.0"` e `"schemaVersion": "1"` como texto, e a importação ignora os dois campos.
 
-- Toque em "Gerenciar Fórmulas" → Exportar para baixar um arquivo JSON que você pode fazer backup ou compartilhar.
-- A exportação não inclui os rótulos que você salvou na aba Unir nem as cores deles. Importar ignora rótulos em um arquivo.
-- Quando você muda o armazenamento de lugar, ou usa Importar pasta anterior, o app junta suas fórmulas salvas, seus rótulos e as cores dos rótulos no novo local.
-- Se um dos seus dispositivos ainda usa a 1.6.x, veja Versões diferentes do app no [Esquema de Fórmulas](/pt/resources/formula-schema-pt/). Salvar uma fórmula na 1.6.x remove os rótulos e as cores deles em todos os dispositivos que compartilham a lista.
-- Colocação manual: Se você colocar um arquivo manualmente, nomeie-o saved_formulas.json e coloque-o na pasta formulas dentro da pasta de armazenamento do app. Esse arquivo é sua lista inteira. Se o app não conseguir lê-lo, pode carregar em seu lugar uma cópia de backup legível, quando houver, e carregar essa cópia não altera seu arquivo.
+Para manter compatibilidade, a importação também aceita um array de nível superior com objetos de fórmula. Um único objeto de fórmula isolado é rejeitado, então coloque-o dentro de um array. A exportação sempre grava o formato de objeto envolvido.
+
+## Exportar Fórmulas Salvas
+
+Toque em **Gerenciar Fórmulas > Exportar** para baixar ou salvar um arquivo `.json` que você pode guardar como backup ou compartilhar.
+
+- A exportação não inclui os rótulos salvos na aba **Unir** nem as cores deles, e a importação ignora rótulos presentes em um arquivo.
+- Quando você muda o armazenamento de lugar ou usa **Importar pasta anterior**, o app combina suas fórmulas salvas, seus rótulos e as cores dos rótulos no novo local.
+- Se outro dispositivo que compartilha seu armazenamento ainda rodar a versão 1.6.x, salvar uma fórmula nele remove seus rótulos e as cores deles em todos os dispositivos que compartilham a lista. Veja a seção sobre versões mistas em [Esquema de Fórmulas](/pt/resources/formula-schema-pt/).
+
+## Colocando um arquivo manualmente
+
+Se você preferir colocar um arquivo direto no armazenamento em vez de usar a importação, dê a ele o nome `saved_formulas.json` e coloque-o na pasta `formulas` dentro da pasta de armazenamento do app.
+
+Esse arquivo passa a ser toda a sua lista de Fórmulas Salvas. Se o app não conseguir lê-lo, pode carregar uma cópia de backup legível quando houver uma disponível, sem modificar seu arquivo.
 
 ## Downloads iniciais
 
-Conjuntos de fórmulas prontos para importar para sistemas populares (amigáveis para mesclagem):
+Conjuntos de fórmulas prontos para importar para sistemas populares. Use **Gerenciar Fórmulas > Importar** para adicionar qualquer conjunto à sua lista atual.
 
 - D&D 5e: [Baixar](/downloads/formulas_dnd5e.json)
 - Pathfinder 2e: [Baixar](/downloads/formulas_pf2.json)
@@ -76,19 +87,17 @@ Conjuntos de fórmulas prontos para importar para sistemas populares (amigáveis
 - Dungeon Crawl Classics: [Baixar](/downloads/formulas_dcc.json)
 - The One Ring (aproximação): [Baixar](/downloads/formulas_one_ring.json)
 
-Dica: Use Importar para mesclar estes em sua lista atual. A colocação manual requer o nome de arquivo `saved_formulas.json`.
+## Dicas práticas
 
-## Melhores práticas
+- Mantenha os nomes das fórmulas curtos e coloque contexto extra na descrição.
+- Exporte antes de uma importação grande para guardar uma cópia da sua lista atual. Lembre-se de que importar essa exportação de volta para a mesma lista adiciona cada fórmula novamente como um novo item, pois a importação apenas acrescenta entradas.
+- Use o formato envolvido canônico (`formulas`, `version` e `schemaVersion`) ao compartilhar conjuntos de fórmulas com outros jogadores.
 
-- Mantenha nomes curtos e descritivos; adicione contexto nas descrições.
-- Exporte antes de uma importação grande para guardar uma cópia da sua lista. Importar essa cópia de volta na mesma lista adiciona todas as fórmulas de novo como itens separados, porque Importar só adiciona itens e não pula duplicatas.
-- Prefira o formato envolvido canônico para compartilhamento (inclui `formulas` e `schemaVersion`).
-
-> ##### Motor de sintaxe e docs
-> O rolador usa o mythic_dice_parser 8.3.0, uma versão própria do app derivada do dart_dice_parser da Adventuresmith. Para a gramática original e exemplos adicionais, veja: https://pub.dev/packages/dart_dice_parser (essa documentação pode não corresponder exatamente à gramática atual do app).
+O Estúdio de Dados usa o `mythic_dice_parser` 8.3.0, o motor de dados próprio do app derivado do `dart_dice_parser` do Adventuresmith. Teste fórmulas personalizadas no Estúdio de Dados para confirmar como elas se comportam no app.
 
 ## Guias relacionados
 
-Veja a seção de Guias Relacionados no final desta página.
-- Salvar, carregar, importar, exportar (passo a passo da UI): "Salvando e Gerenciando Fórmulas de Dados"
-- Referência de estrutura de arquivo (esquema JSON): "Esquema de Fórmulas"
+- [Começando com o Estúdio de Dados](/pt/resources/getting-started-with-the-dice-roller-pt/)
+- [Salvando e Gerenciando Fórmulas de Dados](/pt/resources/saving-and-managing-dice-formulas-pt/)
+- [Fórmulas de Dados e Personalização](/pt/resources/dice-formulas-and-customization-pt/)
+- [Esquema de Fórmulas](/pt/resources/formula-schema-pt/)
