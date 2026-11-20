@@ -10,7 +10,7 @@
 // video with preload="none" and no poster paints nothing until it has a
 // frame, so the picture shows through with the native controls on top.
 import { Picture } from "astro:assets";
-import posterSource from "../../assets/mythic-gme/1.7.0/video/mythic-gme-60-poster.jpg";
+import posterSource from "../../assets/mythic-gme/1.7.0/video/mythic-gme-60-v2-poster.jpg";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
 interface Props {
@@ -23,8 +23,8 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const isPt = lang === "pt";
 
-const videoSrc = "https://media.jasonholtdigital.com/mythic-gme/1.7.0/mythic-gme-60-v1.mp4";
-const captionsBase = "/media/mythic-gme-1.7.0/mythic-gme-60-v1";
+const videoSrc = "https://media.jasonholtdigital.com/mythic-gme/1.7.0/mythic-gme-60-v2.mp4";
+const captionsBase = "/media/mythic-gme-1.7.0/mythic-gme-60-v2";
 
 // The film's cards are burned in, in English, and it plays muted, so each page
 // shows its own language's captions by default.
