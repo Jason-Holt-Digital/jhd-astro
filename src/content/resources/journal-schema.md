@@ -152,7 +152,7 @@ Markdown export is for reading only. It omits `customLists`, `threadProgressTrac
 
 - Scene outcomes live in the log rather than on scene objects. A Scene Check log entry sets `isSceneCheck` to `true` and stores the localized scene label in both `outcome` and `sceneCheckResult` (for example, `"Expected Scene"` in English).
 - Random Events store their details in `randomEvent.eventFocus`, `meanings`, and optional ties (`characterResult`, `threadResult`, `featureResult`).
-- When Chaos Factor changes for a scene, store the new value in `sceneChaosFactor` on the scene and record any note in a log entry rather than in `sceneAdjustments`.
+- When Chaos Factor changes, update the top-level `chaosFactor` to the new value. Keep `sceneChaosFactor` on each scene as the snapshot from the start of that scene, and record any note about the change in a log entry rather than in `sceneAdjustments`.
 - Adventure Lists drive event connections and expand through `activatedThreadSections`, `activatedCharacterSections`, and `activatedFeatureSections` up to 25 visible items per list.
 
 ## Minimal skeleton

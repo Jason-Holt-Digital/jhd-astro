@@ -153,7 +153,7 @@ A exportação em Markdown serve apenas para leitura. Ela omite `customLists`, `
 
 - Os resultados de cena ficam no registro, e não nos objetos de cena. Uma entrada de Teste de Cena define `isSceneCheck` como `true` e grava o rótulo localizado da cena em `outcome` e em `sceneCheckResult` (por exemplo, `"Expected Scene"` em inglês ou `"Cena Esperada"` em português).
 - Eventos Aleatórios guardam seus detalhes em `randomEvent.eventFocus`, `meanings` e vínculos opcionais (`characterResult`, `threadResult`, `featureResult`).
-- Quando o Fator de Caos muda em uma cena, armazene o novo valor em `sceneChaosFactor` na cena e registre qualquer anotação em uma entrada do registro, não em `sceneAdjustments`.
+- Quando o Fator de Caos muda, atualize o campo `chaosFactor` no nível superior para o novo valor. Mantenha `sceneChaosFactor` em cada cena como o registro do início daquela cena e coloque qualquer anotação sobre a mudança em uma entrada do registro, não em `sceneAdjustments`.
 - As Listas de Aventura conduzem conexões de eventos e expandem por meio de `activatedThreadSections`, `activatedCharacterSections` e `activatedFeatureSections` até 25 itens visíveis por lista.
 
 ## Esqueleto mínimo

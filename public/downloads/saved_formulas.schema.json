@@ -2,14 +2,14 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://mythicgme2e.app/schemas/saved_formulas.schema.json",
   "title": "Mythic GME 2e Saved Formulas",
-  "description": "Saved dice formulas. The app accepts two shapes: a bare list of formula objects, or an object with a required `formulas` list. The storage file `formulas/saved_formulas.json` is a bare list until the first label is saved on the Dice Studio Join tab; it is then the object form with `poolLabels`, plus `poolLabelColors` once a label has a chosen color, and it returns to a bare list when the last label is removed. Other object fields are kept on save. Export writes the object form with `formulas`, `version` (\"1.0\") and `schemaVersion` (\"1\") and no labels; Import ignores `poolLabels` and `poolLabelColors`. A row is rejected, and with it the whole file, when `formula` is missing or empty, when `name`, `description` or `id` is neither a string nor null, or when `dateAdded` is present but null or not a parseable date-time string. Import also rejects a formula the dice parser cannot read; if any row is rejected, nothing is imported.",
+  "description": "Saved dice formulas. The app accepts two shapes: a bare list of formula objects, or an object with a required `formulas` list. The storage file `formulas/saved_formulas.json` is a bare list until the first label is saved on the Dice Studio Join tab; it is then the object form with `poolLabels`, plus `poolLabelColors` once a label has a chosen color, and it returns to a bare list when the last label is removed. Other object fields are kept on save. Export writes the object form with `formulas`, `version` (\"1.0\") and `schemaVersion` (\"1\") and no labels; Import ignores `poolLabels` and `poolLabelColors`. When loading the storage file `formulas/saved_formulas.json`, a row is rejected, and with it the whole file, when `formula` is missing or empty, when `name`, `description` or `id` is neither a string nor null, or when `dateAdded` is present but null or not a parseable date-time string. On Import, a missing or unreadable `dateAdded` is replaced with the import time, and `id` is ignored, while any row with a missing, empty, or unparseable `formula` fails validation and rejects the whole import.",
   "examples": [
     [
       {
         "formula": "2d10+3",
         "name": "Attack",
         "description": "Sword swing",
-        "dateAdded": "2026-10-30T14:05:00.000",
+        "dateAdded": "2026-10-30T14:05:00.000Z",
         "id": "6f1c2a9e-3b7d-4e0a-9c55-1d2e3f4a5b6c"
       }
     ],
@@ -19,7 +19,7 @@
           "formula": "\"Base\": 3d6#s6, \"Skill\": 2d6#s6",
           "name": "Year Zero push",
           "description": "",
-          "dateAdded": "2026-10-30T14:06:00.000",
+          "dateAdded": "2026-10-30T14:06:00.000Z",
           "id": "0b8e7d6c-5a4f-4e3d-8c2b-1a0f9e8d7c6b"
         }
       ],
@@ -39,7 +39,7 @@
           "formula": "1d100",
           "name": "Percentile",
           "description": "",
-          "dateAdded": "2026-10-30T14:07:00.000",
+          "dateAdded": "2026-10-30T14:07:00.000Z",
           "id": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d"
         }
       ],

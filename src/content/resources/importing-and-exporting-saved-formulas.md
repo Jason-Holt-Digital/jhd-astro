@@ -62,7 +62,7 @@ Tap **Manage Formulas > Export** to download or save a `.json` file you can back
 
 If you prefer placing a file directly in storage instead of using Import, name it `saved_formulas.json` and put it in the `formulas` folder inside the app's storage folder.
 
-That file becomes your entire Saved Formulas list. If the app cannot read it, it may load a readable backup copy when one exists, without modifying your file.
+That file becomes your entire Saved Formulas list. Back up your existing `formulas/saved_formulas.json` file before replacing it. Exported formula files omit saved **Join** labels and their colors, so replacing `formulas/saved_formulas.json` with an exported file removes those labels and colors. If the app cannot read the file, it may load a readable backup copy when one exists, without modifying your file.
 
 ## Starter downloads
 

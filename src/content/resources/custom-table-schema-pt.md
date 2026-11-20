@@ -53,7 +53,7 @@ As chaves obrigatórias são `id`, `categoryId`, `displayName` e `entries`. Essa
 - `defaultLanguage` (string, por exemplo `"en"`).
 - `isBuiltIn` e `isUserCreated` (booleanos). Na importação, o app força `isBuiltIn` para `false` e `isUserCreated` para `true`, independentemente dos valores no arquivo.
 - `source` (string) e `tags` (array de strings).
-- `tableRollOn` (array de IDs de Tabelas de Significado). Qualquer ID que não seja de Tabela de Significado ou nome de Lista de Aventura é ignorado.
+- `tableRollOn` (array de IDs de Tabelas de Significado). IDs que não sejam de Tabelas de Significado são ignorados. Nomes de Listas de Aventura também são ignorados.
 - `data` (objeto). Contêiner para metadados de extensão.
 - `baseDice` (string, por exemplo `"1d10"`). Expressão de dados rolada nessa tabela. Quando omitido, o app rola um único dado com o tamanho do intervalo.
 - `defaultDoubleRoll` (booleano, padrão `true`). Defina como `false` para rolar a tabela uma vez por padrão. Uma tabela cujas `tags` incluem `"crafter"` também rola uma vez. O seletor `1x`/`2x` na linha da tabela prevalece sobre ambos.

@@ -178,12 +178,12 @@ These recipes give you ready-to-use starting formulas for popular games. Systems
 ### Blades in the Dark
 
 - Pool take highest: `Nd6kh1` (for example, `3d6kh1`)
-- Spot crits (two 6s): add `Nd6#=6` to count sixes alongside your roll
+- Spot crits (two 6s) on the same pool: `(Nd6#cs6)kh1` (for example, `(3d6#cs6)kh1`) marks 6s while keeping the highest die
 
 ### Shadowrun (hits and glitches)
 
-- Hits: `Nd6#>=5`
-- Track 1s for glitches: add `Nd6#f=1`
+- Hits (5-6) and 1s for glitches on the same pool: `Nd6 #s>=5 #f=1`
+- The roll row counts hits as successes and tracks 1s as failures without rolling a second pool
 
 ### Savage Worlds (trait and wild die)
 
@@ -192,8 +192,8 @@ These recipes give you ready-to-use starting formulas for popular games. Systems
 
 ### Vampire: The Masquerade (V5)
 
-- Successes: `Nd10#>=6`
-- Track 10s: add `Nd10#=10` (handle critical pairs and impacts at the table)
+- Successes (6+) and 10s on the same pool: `Nd10 #s>=6 #cs10`
+- The roll row counts successes and marks 10s for critical pairs. Handle critical pairs and Hunger dice manually at the table.
 
 ### Call of Cthulhu 7e
 

@@ -51,7 +51,7 @@ Open **Lists** and go to the **Features** tab. Add recurring elements from the a
 
 For a vampire-hunting module, your Features list might hold "Vampire lord attacks", "Random vision", "Wandering monster", and "Weather worsens".
 
-When a Random Event rolls **Adventure Feature**, the app rolls on your Features list and shows the entry in the **Adventure Log**. If the roll lands on an empty slot, the app shows **Choose**, and you pick an entry yourself.
+When a Random Event rolls **Adventure Feature**, the app rolls on your Features list and shows the entry in the **Adventure Log**. By default, if the roll lands on an empty slot, the app shows **Choose** and you pick an entry yourself. If you turn on **Never Roll "Choose"** in **List Settings** and your Features list has at least one entry, the app rerolls empty slots instead.
 
 ## 3. Set up Characters and Threads
 

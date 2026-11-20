@@ -33,7 +33,7 @@ Tome Keeper keeps your books, notes, and Tables on your device first. Cloud sync
 
 Open **Settings > SYNC > iCloud Sync** on each Apple device you want to sync. Sync is off by default and stores data in your private iCloud database.
 
-Use the **Sync book files** toggle to control how PDFs move between devices. Leave it on to upload your PDFs to iCloud, or turn it off to keep PDFs local while still syncing Sets, bookmarks, Page Tags, reading positions, and Tables. Books stored only in iCloud show a cloud badge and download automatically the moment you open them.
+Use the **Sync book files** toggle to control how book PDFs move between devices. Leave it on to upload your book PDFs to iCloud, or turn it off to keep book PDFs local while still syncing Sets, bookmarks, Page Tags, reading positions, and Tables. PDF attachments on Tables (including PDF character sheets added through **Components > Import**) still sync when this toggle is off. Books stored only in iCloud show a cloud badge and download automatically the moment you open them.
 
 ## Sync on Android with Google Drive Sync
 

@@ -63,7 +63,7 @@ Toque em **Gerenciar Fórmulas > Exportar** para baixar ou salvar um arquivo `.j
 
 Se você preferir colocar um arquivo direto no armazenamento em vez de usar a importação, dê a ele o nome `saved_formulas.json` e coloque-o na pasta `formulas` dentro da pasta de armazenamento do app.
 
-Esse arquivo passa a ser toda a sua lista de Fórmulas Salvas. Se o app não conseguir lê-lo, pode carregar uma cópia de backup legível quando houver uma disponível, sem modificar seu arquivo.
+Esse arquivo passa a ser toda a sua lista de Fórmulas Salvas. Faça backup do seu arquivo `formulas/saved_formulas.json` atual antes de substituí-lo. Arquivos exportados não incluem os rótulos salvos na aba **Unir** nem as cores deles, então substituir `formulas/saved_formulas.json` por um arquivo exportado remove esses rótulos e cores. Se o app não conseguir ler o arquivo, pode carregar uma cópia de backup legível quando houver uma disponível, sem modificar seu arquivo.
 
 ## Downloads iniciais
 

@@ -52,7 +52,7 @@ Abra **Listas** e vá até a aba **Aspectos**. Adicione elementos recorrentes da
 
 Em um módulo de caça a vampiros, sua lista de Aspectos pode ter "Lorde vampiro ataca", "Visão aleatória", "Monstro errante" e "Tempo piora".
 
-Quando um Evento Aleatório rolar **Aspecto de Aventura**, o app sorteia um item da sua lista de Aspectos e mostra o resultado no **Diário de Aventura**. Se a rolagem cair em um espaço vazio, o app exibe **Escolher**, e você mesmo seleciona um item.
+Quando um Evento Aleatório rolar **Aspecto de Aventura**, o app sorteia um item da sua lista de Aspectos e mostra o resultado no **Diário de Aventura**. Por padrão, se a rolagem cair em um espaço vazio, o app exibe **Escolher** e você mesmo seleciona um item. Se **Nunca Role "Escolher"** estiver ativado em **Configurações da Lista** e sua lista de Aspectos tiver pelo menos um item, o app rerrola os espaços vazios em vez disso.
 
 ## 3. Configure Personagens e Tramas
 

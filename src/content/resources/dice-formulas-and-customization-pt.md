@@ -179,12 +179,12 @@ Estas receitas trazem fórmulas iniciais prontas para jogos populares. Sistemas 
 ### Blades in the Dark
 
 - Parada pegando o maior: `Nd6kh1` (por exemplo, `3d6kh1`)
-- Identificar críticos (dois 6s): adicione `Nd6#=6` para contar os 6s junto com sua rolagem
+- Identificar críticos (dois 6s) na mesma parada: `(Nd6#cs6)kh1` (por exemplo, `(3d6#cs6)kh1`) marca os 6s enquanto mantém o maior dado
 
 ### Shadowrun (acertos e falhas críticas)
 
-- Acertos: `Nd6#>=5`
-- Rastrear 1s para falhas críticas: adicione `Nd6#f=1`
+- Acertos (5-6) e 1s para falhas críticas na mesma parada: `Nd6 #s>=5 #f=1`
+- A linha da rolagem conta os acertos como sucessos e marca os 1s como falhas sem rolar uma segunda parada
 
 ### Savage Worlds (dado de traço e dado selvagem)
 
@@ -193,8 +193,8 @@ Estas receitas trazem fórmulas iniciais prontas para jogos populares. Sistemas 
 
 ### Vampire: The Masquerade (V5)
 
-- Sucessos: `Nd10#>=6`
-- Rastrear 10s: adicione `Nd10#=10` (trate pares críticos e efeitos na mesa)
+- Sucessos (6+) e 10s na mesma parada: `Nd10 #s>=6 #cs10`
+- A linha da rolagem conta os sucessos e marca os 10s para pares críticos. Trate pares críticos e dados de Fome manualmente na mesa.
 
 ### Call of Cthulhu 7e
 
