@@ -1,12 +1,13 @@
 ---
-title: Esquema de Diário
-summary: Referência campo-a-campo para o formato JSON do Diário Mythic com um exemplo mínimo e downloads locais.
-category: advanced
+fullArticleAvailable: true
+title: "Esquema de Diário"
+summary: "Referência do formato de arquivo JSON do Diário."
+category: "advanced"
 order: 1
-icon: fa-slab fa-regular fa-link
-duration: Referência
-updated: 2026-11-04
-lang: pt
+icon: "fa-slab fa-regular fa-link"
+duration: "Referência"
+updated: "2026-11-19"
+lang: "pt"
 tags: ["schema", "journals", "reference", "download"]
 keywords:
   - Esquema de Diário
@@ -14,7 +15,7 @@ keywords:
   - Download
   - Diário Mythic
 downloads:
-  - label: "Validador Legado do Esquema 1 do Diário (JSON)"
+  - label: "Esquema de Diário (JSON)"
     href: "/downloads/journal.schema.json"
     format: "JSON"
   - label: "Modelo Vazio"
@@ -24,140 +25,141 @@ downloads:
     href: "/downloads/journal_sample.json"
     format: "JSON"
 related:
-  - guide-to-the-mythic-journals
-  - sharing-adventure-journals
+  - guide-to-the-mythic-journals-pt
+  - sharing-adventure-journals-pt
 ---
 
 > Esta página descreve o Mythic GME 1.7.0 e posteriores.
 
-## Visão Geral
+## Visão geral
 
-Esta página documenta as chaves canônicas para o formato de exportação do Diário Mythic e como cada campo é usado. Se você está construindo ferramentas ou validando exportações, comece aqui. Para um passo a passo prático de criação e gerenciamento de diários, veja [Guia dos Diários Mythic](/pt/resources/guide-to-the-mythic-journals-pt/).
-
-Em Português Claro: Você não precisa saber código para usar diários. "JSON" é apenas um arquivo de texto estruturado que o app lê e escreve, e o "esquema" abaixo é um livro de regras para ferramentas validarem esses arquivos. Se você não está construindo ferramentas, pode pular os detalhes aqui com segurança.
+Esta referência documenta as chaves JSON canônicas dos arquivos de Diário do Mythic GME (Esquema 6). Use esta página ao criar ferramentas, inspecionar exportações ou validar arquivos de Diário. Para um passo a passo de como criar e gerenciar Diários dentro do app, veja [Guia dos Diários Mythic](/pt/resources/guide-to-the-mythic-journals-pt/).
 
 ## Downloads
 
-Veja a seção de Downloads no final desta página para arquivos. O esquema JSON disponível ali é um validador legado do esquema 1 que espera chaves de nível superior em PascalCase, como `JournalName`. Ele não é um validador para os arquivos do esquema 6 em camelCase que o Mythic GME 1.7.0 e posteriores exportam. Para os nomes de chave atuais, como `journalName`, use a referência de campos do esquema 6 nesta página.
+A seção Downloads no final desta página inclui três arquivos JSON.
 
-Dica: Após baixar o modelo vazio, faça uma cópia e renomeie de `journal_template.json` para um nome significativo (por exemplo: `minha-aventura-2025.json`). Mantenha a extensão `.json`. O modelo é um arquivo legado do esquema 1 com chaves em PascalCase, então o nome do Diário vem do campo `JournalName` dentro do arquivo, não do nome do arquivo. Defina `JournalName` antes de importar. Os arquivos que o Mythic GME 1.7.0 e posteriores exportam usam chaves em camelCase, como `journalName`.
+- `/downloads/journal.schema.json` valida Diários do Esquema 6 com chaves em camelCase gravados pelo Mythic GME 1.7.0 e posteriores, e também valida Diários legados mais antigos em PascalCase gravados antes do esquema 3.
+- `/downloads/journal_template.json` e `/downloads/journal_sample.json` continuam sendo exemplos iniciais legados do Esquema 1 com chaves em PascalCase, como `JournalName`.
 
-## Referência de campo (chaves de exportação canônicas)
+Se você começar a partir de `journal_template.json`, faça uma cópia e renomeie o arquivo para um nome descritivo (como `minha-aventura-2025.json`), mantendo a extensão `.json`. Como esse modelo usa chaves do Esquema 1 em PascalCase, defina `JournalName` dentro do arquivo antes de importar. O app lê o nome do Diário a partir do campo interno, não do nome do arquivo. Exportações gravadas pelo Mythic GME 1.7.0 e posteriores usam chaves em camelCase, como `journalName`.
 
-O app grava os campos de nível superior declarados do diário em camelCase, por exemplo journalName, chaosFactor, scenes e logEntries. Chaves antigas conhecidas, como JournalName em PascalCase, ainda são lidas de arquivos antigos e convertidas para os nomes atuais. Quando um arquivo importado vem de uma versão de esquema mais nova e compatível, seus campos de nível superior desconhecidos podem ser gravados de volta com a grafia original. Veja Campos desconhecidos e de tipo errado abaixo para saber quais objetos internos mantêm chaves desconhecidas.
+## Campos canônicos de nível superior
 
-- `journalName` (string): Seu nome de diário/campanha.
-- `chaosFactor` (int 1–9): FC atual usado para verificações e probabilidades de evento.
-- `scenes` (array de objetos): Cada cena tem:
-  - `title` (string): Título opcional.
-  - `sceneSummary` (string): Breve descrição.
-  - `sceneChaosFactor` (int 1–9, padrão 5): FC no início da cena (instantâneo).
-  - `sceneAdjustments` (array de objetos): Registros estruturados de ajuste com `range`, `description`, `result`, `additionalAdjustments` e `droppedAdjustment`.
-  - O app salva uma rolagem de Ajuste de Cena como uma entrada própria do registro, com rollType Scene Adjustment e um objeto sceneAdjustment. Ele grava uma lista sceneAdjustments vazia em toda cena que cria, e essa lista não é lugar para texto livre.
-  - `createdAt` (string ISO8601): Quando a cena foi criada.
-- characters (array): nomes usados quando um resultado de Foco do Evento, como Ação de PNJ, pede um Personagem. A exportação usa strings, e um espaço vazio é uma string vazia. Formas de objeto legadas (`Character` ou `character`) são aceitas na importação. Em arquivos com schemaVersion 0–2, um marcador Choose vira uma string vazia; a partir do esquema 3, Choose é lido como um nome real.
-- `threads` (array<string>): Lista de Tramas usadas para resultados do Mythic como "Fechar uma Trama" ou "Mover em Direção a uma Trama". Um espaço vazio é uma string vazia; formas de objeto legadas usam `Thread` ou `thread`.
-- `features` (array<string>): Locais, objetos e conceitos que dão cor e contexto aos eventos. Um espaço vazio é uma string vazia; formas de objeto legadas usam `Feature` ou `feature`.
-- `activatedThreadSections` / `activatedCharacterSections` / `activatedFeatureSections` (int, padrão 1): Quantas seções de 5 itens estão ativas em cada lista. O app mostra de 1 a 5 seções, então até 25 itens por lista ficam visíveis e entram nas rolagens. Esse número de 25 é a capacidade de exibição e de rolagem, não um limite de importação documentado. Arquivos antigos usam os nomes em PascalCase, como `ActivatedThreadSections`.
-- `logEntries` (array de objetos): Histórico do oráculo. Campos comuns:
-  - rollType é um texto livre, não uma lista fechada de valores. Exemplos produzidos pelo Mythic GME 1.7.0 e posteriores: Scene, Fate Chart, Fate Check, Scene Check, Scene Adjustment, Random Event, Event Focus, Meaning Table, Narrative, Keyed Scene, Discovery Fate Question e General dice roll. Se rollType estiver ausente, ele é lido como Unknown. Uma entrada Scene é um separador de cena: seu outcome é o título da cena, seu odds é uma string vazia e seu sceneId é o valor createdAt da cena. Uma entrada General dice roll tem odds N/A, question vazia e um outcome no formato `<fórmula> = <total>`.
-  - question (string): o texto digitado para uma pergunta de Destino. Uma entrada de Teste de Cena guarda aqui o texto fixo Scene Check, e seu outcome contém o rótulo da cena no idioma do app, por exemplo Expected Scene em inglês.
-  - `odds` (string): Probabilidade (ex., Provável, 50/50).
-  - `chaosFactor` (int): FC no momento da rolagem.
-  - `rollResult` (int): d100 para Tabela de Destino; total para Verificação de Destino.
-  - `outcome` (string, padrão Unknown): O texto do resultado, por exemplo Yes ou Exceptional No em inglês para uma pergunta de Destino. Em uma Verificação de Cena, contém o rótulo da cena no idioma do app. O esquema não limita esse campo a uma lista fixa de valores.
-  - `isSceneCheck` (bool): Verdadeiro quando a entrada é um resultado de Verificação de Cena.
-  - `timestamp` (string ISO8601): Quando aconteceu. O app sempre o grava. Um timestamp ausente é lido como 1970-01-01.
-  - Opcional: `individualDieResults`, `modifierValue`, `modifiedTotal` (detalhes da Verificação de Destino),
-    `randomEvent`, `eventFocus`, `sceneAdjustment`, `sceneAdjustmentRoll`, `diceRoll`, `sceneId`.
-  - `randomEvent` (objeto): `eventFocus`, `meanings` (um mapa de rótulos em string para valores em string), `meaningDescriptions` e `linkedResults`, além dos vínculos opcionais `characterResult`, `threadResult` e `featureResult` e de um `eventFocusRoll` opcional.
-  - Outros campos opcionais do registro são eventFocusRoll, sceneCheckResult, meaningTableName, discoveryExplanation, diceFormula e diceResults. meaningDescriptions e discoverySubRolls são sempre gravados como listas e podem estar vazios. diceSuccessCount, diceFailureCount, diceCriticalSuccessCount e diceCriticalFailureCount também são opcionais. diceRoll é o registro de cada dado de uma General dice roll, descrito abaixo. sceneId liga uma entrada Scene à sua cena. Campos opcionais do registro são omitidos quando não têm valor.
-  - `linkedResults` (array, em `randomEvent` e `eventFocus`): cada item tem `tableName`, `result` e `roll`, com `characterResult`, `threadResult` e `featureResult` opcionais, e `customListResults` (um objeto de string para string).
-- listNotes (object): anotações livres por lista, em characterNotes, threadNotes e featureNotes. É opcional em um arquivo que você importa, e a exportação o omite quando não tem valor.
-- schemaVersion (int, atual = 6): a versão do esquema de dados, usada na migração. O app grava schemaVersion 6 e minReaderVersion 4 ou 6 (veja Versões diferentes do app abaixo). Arquivos mais antigos são migrados ao carregar e salvos como esquema 6.
-- minReaderVersion (int): o esquema mais antigo que um leitor precisa entender para abrir o arquivo. O app mostra "Atualização necessária" para um arquivo cujo minReaderVersion seja maior que 6. Quando um arquivo não tem minReaderVersion, o app confere o schemaVersion. Um arquivo com schemaVersion maior, mas com minReaderVersion 6 ou menor, ainda carrega, mantém suas chaves de nível superior desconhecidas e mantém o schemaVersion maior ao ser salvo. Ele também mantém o próprio minReaderVersion quando este é maior que o que o app gravaria.
-- As exportações também sempre contêm customLists, threadProgressTracks, keyedScenes, tableProgressPoints, rev, base e minReaderVersion. lastCharacterRoll, lastThreadRoll e lastFeatureRoll só aparecem quando têm valor.
+O Mythic GME 1.7.0 e posteriores gravam os campos declarados de nível superior em camelCase, incluindo `journalName`, `chaosFactor`, `scenes` e `logEntries`. Na importação, o app ainda aceita chaves antigas em PascalCase, como `JournalName`, e as converte para os nomes atuais. Quando um arquivo importado vem de uma versão de esquema mais nova e compatível, o app mantém os campos desconhecidos de nível superior com a grafia original. Veja a seção Campos desconhecidos e de tipo errado abaixo para o comportamento de objetos internos.
 
-### Versões diferentes do app
+- `journalName` (string). Nome do seu Diário ou campanha.
+- `chaosFactor` (int, 1 a 9). Fator de Caos atual usado em verificações de Destino e probabilidades de evento.
+- `scenes` (array de objetos). Cada objeto de cena contém:
+  - `title` (string). Título opcional da cena.
+  - `sceneSummary` (string). Breve descrição da cena.
+  - `sceneChaosFactor` (int, 1 a 9, padrão `5`). Registro do Fator de Caos no início da cena.
+  - `sceneAdjustments` (array de objetos). Registros estruturados de ajuste com `range`, `description`, `result`, `additionalAdjustments` e `droppedAdjustment`. O app salva cada rolagem de Ajuste de Cena como uma entrada própria no registro com `rollType` definido como `"Scene Adjustment"` e um objeto `sceneAdjustment`. Ele grava uma lista `sceneAdjustments` vazia em toda cena que cria, e essa lista não serve para texto livre.
+  - `createdAt` (string ISO 8601). Data e hora em que a cena foi criada.
+- `characters` (array de strings). Nomes usados quando um resultado de Foco de Evento, como Ação de PNJ, pede um Personagem. Exportações salvam strings, usando `""` para espaços vazios. Formas antigas de objeto (`Character` ou `character`) são aceitas na importação. Em arquivos com `schemaVersion` de 0 a 2, o marcador `"Choose"` vira `""`. A partir do esquema 3, `"Choose"` é lido como um nome real.
+- `threads` (array de strings). Tramas usadas para resultados do Mythic como Fechar uma Trama ou Avançar em Direção a uma Trama. Um espaço vazio é `""`. Formas antigas de objeto usam `Thread` ou `thread`.
+- `features` (array de strings). Locais, objetos ou conceitos que dão contexto aos eventos. Um espaço vazio é `""`. Formas antigas de objeto usam `Feature` ou `feature`.
+- `activatedThreadSections`, `activatedCharacterSections` e `activatedFeatureSections` (int, padrão `1`). Quantidade de seções de 5 itens ativas em cada lista. O app exibe de 1 a 5 seções, então até 25 itens por lista ficam visíveis e entram nas rolagens. O limite de 25 itens é a capacidade de exibição e rolagem, não um limite documentado de importação. Arquivos mais antigos usam nomes em PascalCase, como `ActivatedThreadSections`.
+- `logEntries` (array de objetos). Histórico do oráculo e das rolagens de dados. Campos comuns:
+  - `rollType` (string). String livre, em vez de uma lista fechada de valores. Exemplos produzidos pelo Mythic GME 1.7.0 e posteriores incluem `"Scene"`, `"Fate Chart"`, `"Fate Check"`, `"Scene Check"`, `"Scene Adjustment"`, `"Random Event"`, `"Event Focus"`, `"Meaning Table"`, `"Narrative"`, `"Keyed Scene"`, `"Discovery Fate Question"` e `"General dice roll"`. Um `rollType` ausente é lido como `"Unknown"`. Uma entrada `"Scene"` funciona como separador de cena cujo `outcome` é o título da cena, `odds` é `""` e `sceneId` corresponde ao valor `createdAt` da cena. Uma entrada `"General dice roll"` tem `odds` definido como `"N/A"`, `question` vazia e `outcome` no formato `"<fórmula> = <total>"`.
+  - `question` (string). Texto digitado para uma pergunta de Destino. Uma entrada de Teste de Cena guarda `"Scene Check"` aqui, e seu `outcome` armazena o rótulo da cena no idioma do app (por exemplo, `"Expected Scene"` em inglês ou `"Cena Esperada"` em português).
+  - `odds` (string). Descritor de probabilidade, como `"Likely"` ou `"50/50"`.
+  - `chaosFactor` (int). Fator de Caos no momento da rolagem.
+  - `rollResult` (int). Resultado do d100 em uma rolagem da Tabela de Destino, ou o total em uma Verificação de Destino.
+  - `outcome` (string, padrão `"Unknown"`). Texto do resultado, como `"Yes"` ou `"Exceptional No"` em uma pergunta de Destino, ou o rótulo localizado da cena em um Teste de Cena. O esquema não restringe esse campo a uma lista fixa de valores.
+  - `isSceneCheck` (bool). `true` quando a entrada é um resultado de Teste de Cena.
+  - `timestamp` (string ISO 8601). Momento em que a entrada ocorreu. O app sempre grava esse campo. Um `timestamp` ausente é lido como `1970-01-01`.
+  - Campos opcionais do registro (omitidos quando vazios) incluem `individualDieResults`, `modifierValue`, `modifiedTotal` (detalhes da Verificação de Destino), `randomEvent`, `eventFocus`, `eventFocusRoll`, `sceneAdjustment`, `sceneAdjustmentRoll`, `sceneCheckResult`, `meaningTableName`, `discoveryExplanation`, `diceFormula`, `diceResults`, `diceSuccessCount`, `diceFailureCount`, `diceCriticalSuccessCount`, `diceCriticalFailureCount`, `diceRoll` (registro por dado descrito abaixo) e `sceneId` (liga uma entrada `"Scene"` à sua cena). `meaningDescriptions` e `discoverySubRolls` são sempre gravados como listas e podem estar vazios.
+  - `randomEvent` (objeto). Contém `eventFocus`, `meanings` (objeto que mapeia rótulos de string para valores de string), `meaningDescriptions` e `linkedResults`, além dos campos opcionais `characterResult`, `threadResult`, `featureResult` e `eventFocusRoll`.
+  - `linkedResults` (array, dentro de `randomEvent` e `eventFocus`). Cada item tem `tableName`, `result` e `roll`, com `characterResult`, `threadResult`, `featureResult` e `customListResults` opcionais (objeto de string para string).
+- `listNotes` (objeto). Anotações livres por lista em `characterNotes`, `threadNotes` e `featureNotes`. Opcional na importação e omitido na exportação quando vazio.
+- `schemaVersion` (int, atual `6`). Versão do esquema de dados usada para migração. O app grava `schemaVersion` `6` e `minReaderVersion` `4` ou `6` (veja Versões diferentes do app abaixo). Arquivos mais antigos migram ao carregar e são salvos no esquema 6.
+- `minReaderVersion` (int). Esquema mais antigo que um leitor precisa entender para abrir o arquivo. O app exibe `"Atualização necessária"` se `minReaderVersion` for maior que `6`. Quando `minReaderVersion` está ausente, o app verifica `schemaVersion`. Um arquivo com `schemaVersion` maior e `minReaderVersion` igual ou menor que `6` ainda carrega, mantém suas chaves desconhecidas de nível superior, preserva seu `schemaVersion` mais alto ao salvar e mantém o próprio `minReaderVersion` quando esse valor for maior do que o app gravaria.
+- Chaves sempre gravadas na exportação. As exportações também incluem sempre `customLists`, `threadProgressTracks`, `keyedScenes`, `tableProgressPoints`, `rev`, `base` e `minReaderVersion`. `lastCharacterRoll`, `lastThreadRoll` e `lastFeatureRoll` aparecem apenas quando preenchidos.
 
-A versão 1.6.8 do app gravava o esquema 4. A versão 1.7.0 e as posteriores gravam schemaVersion 6 e definem minReaderVersion como a versão mais antiga que mantém todos os dados do Diário:
+## Versões diferentes do app
 
-- minReaderVersion 4 quando a versão 1.6.8 mantém tudo. A 1.6.8 consegue abrir o Diário. Listas personalizadas e Pontos de Progresso não mudam isso: a 1.6.8 os mantém no arquivo, mas não os mostra.
-- minReaderVersion 6 quando o Diário tem dados que a 1.6.8 perderia ou leria errado. Isso inclui uma rolagem de dados registrada no modo de dados, uma cena adicionada na 1.7.0 (ela cria uma entrada de cena no Registro de Aventura), resultados de tabelas ligadas em um Evento Aleatório ou Foco do Evento, uma Trilha de Progresso com dados de Conclusão, Vantagem, Proteção ou Horror, uma Cena-Chave aguardando a próxima cena e um item de lista chamado Choose. A 1.6.8 mostra "Atualização necessária" para esse Diário.
+A versão 1.6.8 gravava o esquema 4. A versão 1.7.0 e posteriores gravam `schemaVersion` `6` e definem `minReaderVersion` como a versão mais antiga que preserva todos os dados do Diário:
 
-A versão 1.6.7 e as anteriores não conferem o minReaderVersion. Elas abrem o Diário e descartam os dados que não conhecem quando o salvam. Se você joga em mais de um dispositivo, atualize todos para a 1.7.0.
+- `minReaderVersion` é `4` quando a versão 1.6.8 consegue manter todos os campos. A versão 1.6.8 abre o Diário normalmente. Listas Personalizadas e Pontos de Progresso não elevam esse valor porque a 1.6.8 os preserva no arquivo mesmo sem exibi-los.
+- `minReaderVersion` é `6` quando o Diário contém dados que a versão 1.6.8 perderia ou leria errado. Isso inclui uma rolagem de dados registrada no modo de dados, uma cena adicionada na 1.7.0 (que grava uma entrada `"Scene"` no Registro de Aventura), resultados de tabelas vinculadas em um Evento Aleatório ou Foco de Evento, uma Trilha de Progresso com dados de Conclusão, Vantagem, Proteção ou Horror, uma Cena-Chave aguardando a próxima cena ou um item de lista chamado `"Choose"`. A versão 1.6.8 mostra `"Atualização necessária"` para esses Diários.
 
-### Campos desconhecidos e de tipo errado
+A versão 1.6.7 e anteriores não verificam `minReaderVersion`. Elas abrem o Diário e descartam ao salvar os dados que não reconhecem. Atualize todos os dispositivos para a versão 1.7.0 se você joga em mais de um aparelho.
 
-- Chaves desconhecidas são mantidas no nível superior do Diário e dentro das Trilhas de Progresso de Trama, das Alavancas e das Proteções.
-- Chaves desconhecidas dentro de cenas, entradas do registro, Listas personalizadas e Cenas-Chave são descartadas quando o app salva.
-- Um campo com o tipo JSON errado, por exemplo texto onde deveria haver um número, impede o Diário inteiro de carregar.
+## Campos desconhecidos e de tipo errado
 
-### Registro da rolagem de dados (`diceRoll`)
+- Chaves desconhecidas são mantidas no nível superior do Diário e dentro de `threadProgressTracks`, `leverages` e `protections`.
+- Chaves desconhecidas dentro de `scenes`, `logEntries`, `customLists` e `keyedScenes` são descartadas ao salvar.
+- Um campo com o tipo JSON errado (como texto onde é exigido um número) impede o Diário inteiro de carregar.
 
-Uma entrada General dice roll pode trazer `diceRoll`, o registro de cada dado.
+## Registro da rolagem de dados (`diceRoll`)
 
-- `dice` (array): um objeto por dado.
-- `pushCount` (int, padrão 0): quantas vezes a rolagem foi forçada.
-- `pushLimit` (int, opcional): quantas vezes a fórmula permite forçar, a partir de `@push=N`.
-- `pushedFrom` (string ISO8601, opcional): o `timestamp` da entrada que foi forçada. Uma entrada General dice roll com `pushedFrom` aparece no Registro de Aventura como "Rolagem de dados forçada".
+Uma entrada de registro `"General dice roll"` pode incluir `diceRoll` com os detalhes de cada dado.
 
-Cada objeto de dado:
+- `dice` (array). Um objeto por dado.
+- `pushCount` (int, padrão `0`). Quantas vezes a rolagem foi forçada.
+- `pushLimit` (int, opcional). Limite máximo de vezes para forçar permitido pela fórmula, vindo de `@push=N`.
+- `pushedFrom` (string ISO 8601, opcional). O `timestamp` da entrada que foi forçada. Uma entrada `"General dice roll"` com `pushedFrom` aparece no Registro de Aventura como `"Rolagem de dados forçada"`.
 
-- `value` (int, obrigatório): a face que o dado mostra.
-- `type` (string, obrigatório): `numbered`, `fate`, `d66`, `custom` ou `constant`. Se um dado tiver outro tipo, o app mantém o registro `diceRoll` inteiro como está e o grava de volta ao salvar. Ele mostra essa rolagem a partir de `diceResults`, e a rolagem não pode ser forçada.
-- `sides` (int): o número de lados.
-- `faces` (array de int): as faces do dado. Obrigatório para `fate` e `custom`.
-- `components` (array de dois ints de 1 a 6): os dois dados de um `d66`.
-- `pool` (string): o rótulo da parada de dados, quando a fórmula usa um.
-- `kept` (bool, padrão true): false quando o dado foi descartado.
-- `locked`, `subtracted`, `success`, `failure`, `criticalSuccess`, `criticalFailure`, `totaled` (bool, padrão false).
-- `scoreRules` (array): as contagens que pontuam o dado. Cada regra tem `count` (`s`, `f`, `cs` ou `cf`), `comparison` (`=`, `<`, `<=`, `>` ou `>=`) e `target` (int).
-- `lock` (string): `s`, `sf` ou `none`, a partir da tag `@lock` da fórmula.
+Cada objeto de dado em `dice` aceita estes campos:
 
-### Listas personalizadas (`customLists`)
+- `value` (int, obrigatório). Valor da face exibida pelo dado.
+- `type` (string, obrigatório). Um entre `numbered`, `fate`, `d66`, `custom` ou `constant`. Se um dado usar outro tipo, o app mantém o registro `diceRoll` intacto e o grava de volta ao salvar, exibe a rolagem a partir de `diceResults` e desativa a opção de forçar para essa rolagem.
+- `sides` (int). Quantidade de lados.
+- `faces` (array de int). Faces do dado. Obrigatório para `fate` e `custom`.
+- `components` (array de dois ints, 1 a 6). Os dois dados que compõem um `d66`.
+- `pool` (string). Rótulo da parada de dados quando a fórmula usa um.
+- `kept` (bool, padrão `true`). `false` quando o dado foi descartado.
+- `locked`, `subtracted`, `success`, `failure`, `criticalSuccess`, `criticalFailure` e `totaled` (bool, padrão `false`).
+- `scoreRules` (array). Regras de pontuação aplicadas ao dado. Cada regra tem `count` (`"s"`, `"f"`, `"cs"` ou `"cf"`), `comparison` (`"="`, `"<"`, `"<="`, `">"` ou `">="`) e `target` (int).
+- `lock` (string). `"s"`, `"sf"` ou `"none"`, vindo da tag `@lock` da fórmula.
 
-Cada item tem `id` (string, obrigatório), `name` (string), `entries` (array de strings, em que uma string vazia é um espaço vazio) e `notes` (string).
+## Listas personalizadas (`customLists`)
 
-### Trilhas de Progresso de Trama (`threadProgressTracks`)
+Cada item contém `id` (string, obrigatório), `name` (string), `entries` (array de strings, em que `""` representa um espaço vazio) e `notes` (string).
+
+## Trilhas de Progresso de Trama (`threadProgressTracks`)
 
 Cada trilha exige:
 
 - `id` (string)
 - `focusThreadName` (string)
-- `trackType` (string): `thread` ou `horror`.
-- `trackLength` (string): `short`, `medium`, `long` ou `custom`.
-- `createdAt` (string ISO8601)
+- `trackType` (string). `"thread"` ou `"horror"`.
+- `trackLength` (string). `"short"`, `"medium"`, `"long"` ou `"custom"`.
+- `createdAt` (string ISO 8601)
 
-O app não mostra uma trilha com qualquer outro valor de `trackType` ou `trackLength`. Ele mantém a trilha no arquivo e a grava de volta sem mudanças ao salvar.
+Se uma trilha usar qualquer outro valor em `trackType` ou `trackLength`, o app a oculta na interface, mas a mantém intacta no arquivo ao salvar.
 
-Campos opcionais: `customPoints` (int), `currentProgress` (int), `isResolved`, `endedUnresolved`, `isArchived` (bool), `flashpointPerPhase` (objeto de fase para bool), `conclusionDelayed`, `conclusionPlayed` (bool), `leverages`, `protections`, `horrorPlotArmorEnabled` (bool, padrão true) e `updatedAt` (string ISO8601).
+Os campos opcionais incluem `customPoints` (int), `currentProgress` (int), `isResolved` (bool), `endedUnresolved` (bool), `isArchived` (bool), `flashpointPerPhase` (objeto que mapeia fase para bool), `conclusionDelayed` (bool), `conclusionPlayed` (bool), `leverages` (array), `protections` (array), `horrorPlotArmorEnabled` (bool, padrão `true`) e `updatedAt` (string ISO 8601).
 
-- `leverages` (array): cada item tem `id`, `name`, `createdAt`, `lost` e `strengthenedCount`.
-- `protections` (array): cada item tem `id`, `name`, `createdAt` e `lost`.
+- `leverages` (array). Cada item tem `id`, `name`, `createdAt`, `lost` e `strengthenedCount`.
+- `protections` (array). Cada item tem `id`, `name`, `createdAt` e `lost`.
 
-### Cenas-Chave (`keyedScenes`)
+## Cenas-Chave (`keyedScenes`)
 
-Cada item exige `id`, `name`, `triggerDescription`, `eventDescription` e `createdAt` (string ISO8601). Campos opcionais: `count` (int), `targetCount` (int), `isRecurring`, `autoIncrement`, `isActive` (bool), `triggeredOnScenes` (array de strings ISO8601) e `awaitingNextScene` (bool).
+Cada item exige `id`, `name`, `triggerDescription`, `eventDescription` e `createdAt` (string ISO 8601).
 
-### Pontos de Progresso (`tableProgressPoints`)
+Os campos opcionais incluem `count` (int), `targetCount` (int), `isRecurring` (bool), `autoIncrement` (bool), `isActive` (bool), `triggeredOnScenes` (array de strings ISO 8601) e `awaitingNextScene` (bool).
 
-Um objeto de nome de tabela para Pontos de Progresso, por exemplo `{"Actions": 3}`. Cada valor fica entre 1 e 99. Um valor zero ou menor é descartado.
+## Pontos de Progresso (`tableProgressPoints`)
 
-### Exportação em Markdown
+Um objeto que mapeia o nome de uma tabela para seus Pontos de Progresso, como `{"Actions": 3}`. Cada valor fica entre 1 e 99. Valores iguais ou menores que 0 são descartados.
 
-A exportação em Markdown serve para leitura. Ela deixa de fora Listas personalizadas, Trilhas de Progresso de Trama, Cenas-Chave, Pontos de Progresso e o registro de cada dado, e o app não consegue importá-la.
+## Exportação em Markdown
 
-### Notas sobre alinhamento com Mythic
+A exportação em Markdown serve apenas para leitura. Ela omite `customLists`, `threadProgressTracks`, `keyedScenes`, `tableProgressPoints` e `diceRoll`, e o app não consegue importar arquivos Markdown.
 
-- Tipo de cena é derivado do log: a cena não tem campo de resultado. Uma entrada de log de `Scene Check` tem `isSceneCheck` verdadeiro e guarda o rótulo da cena em `outcome` e `sceneCheckResult`, no idioma do app (por exemplo Expected Scene em inglês).
-- Eventos Aleatórios: Use `randomEvent.eventFocus`, `meanings`, e vínculos opcionais (`characterResult`, `threadResult`, `featureResult`).
-- Mudanças de Fator Caos: Quando o FC muda para uma cena, defina `sceneChaosFactor` na cena e registre a justificativa em uma entrada de log, não em `sceneAdjustments`.
-- Listas como inspiração: Listas de Aventura conduzem conexões de eventos; expanda com os campos `activated*Sections` conforme necessário (até 25 itens visíveis por lista).
+## Alinhamento com as mecânicas do Mythic
+
+- Os resultados de cena ficam no registro, e não nos objetos de cena. Uma entrada de Teste de Cena define `isSceneCheck` como `true` e grava o rótulo localizado da cena em `outcome` e em `sceneCheckResult` (por exemplo, `"Expected Scene"` em inglês ou `"Cena Esperada"` em português).
+- Eventos Aleatórios guardam seus detalhes em `randomEvent.eventFocus`, `meanings` e vínculos opcionais (`characterResult`, `threadResult`, `featureResult`).
+- Quando o Fator de Caos muda, atualize o campo `chaosFactor` no nível superior para o novo valor. Mantenha `sceneChaosFactor` em cada cena como o registro do início daquela cena e coloque qualquer anotação sobre a mudança em uma entrada do registro, não em `sceneAdjustments`.
+- As Listas de Aventura conduzem conexões de eventos e expandem por meio de `activatedThreadSections`, `activatedCharacterSections` e `activatedFeatureSections` até 25 itens visíveis por lista.
 
 ## Esqueleto mínimo
 
-Este é um exemplo mínimo com os nomes de chave atuais do esquema 6. Não é uma exportação completa: um arquivo exportado pelo app contém mais campos. Ele também é diferente do `journal_template.json` para download, que é um arquivo legado do esquema 1 com chaves em PascalCase.
+Este exemplo mínimo usa chaves em camelCase do Esquema 6. Uma exportação completa gravada pelo app contém campos adicionais. Ele difere de `journal_template.json`, que é um arquivo legado do Esquema 1 com chaves em PascalCase.
+
 ```json
 {
   "journalName": "My Adventure",
@@ -174,7 +176,8 @@ Este é um exemplo mínimo com os nomes de chave atuais do esquema 6. Não é um
 
 ## Exemplo mais completo
 
-Este exemplo tem uma cena, uma entrada separadora de cena, uma General dice roll com o registro dos dados e um item em cada uma das listas mais novas. Uma exportação do app também grava os outros campos de nível superior listados acima.
+Este exemplo inclui uma cena, uma entrada separadora de cena, uma `General dice roll` com `diceRoll` e um item em cada uma das listas mais recentes. Uma exportação gravada pelo app também inclui os demais campos de nível superior documentados acima.
+
 ```json
 {
   "journalName": "Harbor Mystery",
@@ -251,4 +254,6 @@ Este exemplo tem uma cena, uma entrada separadora de cena, uma General dice roll
 }
 ```
 
-Para importar um Diário, o arquivo precisa de uma chave reconhecida de nome do Diário (`journalName`, ou `JournalName` em arquivos antigos) e de uma chave de Fator Caos (`chaosFactor` ou `ChaosFactor`). Muitos outros campos têm valores padrão no formato de dados, mas a tela de importação faz suas próprias verificações, que podem ser diferentes desses padrões.
+## Requisitos de importação
+
+Para importar um Diário, o arquivo precisa conter uma chave reconhecida para o nome do Diário (`journalName`, ou `JournalName` em arquivos antigos) e uma chave para o Fator de Caos (`chaosFactor` ou `ChaosFactor`). Muitos outros campos têm valores padrão no modelo de dados, mas a tela de importação faz verificações próprias que podem diferir desses padrões.

@@ -1,0 +1,328 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import PageHeader from "../../../components/layout/PageHeader.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import { formatDate } from "../../../lib/format-date";
+
+type GuideEntry = CollectionEntry<"tomekeeperGuides">;
+
+const entries = (await getCollection("tomekeeperGuides")).sort((a: GuideEntry, b: GuideEntry) =>
+  a.data.order === b.data.order
+    ? a.data.title.localeCompare(b.data.title)
+    : a.data.order - b.data.order,
+);
+
+const categoryLabels: Record<GuideEntry["data"]["category"], string> = {
+  "getting-started": "Getting Started",
+  "library-and-sets": "Library & Sets",
+  reading: "Reading",
+  "tables-and-clips": "Tables & Clips",
+  "sync-and-help": "Sync & Help",
+};
+
+const description =
+  "Short guides for importing tabletop RPG books, reading spreads cleanly, building Tables from multiple books, and setting up optional cloud sync in Tome Keeper.";
+---
+<BaseLayout
+  title="Tome Keeper Guides | Jason Holt Digital"
+  description={description}
+  canonicalPath="/tomekeeper/guides/"
+  ogImageAlt="Tome Keeper Guides"
+  noAlternate
+  mainClass="resources-main"
+>
+  <nav class="tk-crumbs container" aria-label="Breadcrumb">
+    <a href="/apps/">Apps</a>
+    <i class="fa-slab fa-regular fa-angle-right" aria-hidden="true"></i>
+    <a href="/tomekeeper/">Tome Keeper</a>
+    <i class="fa-slab fa-regular fa-angle-right" aria-hidden="true"></i>
+    <span aria-current="page">Guides</span>
+  </nav>
+
+  <PageHeader
+    title="Tome Keeper Guides"
+    subtitle="Plain guides for reading, organizing, clipping, and syncing"
+    description={description}
+    accent="Tome Keeper"
+    layout="left"
+    icon="fa-solid fa-book-open"
+    visualElement="grid"
+    colorScheme="primary"
+  />
+
+  <div data-tk-guide-root>
+    <div class="resource-search-container">
+      <div class="container">
+        <div class="resource-search-bar">
+          <div class="resource-search-input-wrapper">
+            <i
+              class="fa-slab fa-regular fa-search resource-search-icon"
+              aria-hidden="true"
+            ></i>
+            <input
+              id="tk-guide-search-input"
+              class="resource-search-input"
+              type="search"
+              name="tk-guide-search"
+              placeholder="Filter Tome Keeper guides..."
+              aria-label="Filter Tome Keeper guides"
+              data-tk-guide-input
+            />
+            <span class="resource-search-hint">Press / to focus</span>
+          </div>
+          <div
+            class="resource-search-status"
+            role="status"
+            aria-live="polite"
+            data-tk-guide-status
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section" id="starter-guides" aria-labelledby="starter-guides-title">
+      <div class="container">
+        <header class="section-head" aria-hidden="true">
+          <span class="accent-line" aria-hidden="true"></span>
+          <span class="badge-text">Guides</span>
+        </header>
+        <div class="resource-section-heading">
+          <h2 id="starter-guides-title" class="section-title">Starter guides</h2>
+          <p class="resource-section-summary">
+            Start with your first rulebook, or jump straight to Sets, Bookmarks, Tables, 3D dice, and sync.
+          </p>
+        </div>
+
+        <ul class="resource-list" role="list">
+          {entries.map((item) => (
+            <li
+              data-tk-guide-item
+              data-title={item.data.title}
+              data-summary={item.data.summary}
+              data-category={categoryLabels[item.data.category]}
+              data-tags={item.data.tags.join(" ")}
+              data-keywords={item.data.keywords.join(" ")}
+            >
+              <a class="resource-card" href={`/tomekeeper/guides/${item.id}/`}>
+                <span class="resource-card__icon" aria-hidden="true">
+                  <i class={item.data.icon}></i>
+                </span>
+                <span class="resource-card__body">
+                  <span class="resource-card__title">{item.data.title}</span>
+                  <span class="resource-card__summary">{item.data.summary}</span>
+                  <span class="resource-card__meta">
+                    {item.data.duration && (
+                      <span class="resource-card__meta-item">{item.data.duration}</span>
+                    )}
+                    <span class="resource-card__meta-item">
+                      {categoryLabels[item.data.category]}
+                    </span>
+                    {item.data.updated && (
+                      <span class="resource-card__meta-item">
+                        Updated {formatDate(item.data.updated)}
+                      </span>
+                    )}
+                  </span>
+                </span>
+                <span class="resource-card__arrow" aria-hidden="true">
+                  <i class="fa-slab fa-regular fa-arrow-right"></i>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <div class="resource-search-empty tk-guide-empty" data-tk-guide-empty hidden>
+          <i class="fa-slab fa-regular fa-search-minus" aria-hidden="true"></i>
+          <p>No matching guides</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="section section-band" id="tk-guides-help" aria-labelledby="tk-guides-help-title">
+    <div class="container">
+      <header class="section-head" aria-hidden="true">
+        <span class="accent-line" aria-hidden="true"></span>
+        <span class="badge-text">Need Help?</span>
+      </header>
+      <div class="resource-support">
+        <div class="resource-support__copy">
+          <h2 id="tk-guides-help-title" class="section-title">Still have a question?</h2>
+          <p class="resource-support__summary">
+            Visit Tome Keeper Support, or head back to the Tome Keeper overview.
+          </p>
+        </div>
+        <div class="resource-support__actions">
+          <a class="btn btn--shadow-primary" href="/tomekeeper/support/">
+            Tome Keeper Support
+            <i class="fa-slab fa-regular fa-life-ring" aria-hidden="true"></i>
+          </a>
+          <a class="btn btn--tertiary" href="/tomekeeper/">
+            Tome Keeper Overview
+            <i class="fa-slab fa-regular fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script type="module" is:inline>
+  const root = document.querySelector("[data-tk-guide-root]");
+  if (root) {
+    const input = root.querySelector("[data-tk-guide-input]");
+    const items = Array.from(root.querySelectorAll("[data-tk-guide-item]"));
+    const emptyState = root.querySelector("[data-tk-guide-empty]");
+    const statusEl = root.querySelector("[data-tk-guide-status]");
+
+    const filterGuides = () => {
+      const query = (input?.value ?? "").trim().toLowerCase();
+      let visibleCount = 0;
+
+      items.forEach((item) => {
+        const haystack = [
+          item.dataset.title ?? "",
+          item.dataset.summary ?? "",
+          item.dataset.category ?? "",
+          item.dataset.tags ?? "",
+          item.dataset.keywords ?? "",
+        ]
+          .join(" ")
+          .toLowerCase();
+        const matches = query.length === 0 || haystack.includes(query);
+        item.toggleAttribute("hidden", !matches);
+        if (matches) visibleCount += 1;
+      });
+
+      emptyState?.toggleAttribute("hidden", visibleCount > 0);
+      if (statusEl) {
+        statusEl.textContent =
+          query.length === 0
+            ? ""
+            : visibleCount > 0
+              ? `${visibleCount} matching guides`
+              : "No matching guides";
+      }
+    };
+
+    input?.addEventListener("input", filterGuides);
+    input?.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        input.value = "";
+        filterGuides();
+        input.blur();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (
+        event.key === "/" &&
+        !["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement?.tagName ?? "")
+      ) {
+        event.preventDefault();
+        input?.focus();
+      }
+    });
+  }
+</script>
+
+<style>
+  .tk-crumbs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-top: 1.25rem;
+    padding-bottom: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+  .tk-crumbs a {
+    color: var(--color-text-muted);
+  }
+  .resource-search-container {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--color-bg);
+    border-bottom: 2px solid var(--color-border);
+    padding: 1.5rem 0;
+    margin-bottom: 2rem;
+  }
+  .resource-search-bar {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .resource-search-input-wrapper {
+    position: relative;
+  }
+  .resource-search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-muted);
+    pointer-events: none;
+  }
+  .resource-search-input {
+    width: 100%;
+    padding: 0.875rem 1rem 0.875rem 3rem;
+    font-size: 1rem;
+    border: 2px solid var(--color-border);
+    border-radius: 8px;
+    background: white;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .resource-search-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+  }
+  .resource-search-hint {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    background: rgba(0, 0, 0, 0.05);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    pointer-events: none;
+  }
+  .resource-search-input:focus + .resource-search-hint {
+    opacity: 0;
+  }
+  .resource-search-empty {
+    padding: 2rem;
+    text-align: center;
+    color: var(--color-text-muted);
+  }
+  .resource-search-empty i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.5;
+  }
+  .resource-search-empty p {
+    margin: 0.5rem 0 0;
+  }
+  .tk-guide-empty[hidden] {
+    display: none;
+  }
+  .resource-search-status {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  @media (max-width: 768px) {
+    .resource-search-container {
+      padding: 1rem 0;
+    }
+    .resource-search-hint {
+      display: none;
+    }
+  }
+</style>

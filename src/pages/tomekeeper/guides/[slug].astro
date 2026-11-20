@@ -1,0 +1,167 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import PageHeader from "../../../components/layout/PageHeader.astro";
+import ShareBar from "../../../components/blog/ShareBar.astro";
+import { formatDate } from "../../../lib/format-date";
+import { getEntry, render, getCollection, type CollectionEntry } from "astro:content";
+
+type GuideEntry = CollectionEntry<"tomekeeperGuides">;
+
+export async function getStaticPaths() {
+  const entries = await getCollection("tomekeeperGuides");
+  return entries.map((entry: GuideEntry) => ({
+    params: { slug: entry.id },
+  }));
+}
+
+const { slug } = Astro.params;
+if (!slug || Array.isArray(slug)) {
+  throw new Error("Invalid Tome Keeper guide slug");
+}
+
+const entry = await getEntry("tomekeeperGuides", slug);
+if (!entry) {
+  throw new Error(`Tome Keeper guide not found for slug: ${slug}`);
+}
+
+const { Content } = await render(entry);
+const guide = entry.data;
+
+const allGuides = await getCollection("tomekeeperGuides");
+const resolveGuide = (id: string) => allGuides.find((item) => item.id === id);
+
+const explicitRelated = Array.isArray(guide.related)
+  ? guide.related
+      .map((id: string) => resolveGuide(id))
+      .filter((item): item is GuideEntry => Boolean(item && item.id !== entry.id))
+  : [];
+
+const seen = new Set<string>([entry.id, ...explicitRelated.map((item) => item.id)]);
+const sameCategory = allGuides
+  .filter((item) => item.data.category === guide.category && !seen.has(item.id))
+  .sort((a, b) => a.data.order - b.data.order);
+sameCategory.slice(0, 3).forEach((item) => seen.add(item.id));
+
+const guideTags = new Set<string>(Array.isArray(guide.tags) ? guide.tags : []);
+const tagOverlap = allGuides
+  .filter((item) => !seen.has(item.id))
+  .map((item) => ({
+    entry: item,
+    score: (item.data.tags || []).reduce(
+      (acc: number, tag: string) => acc + (guideTags.has(tag) ? 1 : 0),
+      0,
+    ),
+  }))
+  .filter((x) => x.score > 0)
+  .sort((a, b) => b.score - a.score)
+  .map((x) => x.entry);
+
+const fallbackRelated = [...sameCategory, ...tagOverlap].slice(
+  0,
+  Math.max(0, 3 - explicitRelated.length),
+);
+const relatedEntries: GuideEntry[] = [...explicitRelated, ...fallbackRelated];
+
+const categoryLabels: Record<GuideEntry["data"]["category"], string> = {
+  "getting-started": "Getting Started",
+  "library-and-sets": "Library & Sets",
+  reading: "Reading",
+  "tables-and-clips": "Tables & Clips",
+  "sync-and-help": "Sync & Help",
+};
+
+const canonicalPath = `/tomekeeper/guides/${entry.id}/`;
+const canonicalUrl = new URL(
+  canonicalPath,
+  Astro.site ?? "https://jasonholtdigital.com",
+).toString();
+---
+<BaseLayout
+  title={`${guide.title} | Tome Keeper Guide`}
+  description={guide.summary}
+  canonicalPath={canonicalPath}
+  ogImageAlt={guide.title}
+  noAlternate
+  mainClass="resource-detail-main"
+>
+  <PageHeader
+    title={guide.title}
+    subtitle={categoryLabels[guide.category]}
+    description={guide.summary}
+    accent="Tome Keeper"
+    layout="left"
+    icon="fa-solid fa-book-open"
+    visualElement="grid"
+    colorScheme="primary"
+  />
+
+  <article class="container section resource-detail" aria-labelledby="guide-detail-heading">
+    <div class="resource-detail__inner">
+      <p class="resource-detail__back">
+        <a class="resource-back-link" href="/tomekeeper/guides/">
+          <i class="fa-slab fa-regular fa-arrow-left" aria-hidden="true"></i>
+          Back to Tome Keeper guides
+        </a>
+      </p>
+
+      <header class="resource-detail__header">
+        <h2 id="guide-detail-heading" class="resource-detail__title">{guide.title}</h2>
+        <div class="resource-detail__meta" aria-label="Guide metadata">
+          <span class="resource-pill">{categoryLabels[guide.category]}</span>
+          {guide.duration && <span class="resource-pill">{guide.duration}</span>}
+          {guide.updated && (
+            <span class="resource-pill">Updated {formatDate(guide.updated)}</span>
+          )}
+        </div>
+      </header>
+
+      <ShareBar url={canonicalUrl} title={guide.title} summary={guide.summary} />
+
+      <div class="resource-detail__content">
+        <Content />
+      </div>
+
+      {relatedEntries.length > 0 && (
+        <section class="section" aria-labelledby="guide-related-title">
+          <header class="section-head" aria-hidden="true">
+            <span class="accent-line" aria-hidden="true"></span>
+            <span class="badge-text">Related</span>
+          </header>
+          <h3 id="guide-related-title" class="section-title">Related Guides</h3>
+          <ul class="resource-related__list" aria-label="Related guides">
+            {relatedEntries.map((r) => (
+              <li class="resource-related__item">
+                <a href={`/tomekeeper/guides/${r.id}/`} class="resource-related__link">
+                  <span class="resource-related__icon" aria-hidden="true">
+                    <i class={r.data.icon ?? "fa-slab fa-regular fa-book-open"}></i>
+                  </span>
+                  <span class="resource-related__body">
+                    <span class="resource-related__label">{r.data.title}</span>
+                    <span class="resource-related__summary">{r.data.summary}</span>
+                  </span>
+                  <span class="resource-related__arrow" aria-hidden="true">
+                    <i class="fa-slab fa-regular fa-arrow-right"></i>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  :global(.resource-detail__content > p:has(img)) {
+    margin: 1.5rem 0;
+  }
+  :global(.resource-detail__content > p > img) {
+    display: block;
+    width: min(100%, 780px);
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border: var(--border-base);
+  }
+</style>

@@ -7,7 +7,7 @@ category: "custom-tables"
 order: 1
 icon: "fa-slab fa-regular fa-newspaper"
 duration: "9 min read"
-updated: "2026-11-04"
+updated: "2026-11-19"
 tags: ["custom-tables", "getting-started", "meaning-tables", "event-focus", "categories"]
 keywords:
   - Custom tables
@@ -66,67 +66,72 @@ related:
 
 > This guide describes Mythic GME 1.7.0 and later.
 
+Custom Tables lets you build your own Meaning Tables and Event Focus tables right inside the app, edit built-in tables to fit your game, or import starter files.
+
 ## Where to find Custom Tables
 
-On a phone, open the navigation drawer and tap TABLE EDITOR under Tools. On a tablet or desktop, select Custom Tables in the navigation rail, or in the Classic 6-Panel Layout (Desktop) click the Custom Tables icon button at the lower right.
-> ### How to Unlock
-  >  - Google Play, Amazon, and Apple App Store: requires an in‑app purchase to unlock Custom Tables.
-  > - Itch.io and Microsoft Store (Windows): included with the higher‑priced purchase.
+On a phone, open the navigation drawer and tap **TABLE EDITOR** under **Tools**. On a tablet or desktop, select **Custom Tables** in the navigation rail.
 
-## Make your first Meaning table
+> ### How to unlock Custom Tables
+>
+> - On the Apple App Store, Google Play, and Amazon, Custom Tables is part of the one-time Expanded Features unlock.
+> - On the Microsoft Store and itch.io, Custom Tables is included with Mythic GME Digital.
 
-1) On a phone, open the Oracle tab and tap the + button to start the Create Table wizard. On a tablet or desktop, select the first icon in the left sidebar (Meaning Tables) and click the + button below the icons.
-2) Name it and pick a category from the list. To add a category of your own, create it first with the + button on the Category tab.
-3) Set the range (for a first table, try 1–10 or 1–20)
-4) Add your entries. In the phone wizard the app spreads them evenly across the range for you.
-5) Optional: description, tags, translations. Only Event Focus tables and categories have an icon of their own.
-6) Save and test by rolling
+## Make your first Meaning Table
 
-> ### Tips
-> - Start small (1d6/1d10) and expand later to 1d100
-> - Keep ranges continuous (no gaps/overlaps). The app validates this for you
-> - Use Entry Links on an entry to roll on another table, on an Adventure List (Characters, Threads, or Features), or on a Custom List when that entry comes up.
+1. On a phone, open the **Oracle** tab and tap the **+** button to start the Create Table wizard. On a tablet or desktop, select the first icon in the left sidebar (**Meaning Tables**) and click the **+** button below the icons.
+2. Give the table a name and pick a category from the list. If you want a category of your own, create it first with the **+** button on the **Category** tab.
+3. Set the roll range. For a first table, 1 to 10 or 1 to 20 is a good starting size, and you can expand to 1 to 100 later.
+4. Add your entries. In the phone wizard, the app spreads your entries evenly across the range for you. Keep the ranges continuous with no gaps or overlaps, which the app checks before saving.
+5. Add a description, tags, or translations if you want them. Only Event Focus tables and categories have an icon of their own.
+6. Save the table and test it with a few rolls.
 
 ## Make an Event Focus table
 
-1) On a phone, open the Event tab and tap the + button. On a tablet or desktop, select the second icon in the left sidebar (Event Focus) and click the + button below the icons.
-2) Range is typically 1–100 (percentile) but smaller ranges work too
-3) Add entries that describe what kind of event happens (for example NPC Action or Move Toward A Thread).
-4) Save and try a few test rolls
+1. On a phone, open the **Event** tab and tap the **+** button. On a tablet or desktop, select the second icon in the left sidebar (**Event Focus**) and click the **+** button below the icons.
+2. Set the range. Event Focus tables are usually 1 to 100, though smaller ranges work fine too.
+3. Add entries that describe what kind of event happens, such as NPC Action or Move Toward A Thread.
+4. Save the table and try a few test rolls.
 
-> ### Tip 
-> After you create a table, open it and use Linked Tables on the Controls tab to roll other Meaning Tables every time this table is rolled. Use Entry Links to link a single entry to a table or a list.
+Once a table is saved, you can connect rolls across tables and Adventure Lists with **Entry Links** and **Linked Tables**. See [Linking & Nesting Tables](/resources/linking-and-nesting-tables/) for how chained rolls work.
 
+## Edit, hide, or delete built-in tables
 
-## Built-in tables
+You can edit any built-in table. The app saves your edited version separately and uses it in place of the original. If you want to keep both versions, choose **Duplicate** from the table's menu and edit the copy instead.
 
-You can edit a built-in table. The app saves your version separately and uses it in place of the original. To keep both, choose **Duplicate** from the table's menu and edit the copy. Resets do not remove your edits. To go back to the originals, use **Discard Edits to Built-in Tables** in Table Settings.
+Resets do not wipe out your table edits. To go back to the shipped originals, use **Discard Edits to Built-in Tables** in **Table Settings**.
 
 How you remove a table depends on where it came from:
 
-- A built-in table you have not edited offers **Hide this table** instead of **Delete**. Hiding takes the table out of your lists, but no files are deleted. To bring it back, show it again from **Table Settings**.
-- A built-in table you have edited offers **Delete my edited version**. The app removes your version and loads the original again. You can undo this.
-- A table you created yourself offers **Delete**. You can undo this too.
+- An unedited built-in table offers **Hide this table** instead of **Delete**. Hiding takes the table out of your lists without deleting any files, and you can show it again from **Table Settings**.
+- An edited built-in table offers **Delete my edited version**. The app removes your copy and loads the original again, and you can undo the action.
+- A table you created yourself offers **Delete**, which you can also undo.
 
-## Translations & metadata
+## Translations and metadata
 
-- You can add per‑table and per‑entry translations as you go. Default language is `en`.
-- Add tags to help search and grouping.
-- Icons are configured via categories; you can pick an icon per category once and reuse it.
+You can add per-table and per-entry translations as you build. The default language is `en`.
+
+Add tags to make searching and grouping easier, and pick category icons once so every table in that category shares the same icon. For more on categories, icons, and tags, see [Organizing Custom Tables](/resources/organizing-custom-tables/).
 
 ## Starter downloads
 
-Use these templates and samples as starting points. Import them from the Files tab in Custom Tables (the Import/Export icon on a tablet or desktop). Tap Oracle Tables for a Meaning Table file or Event Focus Tables for an Event Focus file. See the Downloads section below for files.
+The Downloads section at the bottom of this page has JSON, CSV, TXT, and PSV templates and samples you can use as starting points. To bring one into the app, open the **Files** tab in Custom Tables (the **Import/Export** icon on a tablet or desktop), then tap **Oracle Tables** for a Meaning Table file or **Event Focus Tables** for an Event Focus file.
+
+For format rules and troubleshooting, see [Importing & Exporting Custom Tables](/resources/importing-and-exporting-custom-tables/).
 
 ## Weighted tables
 
-- You can't build a weighted table by hand yet. On the **Controls** tab, the **Weighted** option is marked **Coming Soon**.
-- To get a weighted Meaning Table, import a Meaning Table CSV with result and weight columns, up to 100 rows. The app spreads the weights over 100 slots, so the weights it keeps can differ from the numbers in your file.
-- When any entry in a Meaning Table has a weight above 1, the app picks an entry by weight and does not roll the table's linked tables. An Event Focus table always rolls on its ranges.
-- Selecting **Roll Ranges** on the **Controls** tab splits the ranges again, but the weights stay. A weight above 1 still makes the app pick by weight.
+You cannot build a weighted table by hand in the editor yet. On the **Controls** tab, the **Weighted** option is marked **Coming Soon**.
+
+To create a weighted Meaning Table now, import a Meaning Table CSV with `result` and `weight` columns, up to 100 rows. The app spreads the weights across 100 slots, so the stored weights can differ slightly from the numbers in your file.
+
+When any entry in a Meaning Table has a weight above 1, the app picks an entry by weight and does not roll the table's linked tables. Event Focus tables always roll on their ranges.
+
+If you select **Roll Ranges** on the **Controls** tab, the app splits the ranges again, though the weights stay on the entries. As long as any entry has a weight above 1, the app still picks by weight.
 
 ## Next steps
 
-- Import & Export details: see “Importing & Exporting Custom Tables”
-- Organize categories and icons: see “Organizing Custom Tables”
-- Full JSON fields: see “Custom Table Schema” and “Categories Schema”
+- Learn how categories, icons, and tags work in [Organizing Custom Tables](/resources/organizing-custom-tables/).
+- Chain rolls between tables and Adventure Lists in [Linking & Nesting Tables](/resources/linking-and-nesting-tables/).
+- Prepare CSV, TXT, PSV, JSON, and Foundry VTT files in [Importing & Exporting Custom Tables](/resources/importing-and-exporting-custom-tables/).
+- Check every JSON field in [Custom Table Schema](/resources/custom-table-schema/) and [Categories Schema](/resources/categories-schema/).

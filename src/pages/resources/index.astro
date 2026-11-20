@@ -152,6 +152,7 @@ const searchEntries = sortByOrder(entries).map((entry) => ({
                   data-summary={entry.appSummary ?? entry.summary}
                   data-search-summary={entry.summary}
                   data-category={appCategoryLabels[entry.category]}
+                  data-search-category={categoryLabels[entry.category]}
                   data-index={index}
                 >
                   <a href={`/resources/${entry.id}/`} tabindex="-1">
@@ -320,6 +321,33 @@ const searchEntries = sortByOrder(entries).map((entry) => ({
   }
 
   <section
+    class="section"
+    id="tomekeeper-guides-callout"
+    aria-labelledby="tomekeeper-guides-callout-title"
+  >
+    <div class="container">
+      <div class="resource-support tk-guides-callout">
+        <div class="resource-support__copy">
+          <h2 id="tomekeeper-guides-callout-title" class="section-title">
+            Looking for Tome Keeper guides?
+          </h2>
+          <p class="resource-support__summary">
+            Guides for importing tabletop RPG PDFs, organizing Sets, clipping onto Tables, and syncing Tome Keeper live in their own hub.
+          </p>
+        </div>
+        <div class="resource-support__actions">
+          <a class="btn btn--shadow-primary" href="/tomekeeper/guides/">
+            Browse Tome Keeper Guides
+            <i
+              class="fa-slab fa-regular fa-arrow-right"
+              aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
     class="section section-band"
     id="resources-support"
     aria-labelledby="resources-support-title"
@@ -392,7 +420,7 @@ const searchEntries = sortByOrder(entries).map((entry) => ({
       // Filter items
       items.forEach((item) => {
         const haystack =
-          `${item.dataset.title ?? ""} ${item.dataset.searchSummary} ${item.dataset.category ?? ""}`.toLowerCase();
+          `${item.dataset.title ?? ""} ${item.dataset.searchSummary ?? ""} ${item.dataset.searchCategory ?? ""} ${item.dataset.category ?? ""}`.toLowerCase();
         const matches = haystack.includes(query);
         item.toggleAttribute("hidden", !matches);
         if (matches) {

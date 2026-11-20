@@ -1,11 +1,12 @@
 ---
+fullArticleAvailable: true
 title: "Como configurar uma aventura preparada nos apps Mythic GME"
-summary: "Configure o Mythic para módulos publicados: troque a tabela de Foco de Evento, preencha Aspectos e use o fluxo de cena de aventura pronta."
+summary: "Configure o app para jogar uma aventura publicada usando a Tabela de Foco de Eventos Preparados."
 category: "start-here"
 order: 5
 icon: "fa-slab fa-regular fa-book-open"
 duration: "4 min de leitura"
-updated: "2026-11-04"
+updated: "2026-11-19"
 lang: "pt"
 tags: ["prepared-adventure", "modules", "event-focus", "random-events", "features", "scenes"]
 keywords:
@@ -17,68 +18,59 @@ keywords:
   - Evento Aleatório
   - Aspecto de Aventura
   - Lista de Aspectos
-  - Fator Caos
+  - Fator de Caos
   - Cena Esperada
 related:
-  - writing-and-organizing-scenes
-  - setting-up-and-using-lists
-  - using-meaning-tables-for-inspiration
+  - writing-and-organizing-scenes-pt
+  - setting-up-and-using-lists-pt
+  - using-meaning-tables-for-inspiration-pt
 ---
 
-> Este guia descreve o Mythic GME 1.7.0 e posteriores.
+> Este guia cobre o Mythic GME 1.7.0 e versões posteriores.
 
-Jogar uma aventura pronta (como um módulo publicado de D&D) com Mythic requer apenas alguns passos simples de configuração. O app inclui funcionalidades especiais projetadas especificamente para este estilo de jogo.
+Jogar uma aventura preparada (como um módulo publicado de D&D) com o Mythic pede apenas alguns passos de configuração. Não existe um botão separado de "Aventura Preparada" no app. As regras de aventura preparada passam a valer automaticamente sempre que você seleciona uma tabela preparada de Foco de Evento.
 
-## Passo 1: Mude Sua Tabela de Foco de Evento
+## 1. Troque a Tabela de Foco de Evento
 
-A primeira coisa que você precisará fazer é mudar para a **Tabela de Foco de Eventos Preparados**.
+Comece selecionando a **Tabela de Foco de Eventos Preparados** nas configurações:
 
-1. No celular, abra a gaveta, toque em CONFIGURAÇÕES, escolha a aba Comportamento no jogo e encontre Tabela de foco do evento na seção Tabela de Destino. Você também pode tocar na engrenagem da tela de Destino, que mostra o mesmo controle Tabela de foco do evento.
-2. Selecione **Tabela de Foco de Eventos Preparados**
+1. No celular, abra a gaveta de navegação, toque em **Configurações**, entre na aba **Comportamento no jogo** e encontre **Tabela de Foco do Evento** em **Tabela de Destino**. Você também pode tocar na engrenagem da tela de Destino para acessar o mesmo controle. No tablet ou no computador, abra **Configurações** pela barra de navegação e vá em **Tabela de Destino**, ou toque na engrenagem do painel de Destino.
+2. Selecione **Tabela de Foco de Eventos Preparados** (ou **Tabela de Foco de Evento de Aventura Pronta**, se você tiver os Recursos Expandidos).
 
-Esta tabela especial remove eventos que a aventura publicada já lida (como "Mover em Direção a uma Trama" ou "Novo NPC") e adiciona **Aspecto de Aventura** (nome do resultado na tabela padrão não editada, diferente da lista Aspectos) como um possível Evento Aleatório. Isso impede o Mythic de sobrescrever a estrutura da aventura enquanto ainda fornece surpresas e emulação de GM.
+Essa tabela deixa de fora eventos que o módulo publicado já resolve sozinho (como "Mover em Direção a uma Trama" ou "Novo NPC") e adiciona **Aspecto de Aventura** como um Evento Aleatório. Assim o Mythic continua trazendo surpresas para a mesa sem brigar com a trama do módulo.
 
-## Passo 2: Preencha Sua Lista de Aspectos
+## 2. Preencha sua lista de Aspectos
 
-A **Lista de Aspectos** (mostrada na seção Listas) é onde você rastreará elementos únicos da sua aventura pronta que podem aparecer como Eventos Aleatórios.
+Abra **Listas** e vá até a aba **Aspectos**. Adicione elementos recorrentes da aventura que podem reaparecer como Eventos Aleatórios, por exemplo:
 
-Adicione itens como:
 - Encontros com monstros errantes
 - Perigos ambientais especiais
 - Visões ou sonhos aleatórios
 - Aparições súbitas de NPCs
-- Tabelas de encontro aleatório da aventura
-- Mecânicas especiais (progressão de veneno, perseguição por vilões, etc.)
+- Tabelas de encontro aleatório do módulo
+- Mecânicas especiais, como progressão de veneno ou perseguição de um vilão
 
-**Exemplo:** Em uma aventura de caça a vampiros, você pode adicionar:
-- "Lorde vampiro ataca"
-- "Visão aleatória"
-- "Monstro errante"
-- "Tempo piora"
+Em um módulo de caça a vampiros, sua lista de Aspectos pode ter "Lorde vampiro ataca", "Visão aleatória", "Monstro errante" e "Tempo piora".
 
-Quando você rola Aspecto de Aventura como Evento Aleatório, o app rola sua lista de Aspectos e mostra o item no Registro de Aventura. Se a rolagem cair em uma linha vazia, ele mostra Escolher e você mesmo escolhe um item.
+Quando um Evento Aleatório rolar **Aspecto de Aventura**, o app sorteia um item da sua lista de Aspectos e mostra o resultado no **Diário de Aventura**. Por padrão, se a rolagem cair em um espaço vazio, o app exibe **Escolher** e você mesmo seleciona um item. Se **Nunca Role "Escolher"** estiver ativado em **Configurações da Lista** e sua lista de Aspectos tiver pelo menos um item, o app rerrola os espaços vazios em vez disso.
 
-## Passo 3: Configure Suas Outras Listas
+## 3. Configure Personagens e Tramas
 
-Conforme você lê a introdução da sua aventura pronta:
-- Adicione NPCs importantes à sua **Lista de Personagens**
-- Adicione ganchos de trama e objetivos à sua **Lista de Tramas**
+Enquanto lê a introdução da aventura, preencha as outras duas listas principais:
 
-Isso prepara o Mythic para gerar Eventos Aleatórios que parecem apropriados ao tom e cenário da aventura.
+- Adicione os NPCs importantes à lista de **Personagens**.
+- Adicione ganchos de trama e objetivos principais à lista de **Tramas**.
 
-## Notas Importantes
+Isso entrega ao Mythic pessoas e metas concretas para puxar para o jogo logo na cena de abertura.
 
-**Aventuras Prontas usam uma estrutura de cena modificada:**
-- Use Cenas Esperadas normalmente
-- Sem Cenas Alteradas
-- Sem Cenas Interrompidas
-- Eventos Aleatórios são adicionados a Cenas Esperadas (não as substituindo)
-- O botão Ajuste de Cena fica oculto enquanto uma tabela preparada estiver selecionada. Para mostrá-lo, desative Ocultar Ajuste de Cena em Aventuras Preparadas.
+## Como aventuras preparadas mudam o Teste de Cena
 
-Essas regras valem enquanto uma tabela de Foco do Evento preparada estiver selecionada: a Tabela de Foco de Eventos Preparados, a Tabela de Foco de Evento de Aventura Pronta ou qualquer tabela com a tag `prepared`. Para voltar a ter os resultados Cena Alterada e Cena de Interrupção, selecione uma tabela de Foco do Evento sem a tag `prepared`.
+As regras de aventura preparada continuam ativas sempre que você seleciona a **Tabela de Foco de Eventos Preparados**, a **Tabela de Foco de Evento de Aventura Pronta** ou qualquer tabela personalizada de Foco de Evento com a tag `prepared`. Para voltar a receber resultados de Cena Alterada e Cena de Interrupção, troque para uma tabela de Foco de Evento sem a tag `prepared`.
 
-Quando você toca em Teste de Cena e a rolagem é igual ou menor que o Fator de Caos, o app adiciona um Evento Aleatório à mesma entrada do Registro de Aventura. Siga com sua Cena Esperada e não role outro Evento Aleatório. O Evento Aleatório adiciona uma reviravolta sem descarrilar a aventura pronta.
+Enquanto uma tabela preparada estiver ativa, o Teste de Cena e o Ajuste da Cena funcionam de um jeito diferente:
 
----
+- **Apenas Cenas Esperadas.** Você joga suas Cenas Esperadas normalmente, sem Cenas Alteradas e sem Cenas de Interrupção.
+- **Eventos Aleatórios se somam à Cena Esperada.** Quando você toca em **Teste de Cena** e a rolagem sai igual ou menor que o Fator de Caos, o app mantém a Cena Esperada e adiciona um Evento Aleatório na mesma entrada do Diário de Aventura. Continue jogando sua Cena Esperada e não role outro Evento Aleatório. A reviravolta acontece dentro da cena em vez de substituí-la.
+- **O botão Ajuste da Cena fica oculto.** O botão **Ajuste da Cena** fica escondido por padrão enquanto uma tabela preparada estiver selecionada. Para mostrá-lo de novo, desative **Ocultar Ajuste de Cena em Aventuras Preparadas** nas configurações de Destino.
 
-**Pronto para jogar?** Comece sua primeira Cena baseada na abertura da aventura, e deixe o Mythic adicionar surpresas enquanto você explora!
+Comece sua primeira Cena a partir da abertura da aventura e deixe o Mythic adicionar surpresas enquanto você explora.

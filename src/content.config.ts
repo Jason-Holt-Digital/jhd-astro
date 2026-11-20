@@ -118,4 +118,20 @@ const pages = defineCollection({
   }),
 });
 
-export const collections = { resources, blog, pages };
+const tomekeeperGuides = defineCollection({
+  loader: glob({ pattern: "**/[!_]*.md", base: "./src/content/tomekeeper-guides" }),
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    category: z.enum(["getting-started", "library-and-sets", "reading", "tables-and-clips", "sync-and-help"]),
+    order: z.number().int().nonnegative(),
+    icon: z.string().default("fa-slab fa-regular fa-book-open"),
+    duration: z.string().optional(),
+    updated: z.coerce.date().optional(),
+    keywords: keywordsField,
+    tags: tagsField,
+    related: z.array(z.string()).default([]),
+  }),
+});
+
+export const collections = { resources, blog, pages, tomekeeperGuides };

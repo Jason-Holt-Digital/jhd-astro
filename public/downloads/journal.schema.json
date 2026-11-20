@@ -1,150 +1,638 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://mythicgme2e.app/schemas/journal.schema.json",
-  "title": "Mythic GME 2e Journal (v1)",
+  "title": "Mythic GME Journal",
+  "description": "A Mythic GME Journal file (journals/{journalName}.json). Mythic GME 1.7.0 and later write schema 6 with camelCase keys (the Journal branch). The app also opens and migrates PascalCase Journals written before schema 3 (the LegacyJournal branch). A file with a camelCase journalName or schemaVersion key is checked as a Journal; any other file is checked as a LegacyJournal. The reference implementation is JournalDto and the DTOs it nests, with JournalMigrationUtility for migration; schemas/schema_versioning.md describes the versions. The app never writes null; the reader treats an explicit null on an optional key like a missing key. Every numeric field the app writes is an integer.",
   "type": "object",
-  "additionalProperties": true,
-  "properties": {
-    "JournalName": { "type": "string" },
-    "ChaosFactor": { "type": "integer", "minimum": 1, "maximum": 9 },
-    "Scenes": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "additionalProperties": true,
-        "properties": {
-          "Title": { "type": "string" },
-          "SceneSummary": { "type": "string" },
-          "SceneChaosFactor": { "type": "integer", "minimum": 1, "maximum": 9 },
-          "SceneAdjustments": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "additionalProperties": true,
-              "properties": {
-                "result": { "type": "string" },
-                "range": {
-                  "type": "array",
-                  "items": { "type": "integer" },
-                  "minItems": 2,
-                  "maxItems": 2
-                },
-                "description": { "type": "string" },
-                "additionalAdjustments": {
-                  "type": "array",
-                  "items": { "$ref": "#/$defs/SceneAdjustment" }
-                }
-              },
-              "required": ["result", "range", "description"]
-            }
-          },
-          "CreatedAt": { "type": "string", "format": "date-time" }
-        }
-      }
-    },
-    "Characters": { "type": "array", "items": { "type": "string" } },
-    "Threads": { "type": "array", "items": { "type": "string" } },
-    "Features": { "type": "array", "items": { "type": "string" } },
-    "ActivatedThreadSections": { "type": "integer", "minimum": 1, "maximum": 5 },
-    "ActivatedCharacterSections": { "type": "integer", "minimum": 1, "maximum": 5 },
-    "ActivatedFeatureSections": { "type": "integer", "minimum": 1, "maximum": 5 },
-    "LogEntries": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "additionalProperties": true,
-        "properties": {
-          "rollType": { "type": "string" },
-          "odds": { "type": "string" },
-          "chaosFactor": { "type": "integer", "minimum": 1, "maximum": 9 },
-          "question": { "type": "string" },
-          "outcome": { "type": "string" },
-          "rollResult": { "type": "integer" },
-          "eventFocusRoll": { "type": "integer" },
-          "individualDieResults": {
-            "type": "array",
-            "items": { "type": "integer" }
-          },
-          "modifierValue": { "type": "integer" },
-          "modifiedTotal": { "type": "integer" },
-          "randomEvent": {
-            "type": "object",
-            "additionalProperties": true,
-            "properties": {
-              "eventFocus": { "type": "string" },
-              "meanings": { "type": "object", "additionalProperties": { "type": "string" } },
-              "characterResult": { "type": "string" },
-              "threadResult": { "type": "string" },
-              "featureResult": { "type": "string" },
-              "eventFocusRoll": { "type": "integer" },
-              "meaningDescriptions": { "type": "array", "items": { "type": "string" } }
-            }
-          },
-          "eventFocus": {
-            "type": "object",
-            "additionalProperties": true,
-            "properties": {
-              "result": { "type": "string" },
-              "roll": { "type": "integer" },
-              "characterResult": { "type": "string" },
-              "threadResult": { "type": "string" },
-              "featureResult": { "type": "string" },
-              "meanings": { "type": "object", "additionalProperties": { "type": "string" } },
-              "meaningDescriptions": { "type": "array", "items": { "type": "string" } }
-            }
-          },
-          "isSceneCheck": { "type": "boolean" },
-          "sceneCheckResult": { "type": "string" },
-          "timestamp": { "type": "string", "format": "date-time" },
-          "sceneAdjustment": { "$ref": "#/$defs/SceneAdjustment" },
-          "sceneAdjustmentRoll": { "type": "integer" },
-          "meaningDescriptions": { "type": "array", "items": { "type": "string" } }
-        },
-        "required": ["rollType","odds","chaosFactor","question","outcome","rollResult","isSceneCheck","timestamp"]
-      }
-    },
-    "ListNotes": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "CharacterNotes": { "type": "string" },
-        "ThreadNotes": { "type": "string" },
-        "FeatureNotes": { "type": "string" }
-      }
-    },
-    "SchemaVersion": { "type": "integer", "const": 1 }
-  },
-  "required": [
-    "JournalName",
-    "ChaosFactor",
-    "Scenes",
-    "Characters",
-    "Threads",
-    "Features",
-    "ActivatedThreadSections",
-    "ActivatedCharacterSections",
-    "ActivatedFeatureSections"
-  ],
+  "if": { "anyOf": [{ "required": ["journalName"] }, { "required": ["schemaVersion"] }] },
+  "then": { "$ref": "#/$defs/Journal" },
+  "else": { "$ref": "#/$defs/LegacyJournal" },
   "$defs": {
-    "SceneAdjustment": {
+    "Journal": {
+      "title": "Journal (camelCase keys, written as schema 6)",
+      "description": "Unknown top-level keys are kept and written back on save. Keys the app does not declare inside Scenes, Log Entries, Scene Adjustments, Random Events, Event Focus results, Custom Lists, list notes and Keyed Scenes are dropped on save, so those objects allow no other keys.",
       "type": "object",
       "additionalProperties": true,
       "properties": {
-        "result": { "type": "string" },
+        "journalName": {
+          "type": "string",
+          "default": "Untitled Journal",
+          "description": "Display name. Also the file name: journals/{journalName}.json."
+        },
+        "chaosFactor": {
+          "type": "integer",
+          "default": 5,
+          "description": "Current Chaos Factor. The app writes 1 to 9 and the reader clamps a stored value to that range."
+        },
+        "scenes": {
+          "type": "array",
+          "default": [],
+          "items": { "$ref": "#/$defs/Scene" }
+        },
+        "characters": { "$ref": "#/$defs/AdventureList" },
+        "threads": { "$ref": "#/$defs/AdventureList" },
+        "features": { "$ref": "#/$defs/AdventureList" },
+        "customLists": {
+          "type": "array",
+          "default": [],
+          "description": "Custom Lists, added in schema 5.",
+          "items": { "$ref": "#/$defs/CustomList" }
+        },
+        "activatedThreadSections": { "$ref": "#/$defs/ActivatedSections" },
+        "activatedCharacterSections": { "$ref": "#/$defs/ActivatedSections" },
+        "activatedFeatureSections": { "$ref": "#/$defs/ActivatedSections" },
+        "featuresListHidden": {
+          "const": true,
+          "description": "Written only as true, when the Journal hides the Features list. Absent means the list is shown."
+        },
+        "logEntries": {
+          "type": "array",
+          "default": [],
+          "description": "Adventure Log entries in saved order.",
+          "items": { "$ref": "#/$defs/LogEntry" }
+        },
+        "listNotes": { "$ref": "#/$defs/ListNotes" },
+        "lastCharacterRoll": {
+          "type": "string",
+          "description": "Last Characters list roll result. Written only when set."
+        },
+        "lastThreadRoll": {
+          "type": "string",
+          "description": "Last Threads list roll result. Written only when set."
+        },
+        "lastFeatureRoll": {
+          "type": "string",
+          "description": "Last Features list roll result. Written only when set."
+        },
+        "schemaVersion": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Schema the file was written at. The app writes 6; a camelCase file with a lower value is migrated on load. A file with a higher schemaVersion and a minReaderVersion of 6 or lower opens and keeps its own schemaVersion on save."
+        },
+        "minReaderVersion": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 6,
+          "description": "Oldest reader schema that keeps all of the file's data. The app writes 6 when the Journal holds data a schema 4 reader would drop or misread, and 4 otherwise; a newer file keeps its own higher floor. The reader refuses a file whose minReaderVersion is above 6."
+        },
+        "threadProgressTracks": {
+          "type": "array",
+          "default": [],
+          "description": "Thread Progress Tracks, added in schema 4.",
+          "items": { "$ref": "#/$defs/ThreadProgressTrack" }
+        },
+        "keyedScenes": {
+          "type": "array",
+          "default": [],
+          "description": "Keyed Scenes, added in schema 4.",
+          "items": { "$ref": "#/$defs/KeyedScene" }
+        },
+        "tableProgressPoints": {
+          "type": "object",
+          "default": {},
+          "description": "Progress Points per table, keyed by table name. The app writes values from 1 to 99. On read and write it trims keys, drops empty keys and values of 0 or less, and clamps values to 1 to 99.",
+          "additionalProperties": { "type": "integer" }
+        },
+        "rev": {
+          "type": "integer",
+          "default": 0,
+          "description": "Change counter. The app adds 1 for each change it makes to the Journal."
+        },
+        "base": {
+          "type": "integer",
+          "default": 0,
+          "description": "The rev value when the Journal was last saved."
+        }
+      },
+      "required": ["journalName"]
+    },
+    "AdventureList": {
+      "type": "array",
+      "default": [],
+      "description": "Built-in Adventure List (Characters, Threads or Features). Each item is an entry name; an empty string is an empty slot. Files written before schema 3 store the word Choose for an empty slot, and the reader converts it.",
+      "items": { "type": "string" }
+    },
+    "ActivatedSections": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "default": 1,
+      "description": "Number of 5-entry sections shown for an Adventure List."
+    },
+    "Scene": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Scene title. Control characters are removed, line endings become \\n, and runs of 3 or more newlines become 2, on read and write."
+        },
+        "sceneSummary": {
+          "type": "string",
+          "description": "Scene summary, sanitized like title."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO 8601 date-time. It is the Scene's identity (SceneId): the reader makes duplicates unique by adding a microsecond. A missing or unparsable value reads as a fixed legacy time.",
+          "examples": ["2026-11-17T19:44:21.123456Z", "2026-11-17T12:44:21.123456"]
+        },
+        "sceneChaosFactor": {
+          "type": "integer",
+          "default": 5,
+          "description": "Chaos Factor when the Scene began. A missing value reads as the Journal chaosFactor."
+        },
+        "sceneAdjustments": {
+          "type": "array",
+          "default": [],
+          "items": { "$ref": "#/$defs/SceneAdjustment" }
+        }
+      },
+      "required": []
+    },
+    "SceneAdjustment": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
         "range": {
           "type": "array",
+          "description": "Inclusive d10 range [min, max] of the Scene Adjustment Table row. [0, 0] means no adjustment. The reader turns a missing or empty value into [0, 0], a single number into [n, n], and a non-number item into 1.",
           "items": { "type": "integer" },
           "minItems": 2,
           "maxItems": 2
         },
-        "description": { "type": "string" },
+        "description": {
+          "type": "string",
+          "description": "How to apply the adjustment, sanitized like a Scene title."
+        },
+        "result": {
+          "type": "string",
+          "default": "",
+          "description": "Adjustment name, sanitized like a Scene title."
+        },
         "additionalAdjustments": {
           "type": "array",
+          "description": "Adjustments rolled for Make 2 Adjustments. Written only when present.",
           "items": { "$ref": "#/$defs/SceneAdjustment" }
+        },
+        "droppedAdjustment": {
+          "$ref": "#/$defs/SceneAdjustment",
+          "description": "A rolled adjustment that was dropped. Added in 1.7.0; it raises minReaderVersion to 6."
         }
       },
-      "required": ["result","range","description"]
+      "required": []
+    },
+    "CustomList": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "description": "Stable list identifier." },
+        "name": { "type": "string", "default": "" },
+        "entries": {
+          "type": "array",
+          "default": [],
+          "description": "Entry names; an empty string is an empty slot. The word Choose is an entry name here. The reader turns an object item into its name value and any other item into text.",
+          "items": { "type": "string" }
+        },
+        "notes": { "type": "string", "default": "" }
+      },
+      "required": ["id"]
+    },
+    "ListNotes": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Notes for the built-in Adventure Lists. Each value is sanitized like a Scene title. A missing object reads as three empty notes.",
+      "properties": {
+        "characterNotes": { "type": "string", "default": "" },
+        "threadNotes": { "type": "string", "default": "" },
+        "featureNotes": { "type": "string", "default": "" }
+      }
+    },
+    "LogEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "One Adventure Log entry. The app always writes timestamp, rollType, odds, chaosFactor, question, outcome, rollResult, isSceneCheck, meaningDescriptions and discoverySubRolls, and writes the other keys only when set.",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "description": "ISO 8601 date-time when the entry was made. A missing or unparsable value reads as 1970-01-01T00:00:00Z."
+        },
+        "rollType": {
+          "type": "string",
+          "default": "Unknown",
+          "description": "Kind of entry. Values the app writes: Fate Chart, Fate Check, Discovery Fate Question, Scene Check, Scene Adjustment, Random Event, Event Focus, Meaning Table, Keyed Scene, Narrative, General dice roll, and Scene (an Adventure Log Scene separator that carries sceneId). Other text is kept and shown as written.",
+          "examples": ["Fate Chart", "Fate Check", "Discovery Fate Question", "Scene Check", "Scene Adjustment", "Random Event", "Event Focus", "Meaning Table", "Keyed Scene", "Narrative", "General dice roll", "Scene"]
+        },
+        "odds": {
+          "type": "string",
+          "default": "Unknown",
+          "description": "Odds label for a Fate Question, N/A for entries with no odds, or an empty string on a Scene separator.",
+          "examples": ["Impossible", "Nearly Impossible", "Very Unlikely", "Unlikely", "50/50", "Likely", "Very Likely", "Nearly Certain", "Certain", "N/A", ""]
+        },
+        "chaosFactor": {
+          "type": "integer",
+          "default": 5,
+          "description": "Chaos Factor at the time of the entry. 1.7.0 writes 1 to 9; older versions wrote 0 on some entries, such as Meaning Table rolls. The reader clamps a stored value to 1 to 9."
+        },
+        "question": { "type": "string", "default": "", "description": "Question, action, or entry headline." },
+        "outcome": {
+          "type": "string",
+          "default": "Unknown",
+          "description": "Result text. For Fate Questions one of Yes, No, Exceptional Yes, Exceptional No; other entry kinds store their own result text.",
+          "examples": ["Yes", "No", "Exceptional Yes", "Exceptional No"]
+        },
+        "rollResult": { "type": "integer", "default": 0, "description": "Main roll value (d100 for the Fate Chart, the 2d10 total for the Fate Check, the d10 for a Scene Check)." },
+        "isSceneCheck": { "type": "boolean", "default": false },
+        "eventFocusRoll": { "type": "integer", "description": "Event Focus d100 roll, when a Random Event occurred." },
+        "individualDieResults": {
+          "type": "array",
+          "description": "Fate Check: the two d10 results.",
+          "items": { "type": "integer" }
+        },
+        "modifierValue": { "type": "integer", "description": "Fate Check: the odds and Chaos Factor modifier." },
+        "modifiedTotal": { "type": "integer", "description": "Fate Check: the dice total plus modifierValue." },
+        "randomEvent": { "$ref": "#/$defs/RandomEvent" },
+        "eventFocus": { "$ref": "#/$defs/EventFocus" },
+        "sceneCheckResult": { "type": "string", "description": "Scene Check result text." },
+        "sceneAdjustment": { "$ref": "#/$defs/SceneAdjustment" },
+        "sceneAdjustmentRoll": { "type": "integer", "description": "d10 roll on the Scene Adjustment Table." },
+        "meaningTableName": { "type": "string", "description": "Display name of the Meaning Table rolled on." },
+        "meaningDescriptions": {
+          "type": "array",
+          "default": [],
+          "description": "Meaning Table result lines.",
+          "items": { "type": "string" }
+        },
+        "discoveryExplanation": { "type": "string", "description": "Rulebook explanation for a Discovery Fate Question outcome." },
+        "discoverySubRolls": {
+          "type": "array",
+          "default": [],
+          "description": "Formatted Discovery Table sub-roll lines.",
+          "items": { "type": "string" }
+        },
+        "diceFormula": { "type": "string", "description": "General dice roll: the formula that was rolled. Added in 1.7.0." },
+        "diceResults": {
+          "type": "array",
+          "description": "General dice roll: each die value. Added in 1.7.0.",
+          "items": { "type": "integer" }
+        },
+        "diceSuccessCount": { "type": "integer", "description": "General dice roll: successes, when the formula counts them. Added in 1.7.0." },
+        "diceFailureCount": { "type": "integer", "description": "General dice roll: failures, when the formula counts them. Added in 1.7.0." },
+        "diceCriticalSuccessCount": { "type": "integer", "description": "General dice roll: critical successes, when the formula counts them. Added in 1.7.0." },
+        "diceCriticalFailureCount": { "type": "integer", "description": "General dice roll: critical failures, when the formula counts them. Added in 1.7.0." },
+        "diceRoll": { "$ref": "#/$defs/LoggedDiceRoll" },
+        "sceneId": {
+          "type": "string",
+          "description": "On a Scene separator entry (rollType Scene): the createdAt value of the Scene it starts. Added in 1.7.0."
+        }
+      },
+      "required": []
+    },
+    "EventMeanings": {
+      "type": "object",
+      "description": "Meaning Table words keyed by table or slot label.",
+      "additionalProperties": { "type": "string" }
+    },
+    "RandomEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "eventFocus": { "type": "string", "default": "", "description": "Event Focus result name." },
+        "meanings": { "$ref": "#/$defs/EventMeanings", "default": {} },
+        "characterResult": { "type": "string", "description": "Character rolled for the Event Focus, when it targets one." },
+        "threadResult": { "type": "string", "description": "Thread rolled for the Event Focus, when it targets one." },
+        "featureResult": { "type": "string", "description": "Feature rolled for the Event Focus, when it targets one." },
+        "eventFocusRoll": { "type": "integer", "description": "Event Focus d100 roll." },
+        "meaningDescriptions": { "type": "array", "default": [], "items": { "type": "string" } },
+        "linkedResults": {
+          "type": "array",
+          "default": [],
+          "description": "Rolls on tables linked from the Event Focus result. Added in 1.7.0.",
+          "items": { "$ref": "#/$defs/LinkedEventFocusResult" }
+        }
+      },
+      "required": []
+    },
+    "EventFocus": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "An Event Focus roll made on its own.",
+      "properties": {
+        "result": { "type": "string", "default": "", "description": "Event Focus result name." },
+        "roll": { "type": "integer", "default": 0, "description": "Event Focus d100 roll." },
+        "characterResult": { "type": "string" },
+        "threadResult": { "type": "string" },
+        "featureResult": { "type": "string" },
+        "meanings": { "$ref": "#/$defs/EventMeanings", "default": {} },
+        "meaningDescriptions": { "type": "array", "default": [], "items": { "type": "string" } },
+        "linkedResults": {
+          "type": "array",
+          "default": [],
+          "description": "Rolls on tables linked from the Event Focus result. Added in 1.7.0.",
+          "items": { "$ref": "#/$defs/LinkedEventFocusResult" }
+        }
+      },
+      "required": []
+    },
+    "LinkedEventFocusResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tableName": { "type": "string", "default": "" },
+        "result": { "type": "string", "default": "" },
+        "roll": { "type": "integer", "default": 0 },
+        "characterResult": { "type": "string" },
+        "threadResult": { "type": "string" },
+        "featureResult": { "type": "string" },
+        "customListResults": {
+          "type": "object",
+          "default": {},
+          "description": "Custom List entries rolled for the result, keyed by Custom List.",
+          "additionalProperties": { "type": "string" }
+        }
+      },
+      "required": []
+    },
+    "LoggedDiceRoll": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Every die of a General dice roll. Added in 1.7.0; it raises minReaderVersion to 6. A record with a die type, count code or lock this version does not know is kept as stored.",
+      "properties": {
+        "dice": { "type": "array", "default": [], "items": { "$ref": "#/$defs/LoggedDie" } },
+        "pushCount": { "type": "integer", "minimum": 0, "default": 0, "description": "How many times the roll was pushed." },
+        "pushLimit": { "type": "integer", "description": "The formula's @push=N limit. Absent when pushes are unlimited." },
+        "pushedFrom": { "type": "string", "description": "ISO 8601 timestamp of the Log Entry this roll pushed. Absent for a roll that is not a push." },
+        "parts": {
+          "type": "array",
+          "description": "One item per part of a multi-part formula, in formula order. Written only for formulas with parts.",
+          "items": { "$ref": "#/$defs/LoggedDicePart" }
+        }
+      },
+      "required": []
+    },
+    "LoggedDicePart": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "total": { "type": "integer" },
+        "dice": { "type": "array", "default": [], "items": { "$ref": "#/$defs/LoggedDie" } }
+      },
+      "required": ["total"]
+    },
+    "LoggedDie": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": { "type": "integer" },
+        "type": {
+          "type": "string",
+          "description": "Die kind: numbered (polyhedral), fate (Fate or Fudge), d66, custom (custom faces) or constant (a fixed number). A numbered, fate, custom or constant die needs sides of 1 or more; a fate or custom die needs faces; a d66 needs two components from 1 to 6. A kind this version does not know is kept as stored.",
+          "examples": ["numbered", "fate", "d66", "custom", "constant"]
+        },
+        "sides": { "type": "integer", "minimum": 0, "default": 0 },
+        "faces": { "type": "array", "default": [], "description": "Face values of a fate or custom die.", "items": { "type": "integer" } },
+        "components": { "type": "array", "default": [], "description": "The two d6 faces of a d66.", "items": { "type": "integer" } },
+        "totaled": { "type": "boolean", "default": false },
+        "pool": { "type": "string", "description": "Label of the pool the die belongs to." },
+        "kept": { "type": "boolean", "default": true },
+        "locked": { "type": "boolean", "default": false },
+        "subtracted": { "type": "boolean", "default": false },
+        "exploded": { "type": "boolean", "default": false },
+        "cappedFrom": { "type": "integer", "description": "Face rolled before a clamp such as C>18 capped it to value." },
+        "success": { "type": "boolean", "default": false },
+        "failure": { "type": "boolean", "default": false },
+        "criticalSuccess": { "type": "boolean", "default": false },
+        "criticalFailure": { "type": "boolean", "default": false },
+        "scoreRules": { "type": "array", "default": [], "items": { "$ref": "#/$defs/DieScoreRule" } },
+        "lock": {
+          "type": "string",
+          "description": "Push lock rule from the formula's @lock= tag: s (successes), sf (successes and failures) or none.",
+          "examples": ["s", "sf", "none"]
+        }
+      },
+      "required": ["value", "type"]
+    },
+    "DieScoreRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "A counting rule applied to the die, used to score a pushed replacement.",
+      "properties": {
+        "count": {
+          "type": "string",
+          "description": "What the rule counts: s (success), f (failure), cs (critical success) or cf (critical failure).",
+          "examples": ["s", "f", "cs", "cf"]
+        },
+        "comparison": {
+          "type": "string",
+          "default": "=",
+          "examples": ["=", "<", "<=", ">", ">="]
+        },
+        "target": { "type": "integer" }
+      },
+      "required": ["count"]
+    },
+    "ThreadProgressTrack": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "A Thread Progress Track. Unknown keys are kept and written back. A track whose trackType or trackLength this version does not know is not shown, and is written back as stored. Older versions stored an unused events list, which is kept as an unknown key.",
+      "properties": {
+        "id": { "type": "string", "description": "Stable track identifier." },
+        "focusThreadName": { "type": "string", "description": "Name of the Thread the track follows." },
+        "trackType": {
+          "type": "string",
+          "description": "thread or horror.",
+          "examples": ["thread", "horror"]
+        },
+        "trackLength": {
+          "type": "string",
+          "description": "short (10 points), medium (15), long (20) or custom (customPoints).",
+          "examples": ["short", "medium", "long", "custom"]
+        },
+        "createdAt": { "type": "string", "description": "ISO 8601 date-time." },
+        "customPoints": { "type": "integer", "description": "Point total of a custom track." },
+        "currentProgress": { "type": "integer", "minimum": 0, "default": 0, "description": "Points earned. The reader lowers a value above the track's points to its points." },
+        "isResolved": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the track is finished. It stays true for every finished or archived track, because readers before endedUnresolved read only this key."
+        },
+        "endedUnresolved": { "type": "boolean", "default": false, "description": "The track finished without resolving its Thread. Added in 1.7.0." },
+        "isArchived": { "type": "boolean", "default": false },
+        "flashpointPerPhase": {
+          "type": "object",
+          "default": {},
+          "description": "Whether each phase had a Flashpoint, keyed by phase index as a decimal string.",
+          "propertyNames": { "pattern": "^-?[0-9]+$" },
+          "additionalProperties": { "type": "boolean" }
+        },
+        "conclusionDelayed": { "type": "boolean", "default": false, "description": "Added in 1.7.0." },
+        "conclusionPlayed": { "type": "boolean", "default": false, "description": "Added in 1.7.0." },
+        "leverages": {
+          "type": "array",
+          "default": [],
+          "description": "Horror track Leverages. Added in 1.7.0.",
+          "items": { "$ref": "#/$defs/HorrorLeverage" }
+        },
+        "protections": {
+          "type": "array",
+          "default": [],
+          "description": "Horror track Protections. Added in 1.7.0.",
+          "items": { "$ref": "#/$defs/HorrorProtection" }
+        },
+        "horrorPlotArmorEnabled": { "type": "boolean", "default": true, "description": "Added in 1.7.0." },
+        "updatedAt": { "type": "string", "description": "ISO 8601 date-time of the last change." }
+      },
+      "required": ["id", "focusThreadName", "trackType", "trackLength", "createdAt"]
+    },
+    "HorrorLeverage": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Unknown keys are kept and written back.",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "createdAt": { "type": "string", "description": "ISO 8601 date-time." },
+        "lost": { "type": "boolean", "default": false },
+        "strengthenedCount": { "type": "integer", "minimum": 0, "default": 0 }
+      },
+      "required": ["id", "name", "createdAt"]
+    },
+    "HorrorProtection": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Unknown keys are kept and written back.",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "createdAt": { "type": "string", "description": "ISO 8601 date-time." },
+        "lost": { "type": "boolean", "default": false }
+      },
+      "required": ["id", "name", "createdAt"]
+    },
+    "KeyedScene": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "description": "Stable Keyed Scene identifier." },
+        "name": { "type": "string" },
+        "triggerDescription": { "type": "string" },
+        "eventDescription": { "type": "string" },
+        "createdAt": { "type": "string", "description": "ISO 8601 date-time." },
+        "count": { "type": "integer", "minimum": 0, "default": 0, "description": "Times the trigger has occurred." },
+        "targetCount": { "type": "integer", "description": "Count at which the Keyed Scene fires, when it has one." },
+        "isRecurring": { "type": "boolean", "default": false },
+        "autoIncrement": { "type": "boolean", "default": false },
+        "isActive": { "type": "boolean", "default": true },
+        "triggeredOnScenes": {
+          "type": "array",
+          "default": [],
+          "description": "Scenes on which the Keyed Scene fired, as their createdAt values (ISO 8601). The reader rejects a value that is not a date-time.",
+          "items": { "type": "string" }
+        },
+        "awaitingNextScene": { "type": "boolean", "default": false, "description": "The Keyed Scene fired and waits for the next Scene. Added in 1.7.0; it raises minReaderVersion to 6." }
+      },
+      "required": ["id", "name", "triggerDescription", "eventDescription", "createdAt"]
+    },
+    "LegacyJournal": {
+      "title": "Legacy Journal (before schema 3)",
+      "description": "PascalCase Journal written before schema 3 (Mythic GME 1.5 and earlier). The app imports it and migrates it to the current camelCase shape on load; it never writes this shape. Log Entries already used camelCase keys.",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "JournalName": { "type": "string" },
+        "ChaosFactor": { "type": "integer", "minimum": 1, "maximum": 9 },
+        "Scenes": {
+          "type": "array",
+          "items": {
+            "description": "A Scene object, or a plain string that the reader turns into a Scene with that title.",
+            "anyOf": [
+              { "type": "string" },
+              {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "Title": { "type": "string" },
+                  "SceneSummary": { "type": "string" },
+                  "SceneChaosFactor": { "type": "integer", "minimum": 1, "maximum": 9 },
+                  "SceneAdjustments": { "type": "array", "items": { "$ref": "#/$defs/LegacySceneAdjustment" } },
+                  "CreatedAt": { "type": "string" }
+                }
+              }
+            ]
+          }
+        },
+        "Characters": { "$ref": "#/$defs/LegacyAdventureList" },
+        "Threads": { "$ref": "#/$defs/LegacyAdventureList" },
+        "Features": { "$ref": "#/$defs/LegacyAdventureList" },
+        "ActivatedThreadSections": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "ActivatedCharacterSections": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "ActivatedFeatureSections": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "LogEntries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "rollType": { "type": "string" },
+              "odds": { "type": "string" },
+              "chaosFactor": { "type": "integer", "minimum": 1, "maximum": 9 },
+              "question": { "type": "string" },
+              "outcome": { "type": "string" },
+              "rollResult": { "type": "integer" },
+              "eventFocusRoll": { "type": "integer" },
+              "individualDieResults": { "type": "array", "items": { "type": "integer" } },
+              "modifierValue": { "type": "integer" },
+              "modifiedTotal": { "type": "integer" },
+              "randomEvent": { "type": "object", "additionalProperties": true },
+              "eventFocus": { "type": "object", "additionalProperties": true },
+              "isSceneCheck": { "type": "boolean" },
+              "sceneCheckResult": { "type": "string" },
+              "timestamp": { "type": "string" },
+              "sceneAdjustment": { "$ref": "#/$defs/LegacySceneAdjustment" },
+              "sceneAdjustmentRoll": { "type": "integer" },
+              "meaningDescriptions": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "ListNotes": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "CharacterNotes": { "type": "string" },
+            "ThreadNotes": { "type": "string" },
+            "FeatureNotes": { "type": "string" }
+          }
+        },
+        "LastCharacterRoll": { "type": "string" },
+        "LastThreadRoll": { "type": "string" },
+        "LastFeatureRoll": { "type": "string" },
+        "SchemaVersion": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2,
+          "description": "Absent in unversioned (schema 0) files."
+        }
+      },
+      "anyOf": [{ "required": ["JournalName"] }, { "required": ["campaignName"] }]
+    },
+    "LegacyAdventureList": {
+      "type": "array",
+      "description": "Entry names, with the word Choose for an empty slot. Very old files store objects such as {\"Character\": \"name\"}.",
+      "items": {
+        "anyOf": [
+          { "type": "string" },
+          { "type": "object", "additionalProperties": true }
+        ]
+      }
+    },
+    "LegacySceneAdjustment": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "result": { "type": "string" },
+        "range": { "type": "array", "items": { "type": "integer" }, "maxItems": 2 },
+        "description": { "type": "string" },
+        "additionalAdjustments": { "type": "array", "items": { "$ref": "#/$defs/LegacySceneAdjustment" } }
+      }
     }
   }
 }
-

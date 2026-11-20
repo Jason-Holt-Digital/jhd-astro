@@ -1,7 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://mythicgme2e.app/schemas/event_focus_table.schema.json",
-  "title": "Event Focus Table (v3)",
+  "$comment": "DEPRECATED: Meaning tables and event focus tables use the unified v3 schema. See schemas/unified-table-v3-schema.jsonc.",
+  "title": "Event Focus Table (v3, deprecated wrapper)",
   "type": "object",
   "additionalProperties": true,
   "properties": {
@@ -61,4 +62,3 @@
     }
   }
 }
-

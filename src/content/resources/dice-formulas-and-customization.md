@@ -6,7 +6,7 @@ category: dice-roller
 order: 3
 icon: fa-slab fa-regular fa-sliders
 duration: 12 min read
-updated: 2026-11-04
+updated: "2026-11-19"
 tags:
   - dice
   - formulas
@@ -77,195 +77,194 @@ related:
 
 > This guide describes Mythic GME 1.7.0 and later.
 
-## Read this first (no programming required)
+You only need a short expression like `2d6+3` to roll and save a formula in Dice Studio. Come back to this page whenever you want modifiers, labeled pools, Push rules, or starter formulas for a specific RPG.
 
-- Formulas are simple, readable expressions (like `2d6+3`).
-- You can type a formula, roll it, and tap Save Formula to keep it for later. On a phone, Save Formula and Manage Formulas are under the formula field, and on a tablet or desktop they are above it.
-- Save stores whatever is currently in the text field and lets you name it and add a description. Manage lets you import, export, rename, reorder, and delete.
+For a walkthrough of saving, organizing, and managing your formula list in Dice Studio, see [Saving and Managing Dice Formulas](/resources/saving-and-managing-dice-formulas/).
 
-Tip: To save, you only need the formula text—no need to understand every option below. Come back here when you want to do something more advanced.
+## Dice notation cheat sheet
 
-## Basics cheat sheet
+- **Basic rolls.** `XdY`, such as `2d6`, `1d20`, or `1d%` for `d100`.
+- **Special dice.** `1D66` (uppercase `D`), `4dF` (Fate dice), and custom faces such as `2d[2,3,5,7]`.
+- **Math and grouping.** `+`, `-`, `*`, and parentheses `( )`. Division is not supported.
+- **Keep and drop.** `kh` (keep highest), `kl` (keep lowest), `-H` (drop highest), and `-L` (drop lowest), such as `3d20kh2` or `4d6-L`.
+- **Explode and compound.** `!` (explode) and `!!` (compound). Add `o` to trigger only once (`!o`, `!!o`), such as `4d6!` or `5d10!!o>=8`.
+- **Reroll.** `r` (reroll matches) and `ro` (reroll once), such as `4d4r<=2` or `4d4ro<2`.
+- **Count and score.**
+  - `#` returns only the count and discards the individual dice results, such as `6d6#>=5`.
+  - `#s`, `#f`, `#cs`, and `#cf` mark dice as successes, failures, critical successes, and critical failures. The rolled dice and their total stay as rolled, and the roll row lists the counts, such as `6d6 #f<=2 #s>=5 #cs6 #cf1`.
+  - A count reads only the number right after it. `4d10#>=6+2` counts dice of 6 or higher, then adds 2 to that count.
+- **Clamp (cap or floor).** `C<` and `C>`, such as `4d20 C<5` or `4d20 C>15`.
+- **Push tags.** `@push=N` lets a roll be pushed `N` times, and `@lock=s`, `@lock=sf`, or `@lock=none` sets which dice stay locked when pushed, such as `5d6#s6 @push=1`.
 
-- Roll dice: `XdY` (e.g., `2d6`, `1d20`, `1d%` for d100)
-- Special dice: `1D66` (uppercase D), `4dF` (Fate dice), custom faces: `2d[2,3,5,7]`
-- Math & grouping: `+`, `-`, `*`, parentheses `( )` (division is not supported)
-- Keep / Drop: `kh` keep highest, `kl` keep lowest, `-H` drop highest, `-L` drop lowest (e.g., `3d20kh2`, `4d6-L`)
-- Explode / Compound: `!` (explode), `!!` (compound), add `o` for once: `!o`, `!!o` (e.g., `4d6!`, `5d10!!o>=8`)
-- Reroll: `r` (reroll matches), `ro` (reroll once) (e.g., `4d4r<=2`, `4d4ro<2`)
-- Count / Score:
-  - \# returns a count and discards the individual dice results: 6d6#>=5
-  - #s, #f, #cs, and #cf mark dice as successes, failures, critical successes, and critical failures. The dice and their sum stay as rolled, and the roll row lists the counts. For example: `6d6 #f<=2 #s>=5 #cs6 #cf1`
-  - A count takes only the number right after it. `4d10#>=6+2` counts dice of 6 or more, then adds 2 to the count.
-- Clamp (cap): `C<` and `C>` (e.g., `4d20 C<5`, `4d20 C>15`)
-- Push rules: `@push=N` lets a roll be pushed N times, and `@lock=s`, `@lock=sf`, or `@lock=none` sets which dice a push keeps (e.g., `5d6#s6 @push=1`). See Push below.
+### Order and precedence gotchas
 
-Order and precedence gotchas
-- Order matters with keep and the marking counters. 2d20 kh #cf #cs drops the low die first. To mark both dice before the keep, write (2d20 #cf #cs) kh. A keep after a count needs the parentheses, so 2d20 #cf #cs kh is an error. The same goes for `(4d6#s6)kh2`.
-- A count applies to the dice just before it. `2d6#s6 - 2d6#s6` scores each 2d6 on its own, then subtracts the second from the first.
-- Drop/filter operators bind tighter than arithmetic. `(5d6+5d10)-L2` drops from the combined pool; `5d6+5d10-L2` drops only from the d10s.
-- Use uppercase `D66` (lowercase `d66` is a 66‑sider, not D66).
-- There is no not-equal count. `6d6#s!=1` is not a valid formula.
-- A formula that ends in an operator, or a label with no dice after it, does not roll. For example, `2d6+` and `"Damage":` are incomplete, and the formula field shows them as incomplete.
+- **Keep with marking counters.** Order matters. `2d20 kh #cf #cs` drops the lower die first. To mark both dice before keeping the higher one, wrap them in parentheses: `(2d20 #cf #cs) kh`. Putting keep after a count without parentheses (`2d20 #cf #cs kh`) produces an error. The same applies to `(4d6#s6)kh2`.
+- **Count scope.** A count applies only to the dice right before it. `2d6#s6 - 2d6#s6` scores each `2d6` separately, then subtracts the second result from the first.
+- **Drop operators bind tighter than arithmetic.** `(5d6+5d10)-L2` drops the two lowest dice from the combined pool, while `5d6+5d10-L2` drops only from the `d10` dice.
+- **Uppercase D66.** Use `1D66` with an uppercase `D`. Lowercase `d66` rolls a 66-sided die.
+- **No not-equal count.** `6d6#s!=1` is not a valid formula.
+- **Incomplete expressions.** A formula ending in an operator (`2d6+`) or a label with no dice after it (`"Damage":`) will not roll, and the formula field marks it as incomplete.
 
 ## Dice pools and labels
 
-> The pool lines, labels, label colors and Push are new in 1.7.0. The formula syntax on this page works the same in 1.6.8.
+> Pool lines, labels, label colors, and Push are new in 1.7.0. The core formula syntax above works the same in 1.6.8.
 
-A dice pool is a group of dice with a label. Write the label in quotes, then a colon, then the dice. Put a comma between dice pools.
+A dice pool is a group of dice with a label. Write the label in double quotes, followed by a colon and the dice, with commas between pools:
 
-- `"Attack": 2d6, "Damage": 1d8`
+`"Attack": 2d6, "Damage": 1d8`
 
-A Studio test roll shows one line for each dice pool, with the label, the pool's total and its dice. In the Adventure Log, a labeled roll is one entry.
+A Studio test roll displays one line per pool with its label, total, and rolled dice. In the Adventure Log, a labeled roll is recorded as a single entry.
 
-On the **Join** tab, tap a saved label to put it in front of your dice. Tap **+** to save a new label. Long-press a label to rename it, remove it or change the order of your labels. Renaming or removing a label doesn't change formulas that already use it. A label can't contain `"`, and two labels can't differ only in upper and lower case.
+On the **Join** tab in Dice Studio, tap a saved label to insert it before your dice, tap **+** to save a new label, or long-press a label to rename, remove, reorder, or change its color. You can also set colors from **Manage labels** using each label's **Color** button, picking a quick color or **Custom**, then tapping **Done**.
 
-To choose a label's color, long-press it and tap **Change color**, or tap the **Color** button under its name in **Manage labels**. Pick a quick color or tap **Custom** for any color, then tap **Done**.
-
-Saved formulas keep the label text you typed. An export of your saved formulas does not include your labels or their colors.
+Renaming or removing a label does not alter formulas that already use it. A label cannot contain `"`, and two labels cannot differ only in capitalization. Saved formulas keep the label text you typed, though exporting saved formulas does not include your saved labels or their colors.
 
 ## Push
 
-Push re-rolls part of your newest Studio test roll.
+Push rerolls part of your newest Studio test roll.
 
 1. On the newest Studio test roll, tap the arrow at the end of the row.
-2. Tap **Push**. It is the first of the two buttons that appear.
+2. Tap **Push** (the first of the two buttons that appear).
 
-Push keeps every die that is a success or a critical success. It re-rolls the other dice and adds the result as a new Studio test roll. Numbers such as the `+3` in `2d6+3` stay as they are. Push also re-rolls dice after a minus sign, as in `2d6#s6 - 2d6#s6`. A new die is scored by the same counts. Pushed dice do not re-apply `r`, `C`, exploding (`!`), compounding (`!!`) or keep (`k`), so a new die stays on the face it rolls.
+By default, Push keeps every success and critical success, rerolls the remaining dice, and adds the result as a new Studio test roll. Flat numbers like the `+3` in `2d6+3` stay as they are. Push also rerolls dice after a minus sign, as in `2d6#s6 - 2d6#s6`.
 
-In a Studio test roll and in a dice roll in your Adventure Log, a check mark follows each success or critical success, a cross follows each failure or critical failure, and a lock comes before each die a push kept.
+New dice are scored by the same count rules. Pushed dice do not re-apply reroll (`r`), clamp (`C`), exploding (`!`), compounding (`!!`), or keep (`k`), so each rerolled die keeps the face it lands on.
 
-Add a tag to the formula to change how Push works:
+In both Studio test rolls and Adventure Log dice rolls, a check mark follows each success or critical success, a cross follows each failure or critical failure, and a lock appears before each die kept by a push.
 
-- `@push=N`: The roll can be pushed N times. Without this tag, there is no limit.
-- `@lock=s`: Push keeps successes and critical successes. This is the default.
-- `@lock=sf`: Push also keeps failures and critical failures.
-- `@lock=none`: Push re-rolls every die.
+Add a tag to your formula to control Push behavior:
 
-`@push` counts for the whole roll. A `@lock` tag after a dice pool applies only to that pool. For example, in `"Base": 3d6#s6#f1 @lock=sf, "Gear": 2d6#s6#f1` a push keeps the 1s in the Base pool and re-rolls the 1s in the Gear pool.
+- `@push=N` allows up to `N` pushes. Without this tag, there is no limit.
+- `@lock=s` keeps successes and critical successes (the default).
+- `@lock=sf` also keeps failures and critical failures.
+- `@lock=none` rerolls every die.
 
-If only **Copy** appears on that row, the roll cannot be pushed. That happens when the roll was pushed as many times as `@push` allows, when no die would re-roll, or when a die that would re-roll is a Fate die, a custom-face die or a D66.
+`@push` applies to the whole roll, while a `@lock` tag after a pool applies only to that pool. In `"Base": 3d6#s6#f1 @lock=sf, "Gear": 2d6#s6#f1`, a push locks the 1s in the Base pool and rerolls the 1s in the Gear pool.
 
-You can also push a dice roll in your Adventure Log. Tap the arrow at the end of its row, then tap **Push**. The pushed roll is written to your Journal as a new entry, a **Pushed dice roll**. The roll you pushed stays as it was and cannot be pushed again. If only **Copy** and **Delete Entry** appear on a dice roll in your Adventure Log, it cannot be pushed. That happens for the same reasons as on a Studio test roll, when the roll was already pushed, or when an earlier version of the app logged it. A push of a Studio test roll is never written to your Journal.
+If only **Copy** appears on a Studio test roll row, that roll cannot be pushed. That happens when the roll has hit its `@push` limit, when no die would reroll, or when a die that would reroll is a Fate die, a custom-face die, or a `D66`.
 
-## Patterns you’ll use a lot
+You can also push a dice roll from your Adventure Log. Tap the arrow at the end of its row and tap **Push**. The result saves to your Journal as a new **Pushed dice roll**, while the original roll stays unchanged and cannot be pushed again. If only **Copy** and **Delete Entry** appear on an Adventure Log dice roll, it cannot be pushed for the same reasons above, because it was already pushed, or because an earlier app version logged it. Pushing a Studio test roll never writes to your Journal.
 
-- Advantage / Disadvantage: `2d20kh+MOD` and `2d20kl+MOD`
-- Best / Worst of N: `NdXkh1` or `NdXkl1` (e.g., `3d6kh1`)
+## Common patterns
+
+- Advantage and Disadvantage: `2d20kh+MOD` and `2d20kl+MOD`
+- Best or worst of N: `NdXkh1` or `NdXkl1` (for example, `3d6kh1`)
 - Ability scores (4d6 drop lowest): `4d6-L`
-- Explode once vs. freely: `4d6!o` (explode only once) vs `4d6!` (repeat)
-- Compound (Shadowrun/L5R‑style): `5d6!!` or thresholded `5d6!!>=5`
-- Threshold successes: `NdX#>=TN` (e.g., `6d6#>=5`)
-- Reroll once vs. repeat: `ro` vs `r` (e.g., `4d6ro1` vs `4d6r1`)
-- Keep/drop across combined pools: `(1d8!!+1d6!!) kh` (Savage Worlds trait + wild die)
+- Explode once vs repeat: `4d6!o` vs `4d6!`
+- Compound (Shadowrun or L5R style): `5d6!!` or thresholded `5d6!!>=5`
+- Threshold successes: `NdX#>=TN` (for example, `6d6#>=5`)
+- Reroll once vs repeat: `4d6ro1` vs `4d6r1`
+- Keep or drop across combined pools: `(1d8!!+1d6!!) kh` (Savage Worlds trait and wild die)
 
-## System starting points (quick recipes)
+## System starting points
 
-These examples give you solid starting formulas. Some systems use custom symbol dice—those are noted as “Not supported”.
+These recipes give you ready-to-use starting formulas for popular games. Systems that rely on custom symbol dice are noted as not supported.
 
-D&D 5e / Pathfinder 2e
-- Attack/check: `1d20+MOD`
-- Advantage/Disadvantage: `2d20kh+MOD` / `2d20kl+MOD`
+### D&D 5e and Pathfinder 2e
+
+- Attack or check: `1d20+MOD`
+- Advantage and Disadvantage: `2d20kh+MOD` and `2d20kl+MOD`
 - Ability scores: `4d6-L`
-- Crits: roll double damage dice manually (e.g., `2d6` → `4d6`)
+- Critical hits: roll double damage dice manually (for example, `4d6` instead of `2d6`)
 
-Powered by the Apocalypse (PbtA)
-- Core move: `2d6+STAT` → interpret 10+, 7–9, 6- manually
+### Powered by the Apocalypse (PbtA)
 
-Fate Core
-- Fate dice: `4dF` (already supported)
+- Core move: `2d6+STAT` (interpret 10+, 7-9, and 6- manually)
 
-Blades in the Dark
-- Pool take highest: `Nd6kh1` (e.g., `3d6kh1`)
-- Spot crits (two 6s): add `Nd6#=6` to count sixes alongside your roll
+### Fate Core
 
-Shadowrun (hits & glitches)
-- Hits: `Nd6#>=5`
-- Track 1s for glitch rules: add `Nd6#f=1`
+- Fate dice: `4dF` (supported natively)
 
-Savage Worlds (trait + wild die)
-- Roll both, keep highest: `(TRAIT!! + 1d6!!) kh + MOD`
-- Raises (+4) are interpreted manually from the total
+### Blades in the Dark
 
-Vampire: The Masquerade (V5)
-- Successes: `Nd10#>=6`
-- Track 10s: add `Nd10#=10` (critical pairs/impacts require table rules)
+- Pool take highest: `Nd6kh1` (for example, `3d6kh1`)
+- Spot crits (two 6s) on the same pool: `(Nd6#cs6)kh1` (for example, `(3d6#cs6)kh1`) marks 6s while keeping the highest die
 
-Call of Cthulhu 7e
-- Roll-under: `1d100` vs skill
-- Bonus/Penalty dice: handle as a two‑step manual method (tens die replacement not encoded)
+### Shadowrun (hits and glitches)
 
-Cypher System
-- Task roll: `1d20+MOD` (step/difficulty remains narrative)
+- Hits (5-6) and 1s for glitches on the same pool: `Nd6 #s>=5 #f=1`
+- The roll row counts hits as successes and tracks 1s as failures without rolling a second pool
 
-Warhammer/40K‑style d6 pools
-- Hits/wounds: `Nd6#>=TN` (set TN for your table)
+### Savage Worlds (trait and wild die)
 
-Dungeon Crawl Classics (dice chain)
-- Odd dice sizes are fine: `1d7`, `1d16`, `1d24`, `1d30`
+- Roll both and keep highest: `(TRAIT!! + 1d6!!) kh + MOD`
+- Raises (+4) are read manually from the total
 
-Lancer (accuracy/difficulty)
+### Vampire: The Masquerade (V5)
+
+- Successes (6+) and 10s on the same pool: `Nd10 #s>=6 #cs10`
+- The roll row counts successes and marks 10s for critical pairs. Handle critical pairs and Hunger dice manually at the table.
+
+### Call of Cthulhu 7e
+
+- Roll-under skill check: `1d100` vs skill
+- Bonus and Penalty dice: roll as a two-step manual check (tens-die replacement is not encoded)
+
+### Cypher System
+
+- Task roll: `1d20+MOD` (step and difficulty remain narrative)
+
+### Warhammer and 40K-style d6 pools
+
+- Hits or wounds: `Nd6#>=TN` (set `TN` for your table)
+
+### Dungeon Crawl Classics (dice chain)
+
+- Odd die sizes work directly: `1d7`, `1d16`, `1d24`, `1d30`
+
+### Lancer (accuracy and difficulty)
+
 - Accuracy: `1d20 + (Xd6kh1) + MOD`
 - Difficulty: `1d20 - (Xd6kh1) + MOD`
 
-Year Zero Engine (Free League: Alien, Forbidden Lands, Vaesen, etc.)
-- Three colored pools (base/skill, stress, gear): Roll the three pools in one formula with labels, for example "Base": 4d6 #s=6, "Stress": 2d6 #s=6, "Gear": 1d6 #s=6. In Dice Studio and in the Adventure Log, the roll shows each pool on its own line with its label and total.
-- Successes: `Nd6#s=6` on each pool; track 1s on stress/gear with `#f=1`.
-- To push, roll the pool with a success mark, for example `5d6#s6 @push=1`, then tap the arrow at the end of its row and tap Push. Push keeps the dice marked as successes and rolls every other die again, including 1s. `@push=1` means the roll can be pushed once.
-- In Forbidden Lands, Push keeps the 6s and the 1s. Write `3d6#s6#f1 @lock=sf`.
-- You can push a dice roll in your Adventure Log too. The pushed roll is written to your Journal as a new Pushed dice roll, and the roll you pushed can't be pushed again.
-- Limitations: Panic/breakage resolution remains table‑side.
+### Year Zero Engine (Alien, Forbidden Lands, Vaesen, and others)
 
-The One Ring 2e (approximation)
-- Roughly: `1d12 + Nd6`
-- Notes: Gandalf/Eye and Tengwar sixes are symbol effects; treat specials manually
+- Roll colored pools together with labels: `"Base": 4d6 #s=6, "Stress": 2d6 #s=6, "Gear": 1d6 #s=6`. In Dice Studio and the Adventure Log, each pool appears on its own line with its label and total.
+- Mark successes with `Nd6#s=6` on each pool, and track 1s on stress or gear dice with `#f=1`.
+- To push, roll with a success mark such as `5d6#s6 @push=1`, then tap the arrow at the end of the row and tap **Push**. Push keeps marked successes and rerolls the other dice (including 1s). `@push=1` limits the roll to one push.
+- In Forbidden Lands, Push locks both 6s and 1s: `3d6#s6#f1 @lock=sf`.
+- You can push rolls in your Adventure Log too. The pushed roll saves to your Journal as a new **Pushed dice roll**, and the original roll cannot be pushed again.
+- Panic and gear breakage rules stay table-side.
 
-Legend of the Five Rings
-- AEG 1e–4e (Roll & Keep, exploding 10s): `Xd10!!khY`
-- FFG/Edge 5e (symbol dice): Not supported
+### The One Ring 2e (approximation)
 
-Genesys / FFG Star Wars (narrative dice)
-- Uses custom symbol dice: Not supported
+- Approximate roll: `1d12 + Nd6`
+- Gandalf, Eye, and Tengwar sixes are symbol effects and need manual handling.
 
-Ironsworn / Starforged
-- Action roll: `1d6+MOD` vs two challenge dice `2d10` → compare manually (beat both=Strong Hit; one=Weak Hit; none=Miss).
-- Progress moves: roll `2d10` vs current progress value (0–10) and compare manually.
+### Legend of the Five Rings
+
+- AEG 1e to 4e (Roll and Keep, exploding 10s): `Xd10!!khY`
+- FFG and Edge 5e (symbol dice): Not supported.
+
+### Genesys and FFG Star Wars (narrative dice)
+
+- Custom symbol dice: Not supported.
+
+### Ironsworn and Starforged
+
+- Action roll: roll `1d6+MOD` against two challenge dice `2d10` and compare manually (beat both for a Strong Hit, one for a Weak Hit, neither for a Miss).
+- Progress moves: roll `2d10` against your current progress value (0 to 10) and compare manually.
 
 ## Starter downloads
 
-Download sample Saved Formulas for popular systems that are ready to import. Use Manage Formulas → Import. Import adds every formula in the file to the end of your list. It never replaces the list and does not skip formulas you already have. See the Downloads section at the bottom for files.
+Ready-to-import Saved Formula sets for these systems are in the Downloads section at the bottom of this page. Open **Manage Formulas > Import** in Dice Studio to add any set to your list.
 
-Important: If you place a file by hand, name it saved_formulas.json and put it in the formulas folder inside the app's storage folder. That file becomes your whole list. The Import flow does not require a particular file name. In the native apps, the file must end in .json (in any letter case). On the web, the file picker asks for .json files, but the app does not check the extension separately. A file name does not make the contents a valid formula file.
+For full details on importing, exporting, duplicate behavior, and manual `saved_formulas.json` placement, see [Importing & Exporting Saved Formulas](/resources/importing-and-exporting-saved-formulas/).
 
-## Save, load, import, export (UI recap)
+## Troubleshooting and gotchas
 
-- Mobile: “Save Formula” and “Manage Formulas” are under the formula text field when action buttons are enabled.
-- Desktop: both appear above the text field.
-- Save adds the current formula to your Saved list and opens a dialog to name/describe it.
-- Manage lets you import, export, reorder, rename, and delete.
-- Import adds every formula in the file to the end of your list. It never replaces the list and does not skip formulas you already have.
+- **My counts look off with advantage.** Put counters before keep or drop and wrap them in parentheses: `(2d20 #cf #cs) kh`.
+- **`4d6-L2+2` gave an unexpected result.** `4d6-L2+2` and `(4d6-L2)+2` are the same roll. It drops the two lowest dice from `4d6`, then adds `2`.
+- **My D66 looks wrong.** Use uppercase `1D66`.
+- **I only want dice to explode once.** Use `!o` (explode once) or `!!o` (compound once).
+- **I want to keep the total and still see successes or failures.** Use `#s`, `#f`, `#cs`, and `#cf`. The rolled dice and their sum stay intact, and the roll row lists the counts.
 
-## Troubleshooting & gotchas
-
-- My counts look off with advantage
-  - Put counters before keep/drop and group them: `(2d20 #cf #cs) kh`.
-- `4d6-L2+2` didn’t do what I expected
-  - 4d6-L2+2 and (4d6-L2)+2 are the same roll: drop the two lowest of 4d6, then add 2.
-- My D66 looks wrong
-  - Use uppercase: `1D66`.
-- I need exploding “once”
-  - Use `!o` (explode once) or `!!o` (compound once).
-- I want to keep the total but also know successes/failures
-  - #s, #f, #cs, and #cf mark dice as successes, failures, critical successes, and critical failures. The dice and their sum stay as rolled, and the roll row lists the counts.
+Dice Studio uses the app's own dice parser (derived from Adventuresmith's `dart_dice_parser`), so test any custom formula in Dice Studio before relying on it in a session.
 
 ## Next steps
 
-- Save your favorite expressions: see “Saving and Managing Dice Formulas”.
-- Share and maintain a portable list: see “Formula Schema”.
+- [Saving and Managing Dice Formulas](/resources/saving-and-managing-dice-formulas/) covers saving, editing, and organizing your favorite rolls.
+- [Importing & Exporting Saved Formulas](/resources/importing-and-exporting-saved-formulas/) walks through starter packs, exports, and manual file placement.
+- [Formula Schema](/resources/formula-schema/) documents the JSON file format.
 
-> ##### Syntax engine and docs
-> The roller uses the app's own version of Adventuresmith's dart_dice_parser. The pub.dev page describes the original package, so check a formula in the app before you rely on it. For the full grammar and additional examples, see: https://pub.dev/packages/dart_dice_parser
-
-## See a problem?
-
-Help me keep this page and content up-to-date! If you see a problem, please report it: support@jasonholtdigital.com
+If you spot an error on this page or want to suggest a formula set for another system, let me know on the [Support page](/support/).

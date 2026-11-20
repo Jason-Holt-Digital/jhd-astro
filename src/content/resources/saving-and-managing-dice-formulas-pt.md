@@ -1,11 +1,12 @@
 ---
+fullArticleAvailable: true
 title: "Salvando e Gerenciando Fórmulas de Dados"
-summary: "Salve, carregue, importe e exporte Fórmulas Salvas sem escrever código."
+summary: "Como salvar, organizar, importar e exportar suas fórmulas de dados salvas."
 category: "dice-roller"
 order: 2
 icon: "fa-slab fa-regular fa-floppy-disk"
 duration: "5 min de leitura"
-updated: "2026-11-04"
+updated: "2026-11-19"
 lang: "pt"
 tags: ["dice", "formulas", "saved-formulas", "import", "export"]
 keywords:
@@ -25,71 +26,56 @@ downloads:
     href: "/downloads/saved_formulas.schema.json"
     format: "JSON"
 related:
-  - formula-schema
-  - dice-formulas-and-customization
+  - formula-schema-pt
+  - dice-formulas-and-customization-pt
 ---
 
 > Este guia descreve o Mythic GME 1.7.0 e posteriores.
 
-## Onde encontrar
+Salve as rolagens de dados que você usa com frequência para não precisar redigitá-las no meio de uma cena. As fórmulas salvas são globais no app, e não presas a um único Diário de Aventura, então elas acompanham você de campanha em campanha.
 
-- Abra o Estúdio de Dados. No celular, Salvar Fórmula e Gerenciar Fórmulas são botões abaixo do campo da fórmula; em um tablet ou computador, ficam acima dele.
+## Onde encontrar Fórmulas Salvas
 
-## O que você usará
+Abra o **Estúdio de Dados**. No celular, **Salvar Fórmula** e **Gerenciar Fórmulas** aparecem abaixo do campo de fórmula. Em tablets e computadores, aparecem acima dele.
 
-- Modelo vazio, exemplo preenchido e esquema opcional (encontre-os na seção de Downloads abaixo)
+O app lê e grava arquivos `.json` automaticamente por esses botões, então você nunca precisa editar JSON à mão, a menos que queira. Se quiser inspecionar arquivos de exemplo, confira o modelo vazio, o exemplo preenchido e o esquema na seção de Downloads abaixo.
 
-### Nenhuma programação necessária
+## Salvar, editar e organizar fórmulas
 
-- "JSON" é apenas um arquivo de texto estruturado. O app cria, abre e exporta para você.
-- Um "esquema" é um livro de regras para ferramentas verificarem um arquivo. Você pode ignorá-lo.
-- Você nunca precisa editar JSON à mão—use os botões do app.
+1. **Salve uma fórmula.** Digite ou monte uma fórmula no campo e toque em **Salvar Fórmula** (você não precisa rolá-la antes). Dê um nome curto e fácil de reconhecer e coloque qualquer contexto extra na descrição.
+2. **Reordene ou edite.** Toque em **Gerenciar Fórmulas** para arrastar fórmulas para a ordem que preferir ou remover as que não usa mais. Toque em **Editar** para mostrar um botão de edição em cada fórmula e toque em **Concluir** quando terminar.
+3. **Exclua com confirmação.** Excluir uma fórmula pede confirmação antes. Se você cancelar, a fórmula permanece na sua lista.
 
-## Ações principais
+## Exportar e importar sua lista
 
-1) Salve sua(s) fórmula(s) atual(is)
-   - Toque em "Salvar Fórmula" para salvar a fórmula que está no campo. Você não precisa rolá-la antes. Dê um nome curto e reconhecível.
+Abra **Gerenciar Fórmulas** para fazer backup da sua lista ou importar fórmulas de um arquivo.
 
-2) Gerencie a lista
-   - Toque em "Gerenciar Fórmulas" para reordenar ou remover entradas. Toque em Editar para mostrar um botão de edição em cada fórmula, e toque em Concluir quando terminar.
-   - Excluir pede confirmação. Se você cancelar, a fórmula continua na sua lista.
-   - Fórmulas são globais (não por diário), então estão disponíveis entre sessões.
+- **Exportar.** Toque em **Exportar** para salvar um arquivo `.json` que você pode guardar como backup ou compartilhar com outra pessoa. Você pode renomear o arquivo exportado como achar melhor.
+- **Importar.** Toque em **Importar** e escolha um arquivo `.json`. A importação não exige um nome de arquivo específico. Nos apps nativos, o arquivo precisa terminar em `.json` (com letras maiúsculas ou minúsculas). Na web, o seletor pede arquivos `.json` sem conferir a extensão separadamente. Uma extensão `.json` por si só não garante que o conteúdo do arquivo seja válido.
+- **Como a importação adiciona itens.** A importação roda na hora, sem perguntar nada, e adiciona todas as fórmulas do arquivo ao final da sua lista. Ela nunca substitui sua lista e não verifica duplicatas, então importar um arquivo que você já tem adiciona uma segunda cópia de cada fórmula. Cada entrada importada recebe um novo ID próprio, então editar ou excluir uma cópia afeta apenas aquela cópia. Como a importação só adiciona itens, um arquivo exportado funciona como um backup do qual você pode importar depois, e não como uma substituição em um toque da lista atual.
 
-3) Exportar
-   - Toque em "Gerenciar Fórmulas" → Exportar para baixar um arquivo JSON que você pode fazer backup ou compartilhar.
-   - Você pode renomear o arquivo exportado. Importar não exige um nome de arquivo específico. Nos apps nativos, o arquivo precisa terminar em .json (com letras maiúsculas ou minúsculas). Na web, o seletor pede arquivos .json, mas o app não confere a extensão separadamente. O nome do arquivo não garante que o conteúdo seja válido.
+Para baixar conjuntos prontos de fórmulas e ver detalhes sobre colocação manual de arquivos, consulte [Importando e Exportando Fórmulas Salvas](/pt/resources/importing-and-exporting-saved-formulas-pt/).
 
-4) Importar
-   - Toque em "Gerenciar Fórmulas" → Importar e escolha um arquivo JSON.
-   - Importar não pergunta nada. Adiciona todas as fórmulas do arquivo ao final da sua lista, inclusive as que você já tem.
+## Rótulos e versões diferentes do app
 
-## Rótulos
+Na aba **Unir** do Estúdio de Dados, você pode salvar rótulos como `Ataque` ou `Dano` para colocar na frente das suas paradas de dados. Para definir a cor de um rótulo, pressione e segure sobre ele e toque em **Alterar cor**, ou toque no botão **Cor** abaixo do nome dele em **Gerenciar rótulos**.
 
-- Na aba Unir do Estúdio de Dados, você pode salvar rótulos, como Ataque ou Dano, para colocar na frente dos seus dados.
-- Para dar uma cor a um rótulo, toque e segure o rótulo e toque em **Alterar cor**, ou toque no botão **Cor** abaixo do nome dele em **Gerenciar rótulos**.
-- Os rótulos e as cores deles são salvos com suas fórmulas, mas a exportação não os inclui.
-- Se um dos seus dispositivos ainda usa a 1.6.x, salvar uma fórmula nele remove seus rótulos e as cores deles em todos os dispositivos que compartilham a lista. Suas fórmulas são mantidas. Veja o [Esquema de Fórmulas](/pt/resources/formula-schema-pt/).
+Os rótulos e suas cores ficam salvos junto com suas fórmulas no dispositivo, mas as exportações de fórmulas não os incluem.
+
+Se outro dispositivo que compartilha seu armazenamento ainda estiver rodando o Mythic GME 1.6.x, salvar uma fórmula naquele dispositivo remove seus rótulos e as cores deles em todos os dispositivos que compartilham a lista, mantendo suas fórmulas intactas. Atualize todos os dispositivos para a versão 1.7.0 ou posterior antes de salvar rótulos. Veja todos os detalhes em [Esquema de Fórmulas](/pt/resources/formula-schema-pt/).
 
 ## Se a lista não carregar
 
-- No computador e no tablet, Restaurar backup aparece quando a lista de Fórmulas Salvas não carrega. Isso também funciona com o iCloud.
-- Restaurar backup pula os backups que não consegue ler. Se nenhum backup puder ser restaurado, o app mostra "Falha ao restaurar do backup".
+No computador e no tablet, o botão **Restaurar backup** aparece automaticamente se sua lista de Fórmulas Salvas não puder ser carregada, inclusive ao usar o iCloud. **Restaurar backup** pula qualquer backup que não consiga ler. Se nenhum backup legível estiver disponível, o app exibe `"Falha ao restaurar do backup"`.
 
-## Dicas
+## Formatos de arquivo para usuários avançados
 
-- Mantenha nomes curtos; adicione qualquer contexto extra na descrição.
-- Você pode organizar favoritos em arquivos separados. Importar adiciona à sua lista e nunca a substitui, então importar um segundo conjunto deixa os dois conjuntos na lista. Importar um conjunto que já está na sua lista adiciona uma segunda cópia de cada fórmula. Cada fórmula importada recebe um id novo, então Editar e Excluir em uma cópia afetam só essa cópia.
-- Exporte para guardar uma cópia da sua lista. O app não consegue restaurar essa cópia por cima da lista atual, porque Importar só adiciona itens.
+A importação aceita tanto um objeto envolvido contendo uma lista `formulas` quanto um array de nível superior de objetos de fórmula. A exportação sempre grava o formato de objeto envolvido.
 
-## Usuários avançados
-
-- Importar aceita dois formatos: um objeto com uma lista formulas ou um array de nível superior com objetos de fórmula. Exportar sempre grava o primeiro.
-- Veja o [Esquema de Fórmulas](/pt/resources/formula-schema-pt/) para nomes de campos e um exemplo mínimo.
-
-> ##### Motor de sintaxe e docs
-> O rolador usa a versão própria do app do dart_dice_parser, do Adventuresmith. A página no pub.dev descreve o pacote original, então teste uma fórmula no app antes de confiar nela. Para a gramática completa e exemplos adicionais, veja: https://pub.dev/packages/dart_dice_parser
+O Estúdio de Dados usa o motor de dados próprio do app (derivado do `dart_dice_parser` do Adventuresmith), então teste qualquer fórmula editada à mão dentro do app antes de usá-la em uma sessão.
 
 ## Guias relacionados
 
-- Construa expressões mais complexas e veja exemplos por sistema: [Fórmulas de Dados e Personalização](/pt/resources/dice-formulas-and-customization-pt/)
-- Campos de referência e forma JSON: [Esquema de Fórmulas](/pt/resources/formula-schema-pt/)
+- [Fórmulas de Dados e Personalização](/pt/resources/dice-formulas-and-customization-pt/)
+- [Importando e Exportando Fórmulas Salvas](/pt/resources/importing-and-exporting-saved-formulas-pt/)
+- [Esquema de Fórmulas](/pt/resources/formula-schema-pt/)

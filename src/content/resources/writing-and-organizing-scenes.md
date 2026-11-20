@@ -5,8 +5,8 @@ summary: "How to start, run, and end scenes, with Scene Check and the Chaos Fact
 category: "start-here"
 order: 3
 icon: "fa-slab fa-regular fa-film"
-duration: "9 min read"
-updated: "2026-11-04"
+duration: "5 min read"
+updated: "2026-11-19"
 tags: ["scenes", "journals", "workflow"]
 keywords:
   - Scenes
@@ -20,64 +20,55 @@ related:
   - using-meaning-tables-for-inspiration
 ---
 
-> This guide describes Mythic GME 1.7.0 and later.
+> This guide covers Mythic GME 1.7.0 and later.
 
-The Scenes screen in the Mythic Apps is the hub of your adventure. It gives each chunk of play a clear container so you can track each phase of your adventure clearly.
+Scenes break your adventure into focused chunks of play. In the Mythic apps, the **Scenes** screen gives each chunk its own place for a title, notes, and its Chaos Factor so you can follow what happened without digging through a wall of text.
 
-## Developing your scenes in the app
+## Start your first scene
 
-Scenes are the basic units of in‑game time that bring form and order to your story. Creating a Scene in the app locks in the context, sets the mechanical tempo (Chaos Factor), and gives you a focused place to write what happens.
+Every adventure begins with an opening scene to get the story moving. Play then builds on your Current Context, a core idea covered in the Mythic GME 2e rulebook.
 
-### 1) Start the scene: expectations and Chaos
+If you already have an opening scene in mind, jump straight in. If you want a spark instead, roll on Meaning Tables (such as **Action Meaning 1** and **Action Meaning 2**) or roll a full Random Event to kick things off.
 
-- First Scene: Your adventure starts with an opening scene that “gets the story rolling.” Play generally proceeds based on "Current Context", a concept thoroughly explored in the book.
-  - Inspired idea: Use your concept for the opener.
-  - Random inspiration: There are many ways to start your first scene. Use Meaning Tables to generate an opening prompt (Action Meaning 1 and Action Meaning 2) or roll a full Random Event to spark your start.
+## Test later scenes with Scene Check
 
-#### Back in the Fate Chart
--  After the first, every new scene begins as Expected — how you think things will play out. You can test that expectation with a Scene Check as desired.
-  - Tap Scene Check to roll it. Expected Scene means the scene goes forward as you expected.
-  - If the scene is Altered — tweak location, activity, or an NPC; go with the next most expected outcome.
-  - If the result is Interrupt Scene, your expectation is ignored and the app rolls the Random Event for you in the same Adventure Log entry. Do not tap Random Event as well, because that adds a second event. The Random Event already includes any results linked to its Event Focus, and with Auto Roll Event Meaning turned on it can include Meaning Table words. Roll another Meaning Table from the Tables tab if you want more to work with.
-  - While the Prepared Adventure Event Focus Table is selected, Scene Check never gives Altered Scene or Interrupt Scene. It gives Expected Scene, and a roll at or under the Chaos Factor adds a Random Event to it.
+After your first scene, picture what you expect to happen next. That is your **Expected Scene**. Switch back to the **Fate Chart** (or **Fate Check**, if you changed your home view in **Settings**) and tap **Scene Check** to test your expectation against the Chaos Factor.
 
-> ##### Tip
-> You can switch your home view between Fate Chart and Fate Check in Settings. Either way, the Scene Check result is saved to the Adventure Log as Expected Scene, Altered Scene, or Interrupt Scene. It is not added to a Scene's Summary.
+- **Expected Scene.** The scene plays out as you pictured it.
+- **Altered Scene.** Something shifts from what you expected. Tweak the location, what is happening, or an NPC, or go with the next most likely outcome.
+- **Interrupt Scene.** Your Expected Scene is pushed aside, and the app rolls a Random Event for you inside the same Adventure Log entry. Do not tap **Random Event** again, or you will add a second event. That Random Event already includes any linked results from its Event Focus, and when **Auto Roll Event Meaning** is turned on, it can include Meaning Table words too. If you want extra inspiration, roll another Meaning Table from the **Tables** tab.
 
-### 2) Define the scene: name and description
+While the **Prepared Adventure Event Focus Table** is selected, **Scene Check** never gives an Altered Scene or Interrupt Scene. It always returns **Expected Scene**, and a roll at or under the Chaos Factor adds a Random Event to that same entry.
 
-- Title: give the Scene a short title so you can find it later. Summary (supports Markdown): use headings, bullets, and bold, and switch between Edit and Preview to check the result.
-- Chaos Factor: a new Scene takes the Journal's current Chaos Factor by itself. Saving your latest Scene sets the Journal's Chaos Factor to the value on that Scene, and editing an earlier Scene leaves the current Chaos Factor alone.
+Whether you play from the Fate Chart or Fate Check, the Scene Check result is saved to the **Adventure Log** as **Expected Scene**, **Altered Scene**, or **Interrupt Scene**. The app does not add it to a Scene's **Summary**, so jot down your own interpretation in your Scene notes whenever it helps.
 
-  > ##### Tip
-  > You can pin and reorganize scenes in your scenes list. This is useful if you want to use scenes for metadata, character sheets, or keep certain key elements at the top of your scene list.
+## Name, write, and organize your Scenes
 
-### 3) End the scene: resolution and bookkeeping
+Give each Scene a short **Title** so you can spot it fast when looking back through a campaign. Write your notes in **Summary**, which supports Markdown headings, bullets, and bold text. Switch between **Edit** and **Preview** to check how your notes look. Short bullets and sub-bullets make past scenes much easier to scan later.
 
-Scenes end when the main action resolves, or when the story’s structure naturally shifts (time, location, tone, or focus).
+You can also pin and reorder scenes in your scenes list. Pinning works well when you want to use a Scene entry for campaign notes, character sheets, or key references that stay at the top of the list.
 
-- When to transition:
-  - Interest: the key point of interest is concluded
-  - Time/Location: you jump time or move to a new place
-  - Narrative shift: a dramatic reveal changes the focus
-  - Mood: current events feel stale — energize with a fresh scene
-  - Automatic Interrupt: stuck? Make the next one an Interrupt to force a Random Event
+When you create a new Scene, it automatically picks up your Journal's current **Chaos Factor**. Saving your latest Scene updates the Journal's Chaos Factor to match that Scene's value, while editing an earlier Scene leaves your current Chaos Factor alone. Adjust your Chaos Factor between Scenes rather than in the middle of one.
 
-- End‑of‑scene bookkeeping:
-  - Adjust CF: Were you mostly in control (progress) or out of control (setbacks)?
-    - In control → CF − 1 (min 1)
-    - Out of control → CF + 1 (max 9)
-  - Update Lists (Characters/Threads/Features):
-    - Add new important entries that emerged
-    - Promote relevant items by adding an extra entry (up to three times total)
-    - Remove items that are no longer relevant
+## End a scene and handle bookkeeping
 
-## App workflow tips
+A scene wraps up when the main action resolves or the story naturally shifts. Good moments to move to a new scene include:
 
-- Keep Scenes short and focused — it makes Fate results easier to interpret and logs easier to review
-- When your intuition stalls, roll a Meaning Table from the Tables tab on the Fate screen (the Game Tables Pull-Out on a tablet or desktop) or from the Meaning Tables screen. The result is saved to the Adventure Log, not to the Scene.
-- Chaos Factor: a new Scene takes the Journal's current Chaos Factor by itself. Saving your latest Scene sets the Journal's Chaos Factor to the value on that Scene, and editing an earlier Scene leaves the current Chaos Factor alone. Adjust it between Scenes, not during them.
-- Keep Scene notes in a portable notetaking pattern (bullets + sub‑bullets) for a quick skim later, and add your own interpretation of a Fate or Scene Check result if it helps. Either way, the Scene Check result is saved to the Adventure Log as Expected Scene, Altered Scene, or Interrupt Scene. It is not added to a Scene's Summary.
+- The main focus of the scene has played out.
+- Time jumps forward or your character moves to a new location.
+- A big reveal shifts where the story is heading.
+- Things feel slow and a fresh scene would pick up the pace.
+- You feel stuck and decide to make the next scene an Interrupt Scene to force a Random Event.
 
-> ### Many Pathways
-> Mythic is very flexible. There's not a "wrong way" to play and many of the variations explored in the Magazines, Variations, the community, and Tana's blog clearly embody the spirit of play which is flexible and caters to your style. As you play, you will discover what works for you and what doesn't. 
+Before starting the next scene, run through two quick bookkeeping steps:
+
+1. **Adjust the Chaos Factor.** Ask whether your Player Character was mostly in control (making progress) or out of control (dealing with setbacks) during the scene. If your PC stayed in control, lower the Chaos Factor by 1 (minimum 1). If things got away from your PC, raise the Chaos Factor by 1 (maximum 9).
+2. **Update your Lists.** Add important new Characters, Threads, or Features that came up. Copy especially active entries again to raise their weight (up to 3 copies by default), and remove entries that are no longer relevant.
+
+## Tips for smooth sessions
+
+Keep Scenes short and focused. Smaller scenes make Fate answers easier to interpret and keep your Journal pleasant to review later.
+
+When your intuition stalls mid-scene, roll a Meaning Table from the **Tables** tab on the Fate screen (the **Game Tables Pull-Out** on a tablet or desktop) or from the **Meaning Tables** screen. Every roll saves to the **Adventure Log**, not to your Scene notes.
+
+Mythic is flexible by design. Between the Mythic Magazines, Mythic Variations, Tana's blog, and community house rules, there is no single right way to pace or log scenes. Start with this flow, then bend it to whatever keeps your game moving.

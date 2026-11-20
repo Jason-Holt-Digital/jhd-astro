@@ -1,83 +1,75 @@
 ---
+fullArticleAvailable: true
 title: "Escrevendo e Organizando Cenas"
-summary: "Inicie, jogue e encerre cenas e mantenha suas anotações organizadas."
+summary: "Como começar, conduzir e encerrar cenas usando o Teste de Cena e o Fator de Caos."
 category: "start-here"
 order: 3
 icon: "fa-slab fa-regular fa-film"
-duration: "9 min de leitura"
-updated: "2026-11-04"
+duration: "5 min de leitura"
+updated: "2026-11-19"
 lang: "pt"
 tags: ["scenes", "journals", "workflow"]
 keywords:
   - Cenas
-  - Fator Caos
+  - Fator de Caos
   - Tabela de Destino
-  - Cena Interrompida
+  - Cena de Interrupção
   - Cena Alterada
 related:
-  - setting-up-and-using-lists
-  - guide-to-the-mythic-journals
-  - using-meaning-tables-for-inspiration
+  - setting-up-and-using-lists-pt
+  - guide-to-the-mythic-journals-pt
+  - using-meaning-tables-for-inspiration-pt
 ---
 
-> Este guia descreve o Mythic GME 1.7.0 e posteriores.
+> Este guia cobre o Mythic GME 1.7.0 e versões posteriores.
 
-A tela de Cenas dos apps Mythic é o centro da sua aventura. Ela dá a cada trecho de jogo um lugar claro para que você acompanhe o que aconteceu e o que mudou.
+As Cenas dividem sua aventura em trechos focados de jogo. Nos apps Mythic, a tela **Cenas** dá a cada trecho seu próprio espaço para título, anotações e Fator de Caos, permitindo acompanhar o que aconteceu sem precisar garimpar um bloco gigante de texto.
 
-## Desenvolvendo suas cenas no app
+## Comece sua primeira cena
 
-Cenas são as unidades básicas de tempo de jogo que trazem forma e ordem à sua história. Criar uma Cena no app bloqueia o contexto, define o ritmo mecânico (Fator Caos) e dá a você um lugar focado para escrever o que acontece.
+Toda aventura começa com uma cena de abertura para colocar a história em movimento. A partir daí, o jogo evolui com base no Contexto Atual, uma ideia central explicada no livro Mythic GME 2e.
 
-### 1) Comece a cena: expectativas e Caos
+Se você já tem uma cena de abertura em mente, comece direto por ela. Se quiser uma faísca inicial, role nas Tabelas de Significado (como **Significado de Ação 1** e **Significado de Ação 2**) ou role um Evento Aleatório completo para dar o pontapé inicial.
 
-- Primeira Cena: Sua aventura começa com uma cena de abertura que "faz a história rolar". O jogo geralmente prossegue com base no "Contexto Atual", um conceito completamente explorado no livro.
-  - Ideia inspirada: Use seu conceito para a abertura.
-  - Inspiração aleatória: Existem muitas maneiras de começar sua primeira cena. Use as Tabelas de Significado para gerar uma ideia de abertura (Significado de Ação 1 e Significado de Ação 2) ou role um Evento Aleatório completo para começar.
+## Teste as próximas cenas com o Teste de Cena
 
-#### De volta à Tabela de Destino
-- Após a primeira, toda nova cena começa como Esperada — como você acha que as coisas vão se desenrolar. Você pode testar essa expectativa com uma Verificação de Cena conforme desejado.
-  - Toque em Teste de Cena para rolá-lo. Cena Esperada significa que a cena segue como você esperava.
-  - Se a cena for Alterada — ajuste a localização, atividade ou um NPC; vá com o próximo resultado mais esperado.
-  - Se o resultado for Cena de Interrupção, sua expectativa é ignorada e o app rola o Evento Aleatório para você na mesma entrada do Registro de Aventura. Não toque também em Evento Aleatório, porque isso adiciona um segundo evento. O Evento Aleatório já inclui os resultados vinculados ao seu Foco do Evento e, com Significado automático ativado, pode incluir palavras de Tabela de Significado. Role outra Tabela de Significado pela aba Tabelas se quiser mais material para trabalhar.
-  - Enquanto a Tabela de Foco de Eventos Preparados estiver selecionada, o Teste de Cena nunca dá Cena Alterada nem Cena de Interrupção. Ele dá Cena Esperada, e uma rolagem igual ou menor que o Fator de Caos adiciona um Evento Aleatório a ela.
+Depois da primeira cena, imagine o que você espera que aconteça em seguida. Essa é a sua **Cena Esperada**. Volte para a **Tabela de Destino** (ou para a **Verificação de Destino**, se você mudou sua tela inicial em **Configurações**) e toque em **Teste de Cena** para testar essa expectativa contra o Fator de Caos.
 
-> ##### Dica
-> Você pode trocar sua visualização inicial entre Tabela de Destino e Verificação de Destino em Configurações. De qualquer forma, o resultado do Teste de Cena é salvo no Registro de Aventura como Cena Esperada, Cena Alterada ou Cena de Interrupção. Ele não é adicionado ao Resumo de uma Cena.
+- **Cena Esperada.** A cena se desenrola do jeito que você imaginou.
+- **Cena Alterada.** Algo muda em relação ao que você esperava. Ajuste o local, o que está acontecendo ou um NPC, ou siga com o próximo desdobramento mais provável.
+- **Cena de Interrupção.** Sua Cena Esperada fica de lado, e o app já rola um Evento Aleatório para você dentro da mesma entrada do Diário de Aventura. Não toque em **Evento Aleatório** de novo, senão você vai criar um segundo evento. Esse Evento Aleatório já traz qualquer resultado vinculado ao Foco de Evento e, quando **Significado automático** está ativado, pode incluir palavras de Tabelas de Significado também. Se quiser mais inspiração, role outra Tabela de Significado pela aba **Tabelas**.
 
-### 2) Defina a cena: nome e descrição
+Enquanto a **Tabela de Foco de Eventos Preparados** estiver selecionada, o **Teste de Cena** nunca gera Cena Alterada nem Cena de Interrupção. Ele sempre retorna **Cena Esperada**, e uma rolagem igual ou menor que o Fator de Caos adiciona um Evento Aleatório à mesma entrada.
 
-- Título: dê à Cena um título curto para encontrá-la depois. Resumo (aceita Markdown): use títulos, marcadores e negrito, e alterne entre Editar e Prévia para conferir o resultado.
-- Fator de Caos: uma nova Cena assume sozinha o Fator de Caos atual do Diário. Salvar sua Cena mais recente define o Fator de Caos do Diário com o valor dessa Cena, e editar uma Cena anterior não altera o Fator de Caos atual.
+Tanto na Tabela de Destino quanto na Verificação de Destino, o resultado do Teste de Cena é salvo no **Diário de Aventura** como **Cena Esperada**, **Cena Alterada** ou **Cena de Interrupção**. O app não copia esse resultado para o **Resumo** da Cena, então anote sua própria interpretação nas notas da Cena sempre que achar útil.
 
-  > ##### Dica
-  > Você pode fixar e reorganizar cenas na sua lista de cenas. Isso é útil se você quiser usar cenas para metadados, fichas de personagem ou manter certos elementos chave no topo da sua lista de cenas.
+## Nomeie, escreva e organize suas Cenas
 
-### 3) Termine a cena: resolução e contabilidade
+Dê um **Título** curto para cada Cena para encontrá-la rápido quando revisitar a campanha. Escreva suas anotações em **Resumo**, que aceita Markdown para títulos, listas com marcadores e negrito. Alterne entre **Editar** e **Prévia** para conferir como o texto está ficando. Marcadores curtos e subitens tornam cenas antigas muito mais fáceis de reler depois.
 
-Cenas terminam quando a ação principal resolve, ou quando a estrutura da história muda naturalmente (tempo, localização, tom ou foco).
+Você também pode fixar e reordenar cenas na sua lista. Fixar funciona muito bem quando você quer usar uma Cena para anotações de campanha, fichas de personagem ou referências importantes sempre no topo da lista.
 
-- Quando transicionar:
-  - Interesse: o ponto chave de interesse é concluído
-  - Tempo/Localização: você pula tempo ou move para um novo lugar
-  - Mudança narrativa: uma revelação dramática muda o foco
-  - Humor: eventos atuais parecem obsoletos — energize com uma cena fresca
-  - Interrupção Automática: preso? Faça a próxima ser uma Interrupção para forçar um Evento Aleatório
+Quando você cria uma nova Cena, ela herda automaticamente o **Fator de Caos** atual do seu Diário. Salvar a Cena mais recente atualiza o Fator de Caos do Diário com o valor dela, enquanto editar uma Cena anterior deixa o Fator de Caos atual intacto. Ajuste o Fator de Caos entre uma Cena e outra, não no meio dela.
 
-- Contabilidade de fim de cena:
-  - Ajuste FC: Você estava principalmente no controle (progresso) ou fora de controle (contratempos)?
-    - No controle → FC − 1 (min 1)
-    - Fora de controle → FC + 1 (max 9)
-  - Atualize Listas (Personagens/Tramas/Aspectos):
-    - Adicione novas entradas importantes que surgiram
-    - Promova itens relevantes adicionando uma entrada extra (até três vezes no total)
-    - Remova itens que não são mais relevantes
+## Encerre uma cena e faça a contabilidade
 
-## Dicas de fluxo de trabalho do app
+Uma cena termina quando a ação principal se resolve ou quando a história muda naturalmente de direção. Bons momentos para passar para uma nova cena incluem:
 
-- Mantenha Cenas curtas e focadas — isso torna os resultados de Destino mais fáceis de interpretar e logs mais fáceis de revisar
-- Quando a intuição travar, role uma Tabela de Significado pela aba Tabelas na tela de Destino (o Painel deslizante de Tabelas de Jogo, em um tablet ou computador) ou pela tela Tabelas de Significado. O resultado é salvo no Registro de Aventura, não na Cena.
-- Fator de Caos: uma nova Cena assume sozinha o Fator de Caos atual do Diário. Salvar sua Cena mais recente define o Fator de Caos do Diário com o valor dessa Cena, e editar uma Cena anterior não altera o Fator de Caos atual. Ajuste-o entre Cenas, não durante elas.
-- Mantenha as anotações da Cena em um padrão de anotação portátil (marcadores + sub-marcadores) para uma leitura rápida mais tarde e, se ajudar, acrescente sua própria interpretação de um resultado de Destino ou do Teste de Cena. De qualquer forma, o resultado do Teste de Cena é salvo no Registro de Aventura como Cena Esperada, Cena Alterada ou Cena de Interrupção. Ele não é adicionado ao Resumo de uma Cena.
+- O foco principal da cena se concluiu.
+- O tempo avança ou seu personagem vai para um novo lugar.
+- Uma revelação importante muda o rumo da história.
+- O ritmo esfriou e uma cena nova ajuda a movimentar o jogo.
+- Você travou e decide transformar a próxima cena em uma Cena de Interrupção para forçar um Evento Aleatório.
 
-> ### Muitos Caminhos
-> Mythic é muito flexível. Não há um "jeito errado" de jogar, e muitas das variações exploradas em Mythic Magazines, Mythic Variations, outras publicações Mythic, a comunidade e o blog da Tana incorporam esse espírito de jogo flexível que atende ao seu estilo. Conforme você joga, descobrirá o que funciona para você e o que não.
+Antes de começar a próxima cena, passe por dois passos rápidos de contabilidade:
+
+1. **Ajuste o Fator de Caos.** Avalie se o seu Personagem Jogador ficou no controle na maior parte da cena (avançando nos objetivos) ou fora de controle (lidando com contratempos). Se manteve o controle, reduza o Fator de Caos em 1 (mínimo 1). Se as coisas saíram do controle, aumente o Fator de Caos em 1 (máximo 9).
+2. **Atualize suas Listas.** Adicione novos Personagens, Tramas ou Aspectos importantes que surgiram. Duplique os itens que foram mais ativos para aumentar o peso deles (até 3 cópias por padrão) e remova o que deixou de ser relevante.
+
+## Dicas para sessões fluidas
+
+Mantenha as Cenas curtas e focadas. Cenas menores deixam as respostas do Destino mais fáceis de interpretar e tornam seu Diário muito mais gostoso de reler depois.
+
+Quando a intuição travar no meio de uma cena, role uma Tabela de Significado pela aba **Tabelas** da tela de Destino (o **Painel deslizante de Tabelas de Jogo** no tablet ou computador) ou pela tela **Tabelas de Significado**. Toda rolagem é salva no **Diário de Aventura**, não nas notas da Cena.
+
+O Mythic foi feito para ser flexível. Entre as Mythic Magazines, Mythic Variations, o blog da Tana e as regras da casa da comunidade, não existe um único jeito certo de cadenciar ou registrar cenas. Comece por este fluxo e adapte o que funcionar melhor para manter seu jogo andando.

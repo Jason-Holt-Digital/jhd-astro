@@ -6,7 +6,7 @@ category: "advanced"
 order: 3
 icon: "fa-slab fa-regular fa-layer-group"
 duration: "Reference"
-updated: "2026-11-04"
+updated: "2026-11-19"
 tags: ["schema", "custom-tables", "meaning-tables", "event-focus", "reference"]
 keywords:
   - Meaning Table schema
@@ -28,48 +28,53 @@ related:
 
 > This page describes Mythic GME 1.7.0 and later.
 
-## Plain English
+## Overview
 
-No programming needed. This page lists field names used by imports/exports and by power users who maintain JSON directly.
+This reference documents the Unified Table v3 JSON format used by Meaning Tables and Event Focus tables on import and export. If you want step-by-step instructions for creating or importing tables inside the app, see [Getting Started with Custom Tables](/resources/getting-started-with-custom-tables/) and [Importing & Exporting Custom Tables](/resources/importing-and-exporting-custom-tables/).
 
 ## Meaning Table (v3)
 
-Required keys: id, categoryId, displayName, and entries. These have no defaults. If you leave out the optional keys, schemaVersion defaults to 3, tableType to meaning-table, rangeStart to 1, and rangeEnd to 100.
+Required keys are `id`, `categoryId`, `displayName`, and `entries`. These keys have no defaults. If you omit optional header keys, `schemaVersion` defaults to `3`, `tableType` defaults to `"meaning-table"`, `rangeStart` defaults to `1`, and `rangeEnd` defaults to `100`.
 
-Key details
-- `id` (string). Built-in tables use snake_case, but the app does not check the style.
-- `categoryId` (string). Built-in categories use kebab-case. On import, a category that is not in your app becomes `custom`.
-- `displayName` (string)
-- `entries` (array)
-- `schemaVersion` (int), `tableType` (string)
-- `rangeStart` (int), `rangeEnd` (int)
+### Core fields
 
-Optional table fields
-- `description`, `descriptionTranslations`, `displayNameTranslations`
-- `defaultLanguage` (string, e.g., `"en"`)
-- isBuiltIn, isUserCreated (booleans). On import the app sets isBuiltIn to false and isUserCreated to true, whatever the file says.
-- `source` (string), `tags` (array of strings)
-- tableRollOn (array of Meaning Table ids). Any other id or a list name is skipped.
-- `data` (object for extensions)
-- `baseDice` (string, e.g., `"1d10"`). The dice the app rolls on this table. Without it, the app rolls one die with a side for each number in the range.
-- `defaultDoubleRoll` (boolean, default true). Set it to false to roll the table once. A table whose tags include `crafter` also rolls once. The 1×/2× choice on the table's row overrides both.
-- `isPremium` (boolean). Ignored on import. The app decides which tables need an unlock.
-- `replacement`, `displayRoll` (booleans). Kept from Foundry VTT imports and exported again. They do not change how the table rolls.
-- `dice` (legacy; ignored by Mythic GME 1.7.0 and later). Use `baseDice`.
+- `id` (string, required). Built-in tables use snake_case, though the app does not enforce a naming style.
+- `categoryId` (string, required). Built-in categories use kebab-case. On import, an unrecognized category ID falls back to `"custom"`.
+- `displayName` (string, required). Table title shown in the app.
+- `entries` (array, required). List of table entry objects.
+- `schemaVersion` (int, default `3`). Format version.
+- `tableType` (string, default `"meaning-table"`). Table kind.
+- `rangeStart` (int, default `1`) and `rangeEnd` (int, default `100`). Inclusive roll bounds.
 
-Entry fields
-- `range` [start, end] (required)
-- `result` (string, required)
-- Optional: `description`, translations, `tags`, `entryRollOn`, `disabled`, `data`
-- weight (optional integer). If any entry in a Meaning Table has a weight above 1, the app picks results by weight instead of by range, and the table's tableRollOn links are not rolled. Event Focus tables ignore weight.
+### Optional table fields
 
-Validation rules
-- Entries must cover `[rangeStart..rangeEnd]` exactly once; no gaps/overlaps
-- Disabled entries (or entries with `[0,0]`) are ignored for coverage
+- `description` (string), `descriptionTranslations` (object), and `displayNameTranslations` (object).
+- `defaultLanguage` (string, for example `"en"`).
+- `isBuiltIn` and `isUserCreated` (booleans). On import, the app forces `isBuiltIn` to `false` and `isUserCreated` to `true` regardless of the file's values.
+- `source` (string) and `tags` (array of strings).
+- `tableRollOn` (array of Meaning Table IDs). Any non-Meaning-Table ID or Adventure List name is skipped.
+- `data` (object). Container for extension metadata.
+- `baseDice` (string, for example `"1d10"`). Dice expression rolled on this table. When omitted, the app rolls a single die sized to the range.
+- `defaultDoubleRoll` (boolean, default `true`). Set to `false` to roll the table once by default. A table whose `tags` include `"crafter"` also rolls once. The `1x`/`2x` selector on the table's row overrides both.
+- `isPremium` (boolean). Ignored on import. The app decides which tables require the Expanded Features unlock.
+- `replacement` and `displayRoll` (booleans). Preserved from Foundry VTT imports and written back on export without changing roll behavior.
+- `dice` (legacy). Ignored in Mythic GME 1.7.0 and later. Use `baseDice` instead.
 
-Minimal JSON
+### Entry fields
 
-Use a category id that exists in your app, for example "categoryId": "custom".
+- `range` (array of two ints `[start, end]`, required). Inclusive roll range for the entry.
+- `result` (string, required). Text returned when the entry is rolled.
+- Optional fields include `description`, translations, `tags`, `entryRollOn`, `disabled`, and `data`.
+- `weight` (int, optional). If any entry in a Meaning Table has a `weight` above `1`, the app picks results by weight instead of by range and skips the table's `tableRollOn` links. Leave `weight` out or set it to `1` on every entry to roll by range. Event Focus tables ignore `weight`.
+
+### Validation rules
+
+- Active entries must cover `rangeStart` through `rangeEnd` exactly once with no gaps or overlaps.
+- Entries with `disabled` set to `true` or `range` set to `[0, 0]` are ignored during coverage checks.
+
+### Minimal Meaning Table JSON
+
+Use a `categoryId` that exists in your app, such as `"custom"`.
 
 ```json
 {
@@ -89,27 +94,30 @@ Use a category id that exists in your app, for example "categoryId": "custom".
 
 ## Event Focus Table (v3)
 
-Required keys
-- `id`, `categoryId`, `displayName` (non-empty strings). On import, `categoryId` is set to "event-focus".
-- `entries` (a list; each entry needs `range` and `result`)
+### Required keys
 
-Optional keys and defaults
-- `schemaVersion` (default 3), `rangeStart` (default 1), `rangeEnd` (default 100)
-- `tableType`: a single-file import uses the selected Event Focus card and sets the type afterward. In a `tables` wrapper, set `tableType` = "event-focus" so the table identifies itself. If it is omitted, the selected card decides; an unknown value fails.
+- `id`, `categoryId`, and `displayName` (non-empty strings). On import, the app sets `categoryId` to `"event-focus"`.
+- `entries` (array). Each entry requires `range` and `result`.
 
-Optional table fields
-- `displayNameTranslations`, `description`, `descriptionTranslations`
-- `defaultLanguage`, `isBuiltIn`, `isUserCreated`, `source`, `tags`, `tableRollOn`, `data`, `baseDice`
-- `data.iconKey` sets the icon on the table's card, for example `"bullseye"`. A key the app does not know shows a question mark.
+### Optional keys and defaults
 
-Entry fields
-- `range` [start, end], `result`
-- Optional: `description`, translations, `tags`, `entryRollOn`, `disabled`, `data`, `weight` (ignored for Event Focus tables)
-- action, additionalRolls (stored and exported, not used when rolling)
+- `schemaVersion` (int, default `3`), `rangeStart` (int, default `1`), and `rangeEnd` (int, default `100`).
+- `tableType` (string). A single-file import uses the **Event Focus Tables** card you selected and sets `tableType` afterward. Inside a `tables` wrapper file, set `tableType` to `"event-focus"` so the table identifies itself. If omitted, the selected card decides. An unknown `tableType` value fails import.
 
-Minimal JSON
+### Optional table fields
 
-This is a shortened sample, not the built-in Event Focus table.
+- `displayNameTranslations`, `description`, `descriptionTranslations`, `defaultLanguage`, `isBuiltIn`, `isUserCreated`, `source`, `tags`, `tableRollOn`, `data`, and `baseDice`.
+- `data.iconKey` (string). Sets the icon on the table's card, for example `"bullseye"`. An unrecognized key displays a question mark.
+
+### Entry fields
+
+- `range` (`[start, end]`, required) and `result` (string, required).
+- Optional fields include `description`, translations, `tags`, `entryRollOn`, `disabled`, `data`, and `weight` (ignored on Event Focus tables).
+- `action` and `additionalRolls`. Stored and re-exported without affecting rolls.
+
+### Minimal Event Focus JSON
+
+This is a shortened example, not the built-in Event Focus table.
 
 ```json
 {
@@ -129,11 +137,10 @@ This is a shortened sample, not the built-in Event Focus table.
 
 ## Downloads
 
-See the Downloads section at the bottom of this page for schema files. Templates/Samples are listed on “Getting Started with Custom Tables”.
-
-Note: a Meaning Table with any entry weight above 1 is rolled by weight. Leave weight out, or set it to 1 on every entry, to roll by range.
+The Downloads section at the bottom of this page contains `meaning_table.schema.json` and `event_focus_table.schema.json`. Starter templates and samples live on [Getting Started with Custom Tables](/resources/getting-started-with-custom-tables/).
 
 ## Related
 
-- Getting started and best practices: “Getting Started with Custom Tables”, “Organizing Custom Tables”
-- File formats and Foundry mapping: “Importing & Exporting Custom Tables”
+- [Getting Started with Custom Tables](/resources/getting-started-with-custom-tables/) and [Organizing Custom Tables](/resources/organizing-custom-tables/) for creating and grouping tables.
+- [Linking & Nesting Tables](/resources/linking-and-nesting-tables/) for `entryRollOn` and `tableRollOn` behavior.
+- [Importing & Exporting Custom Tables](/resources/importing-and-exporting-custom-tables/) for CSV, TXT, PSV, JSON, and Foundry VTT import rules.

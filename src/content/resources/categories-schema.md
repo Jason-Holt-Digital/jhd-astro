@@ -6,7 +6,7 @@ category: "advanced"
 order: 4
 icon: "fa-slab fa-regular fa-sort"
 duration: "Reference"
-updated: "2026-11-04"
+updated: "2026-11-19"
 tags: ["schema", "categories", "custom-tables", "reference"]
 keywords:
   - Categories schema
@@ -29,9 +29,9 @@ related:
 
 > This page describes Mythic GME 1.7.0 and later.
 
-## Plain English
+## Overview
 
-Categories provide names and icons for table groups. The app ships with built‑ins, and you can edit them. You add your own alongside them.
+Categories define display names, icons, and sort order for groups of Custom Tables. The app ships with built-in categories that you can edit, and you can add your own categories alongside them in `categories.json`. For managing categories inside the app, see [Organizing Custom Tables](/resources/organizing-custom-tables/).
 
 ## Root structure
 
@@ -46,35 +46,35 @@ Categories provide names and icons for table groups. The app ships with built‑
 }
 ```
 
-- `defaultCategories`: the built-in categories that ship with the app. You can edit a built-in category in the app. The app records the ids of built-in categories you edited in an optional `editedBuiltInCategoryIds` list.
-- `categories`: the categories you created. Add, rename, or remove them here.
+- `defaultCategories` (array, required). Built-in categories shipped with the app. When you edit a built-in category in the app, its `id` is recorded in an optional `editedBuiltInCategoryIds` array.
+- `categories` (array, required). User-created categories. Add, rename, or remove your custom categories here.
 
-Both arrays are required, and either one can be empty.
+Both arrays are required, and either array may be empty.
 
-## TableCategoryInfo fields
+## `TableCategoryInfo` fields
 
-- `id` (kebab‑case string)
-- `displayName` (string)
-- iconKey (string). The bundled file uses keys such as dice, user, map, book, and question. A key the app does not know shows a question-mark icon.
-- sortOrder (integer, lower numbers first). Categories made in the app get 900, and you can change the order only by editing this file.
-- `isBuiltIn` (boolean)
-- Optional: `description` (string), `displayNameTranslations` (object of language code to string), `descriptionTranslations` (object of language code to string), `tags` (array of strings), and `source` (string)
+- `id` (string, required). Kebab-case identifier.
+- `displayName` (string, required). Category label shown in the app.
+- `iconKey` (string, required). Icon name. Bundled categories use keys such as `dice`, `user`, `map`, `book`, and `question`. An unrecognized key displays a question-mark icon.
+- `sortOrder` (int, required). Lower numbers appear first. Categories created in the app receive `900`, and sort order can be changed only by editing `categories.json`.
+- `isBuiltIn` (bool, required). Indicates whether the category belongs in `defaultCategories` (`true`) or `categories` (`false`).
+- Optional fields include `description` (string), `displayNameTranslations` (object mapping language code to string), `descriptionTranslations` (object mapping language code to string), `tags` (array of strings), and `source` (string).
 
-Every entry needs id, displayName, iconKey, sortOrder, and isBuiltIn. If one is missing or has the wrong type, the app cannot load any categories from the file and tries to save a copy named invalidated-categories with a timestamp.
+Every entry must include `id`, `displayName`, `iconKey`, `sortOrder`, and `isBuiltIn` with the right JSON types. If any required field is missing or has the wrong type, the app loads no categories from the file and attempts to save a timestamped copy named `invalidated-categories`.
 
 ## Lifecycle in the app
 
-- Baseline copy: with premium, the app can copy a baseline `categories.json` into your current storage location (meaning_tables/categories.json), which may be the app's own folder, a custom folder, or iCloud. It normally keeps an existing file instead of overwriting it.
-- Edit Category works on built-in categories too. A built-in category cannot be deleted. You can hide one you have not edited, and you can delete your edited version of one to bring back the original. Some built-in categories, such as Custom and Event Focus, cannot be hidden.
-- Reset Categories to Defaults in Table Settings puts every built-in category back as it ships with the app, so your edits to built-in categories are removed. Categories whose isBuiltIn is false are kept, and hidden categories stay hidden.
-- Set isBuiltIn to false on your own categories. When the app saves, it puts each entry in the array that matches its flag. Whether a category counts as built-in in the app, with Hide and Delete my edited version, depends on its id matching a category that ships with the app.
-- The category template and sample in Downloads hold only a few categories, with an empty `defaultCategories`. Copy their entries into your own categories.json. Do not replace the whole file with them, or the built-in categories go missing until you use Reset Categories to Defaults.
+- With Expanded Features unlocked, the app can copy a baseline `categories.json` into `meaning_tables/categories.json` inside your current storage location (the app folder, a custom folder, or iCloud). The app keeps an existing file instead of overwriting it.
+- **Edit Category** works on built-in categories as well as your own. Built-in categories cannot be deleted, though you can hide an unedited built-in category or delete your edited version to restore the original. Some built-in categories, such as **Custom** and **Event Focus**, cannot be hidden.
+- **Reset Categories to Defaults** in **Table Settings** restores every built-in category to its shipped state and removes edits to built-in categories. Categories with `isBuiltIn` set to `false` are kept, and hidden categories remain hidden.
+- Set `isBuiltIn` to `false` on your own categories. On save, the app places each entry in the array matching its `isBuiltIn` flag. Whether a category behaves as built-in in the app (offering **Hide this category** and **Delete my edited version**) depends on its `id` matching a shipped category.
+- The template and sample files in Downloads hold only a few entries and an empty `defaultCategories` array. Copy their entries into your existing `categories.json` rather than replacing the whole file, or built-in categories will go missing until you run **Reset Categories to Defaults**.
 
 ## Downloads
 
-See the Downloads section at the bottom of this page for files.
+The Downloads section at the bottom of this page includes `categories.schema.json`, `categories_template.json`, and `categories_sample.json`.
 
 ## Related
 
-- Getting started and organizing tips: “Getting Started with Custom Tables”, “Organizing Custom Tables”
-- Table schemas: “Custom Table Schema”
+- [Getting Started with Custom Tables](/resources/getting-started-with-custom-tables/) and [Organizing Custom Tables](/resources/organizing-custom-tables/) for creating and managing categories in the app.
+- [Custom Table Schema](/resources/custom-table-schema/) for the Meaning Table and Event Focus table JSON format.

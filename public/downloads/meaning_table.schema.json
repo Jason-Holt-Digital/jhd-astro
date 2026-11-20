@@ -1,7 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://mythicgme2e.app/schemas/meaning_table.schema.json",
-  "title": "Meaning Table (v3)",
+  "$comment": "DEPRECATED: Meaning tables and event focus tables use the unified v3 schema. See schemas/unified-table-v3-schema.jsonc.",
+  "title": "Meaning Table (v3, deprecated wrapper)",
   "type": "object",
   "additionalProperties": true,
   "properties": {
@@ -62,4 +63,3 @@
     }
   }
 }
-

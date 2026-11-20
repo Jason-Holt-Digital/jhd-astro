@@ -22,7 +22,7 @@ export default defineConfig({
     }),
     oramaSearch({
       resources: {
-        pathMatcher: /^\/resources\/.+/,
+        pathMatcher: /^(\/resources\/|\/tomekeeper\/guides\/).+/,
         contentSelectors: ["main"],
       },
       blog: {
