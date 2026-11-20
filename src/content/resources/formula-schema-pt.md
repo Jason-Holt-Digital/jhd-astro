@@ -114,7 +114,7 @@ Exportar omite `poolLabels` e `poolLabelColors`, e a importação ignora ambas a
 - `formula` (string, obrigatório). Não pode ser vazio e precisa ser uma notação de dados válida. Se qualquer entrada falhar na validação, nada do arquivo é importado.
 - `name` (string, opcional). Rótulo de exibição. Usa `formula` como padrão quando ausente.
 - `description` (string, opcional). Contexto extra para a fórmula.
-- `dateAdded` (string ISO 8601, opcional). Data e hora de criação. Na importação, um valor ausente ou ilegível é substituído pelo horário da importação.
+- `dateAdded` (string ISO 8601, opcional). Data e hora de criação. Na importação, um valor ausente, nulo ou ilegível é substituído pelo horário da importação.
 - `id` (string, opcional). Exportar grava um `id` para cada fórmula, mas a importação o ignora e atribui um `id` novo a cada fórmula importada. Importar o mesmo arquivo duas vezes cria entradas duplicadas.
 
 ## Comportamento da importação

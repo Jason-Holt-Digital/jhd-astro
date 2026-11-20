@@ -113,7 +113,7 @@ Export omits `poolLabels` and `poolLabelColors`, and Import ignores both keys if
 - `formula` (string, required). Must be non-empty and valid dice notation. If any entry fails validation, nothing in the file is imported.
 - `name` (string, optional). Display label. Defaults to `formula` when missing.
 - `description` (string, optional). Extra context for the formula.
-- `dateAdded` (ISO 8601 string, optional). Creation timestamp. On import, a missing or unreadable value is replaced with the import time.
+- `dateAdded` (ISO 8601 string, optional). Creation timestamp. On import, a missing, null or unreadable value is replaced with the import time.
 - `id` (string, optional). Export writes an `id` for each formula, though Import ignores it and assigns a new `id` to every imported formula. Importing the same file twice creates duplicate entries.
 
 ## Import behavior
