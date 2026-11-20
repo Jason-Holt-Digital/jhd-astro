@@ -71,7 +71,7 @@ export function getMythicGmeApps(isPt: boolean) {
       },
       {
         name: "Amazon Appstore",
-        url: "https://www.amazon.ca/Jason-Holt-Digital-LLC-Mythic/dp/B0DJBPF9L9",
+        url: "https://www.amazon.com/dp/B0DJBPF9L9",
         icon: "fa-brands fa-amazon",
       },
     ],

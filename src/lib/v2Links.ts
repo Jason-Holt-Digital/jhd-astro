@@ -40,7 +40,7 @@ export const v2StoreLinks = [
     meta: "Android",
   },
   {
-    href: "https://www.amazon.ca/Jason-Holt-Digital-LLC-Mythic/dp/B0DJBPF9L9",
+    href: "https://www.amazon.com/dp/B0DJBPF9L9",
     label: "Amazon Appstore",
     icon: "fa-brands fa-amazon",
     className: "amazon",
