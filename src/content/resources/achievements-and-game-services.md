@@ -69,9 +69,9 @@ On Android, progress toward **Ten Scenes Deep**, **Fifty Scenes**, **Chronicle**
 
 | Achievement | How to earn it |
 | --- | --- |
-| **Scene One** | Create your very first Scene in an adventure. |
-| **Ten Scenes Deep** | Create 10 Scenes across your adventures. |
-| **Fifty Scenes** | Create 50 Scenes across your adventures. |
+| **Scene One** | Create your first Scene. |
+| **Ten Scenes Deep** | Reach 10 Scenes. [How progress counts](#how-progress-counts) explains which Scenes count on each platform. |
+| **Fifty Scenes** | Reach 50 Scenes, counted the same way as Ten Scenes Deep. |
 | **Thread's End** | Play the Conclusion of a Thread Progress Track. A Conclusion counts whether or not the Thread is resolved. |
 | **Full Cast** | Have 10 Characters on one Journal's Characters list. |
 | **Waiting in the Wings** | Trigger a Keyed Scene you set up. |
@@ -81,8 +81,8 @@ On Android, progress toward **Ten Scenes Deep**, **Fifty Scenes**, **Chronicle**
 | Achievement | How to earn it |
 | --- | --- |
 | **In Your Own Words** | Write Narrative entries in 5 different Scenes of one Journal. |
-| **Chronicle** | Reach 100 Adventure Log entries in a single Journal. |
-| **Epic Saga** | Reach 500 Adventure Log entries in a single Journal. |
+| **Chronicle** | Reach 100 Adventure Log entries in a single Journal. [How progress counts](#how-progress-counts) explains which entries count on each platform. |
+| **Epic Saga** | Reach 500 Adventure Log entries in a single Journal, counted the same way as Chronicle. |
 | **Back at the Table** | Play one Journal on 10 different days. The days don't need to be in a row. |
 | **Many Moons** | Play one Journal on 30 different days. The days don't need to be in a row. |
 
@@ -95,4 +95,4 @@ The other 6 achievements are hidden. Game Center and Google Play Games show thei
 - New to the app? Start with [Getting Started with the Mythic Apps](/resources/getting-started-with-the-mythic-apps/).
 - Learn how Scenes and the Chaos Factor work in [Writing and Organizing Scenes](/resources/writing-and-organizing-scenes/).
 
-If an achievement doesn't unlock when it should, let me know on the [Support page](/support/).
+If an achievement doesn't unlock when it should, let me know on the [Support page](/support#contact-panel).
