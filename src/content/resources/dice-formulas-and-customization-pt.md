@@ -6,7 +6,7 @@ category: dice-roller
 order: 3
 icon: fa-slab fa-regular fa-sliders
 duration: 12 min de leitura
-updated: "2026-11-19"
+updated: "2026-11-23"
 lang: "pt"
 tags:
   - dice
@@ -120,12 +120,50 @@ Na aba **Unir** do Estúdio de Dados, toque em um rótulo salvo para inseri-lo a
 
 Renomear ou remover um rótulo não altera fórmulas que já o utilizam. Um rótulo não pode conter `"`, e dois rótulos não podem diferir apenas entre maiúsculas e minúsculas. As fórmulas salvas mantêm o texto do rótulo que você digitou, mas exportar fórmulas salvas não inclui seus rótulos salvos nem as cores deles.
 
+## Estúdio de Dados e modo de dados
+
+> Limpar, Remover, a folha de introdução e **Mostrar rolagens do Registro de Aventura** são novidades da versão 1.7.1.
+
+O Estúdio de Dados serve para montar, testar e salvar fórmulas de dados. Uma rolagem feita no Estúdio de Dados é uma Rolagem de teste do estúdio. Ela fica na lista de rolagens durante a sessão e nunca é escrita no seu Diário.
+
+Para rolar dados no seu Registro de Aventura, mude a tela da Tabela de Destino ou do Teste do Destino para o modo de dados com a tecla do modo de dados. O lugar da tecla depende do layout:
+
+- **Celular na vertical:** na ponta esquerda do cabeçalho do Seletor de chances.
+- **Celular na horizontal:** na ponta esquerda do cabeçalho do Painel de ações.
+- **Tablet e computador:** na Barra de probabilidades e no cabeçalho do painel Ações do Destino.
+
+As rolagens do modo de dados são escritas no seu Diário e aparecem no Registro de Aventura.
+
+### A folha de introdução
+
+Na primeira vez que você abre o Estúdio de Dados, uma folha com o título **Estúdio de Dados e modo de dados** explica a diferença e mostra onde fica a tecla do modo de dados no seu layout. Toque em **Entendi** para fechá-la.
+
+Para ler de novo, abra a Ajuda do Estúdio de Dados. O botão **Estúdio de Dados e modo de dados** fica no topo da primeira aba.
+
+### Mostrar rolagens do Registro de Aventura
+
+O Estúdio de Dados lista as rolagens que você faz no modo de dados ao lado das suas Rolagens de teste do estúdio. **Mostrar rolagens do Registro de Aventura** vem ativado por padrão. Desative para listar só as Rolagens de teste do estúdio. O Registro de Aventura guarda todas as rolagens de qualquer forma.
+
+A opção fica nas configurações do Estúdio de Dados, que abrem pela engrenagem no cabeçalho do Estúdio de Dados. Você também a encontra nas Configurações, na seção **Estúdio de Dados**.
+
+### Limpar a lista de rolagens
+
+A tecla Limpar (uma vassoura, com o rótulo **Limpar histórico de rolagens**) fica no topo da lista de rolagens do Estúdio de Dados. Toque nela e o app pede uma confirmação:
+
+> Isso esvazia a lista de rolagens. As Rolagens de teste do estúdio são apagadas. As rolagens do modo de dados ficam no seu diário e no Registro de Aventura.
+
+Toque em **Limpar** para esvaziar a lista, ou em **Cancelar** para mantê-la.
+
+### Remover uma rolagem
+
+Para tirar uma rolagem da lista, toque na seta no fim da linha e toque em **Remover** (a lixeira), ou deslize a linha para a esquerda. Uma Rolagem de teste do estúdio é apagada. Uma rolagem feita no modo de dados sai só da lista do Estúdio de Dados e continua no seu Diário e no Registro de Aventura. Remover não pede confirmação.
+
 ## Forçar
 
 Forçar rerrola parte da sua Rolagem de teste do estúdio mais recente.
 
 1. Na Rolagem de teste do estúdio mais recente, toque na seta no fim da linha.
-2. Toque em **Forçar** (o primeiro dos dois botões que aparecem).
+2. Toque em **Forçar** (o primeiro dos botões que aparecem).
 
 Por padrão, Forçar mantém cada sucesso e sucesso crítico, rerrola os dados restantes e adiciona o resultado como uma nova Rolagem de teste do estúdio. Números fixos como o `+3` em `2d6+3` ficam como estão. Forçar também rerrola dados após um sinal de menos, como em `2d6#s6 - 2d6#s6`.
 
@@ -142,7 +180,7 @@ Adicione uma tag à fórmula para controlar o comportamento de Forçar:
 
 `@push` vale para a rolagem inteira, enquanto uma tag `@lock` após uma parada vale apenas para aquela parada. Em `"Base": 3d6#s6#f1 @lock=sf, "Equipamento": 2d6#s6#f1`, Forçar trava os 1s da parada Base e rerrola os 1s da parada Equipamento.
 
-Se apenas **Copiar** aparecer na linha de uma Rolagem de teste do estúdio, aquela rolagem não pode ser forçada. Isso acontece quando a rolagem atingiu o limite de `@push`, quando nenhum dado seria rerrolado ou quando um dado que seria rerrolado é um dado Fate, um dado de faces personalizadas ou um `D66`.
+Se apenas **Copiar** e **Remover** aparecerem na linha de uma Rolagem de teste do estúdio, aquela rolagem não pode ser forçada. Isso acontece quando a rolagem atingiu o limite de `@push`, quando nenhum dado seria rerrolado ou quando um dado que seria rerrolado é um dado Fate, um dado de faces personalizadas ou um `D66`.
 
 Você também pode forçar uma rolagem de dados no seu Registro de Aventura. Toque na seta no fim da linha e toque em **Forçar**. O resultado é salvo no seu Diário como uma nova **Rolagem de dados forçada**, enquanto a rolagem original continua igual e não pode ser forçada de novo. Se apenas **Copiar** e **Excluir entrada** aparecerem em uma rolagem do Registro de Aventura, ela não pode ser forçada pelos mesmos motivos acima, porque já foi forçada ou porque foi registrada por uma versão anterior do app. Forçar uma Rolagem de teste do estúdio nunca grava no seu Diário.
 
