@@ -300,8 +300,9 @@ const { class: className = "legal-article" } = Astro.props;
   <h2>Children's Privacy</h2>
   <p>The apps are not directed to children under 13. They don't require accounts or ask for a birth date, so I generally don't know a player's age.</p>
   <p>
-    On devices that report the player's age range (Google Play on Android, and Apple's age range on iPhone, iPad and Mac),
-    the app uses that signal on the device only. It is never stored and never sent. When the signal shows the player is
+    On devices that report the player's age range, the app uses that signal on the device only. It is never stored and
+    never sent. On Android, the signal comes from Google Play. On iPhone and iPad, the app asks Apple for the age range
+    only where Apple says age rules apply. On Mac, the app asks for it, and sharing it is up to you. When the signal shows the player is
     under 18, the app hides and turns off basic counts and Usage sharing, and doesn't create a usage ID. Error reports
     stay on so the app keeps working, with the same switch to turn them off, and without country, timings or crash-free
     rates.

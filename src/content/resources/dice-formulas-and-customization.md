@@ -6,7 +6,7 @@ category: dice-roller
 order: 3
 icon: fa-slab fa-regular fa-sliders
 duration: 12 min read
-updated: "2026-11-19"
+updated: "2026-11-23"
 tags:
   - dice
   - formulas
@@ -119,12 +119,50 @@ On the **Join** tab in Dice Studio, tap a saved label to insert it before your d
 
 Renaming or removing a label does not alter formulas that already use it. A label cannot contain `"`, and two labels cannot differ only in capitalization. Saved formulas keep the label text you typed, though exporting saved formulas does not include your saved labels or their colors.
 
+## Dice Studio and dice mode
+
+> Clear, Remove, the intro sheet, and **Show Adventure Log rolls** are new in 1.7.1.
+
+Dice Studio is for building, testing and saving dice formulas. A roll made in Dice Studio is a Studio test roll. It stays in the roll list for the session and is never written to your Journal.
+
+To roll dice into your Adventure Log, switch the Fate Chart or Fate Check screen to dice mode with the dice mode key. Where the key sits depends on the layout:
+
+- **Phone held upright:** at the left end of the Odds Selector header.
+- **Phone turned sideways:** at the left end of the Actions Panel header.
+- **Tablet and desktop:** in the Odds Bar and in the Fate Actions panel header.
+
+Rolls made in dice mode are written to your Journal and show in the Adventure Log.
+
+### The intro sheet
+
+The first time you open Dice Studio, a sheet titled **Dice Studio and dice mode** explains the difference and shows where the dice mode key is on your layout. Tap **Got it** to close it.
+
+To read it again, open Dice Studio Help. The **Dice Studio and dice mode** button sits at the top of the first tab.
+
+### Show Adventure Log rolls
+
+Dice Studio lists the rolls you make in dice mode beside your Studio test rolls. **Show Adventure Log rolls** is on by default. Turn it off to list only Studio test rolls. The Adventure Log keeps every roll either way.
+
+The switch is in Dice Studio settings, which open from the gear in the Dice Studio header. You can also find it in Settings, in the **Dice Studio** section.
+
+### Clear the roll list
+
+The Clear key (a broom, labeled **Clear roll history**) sits at the top of the Dice Studio roll list. Tap it and the app asks you to confirm:
+
+> This empties the roll list. Studio test rolls are deleted. Rolls from dice mode stay in your Journal and the Adventure Log.
+
+Tap **Clear** to empty the list, or **Cancel** to keep it.
+
+### Remove one roll
+
+To take one roll off the list, tap the arrow at the end of its row and tap **Remove** (the trash can), or swipe the row to the left. A Studio test roll is deleted. A roll made in dice mode leaves only the Dice Studio list and stays in your Journal and the Adventure Log. Remove doesn't ask you to confirm.
+
 ## Push
 
 Push rerolls part of your newest Studio test roll.
 
 1. On the newest Studio test roll, tap the arrow at the end of the row.
-2. Tap **Push** (the first of the two buttons that appear).
+2. Tap **Push** (the first of the buttons that appear).
 
 By default, Push keeps every success and critical success, rerolls the remaining dice, and adds the result as a new Studio test roll. Flat numbers like the `+3` in `2d6+3` stay as they are. Push also rerolls dice after a minus sign, as in `2d6#s6 - 2d6#s6`.
 
@@ -141,7 +179,7 @@ Add a tag to your formula to control Push behavior:
 
 `@push` applies to the whole roll, while a `@lock` tag after a pool applies only to that pool. In `"Base": 3d6#s6#f1 @lock=sf, "Gear": 2d6#s6#f1`, a push locks the 1s in the Base pool and rerolls the 1s in the Gear pool.
 
-If only **Copy** appears on a Studio test roll row, that roll cannot be pushed. That happens when the roll has hit its `@push` limit, when no die would reroll, or when a die that would reroll is a Fate die, a custom-face die, or a `D66`.
+If only **Copy** and **Remove** appear on a Studio test roll row, that roll cannot be pushed. That happens when the roll has hit its `@push` limit, when no die would reroll, or when a die that would reroll is a Fate die, a custom-face die, or a `D66`.
 
 You can also push a dice roll from your Adventure Log. Tap the arrow at the end of its row and tap **Push**. The result saves to your Journal as a new **Pushed dice roll**, while the original roll stays unchanged and cannot be pushed again. If only **Copy** and **Delete Entry** appear on an Adventure Log dice roll, it cannot be pushed for the same reasons above, because it was already pushed, or because an earlier app version logged it. Pushing a Studio test roll never writes to your Journal.
 
