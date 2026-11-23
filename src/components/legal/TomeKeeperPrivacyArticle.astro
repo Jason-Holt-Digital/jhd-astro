@@ -14,7 +14,7 @@ const { class: className = "legal-article" } = Astro.props;
   <h2>The Short Version</h2>
   <ul>
     <li>Tome Keeper has no accounts and never asks for your name, email address or phone number.</li>
-    <li>Your PDFs, bookmarks, page tags, sets, Tables, clips and settings stay on your device unless you turn on iCloud Sync or Google Drive Sync. Synced library data goes only to your own private iCloud account or your own Google Drive. Jason Holt Digital does not receive or store it.</li>
+    <li>Your PDFs, bookmarks, page tags, sets, Tables, clips and settings stay on your device unless you turn on iCloud Sync, Google Drive Sync or OneDrive Sync. Synced library data goes only to your own private iCloud account, Google Drive or OneDrive. Jason Holt Digital does not receive or store it.</li>
     <li>There are no ads, no analytics and no tracking. I don't sell data.</li>
     <li>Diagnostics are on so I can fix errors and slow screens. You can turn them off in Settings, under Diagnostics.</li>
     <li>The app checks for fixes when it starts and while it's open.</li>
@@ -23,13 +23,13 @@ const { class: className = "legal-article" } = Astro.props;
 
   <h2>What This Policy Covers</h2>
   <p>This policy applies to Tome Keeper on iPhone, iPad, Mac, Windows and Android, including beta versions from TestFlight and Google Play and the Windows version from the Microsoft Store.</p>
-  <p>iCloud Sync is available on iPhone, iPad and Mac. Google Drive Sync is available on Android.</p>
+  <p>iCloud Sync is available on iPhone, iPad and Mac. Google Drive Sync is available on Android. OneDrive Sync is available on Windows.</p>
 
   <h2>What Stays on Your Device</h2>
   <p>
     The PDFs you import are copied into Tome Keeper's storage on your device. Your library, sets, bookmarks, page tags,
-    Tables, clips and settings are stored there too. If you turn on iCloud Sync or Google Drive Sync, the library data
-    described below also goes to your own private iCloud account or Google Drive. On iPhone, iPad and Mac, your device's own backups may include this data,
+    Tables, clips and settings are stored there too. If you turn on iCloud Sync, Google Drive Sync or OneDrive Sync, the
+    library data described below also goes to your own private iCloud account, Google Drive or OneDrive. On iPhone, iPad and Mac, your device's own backups may include this data,
     depending on your backup settings.
   </p>
 
@@ -81,6 +81,34 @@ const { class: className = "legal-article" } = Astro.props;
     To stop syncing on a device, turn off <strong>Google Drive Sync</strong> in Tome Keeper's Settings. This also signs
     Tome Keeper out of Google. Turning it off, or uninstalling Tome Keeper, does not delete copies already in your Google
     Drive or on your other devices.
+  </p>
+
+  <h3>OneDrive Sync (Only If You Turn It On)</h3>
+  <p>
+    OneDrive Sync is optional and off by default on each device. On Windows, you can turn it on in Tome Keeper's
+    Settings. Your browser then opens Microsoft's sign-in page, where you choose a personal Microsoft account and let
+    Tome Keeper use its own app folder in that account's OneDrive.
+  </p>
+  <p>
+    It syncs the same library data as iCloud Sync. Book PDF files also upload when <strong>Sync book files</strong> is
+    on. Book PDFs download on your other devices when you open them.
+  </p>
+  <p>
+    This data goes directly between your devices and the Tome Keeper folder inside the Apps folder of your own
+    OneDrive, over an encrypted connection. Tome Keeper can open only that folder, not your other OneDrive files. Jason
+    Holt Digital does not receive, store or have access to your synced library data. Microsoft provides OneDrive under
+    its <a href="https://www.microsoft.com/privacy/privacystatement" target="_blank" rel="noopener noreferrer">privacy
+    statement</a>, and the data counts toward your OneDrive storage.
+  </p>
+  <p>
+    Tome Keeper keeps the email address of the account you chose, and a sign-in token that lets it keep syncing without
+    asking you to sign in again, on your PC. The token is encrypted in Windows' secure storage. Neither is synced or sent
+    to me.
+  </p>
+  <p>
+    To stop syncing on a device, turn off <strong>OneDrive Sync</strong> in Tome Keeper's Settings. This also signs
+    Tome Keeper out of your Microsoft account on that PC. Turning it off, or uninstalling Tome Keeper, does not delete
+    copies already in your OneDrive or on your other devices.
   </p>
 
   <h3>Diagnostics</h3>  <p>
@@ -144,8 +172,8 @@ const { class: className = "legal-article" } = Astro.props;
 
   <h3>What the App Never Sends</h3>
   <ul>
-    <li>Your PDFs, their file names or their titles, except to your own private iCloud account or Google Drive if you turn on sync. Book PDF uploads also require Sync book files.</li>
-    <li>Bookmarks, page tags, notes, set names, Table contents or clips, except to your own private iCloud account or Google Drive if you turn on sync</li>
+    <li>Your PDFs, their file names or their titles, except to your own private iCloud account, Google Drive or OneDrive if you turn on sync. Book PDF uploads also require Sync book files.</li>
+    <li>Bookmarks, page tags, notes, set names, Table contents or clips, except to your own private iCloud account, Google Drive or OneDrive if you turn on sync</li>
     <li>Screenshots or recordings of your screen</li>
     <li>Your name, email address or phone number</li>
     <li>Your exact location</li>
@@ -189,6 +217,11 @@ const { class: className = "legal-article" } = Astro.props;
       Google Drive Sync, under its
       <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">privacy policy</a>.
     </li>
+    <li>
+      <strong>Microsoft (OneDrive)</strong> stores your synced library data in your own OneDrive, only if you turn on
+      OneDrive Sync, under its
+      <a href="https://www.microsoft.com/privacy/privacystatement" target="_blank" rel="noopener noreferrer">privacy statement</a>.
+    </li>
   </ul>
   <p>
     If you get Tome Keeper from the App Store, TestFlight, Google Play or the Microsoft Store, that store handles your download under its own
@@ -206,6 +239,7 @@ const { class: className = "legal-article" } = Astro.props;
   <ul>
     <li><strong>iCloud Sync:</strong> Settings, iCloud Sync. Off until you turn it on, separately on each iPhone, iPad or Mac. Sync book files controls book PDF uploads.</li>
     <li><strong>Google Drive Sync:</strong> Settings, Google Drive Sync. Off until you turn it on, separately on each Android device. Sync book files controls book PDF uploads.</li>
+    <li><strong>OneDrive Sync:</strong> Settings, OneDrive Sync. Off until you turn it on, separately on each Windows PC. Sync book files controls book PDF uploads.</li>
     <li><strong>Diagnostics:</strong> Settings, Diagnostics, Share diagnostics. On until you turn them off.</li>
     <li><strong>DriveThruRPG:</strong> off until you connect it. Disconnect it at any time to delete the stored key and token.</li>
     <li><strong>Your device:</strong> your operating system's settings control what it shares with Apple, Google or Microsoft.</li>
@@ -214,7 +248,7 @@ const { class: className = "legal-article" } = Astro.props;
   <h2>Legal Basis (GDPR)</h2>
   <p>For people in the European Union and the United Kingdom, I rely on:</p>
   <ul>
-    <li><strong>Providing the service you asked for:</strong> delivering updates, connecting to DriveThruRPG when you ask, and syncing with your own iCloud account or Google Drive when you turn on sync.</li>
+    <li><strong>Providing the service you asked for:</strong> delivering updates, connecting to DriveThruRPG when you ask, and syncing with your own iCloud account, Google Drive or OneDrive when you turn on sync.</li>
     <li><strong>Legitimate interests:</strong> diagnostics, so I can keep the app working. You can object at any time by turning them off in Settings.</li>
     <li><strong>Replying to you:</strong> when you email me.</li>
   </ul>
@@ -225,9 +259,11 @@ const { class: className = "legal-article" } = Astro.props;
     to processing of your personal information, and to complain to a privacy regulator.
   </p>
   <p>
-    Your synced library data is in your own iCloud account. You can delete Tome Keeper's iCloud data through your device's
+    Your synced library data is in your own iCloud account, Google Drive or OneDrive. You can delete Tome Keeper's iCloud data through your device's
     iCloud storage settings. You can delete Tome Keeper's Google Drive data in Google Drive on the web: open Settings,
-    then Manage apps, find Tome Keeper, open Options and choose Delete hidden app data. Jason Holt Digital cannot retrieve or delete those private copies for you. Keep copies of
+    then Manage apps, find Tome Keeper, open Options and choose Delete hidden app data. You can delete Tome Keeper's
+    OneDrive data by deleting its folder inside the Apps folder of your OneDrive, and remove its access to your
+    Microsoft account in your Microsoft account's privacy settings, under apps that can access your data. Jason Holt Digital cannot retrieve or delete those private copies for you. Keep copies of
     anything you want to save before deleting it.
   </p>
   <p>
