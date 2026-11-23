@@ -7,7 +7,7 @@ category: "custom-tables"
 order: 1
 icon: "fa-slab fa-regular fa-newspaper"
 duration: "9 min read"
-updated: "2026-11-19"
+updated: "2026-11-23"
 tags: ["custom-tables", "getting-started", "meaning-tables", "event-focus", "categories"]
 keywords:
   - Custom tables
@@ -106,6 +106,21 @@ How you remove a table depends on where it came from:
 - An unedited built-in table offers **Hide this table** instead of **Delete**. Hiding takes the table out of your lists without deleting any files, and you can show it again from **Table Settings**.
 - An edited built-in table offers **Delete my edited version**. The app removes your copy and loads the original again, and you can undo the action.
 - A table you created yourself offers **Delete**, which you can also undo.
+
+## When an update changes a built-in table
+
+> New in 1.7.1.
+
+The app ships the official built-in tables and updates its own copies with each release. It never replaces a built-in table you changed. A table you edited in the app keeps your edits through every update.
+
+If you changed a table's file in your storage folder and an update changes that table, the app waits for you to choose. The same happens when your copy of a built-in table can't be read. Open Settings, then **Table Management**. Under **Tables Waiting for Your Choice**, each table shows its name and one sentence that says why it waits:
+
+- **"The app has a new version of this table, and your copy is different."** Choose **Keep Mine** to keep your copy as it is, or **Use the New Version** to replace it with the version that ships with the app.
+- **"Your copy of this table can't be read, so play uses the app's version until you choose."** Choose **Use the App's Version** to replace the copy that can't be read.
+
+Before **Use the New Version** replaces your copy, the app asks you to confirm. It saves a backup file of the old copy first, but no screen in the app can restore it. Edits you saved in the Table Editor are kept.
+
+Until you choose, a dot marks Settings and Table Management. You can keep playing while a table waits: Random Events keep working, and a copy that can't be read is replaced in play by the app's version.
 
 ## Translations and metadata
 
