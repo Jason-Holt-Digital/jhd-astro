@@ -7,7 +7,7 @@ category: "custom-tables"
 order: 1
 icon: "fa-slab fa-regular fa-newspaper"
 duration: "9 min de leitura"
-updated: "2026-11-19"
+updated: "2026-11-23"
 lang: "pt"
 tags: ["custom-tables", "getting-started", "meaning-tables", "event-focus", "categories"]
 keywords:
@@ -107,6 +107,21 @@ A forma de remover uma tabela depende da origem dela:
 - Uma tabela integrada que você não editou oferece **Ocultar esta tabela** em vez de **Excluir**. Ocultar retira a tabela das suas listas sem excluir nenhum arquivo, e você pode mostrá-la novamente em **Configurações de tabelas**.
 - Uma tabela integrada que você editou oferece **Excluir minha versão editada**. O app remove a sua cópia e carrega a original de novo, e você pode desfazer essa ação.
 - Uma tabela criada por você oferece **Excluir**, que você também pode desfazer.
+
+## Quando uma atualização muda uma tabela integrada
+
+> Novidade da versão 1.7.1.
+
+O app traz as tabelas integradas oficiais e atualiza as próprias cópias a cada versão. Ele nunca substitui uma tabela integrada que você alterou. Uma tabela que você editou no app mantém suas edições em todas as atualizações.
+
+Se você alterou o arquivo de uma tabela na sua pasta de armazenamento e uma atualização muda essa tabela, o app espera a sua escolha. O mesmo acontece quando a sua cópia de uma tabela integrada não pode ser lida. Abra as Configurações e depois **Gerenciamento de tabelas**. Em **Tabelas aguardando sua escolha**, cada tabela mostra o nome e uma frase que diz por que ela está esperando:
+
+- **"O aplicativo tem uma nova versão desta tabela, e a sua cópia é diferente."** Escolha **Manter a minha** para manter a sua cópia como está, ou **Usar a nova versão** para substituí-la pela versão incluída no aplicativo.
+- **"Não é possível ler a sua cópia desta tabela, então o jogo usa a versão do aplicativo até você escolher."** Escolha **Usar a versão do aplicativo** para substituir a cópia que não pode ser lida.
+
+Antes de **Usar a nova versão** substituir a sua cópia, o app pede uma confirmação. Ele salva antes um arquivo de backup da cópia antiga, mas nenhuma tela do app pode restaurá-lo. As alterações que você salvou no Editor de tabelas são mantidas.
+
+Até você escolher, um ponto marca as Configurações e o Gerenciamento de tabelas. Você pode continuar jogando enquanto uma tabela espera: os Eventos Aleatórios continuam funcionando, e uma cópia que não pode ser lida é trocada no jogo pela versão do aplicativo.
 
 ## Traduções e metadados
 
